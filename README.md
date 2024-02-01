@@ -1,2 +1,2 @@
-# Large Language Models Maybe Faithful Explainers
+# Large Language Models As Faithful Explainers
 
