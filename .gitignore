@@ -1,0 +1,6 @@
+.env
+__pycache__/
+model/__pycache__/
+results/
+test_deepseek.py
+*.json

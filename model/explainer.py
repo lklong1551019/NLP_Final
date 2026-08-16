@@ -61,12 +61,38 @@ def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=No
         generate_ids = xai_local_model.generate(**model_inputs_all, do_sample=True, temperature=args.temp_exp, max_new_tokens=500)
         ans_tkn = xai_local_tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
         response = ans_tkn[0].split("### Response:")[-1]
-        
+
+    elif model_name == "deepseek":
+        from openai import OpenAI
+
+        client = OpenAI(
+            api_key=os.environ.get("DEEPSEEK_API_KEY", getattr(args, 'deepseek_key', None)),
+            base_url=os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
+        )
+        deepseek_model = getattr(args, 'deepseek_model', None) \
+            or os.environ.get("DEEPSEEK_MODEL", "deepseek-v4-pro")
+
+        try:
+            input_text = prompt if isinstance(prompt, str) else prompt[0]
+            completion = client.chat.completions.create(
+                model=deepseek_model,
+                temperature=float(args.temp_exp),
+                max_tokens=args.max_tokens,
+                messages=[
+                    {"role": "system", "content": "You are an expert at explaining language model behavior."},
+                    {"role": "user", "content": input_text},
+                ],
+            )
+            response = completion.choices[0].message.content
+        except Exception as e:
+            print(f"[ERROR] DeepSeek API: {e}")
+            response = "API error."
+
     return response
 
 def generate_exp_prompt(task_instruction, input_zip, output_ans, args):
 
-    if args.data in ["ecqa", "copa", "social", "xcopa"]:
+    if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
         qa_pair = zip(input_zip, output_ans)
         exp_prompt = [f"{task_instruction}\n\n### Input: Q:{item[0]}\nA:{item[1]}" for item in qa_pair]
 
@@ -163,7 +189,7 @@ def generate_counterfact_prompt(explanation, args):
 
     # instruction = f"Please generate one counterfactual example obtaining opposite meaning of the given sentence. \
     #                 Make sure you output sentence only."
-    if args.data in ["ecqa", "copa", "social", "xcopa"]:
+    if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
         instruction = f"Please generate one example of obtaining the opposite meaning from given sentence. \
                         Make sure you output sentences only."
         final_prompt = f"{instruction}\n\nSentences: {explanation}\n\n"

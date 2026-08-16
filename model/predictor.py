@@ -1,5 +1,6 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import LlamaForCausalLM, LlamaTokenizer
+from transformers import BitsAndBytesConfig
 import torch
 import openai
 from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
@@ -46,6 +47,28 @@ def load_model(model_name, max_memory):
         tokenizer.pad_token = '[PAD]'
         model.eval()
     
+    elif model_name == "qwen":
+        print("============ Predictor: Qwen3.5-4B (4-bit)")
+        model_id = "Qwen/Qwen3.5-4B"
+        bnb_config = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_compute_dtype=torch.float16,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+        )
+        model = AutoModelForCausalLM.from_pretrained(
+            model_id,
+            device_map="auto",
+            max_memory=max_memory,
+            quantization_config=bnb_config,
+            trust_remote_code=True,
+        )
+        tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
+        tokenizer.padding_side = "left"
+        if tokenizer.pad_token is None:
+            tokenizer.pad_token = tokenizer.eos_token
+        model.eval()
+
     elif model_name == "claude":
         model = "claude"
         tokenizer = None
@@ -121,7 +144,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
     temperature_cot = 0.7
     ans_llm = []
 
-    if args.pred_model == "phi":
+    if args.pred_model in ["phi", "qwen"]:
         instruction = f"Below is an instruction that describes a task. \
                     Write a response that appropriately completes the request of input."
         final_prompt = [ f"{instruction}\n\n### Instruction: {task_instruction}\n\n \
@@ -200,7 +223,7 @@ def generate_predictor_output_trivaqa(model, tokenizer, task_instruction, input_
     final_prompt = [ f"{instruction}\n\n### Instruction: {task_instruction}\n\n \
                     ### Context: {ques[1]}\n\n### Input: {ques[0]}?\n\n### Response:" for ques in input_zip ]
 
-    if args.pred_model == "phi":
+    if args.pred_model in ["phi", "qwen"]:
         model_inputs_all = tokenizer(final_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
         generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=20)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
@@ -293,7 +316,7 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
             ans = "X"
         ans_short.append(ans)
 
-    elif args.pred_model == "phi":
+    elif args.pred_model in ["phi", "qwen"]:
         model_inputs_all = tokenizer(input_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
         generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=256)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
@@ -368,6 +391,16 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
                         ### Response: Let's think step by step." for exp, ques in count_exp_pair ]
     ture_score = _ecqa_score(model, tokenizer, ture_final_prompt, answer, args)
     count_score = _ecqa_score(model, tokenizer, count_final_prompt, answer, args)
+    
+    print("\n--- DEBUG INFO ---")
+    print("TRUE PROMPT:")
+    print(ture_final_prompt[0] if len(ture_final_prompt) > 0 else "EMPTY")
+    print("COUNT PROMPT:")
+    print(count_final_prompt[0] if len(count_final_prompt) > 0 else "EMPTY")
+    print(f"TRUE SCORE: {ture_score}")
+    print(f"COUNT SCORE: {count_score}")
+    print("------------------\n")
+
     diff_score = abs(ture_score - count_score)
     
     return diff_score
@@ -385,7 +418,7 @@ def _trivaqa_score(model, tokenizer, input_prompt, ans_gt, args):
     
     ans_short = []
     temperature_cot = 0.0
-    if args.pred_model == "phi":
+    if args.pred_model in ["phi", "qwen"]:
         model_inputs_all = tokenizer(input_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
         generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=10)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)

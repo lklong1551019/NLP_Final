@@ -8,11 +8,18 @@ import json
 import argparse
 from tqdm import tqdm
 from random import sample
-from datasets import load_dataset, load_metric, Dataset
+from datasets import load_dataset, Dataset
 from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_local_xai_prompt, generate_exp_prompt
+
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 
 def preprocess_ecqa():
@@ -106,24 +113,57 @@ def preprocess_copa():
         train_dict['answer'] = [opt[answer[idx]] for opt in option]
     return train_dict
 
-def preprocess_xcopa():
+def preprocess_xcopa_vi(lang="vi", split="test"):
+    """Load XCOPA dataset for cross-lingual experiments.
+    Available langs: et, ht, id, it, qu, sw, ta, th, tr, vi, zh
+    Available splits: validation (100), test (500)
+    """
     train_dict = collections.defaultdict(list)
 
-    all_na_data = load_dataset("xcopa", "it")
-    question, answer = [], []
-    hg_data = all_na_data["test"]
+    all_na_data = load_dataset("cambridgeltl/xcopa", lang)
+    hg_data = all_na_data[split]
     question_text = hg_data["premise"]
     question_purp = hg_data["question"]
-    answer = hg_data["label"]
+    labels = hg_data["label"]
     op1 = hg_data["choice1"]
     op2 = hg_data["choice2"]
     option = list(zip(op1, op2))
-    choice = [ f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
+    choice = [f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
 
     for idx, ques_txt in enumerate(question_text):
-        question = f"###Question: What is the {question_purp[idx]} of the Promise writen in Italian?\n### Premise: {ques_txt}\n### Choices: {choice[idx]}"
+        question = (
+            f"###Question: What is the {question_purp[idx]} of the Premise?\n"
+            f"### Premise: {ques_txt}\n"
+            f"### Choices: {choice[idx]}"
+        )
         train_dict['question'].append(question)
-        train_dict['answer'] = [opt[answer[idx]] for opt in option]
+        train_dict['answer'].append(option[idx][labels[idx]])
+    return train_dict
+
+def preprocess_copa_en(split="train"):
+    """Load original English balanced-COPA dataset.
+    Available splits: train (1000), test (500)
+    """
+    train_dict = collections.defaultdict(list)
+
+    all_na_data = load_dataset("pkavumba/balanced-copa")
+    hg_data = all_na_data[split]
+    question_text = hg_data["premise"]
+    question_purp = hg_data["question"]
+    labels = hg_data["label"]
+    op1 = hg_data["choice1"]
+    op2 = hg_data["choice2"]
+    option = list(zip(op1, op2))
+    choice = [f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
+
+    for idx, ques_txt in enumerate(question_text):
+        question = (
+            f"###Question: What is the {question_purp[idx]} of the Premise?\n"
+            f"### Premise: {ques_txt}\n"
+            f"### Choices: {choice[idx]}"
+        )
+        train_dict['question'].append(question)
+        train_dict['answer'].append(option[idx][labels[idx]])
     return train_dict
 
 def get_args():
@@ -135,12 +175,27 @@ def get_args():
     parser.add_argument('--pred_model', type=str, default='vicuna')
     parser.add_argument('--xai_model', type=str, default='claude')
     parser.add_argument('--max_tokens', type=int, default=1000)
-    parser.add_argument('--temp_exp', type=int, default=0.01)
+    parser.add_argument('--temp_exp', type=float, default=0.01)
     parser.add_argument('--xai_iter', type=int, default=20)
     parser.add_argument('--ques_idx_start', type=int, default=40)
     parser.add_argument('--ques_idx_end', type=int, default=40)
     parser.add_argument('--save_cf_file_path', type=str, default=None)
     parser.add_argument('--save_file_path', type=str, default="./results")
+    # New arguments
+    parser.add_argument('--deepseek_key', type=str, default=None,
+                        help='DeepSeek API key (or set DEEPSEEK_API_KEY env var)')
+    parser.add_argument('--deepseek_model', type=str, default='deepseek-v4-pro',
+                        choices=['deepseek-v4-pro', 'deepseek-v4-flash'],
+                        help='DeepSeek model variant')
+    parser.add_argument('--xcopa_lang', type=str, default='vi',
+                        help='XCOPA language code (vi, it, th, etc.)')
+    parser.add_argument('--data_split', type=str, default='test',
+                        choices=['train', 'test', 'validation'],
+                        help='Dataset split to use')
+    parser.add_argument('--load_in_4bit', action='store_true', default=True,
+                        help='Use 4-bit quantization (for 8GB GPUs)')
+    parser.add_argument('--no_4bit', dest='load_in_4bit', action='store_false',
+                        help='Disable 4-bit quantization')
     args = parser.parse_args()
     return args
 
@@ -249,7 +304,51 @@ if __name__ == "__main__":
         args.data = "social"
 
     elif args.data == "xcopa":
-        train_dict = preprocess_xcopa()
+        train_dict = preprocess_xcopa_vi(lang=args.xcopa_lang, split=args.data_split if args.data_split != 'train' else 'test')
+        task_instruction = f"Please select a correct choice for the each question. \
+                            Make sure not to repeat the input context."
+        exp_instruction = f"Please provide the objective explanations of why model generates \
+                            the answers of the given questions based on your thoughts. \
+                            Guess the reason why model provides answer no matter it is wrong or correct.\
+                            Make sure not answer the questions or provide any suggestions to better answer the questions by yourself. \
+                            Every explanations should begin with <EXP>. \
+                            Make sure not to repeat the input questions and answers. \
+                            Please only output the explanation sentences."
+
+        # Load predictor
+        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        if pred_tokenizer == None:
+            generate_ans_function = generate_api_predictor_output
+        else:
+            generate_ans_function = generate_predictor_output_ecqa
+
+        # LLM-OPT function
+        diff_task_score = diff_task_score_ecqa
+
+    elif args.data == "xcopa_vi":
+        train_dict = preprocess_xcopa_vi(lang=args.xcopa_lang, split=args.data_split if args.data_split != 'train' else 'test')
+        task_instruction = f"Please select a correct choice for the each question. \
+                            Make sure not to repeat the input context."
+        exp_instruction = f"Please provide the objective explanations of why model generates \
+                            the answers of the given questions based on your thoughts. \
+                            Guess the reason why model provides answer no matter it is wrong or correct.\
+                            Make sure not answer the questions or provide any suggestions to better answer the questions by yourself. \
+                            Every explanations should begin with <EXP>. \
+                            Make sure not to repeat the input questions and answers. \
+                            Please only output the explanation sentences."
+
+        # Load predictor
+        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        if pred_tokenizer == None:
+            generate_ans_function = generate_api_predictor_output
+        else:
+            generate_ans_function = generate_predictor_output_ecqa
+
+        # LLM-OPT function
+        diff_task_score = diff_task_score_ecqa
+
+    elif args.data == "copa_en":
+        train_dict = preprocess_copa_en(split=args.data_split)
         task_instruction = f"Please select a correct choice for the each question. \
                             Make sure not to repeat the input context."
         exp_instruction = f"Please provide the objective explanations of why model generates \
@@ -277,7 +376,7 @@ if __name__ == "__main__":
         fed_score_org = 0.0
 
         # Select data for LLM optimization
-        if args.data in ["ecqa", "copa", "social", "xcopa"]:
+        if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
             question = [train_dict['question'][idx]]
             answer = [train_dict['answer'][idx]] #[qa_dict[question[0]]]
             input_zip = question
@@ -299,8 +398,8 @@ if __name__ == "__main__":
         # Initial state
         # Generate prediction from LLMs
         output_ans = generate_ans_function(pred_model, pred_tokenizer, task_instruction, input_zip, answer, args)
-        if args.data in ["ecqa", "copa", "social", "xcopa"]:
-            if output_ans[0] in answer:
+        if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
+            if answer[0].strip() in output_ans[0]:
                 target = f"============ Corrct --> Q:{question} || GT-A:{answer[0]} || LLM-A:{answer[0]}"
             else:
                 target = f"============ Wrong  --> Q:{question} || GT-A:{answer[0]} || LLM-A:{output_ans[0]}"
@@ -357,11 +456,15 @@ if __name__ == "__main__":
                 # LLM optimizer
                 xai_prompt = generate_local_xai_prompt(xai_list, scores_list, question, output_ans)
                 exp_reply = reponse_xai_model(xai_prompt, args)
-                xai_list.append(exp_reply)
+                
+                exp_reply = exp_reply.split(":\n\n")[-1]
+                exp_reply = exp_reply.split("\n\n")
+                
+                xai_list.extend(exp_reply)
                 pbar.update(1)
 
-                if iter%5 == 0 and ("apologize" in exp_reply) or ("Unfortunately" in exp_reply):
-                    print(f"============ {exp_reply}")
+                if iter%5 == 0 and ("apologize" in exp_reply[0]) or ("Unfortunately" in exp_reply[0]):
+                    print(f"============ {exp_reply[0]}")
                     print("============ Refuse to Answer")
                     break
 

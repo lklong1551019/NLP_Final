@@ -14,6 +14,13 @@ from model.predictor import generate_predictor_output_ecqa, generate_predictor_o
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_exp_prompt, generate_global_xai_prompt
 import time
 
+# Load environment variables from .env file
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
+
 
 def preprocess_ecqa():
     train_dict = collections.defaultdict(list)
@@ -81,6 +88,59 @@ def preprocess_copa():
         train_dict['answer'] = [opt[answer[idx]] for opt in option]
     return train_dict
 
+def preprocess_xcopa_vi(lang="vi", split="test"):
+    """Load XCOPA dataset for cross-lingual experiments.
+    Available langs: et, ht, id, it, qu, sw, ta, th, tr, vi, zh
+    Available splits: validation (100), test (500)
+    """
+    train_dict = collections.defaultdict(list)
+
+    all_na_data = load_dataset("cambridgeltl/xcopa", lang)
+    hg_data = all_na_data[split]
+    question_text = hg_data["premise"]
+    question_purp = hg_data["question"]
+    labels = hg_data["label"]
+    op1 = hg_data["choice1"]
+    op2 = hg_data["choice2"]
+    option = list(zip(op1, op2))
+    choice = [f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
+
+    for idx, ques_txt in enumerate(question_text):
+        question = (
+            f"###Question: What is the {question_purp[idx]} of the Premise?\n"
+            f"### Premise: {ques_txt}\n"
+            f"### Choices: {choice[idx]}"
+        )
+        train_dict['question'].append(question)
+        train_dict['answer'].append(option[idx][labels[idx]])
+    return train_dict
+
+def preprocess_copa_en(split="train"):
+    """Load original English balanced-COPA dataset.
+    Available splits: train (1000), test (500)
+    """
+    train_dict = collections.defaultdict(list)
+
+    all_na_data = load_dataset("pkavumba/balanced-copa")
+    hg_data = all_na_data[split]
+    question_text = hg_data["premise"]
+    question_purp = hg_data["question"]
+    labels = hg_data["label"]
+    op1 = hg_data["choice1"]
+    op2 = hg_data["choice2"]
+    option = list(zip(op1, op2))
+    choice = [f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
+
+    for idx, ques_txt in enumerate(question_text):
+        question = (
+            f"###Question: What is the {question_purp[idx]} of the Premise?\n"
+            f"### Premise: {ques_txt}\n"
+            f"### Choices: {choice[idx]}"
+        )
+        train_dict['question'].append(question)
+        train_dict['answer'].append(option[idx][labels[idx]])
+    return train_dict
+
 def get_args():
     parser = argparse.ArgumentParser(description='Process Capsule Prompt.')
     parser.add_argument('--device_num', nargs='+', default="0")
@@ -95,6 +155,21 @@ def get_args():
     parser.add_argument('--round_xai_iter', type=int, default=10)
     parser.add_argument('--ques_sample', type=int, default=15)
     parser.add_argument('--save_file', type=str, default="./results/global")
+    # New arguments
+    parser.add_argument('--deepseek_key', type=str, default=None,
+                        help='DeepSeek API key (or set DEEPSEEK_API_KEY env var)')
+    parser.add_argument('--deepseek_model', type=str, default='deepseek-v4-pro',
+                        choices=['deepseek-v4-pro', 'deepseek-v4-flash'],
+                        help='DeepSeek model variant')
+    parser.add_argument('--xcopa_lang', type=str, default='vi',
+                        help='XCOPA language code (vi, it, th, etc.)')
+    parser.add_argument('--data_split', type=str, default='test',
+                        choices=['train', 'test', 'validation'],
+                        help='Dataset split to use')
+    parser.add_argument('--load_in_4bit', action='store_true', default=True,
+                        help='Use 4-bit quantization (for 8GB GPUs)')
+    parser.add_argument('--no_4bit', dest='load_in_4bit', action='store_false',
+                        help='Disable 4-bit quantization')
     args = parser.parse_args()
     return args
 
@@ -120,7 +195,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
         
         # Load predictor and explainer
-        if args.xai_model not in ["claude", "gpt35"]:
+        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
             xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
@@ -149,7 +224,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
         
         # Load predictor and explainer
-        if args.xai_model not in ["claude", "gpt35"]:
+        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
             xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
@@ -177,7 +252,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
         
         # Load predictor and explainer
-        if args.xai_model not in ["claude", "gpt35"]:
+        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
             xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
@@ -190,6 +265,58 @@ if __name__ == "__main__":
             generate_ans_function = generate_api_predictor_output
             
         # LLM-OPT function
+        diff_task_score = diff_task_score_ecqa
+    # Add xcopa_vi and copa_en data branches
+    elif args.data == "xcopa_vi":
+        train_dict = preprocess_xcopa_vi(lang=args.xcopa_lang, split=args.data_split if args.data_split != 'train' else 'test')
+        task_instruction = f"Please select a correct choice for the each question. \
+                            Make sure not to repeat the input context."
+        exp_instruction = f"Please provide the objective explanations of why model generates \
+                            the answers of the given questions based on your thoughts. \
+                            Guess the reason why model provides answer no matter it is wrong or correct.\
+                            Make sure not answer the questions or provide any suggestions to better answer the questions by yourself. \
+                            Every explanations should begin with <EXP>. \
+                            Make sure not to repeat the input questions and answers. \
+                            Please only output the explanation sentences."
+
+        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
+            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
+        else:
+            xai_local_model, xai_local_tokenizer = "", ""
+
+        if args.pred_model not in ["claude", "gpt35"]:
+            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+            generate_ans_function = generate_predictor_output_ecqa
+        else:
+            pred_model, pred_tokenizer = "", ""
+            generate_ans_function = generate_api_predictor_output
+
+        diff_task_score = diff_task_score_ecqa
+
+    elif args.data == "copa_en":
+        train_dict = preprocess_copa_en(split=args.data_split)
+        task_instruction = f"Please select a correct choice for the each question. \
+                            Make sure not to repeat the input context."
+        exp_instruction = f"Please provide the objective explanations of why model generates \
+                            the answers of the given questions based on your thoughts. \
+                            Guess the reason why model provides answer no matter it is wrong or correct.\
+                            Make sure not answer the questions or provide any suggestions to better answer the questions by yourself. \
+                            Every explanations should begin with <EXP>. \
+                            Make sure not to repeat the input questions and answers. \
+                            Please only output the explanation sentences."
+
+        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
+            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
+        else:
+            xai_local_model, xai_local_tokenizer = "", ""
+
+        if args.pred_model not in ["claude", "gpt35"]:
+            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+            generate_ans_function = generate_predictor_output_ecqa
+        else:
+            pred_model, pred_tokenizer = "", ""
+            generate_ans_function = generate_api_predictor_output
+
         diff_task_score = diff_task_score_ecqa
 
 
@@ -223,7 +350,7 @@ if __name__ == "__main__":
 
             index_value = random.sample(list(enumerate(train_dict['question'])), args.ques_sample)
             # Sample questions for optimization
-            if args.data in ["ecqa", "copa"]:
+            if args.data in ["ecqa", "copa", "xcopa_vi", "copa_en"]:
                 question, answer = [], []
                 for idx, ques in index_value:
                     question.append(ques)
