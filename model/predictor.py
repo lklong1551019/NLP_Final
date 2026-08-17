@@ -42,6 +42,61 @@ def contains_answer(gold, text):
     return bool(gold_norm) and gold_norm in normalize_answer(text)
 
 
+_CHOICE_RE = re.compile(r"\[choice\](.*?)@", re.S)
+
+# Markers a chat model uses to introduce its final pick. Checked last-first, so
+# reasoning that mentions a choice before rejecting it does not win.
+_ANSWER_MARKERS = (
+    "**answer:**", "answer:", "correct choice is", "correct choice:",
+    "the correct answer is", "correct answer:", "đáp án đúng là", "đáp án:",
+    "câu trả lời đúng là", "lựa chọn đúng là",
+)
+
+
+def parse_choices(prompt):
+    """Pull the candidate answers out of a prompt's `[choice]...@` markers."""
+    return [c.strip() for c in _CHOICE_RE.findall(str(prompt)) if c.strip()]
+
+
+def select_choice(response, choices):
+    """Return the choice the response actually settles on, or None.
+
+    A plain "is the gold answer mentioned?" test is not enough: models routinely
+    name a choice in order to reject it ("The other choice, X, is also possible
+    but less directly implied ... **Answer:** Y"). Scoring that as X inflates
+    accuracy. We therefore look inside the response's final-answer region when a
+    marker is present, and otherwise take the choice mentioned last.
+    """
+    if not choices:
+        return None
+
+    norm_response = normalize_answer(response)
+
+    # Prefer whatever follows the last answer marker.
+    cut = -1
+    for marker in _ANSWER_MARKERS:
+        pos = norm_response.rfind(normalize_answer(marker))
+        if pos > cut:
+            cut = pos
+    regions = []
+    if cut != -1:
+        regions.append(norm_response[cut:])
+    regions.append(norm_response)
+
+    for region in regions:
+        best, best_pos = None, -1
+        for choice in choices:
+            norm_choice = normalize_answer(choice)
+            if not norm_choice:
+                continue
+            pos = region.rfind(norm_choice)
+            if pos > best_pos:
+                best, best_pos = choice, pos
+        if best is not None:
+            return best
+    return None
+
+
 def load_model(model_name, max_memory, load_in_4bit=True):
 
     '''
@@ -188,24 +243,10 @@ def generate_api_predictor_output(pred_model, pred_tokenzier, task_instruction, 
     if os.environ.get("FAITHLM_DEBUG"):
         print(f"[RAW INIT] {ans!r}")
 
-    try:
-        index = ans.find("]")
-        end_index = ans.find("@")
-        if index != -1 and end_index > index:
-            if ans[index+1] == " ":
-                ans = ans[index+2:end_index]
-            else:
-                ans = ans[index+1:end_index]
-        else:
-            if contains_answer(ans_gt[0], ans):
-                ans = ans_gt[0].strip()
-            else:
-                ans = "X"
-    except:
-        ans = "X"
-    if len(ans) == 0 or ans is None:
-        ans = "X"
-    ans_llm.append(ans)
+    picked = select_choice(ans, parse_choices(final_prompt[0] if final_prompt else ""))
+    if picked is None:
+        picked = ans_gt[0].strip() if contains_answer(ans_gt[0], ans) else "X"
+    ans_llm.append(picked if picked else "X")
 
     return ans_llm
 
@@ -402,28 +443,12 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
                 ans = "X"
             if os.environ.get("FAITHLM_DEBUG"):
                 print(f"[RAW ANS] {ans!r}")
-            raw_ans = ans
-            try:
-                index = ans.find("]")
-                end_index = ans.find("@")
-                if index != -1 and end_index > index:
-                    if ans[index+1] == " ":
-                        ans = ans[index+2:end_index]
-                    else:
-                        ans = ans[index+1:end_index]
-                elif "The correct answer is:\n\n" in ans:
-                    ans = ans.split("The correct answer is:\n\n")[-1]
-                    ans = ans.replace("*", "").strip()
-                else:
-                    if contains_answer(ans_gt[i], ans):
-                        ans = ans_gt[i]
-                    else:
-                        ans = "X"
-            except:
-                ans = "X"
-            if len(ans) == 0 or ans is None:
-                ans = "X"
-            ans_short.append(ans)
+            # Resolve which option the response settles on, rather than asking
+            # whether the gold string appears anywhere in it.
+            picked = select_choice(ans, parse_choices(one_prompt))
+            if picked is None:
+                picked = ans_gt[i] if contains_answer(ans_gt[i], ans) else "X"
+            ans_short.append(picked if picked else "X")
 
     elif args.pred_model in ["phi", "qwen"]:
         model_inputs_all = tokenizer(input_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
