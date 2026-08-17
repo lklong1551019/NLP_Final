@@ -1,0 +1,250 @@
+% FaithLM for Vietnamese — ACL short paper (4 pages + unlimited references)
+%
+% Build:  cd paper && bash build.sh          (or: latexmk -pdf main.tex)
+% Numbers: python scripts/export_paper_tables.py    -> regenerates generated/*.tex
+%
+% Anything marked TODO needs a human. Everything inside generated/ is produced
+% from the result JSON and should never be edited by hand.
+
+\documentclass[11pt]{article}
+
+% "review" = anonymous submission; switch to "final" for the version you submit
+% to the course, so that author names are visible.
+\usepackage[review]{acl}
+
+\usepackage{times}
+\usepackage{latexsym}
+
+% T5 encoding renders Vietnamese diacritics correctly. Keep both lines: T1 must
+% come first so that Latin text and the bibliography still hyphenate properly.
+\usepackage[T1,T5]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{microtype}
+\usepackage{inconsolata}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+
+\title{TODO: Title --- e.g.\ ``How Faithful Are LLM Explanations in Vietnamese?
+       Reproducing and Correcting FaithLM on XCOPA-vi''}
+
+% For the course submission, switch \usepackage[review]{acl} to [final] and fill
+% in the real names, student IDs and emails below.
+\author{
+  First Author \\
+  MSHV: TODO \\
+  \texttt{TODO@example.com} \\\And
+  Second Author \\
+  MSHV: TODO \\
+  \texttt{TODO@example.com} \\\And
+  Third Author \\
+  MSHV: TODO \\
+  \texttt{TODO@example.com} \\\And
+  Fourth Author \\
+  MSHV: TODO \\
+  \texttt{TODO@example.com} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+% ~150 words. Write this LAST, once the numbers exist.
+% Suggested skeleton — replace with real findings, do not leave hedged text:
+%   1 sentence: what faithfulness means and why it matters for Vietnamese.
+%   1 sentence: what we did (reproduce FaithLM on XCOPA-vi with Qwen3-4B + DeepSeek).
+%   2 sentences: the two defects we found in the released implementation.
+%   2 sentences: what our corrected measurements show.
+%   1 sentence: what this implies for evaluating explanations in non-English settings.
+TODO: Abstract.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+% ~0.75 column. Cover, in order:
+%   - Explanations from LLMs are increasingly used as evidence of reasoning, but
+%     a fluent explanation need not be the reason the model answered as it did.
+%   - FaithLM \citep{faithlm} tests this by perturbation: negate the explanation,
+%     feed it back, and see whether the prediction moves.
+%   - Nearly all of this evidence is English. Vietnamese is under-studied, and
+%     it is not obvious that the method transfers.
+%   - State the contributions explicitly (the list below).
+TODO: Introduction.
+
+Our contributions are:
+
+\begin{itemize}
+  \item We reproduce FaithLM on Vietnamese XCOPA with an open 4B predictor and
+        an API explainer, and release a configuration-driven implementation.
+  \item We identify two defects in the released implementation that affect the
+        reported metric, and quantify the effect of correcting each.
+  \item We compare against non-LLM counterfactual baselines, isolating how much
+        of the measured faithfulness requires an LLM at all.
+\end{itemize}
+
+\section{Related Work}
+\label{sec:related}
+
+% ~0.5 column, three short paragraphs. Cite real work only — do not invent
+% citations. Add entries to custom.bib as you go.
+%   - Faithfulness of explanations: distinguish plausibility from faithfulness.
+%   - Perturbation-based evaluation, and prompt optimisation by LLM (OPRO).
+%   - Cross-lingual evaluation and XCOPA; note the scarcity of Vietnamese work.
+TODO: Related work.
+
+\section{Dataset}
+\label{sec:dataset}
+
+% ~0.4 column. State plainly:
+%   - XCOPA-vi: source, size, split used, and that it is a human translation of
+%     COPA rather than natively authored Vietnamese (this matters for Limitations).
+%   - The 200-question subsample, drawn with a fixed seed over the full split.
+%   - The English COPA control, used to separate "the method is weak" from
+%     "the method is weak in Vietnamese".
+TODO: Dataset description.
+
+\input{generated/dataset_stats}
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Faithfulness by counterfactual perturbation}
+
+Let $q$ be a question, $\hat{y}$ the predictor's answer, and $e$ an explanation
+of $\hat{y}$ produced by a separate explainer model. Let $\bar{e}$ be a
+counterfactual explanation with the opposite meaning. Writing $s(\cdot)$ for the
+probability the predictor assigns to the gold answer under a given hint, the
+faithfulness score is the gap between the two arms:
+
+\begin{equation}
+\label{eq:faith}
+  F = \left| s(\text{arm}_{\text{true}}) - s(\bar{e}) \right|
+\end{equation}
+
+% Explain in prose: a faithful explanation is one whose reversal moves the
+% prediction, so a large gap means the explanation tracked the actual decision.
+
+\subsection{Two definitions of the true arm}
+\label{sec:two-metrics}
+
+% This subsection is the paper's main analytical contribution. Say clearly:
+%   - PAPER: arm_true is the UNHINTED baseline. The true explanation is generated
+%     but never shown to the predictor, so F conflates the effect of adding any
+%     hint with the effect of reversing meaning.
+%   - SYMMETRIC: arm_true is the true explanation itself. Both arms are hinted,
+%     so F isolates meaning reversal.
+%   - We report both. Do not claim one is "correct" without the numbers backing it.
+TODO: Explain the two metric variants.
+
+\subsection{Continuous scoring}
+\label{sec:scoring}
+
+% Explain why this is necessary, not merely nicer:
+%   - Scoring a single question by string match yields s in {0,1}, so F in
+%     Eq. (1) is almost always exactly 0.
+%   - The optimiser is handed a near-constant objective and cannot improve.
+%   - We score by length-normalised log-probability over the answer choices,
+%     giving continuous s from one forward pass and no extra compute.
+TODO: Explain log-probability scoring.
+
+\subsection{Iterative refinement}
+
+% Brief. Explainer acts as optimiser over past (explanation, score) pairs.
+% Local refines the explanation per question; global searches one shared
+% instruction. Keep this short — it is reproduced from the original paper.
+TODO: Describe the optimisation loop.
+
+\section{Experimental Setup}
+\label{sec:setup}
+
+\input{generated/setup}
+
+% Add anything the generated table cannot know: hardware used, wall-clock time,
+% total API cost, and the exact commit hash the numbers came from.
+TODO: Hardware, runtime and reproducibility details.
+
+\section{Results and Discussion}
+\label{sec:results}
+
+\input{generated/main_results}
+
+% Interpret, do not merely restate the table. Answer these questions in prose:
+%   - Does FaithLM beat the non-LLM baselines? By how much?
+%   - How far apart are the paper and symmetric metrics, and what does the gap
+%     mean? If they agree, that is also a finding worth stating.
+%   - Vietnamese vs English: is the gap in task accuracy, in faithfulness, or both?
+%   - Does the optimisation loop actually improve scores over iterations?
+TODO: Discussion of results.
+
+\input{generated/baseline_comparison}
+
+\section{Error Analysis}
+\label{sec:error}
+
+\input{generated/error_analysis}
+
+% The interesting cell is "correct prediction, unfaithful explanation" — the model
+% got the right answer for reasons the explanation does not capture. Quote one or
+% two real examples with the Vietnamese text, and say what went wrong.
+% Also report any systematic failures: refusals, unparseable outputs, degenerate
+% counterfactuals (e.g. the explainer merely prepending a negation).
+TODO: Error analysis with concrete examples.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+% ~0.25 column. What was measured, what it means for Vietnamese specifically,
+% and one concrete next step. No new claims here.
+TODO: Conclusion.
+
+% Limitations is mandatory at *ACL venues and does not count toward the page
+% limit. It is a section*, so it is unnumbered.
+\section*{Limitations}
+
+% Be specific and honest — vague limitations sections read as boilerplate.
+% Real limitations of this work, to expand into prose:
+%   - XCOPA-vi is translated from English COPA, so it may carry translationese
+%     and does not represent natively authored Vietnamese causal language.
+%   - We evaluate N questions with M iterations, well below the original scale,
+%     bounded by compute and API budget. State N and M explicitly.
+%   - Log-probability scoring requires a local model with choice options; it does
+%     not apply to API predictors or to open-ended tasks.
+%   - The explainer is a closed API model whose version may change, which limits
+%     exact reproducibility.
+%   - A single predictor at one size; results may not hold at other scales.
+%   - Single seed for the sampling draw; we do not report variance across seeds.
+TODO: Limitations.
+
+\section*{Ethical Considerations}
+
+% Short but not empty. Cover:
+%   - Faithfulness scores measure sensitivity to perturbation, not truthfulness.
+%     A high score does not license presenting explanations to end users as the
+%     model's actual reasoning.
+%   - Data is public and contains no personal information.
+%   - Note the API provider used and that prompts leave the local machine.
+TODO: Ethical considerations.
+
+\section*{Acknowledgments}
+
+TODO: Acknowledgments (remove for the anonymous version).
+
+\bibliography{custom}
+
+\appendix
+
+\section{Prompt Templates}
+\label{sec:appendix-prompts}
+
+% Appendices do not count toward the page limit. Paste the exact prompts from
+% faithlm/prompts.py so the work is reproducible.
+TODO: Prompt templates.
+
+\section{Additional Results}
+\label{sec:appendix-results}
+
+\input{generated/per_variant}
+
+\end{document}

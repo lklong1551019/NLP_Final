@@ -9,3 +9,14 @@ __pycache__/
 results/
 results_demo/
 docs/experiment_results.md
+
+# LaTeX build artefacts
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
+paper/*.pdf
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.synctex.gz
