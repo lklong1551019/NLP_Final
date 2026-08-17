@@ -41,14 +41,36 @@ def _write_json(path: str, payload) -> None:
     os.replace(tmp, path)  # atomic: a killed session never leaves half a file
 
 
+def select_indices(cfg, n_examples: int) -> List[int]:
+    """Choose which questions to run.
+
+    Result files are named by the dataset index, so a resumed run must produce
+    the same indices as the run it continues. Both modes are deterministic
+    given the config, and `random` additionally depends only on `run.seed` —
+    everyone sharing a config and a seed evaluates exactly the same questions
+    without anyone shipping a filtered copy of the data.
+    """
+    start = max(0, cfg.run.ques_idx_start)
+    end = min(cfg.run.ques_idx_end, n_examples)
+    count = max(0, end - start)
+
+    if cfg.run.sampling == "sequential":
+        return list(range(start, end))
+    if cfg.run.sampling == "random":
+        rng = random.Random(cfg.run.seed)
+        return sorted(rng.sample(range(n_examples), min(count, n_examples)))
+    raise ValueError(
+        f"run.sampling must be 'sequential' or 'random', got '{cfg.run.sampling}'"
+    )
+
+
 def run_local(cfg, examples: List[Example], predictor, explainer) -> List[Dict]:
     """Refine the explanation text per question, maximising faithfulness."""
     out_dir = os.path.join(cfg.run.output_dir, cfg.variant_id(), "local")
     os.makedirs(out_dir, exist_ok=True)
 
     results = []
-    end = min(cfg.run.ques_idx_end, len(examples))
-    indices = range(cfg.run.ques_idx_start, end)
+    indices = select_indices(cfg, len(examples))
 
     for idx in tqdm(indices, desc="questions"):
         result_path = os.path.join(out_dir, f"sample-{idx}.json")

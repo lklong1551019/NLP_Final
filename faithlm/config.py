@@ -55,6 +55,11 @@ class RunConfig:
     pipeline: str = "local"             # "local" or "global"
     ques_idx_start: int = 0
     ques_idx_end: int = 50
+    # "sequential" takes examples[start:end]; "random" draws (end - start)
+    # examples from the whole split under `seed`. Sequential inherits whatever
+    # ordering the source dataset has, so a subset of a few hundred questions
+    # should normally be drawn at random to stay representative.
+    sampling: str = "sequential"
     xai_iter: int = 15
     round_xai_iter: int = 10            # global only
     ques_sample: int = 15               # global only

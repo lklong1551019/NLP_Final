@@ -22,6 +22,7 @@ run:
   pipeline: local
   ques_idx_start: 0
   ques_idx_end: 200
+  sampling: random          # 200 drawn from the whole split, by seed
   xai_iter: 15
   output_dir: ./results
   resume: true

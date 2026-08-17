@@ -56,6 +56,7 @@ run:
   pipeline: local          # local | global
   ques_idx_start: 0
   ques_idx_end: 200
+  sampling: random         # sequential | random
   xai_iter: 15             # số vòng LLM-OPT mỗi câu (local)
   round_xai_iter: 10       # số vòng tối ưu (global)
   ques_sample: 15          # số câu lấy mẫu mỗi vòng (global)

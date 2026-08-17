@@ -21,6 +21,7 @@ run:
   pipeline: local
   ques_idx_start: 0
   ques_idx_end: 200
+  sampling: random          # 200 drawn from the whole split, by seed
   xai_iter: 1               # no optimisation loop: the baseline cannot improve
   output_dir: ./results
   resume: true

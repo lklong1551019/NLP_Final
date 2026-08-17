@@ -119,6 +119,8 @@ def main(argv=None) -> None:
     parser.add_argument("--scorer", type=str, help="logprob | exact_match")
     parser.add_argument("--start", type=int)
     parser.add_argument("--end", type=int)
+    parser.add_argument("--sampling", choices=["sequential", "random"])
+    parser.add_argument("--seed", type=int)
     parser.add_argument("--xai_iter", type=int)
     parser.add_argument("--rounds", type=int)
     parser.add_argument("--ques_sample", type=int)
@@ -147,7 +149,8 @@ def main(argv=None) -> None:
         "run": {"pipeline": args.pipeline, "ques_idx_start": args.start,
                 "ques_idx_end": args.end, "xai_iter": args.xai_iter,
                 "round_xai_iter": args.rounds, "ques_sample": args.ques_sample,
-                "output_dir": args.output_dir,
+                "output_dir": args.output_dir, "sampling": args.sampling,
+                "seed": args.seed,
                 "resume": False if args.no_resume else None},
     }
     for section, values in overrides.items():

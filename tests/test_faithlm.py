@@ -203,6 +203,60 @@ def test_shuffle_baseline_is_deterministic_per_seed():
     assert ShuffleBaseline(seed=1).respond("x") == ShuffleBaseline(seed=1).respond("x")
 
 
+# --------------------------------------------------------------- sampling
+
+
+def test_sequential_sampling_takes_a_contiguous_range():
+    from faithlm.pipelines import select_indices
+
+    cfg = from_dict({"run": {"ques_idx_start": 10, "ques_idx_end": 15,
+                             "sampling": "sequential"}})
+    assert select_indices(cfg, 500) == [10, 11, 12, 13, 14]
+
+
+def test_random_sampling_spans_the_whole_split():
+    """200 sequential questions inherit the dataset's ordering; random ones do not."""
+    from faithlm.pipelines import select_indices
+
+    cfg = from_dict({"run": {"ques_idx_end": 200, "sampling": "random", "seed": 42}})
+    indices = select_indices(cfg, 500)
+    assert len(indices) == 200
+    assert len(set(indices)) == 200          # no duplicates
+    assert max(indices) > 200                # reaches beyond the first 200
+    assert indices == sorted(indices)
+
+
+def test_random_sampling_is_reproducible_across_runs():
+    """Resume names result files by index, so the draw must not move between runs."""
+    from faithlm.pipelines import select_indices
+
+    cfg = from_dict({"run": {"ques_idx_end": 200, "sampling": "random", "seed": 42}})
+    assert select_indices(cfg, 500) == select_indices(cfg, 500)
+
+
+def test_random_sampling_differs_by_seed():
+    from faithlm.pipelines import select_indices
+
+    a = select_indices(from_dict({"run": {"ques_idx_end": 50, "sampling": "random", "seed": 1}}), 500)
+    b = select_indices(from_dict({"run": {"ques_idx_end": 50, "sampling": "random", "seed": 2}}), 500)
+    assert a != b
+
+
+def test_sampling_clamps_to_dataset_size():
+    from faithlm.pipelines import select_indices
+
+    cfg = from_dict({"run": {"ques_idx_end": 900, "sampling": "random"}})
+    assert len(select_indices(cfg, 500)) == 500
+
+
+def test_unknown_sampling_mode_rejected():
+    from faithlm.pipelines import select_indices
+
+    cfg = from_dict({"run": {"sampling": "shuffled"}})
+    with pytest.raises(ValueError, match="run.sampling"):
+        select_indices(cfg, 500)
+
+
 # --------------------------------------------------------------- registry
 
 

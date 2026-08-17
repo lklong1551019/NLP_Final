@@ -91,6 +91,43 @@ python -m pytest tests/ -v
 
 Không cần GPU hay API key — dùng stub model.
 
+## Chia việc trong nhóm
+
+Bốn config dưới đây **chỉ khác nhau đúng một biến**, dùng chung `seed: 42` và
+`sampling: random`, nên ghép lại được thành một bảng kết quả so sánh có kiểm soát.
+
+| Người | Config | Biến thay đổi | Vai trò trong báo cáo |
+|---|---|---|---|
+| A | `configs/xcopa_vi_qwen_deepseek.yaml` | — | Kết quả chính (tái lập paper) |
+| B | `configs/xcopa_vi_symmetric.yaml` | `metric` | Đóng góp của nhóm |
+| C | `configs/copa_en_qwen_deepseek.yaml` | ngôn ngữ | So sánh Việt–Anh |
+| D | `configs/baseline_negation.yaml` + `configs/global_xcopa_vi.yaml` | explainer | Baseline + pipeline global |
+
+Người D nhẹ nhất (`xai_iter: 1`, không gọi API) nên gánh thêm pipeline global.
+
+**Không cần push file dữ liệu đã lọc.** `sampling: random` + `seed: 42` cho ra
+đúng cùng 200 câu trên máy của mọi người. Kiểm tra bằng:
+
+```bash
+python -c "from faithlm import load_config; from faithlm.pipelines import select_indices; \
+print(select_indices(load_config('configs/xcopa_vi_qwen_deepseek.yaml'), 500)[:10])"
+```
+
+Nếu ai đó ra dãy số khác thì config đã bị sửa lệch.
+
+### Chốt số câu và số vòng lặp bằng số đo thật
+
+Ước tính "1 phút/iteration" là đo trên code cũ, khi mỗi lần chấm điểm đều phải
+sinh 256 token. Với `scorer: logprob` predictor không sinh token khi chấm nữa,
+nên nút cổ chai chuyển sang độ trễ API của explainer. Đo lại trước khi chốt:
+
+```bash
+python scripts/estimate_runtime.py --config configs/xcopa_vi_qwen_deepseek.yaml --probe 3 --iters 3
+```
+
+Script chạy thử vài câu rồi ngoại suy ra thời gian cho các mức 200/500 câu và
+5/10/15/20 vòng lặp, kèm số session Kaggle 12 giờ cần dùng.
+
 ## Chạy toàn bộ thực nghiệm
 
 ```bash
