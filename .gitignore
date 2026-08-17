@@ -1,6 +1,11 @@
 .env
 __pycache__/
-model/__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Experiment outputs. Results are JSON, so an untargeted *.json rule would also
+# swallow them; ignore the directories instead.
 results/
-test_deepseek.py
-*.json
+results_demo/
+docs/experiment_results.md

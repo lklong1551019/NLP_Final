@@ -1,249 +1,159 @@
-# FaithLM — Architecture & Pipeline
+# FaithLM — Kiến trúc
 
-> **Paper**: *FaithLM: Towards Faithful Explanations for Large Language Models*
-> **Venue**: EACL 2026 Long Paper
-> **Repository**: [FaithLM](file:///home/long/Master/FaithLM)
+> **Paper gốc**: *FaithLM: Towards Faithful Explanations for Large Language Models* (EACL 2026)
 
 ---
 
-## 1. High-Level Overview
+## 1. Ý tưởng
 
-FaithLM is a framework for generating **faithful explanations** of Large Language Model (LLM) predictions. It uses a two-model architecture:
+FaithLM đánh giá **độ trung thực** của giải thích do LLM sinh ra, bằng hai mô hình:
 
-| Role | Name in Code | Purpose |
+| Vai trò | Tên trong code | Nhiệm vụ |
 |---|---|---|
-| **Target LLM** (Predictor) | `pred_model` | The model whose behaviour we want to explain — it makes task predictions |
-| **Explainer LLM** | `xai_model` | A separate model that generates and iteratively improves explanations of **why** the predictor answered the way it did |
+| **Predictor** | `predictor` | Mô hình đích — trả lời câu hỏi; ta muốn giải thích hành vi của nó |
+| **Explainer** | `explainer` | Mô hình riêng — sinh và cải thiện giải thích cho câu trả lời đó |
 
-The core idea: explanations are **faithful** if injecting the true explanation into the predictor preserves its answer, while injecting a counterfactual (opposite-meaning) explanation flips the answer. The gap between these two scores is the **faithfulness score**.
-
----
-
-## 2. Repository Structure
-
-```
-FaithLM/
-├── main_global.py          # Global explanation pipeline (prompt-level optimisation)
-├── main_local.py           # Local explanation pipeline (instance-level optimisation)
-├── model/
-│   ├── predictor.py        # Target LLM loading, inference, and scoring
-│   └── explainer.py        # Explainer LLM interface and prompt generation
-├── results/                # Output directory (created at runtime)
-└── README.md
-```
+Giả thuyết: nếu giải thích **thật sự** phản ánh lý do predictor chọn đáp án, thì đưa vào một giải thích **đảo nghĩa** sẽ làm predictor đổi câu trả lời. Mức thay đổi đó chính là điểm faithfulness.
 
 ---
 
-## 3. Two Pipelines
+## 2. Cấu trúc mã nguồn
 
-FaithLM provides two complementary modes of explanation:
+```
+faithlm/
+├── registry.py      # đăng ký thành phần theo tên
+├── config.py        # config có kiểu, nạp từ YAML hoặc dict
+├── datasets.py      # loader -> List[Example]
+├── predictors.py    # mô hình đích + chấm điểm log-prob
+├── explainers.py    # mô hình sinh giải thích + xử lý phản hồi
+├── baselines.py     # baseline không dùng LLM
+├── metrics.py       # chỉ số paper / symmetric
+├── prompts.py       # toàn bộ mẫu prompt
+├── pipelines.py     # vòng lặp local & global
+└── run.py           # entrypoint dùng chung
+```
 
-### 3.1 Global Explanations ([main_global.py](file:///home/long/Master/FaithLM/main_global.py))
+Mọi thành phần chọn theo **tên** trong YAML, nên đổi mô hình không phải sửa code. Xem [configuration.md](configuration.md).
 
-**Goal**: Find a single, general-purpose **explanation prompt instruction** that, when used across many questions, produces the most faithful explanations.
+---
+
+## 3. Hai chế độ
+
+### 3.1 Local — tối ưu nội dung giải thích cho từng câu
 
 ```mermaid
 flowchart TD
-    A["Initialize XAI prompt<br/>(exp_instruction)"] --> B["Sample N questions<br/>(ques_sample)"]
-    B --> C["For each question"]
-    C --> D["Predictor generates answer"]
-    D --> E["Explainer generates<br/>True Explanation"]
-    E --> F["Explainer generates<br/>Counterfactual Explanation"]
-    F --> G["Compute faithfulness score<br/>|acc(true_exp) - acc(counter_exp)|"]
-    G --> H{"More questions?"}
-    H -- Yes --> C
-    H -- No --> I["Average score across samples"]
-    I --> J["LLM Optimizer:<br/>Generate better XAI prompt"]
-    J --> K{"More iterations?"}
-    K -- Yes --> B
-    K -- No --> L["Save best prompt + scores"]
+    A["Chọn câu hỏi i"] --> B["Predictor trả lời"]
+    B --> C["Explainer sinh giải thích ban đầu"]
+    C --> D["Explainer sinh bản đối nghịch"]
+    D --> E["Tính điểm faithfulness"]
+    E --> F{"Hết vòng lặp?"}
+    F -- Chưa --> G["LLM-OPT: viết giải thích tốt hơn"]
+    G --> D
+    F -- Rồi --> H["Ghi kết quả xuống đĩa"]
 ```
 
-**Key Parameters**:
-- `xai_iter`: Number of optimisation iterations (default: 3)
-- `round_xai_iter`: Number of optimisation rounds (default: 10)
-- `ques_sample`: Questions sampled per iteration (default: 15)
-
-### 3.2 Local Explanations ([main_local.py](file:///home/long/Master/FaithLM/main_local.py))
-
-**Goal**: For each individual question, iteratively refine the **explanation text itself** to maximise faithfulness for that specific instance.
+### 3.2 Global — tìm một câu lệnh giải thích dùng chung
 
 ```mermaid
 flowchart TD
-    A["Select question i"] --> B["Predictor generates answer"]
-    B --> C["Explainer generates<br/>initial True Explanation"]
-    C --> D["Explainer generates<br/>Counterfactual Explanation"]
-    D --> E["Compute faithfulness score"]
-    E --> F{"Early stop?<br/>(score != 0 or bad answer)"}
-    F -- Yes --> G["Save results"]
-    F -- No --> H["LLM Optimizer:<br/>Generate better explanation text"]
-    H --> I["New explanation → exp_reply"]
-    I --> D
+    A["Khởi tạo câu lệnh giải thích"] --> B["Lấy mẫu N câu hỏi"]
+    B --> C["Với mỗi câu: sinh giải thích + bản đối nghịch"]
+    C --> D["Tính điểm faithfulness"]
+    D --> E["Trung bình toàn bộ mẫu"]
+    E --> F["LLM-OPT: viết câu lệnh tốt hơn"]
+    F --> G{"Hết vòng?"}
+    G -- Chưa --> B
+    G -- Rồi --> H["Lưu câu lệnh tốt nhất"]
 ```
 
-**Key Difference**: Local mode refines the explanation *content* per question; Global mode refines the explanation *prompt/instruction* across questions.
+Khác biệt: **local** sửa *nội dung* giải thích cho từng câu; **global** sửa *câu lệnh* dùng chung cho mọi câu.
+
+Cả hai đều ghi kết quả sau mỗi đơn vị công việc, nên bị ngắt giữa chừng vẫn chạy tiếp được.
 
 ---
 
-## 4. Module Details
+## 4. Chỉ số faithfulness
 
-### 4.1 Predictor Module ([predictor.py](file:///home/long/Master/FaithLM/model/predictor.py))
+Hai biến thể, chọn bằng `metric.name`:
 
-#### Model Loading — [`load_model()`](file:///home/long/Master/FaithLM/model/predictor.py#L10-L53)
-Supports multiple backends:
-- **Vicuna-7B** (`lmsys/vicuna-7b-v1.5`) — loaded via `LlamaForCausalLM`
-- **Phi-2** (`microsoft/phi-2`) — loaded via `AutoModelForCausalLM`
-- **Claude / GPT-3.5** — API-based (returns model name string, tokenizer = `None`)
+### `paper` — tái lập bản gốc
 
-#### Prediction Functions
-| Function | Task | Prompt Template |
-|---|---|---|
-| [`generate_predictor_output_ecqa()`](file:///home/long/Master/FaithLM/model/predictor.py#L119-L191) | Multiple choice (ECQA, COPA, XCOPA) | `Instruction → Input (question + choices) → Response` |
-| [`generate_predictor_output_trivaqa()`](file:///home/long/Master/FaithLM/model/predictor.py#L193-L221) | Open-ended QA (TriviaQA) | `Instruction → Context (passage) → Input (question) → Response` |
-| [`generate_api_predictor_output()`](file:///home/long/Master/FaithLM/model/predictor.py#L55-L117) | API-based prediction (Claude/GPT) | Same template, sent via API |
+```
+|acc(không gợi ý) − acc(gợi ý đối nghịch)|
+```
 
-#### Scoring Functions
-| Function | Description |
-|---|---|
-| [`diff_task_score_ecqa()`](file:///home/long/Master/FaithLM/model/predictor.py#L355-L373) | Computes `|acc(true_exp) − acc(counter_exp)|` for choice tasks |
-| [`diff_task_score_trivaqa()`](file:///home/long/Master/FaithLM/model/predictor.py#L446-L471) | Same metric for open-ended QA tasks |
+Đây là điều mã nguồn gốc **thực sự** làm. Lưu ý: giải thích thật được sinh ra nhưng không bao giờ được đưa vào predictor, nên chỉ số này lẫn giữa *tác động của việc có gợi ý* và *tác động của việc đảo nghĩa*.
 
-The scoring works by:
-1. Running the predictor **without** hint (true explanation baseline)
-2. Running the predictor **with** the counterfactual explanation as a `### Hint`
-3. Measuring the absolute accuracy difference → **faithfulness score**
+### `symmetric` — bản sửa của chúng tôi
 
-### 4.2 Explainer Module ([explainer.py](file:///home/long/Master/FaithLM/model/explainer.py))
+```
+|acc(gợi ý = giải thích thật) − acc(gợi ý = giải thích đối nghịch)|
+```
 
-#### Response Generation — [`reponse_xai_model()`](file:///home/long/Master/FaithLM/model/explainer.py#L10-L65)
-Dispatches to different backends based on `args.xai_model`:
-- `"gpt35"` → Azure OpenAI API
-- `"claude"` → Anthropic API (Claude-2)
-- `"phi"` → Local Phi-2 model inference
-
-#### Prompt Generators
-| Function | Purpose |
-|---|---|
-| [`generate_exp_prompt()`](file:///home/long/Master/FaithLM/model/explainer.py#L67-L80) | Builds the prompt asking for an explanation of the predictor's answer |
-| [`generate_counterfact_prompt()`](file:///home/long/Master/FaithLM/model/explainer.py#L162-L177) | Asks the explainer to generate a **counterfactual** (opposite meaning) of a given explanation |
-| [`generate_global_xai_prompt()`](file:///home/long/Master/FaithLM/model/explainer.py#L82-L121) | LLM-OPT: asks the explainer to produce a *better* XAI instruction given past prompts and scores |
-| [`generate_local_xai_prompt()`](file:///home/long/Master/FaithLM/model/explainer.py#L123-L160) | LLM-OPT: asks the explainer to produce a *better* explanation text given past explanations and scores |
-
----
-
-## 5. Data Preprocessing
-
-Each dataset is preprocessed into a `train_dict` with keys `question`, `answer` (and optionally `passage`):
-
-| Dataset | Function | Source | Format |
-|---|---|---|---|
-| ECQA | `preprocess_ecqa()` | `yangdong/ecqa` | 5-choice QA |
-| TriviaQA | `preprocess_trivaqa()` | `THUDM/LongBench` (triviaqa_e) | Passage + open QA |
-| COPA | `preprocess_copa()` | `pkavumba/balanced-copa` | 2-choice causal reasoning |
-| XCOPA | `preprocess_xcopa()` | `xcopa` (Italian in original code) | 2-choice cross-lingual causal reasoning |
-| Social IQa | `preprocess_social()` | `tasksource/bigbench` (social_iqa) | Multi-choice social reasoning |
-
----
-
-## 6. Faithfulness Scoring — The Core Metric
+Cả hai nhánh đều có gợi ý, nên hiệu số chỉ phản ánh việc đảo nghĩa. Đây mới là điều phần mô tả của bài báo nói tới.
 
 ```mermaid
 flowchart LR
-    subgraph "True Path"
-        Q1["Question"] --> P1["Predictor<br/>(no hint)"]
-        P1 --> ACC1["Accuracy<br/>(true_score)"]
-    end
-    subgraph "Counterfactual Path"
-        Q2["Question"] --> H["+ Counterfactual<br/>Hint"]
-        H --> P2["Predictor<br/>(with hint)"]
-        P2 --> ACC2["Accuracy<br/>(counter_score)"]
-    end
-    ACC1 --> DIFF["|true_score − counter_score|"]
-    ACC2 --> DIFF
-    DIFF --> FAITH["Faithfulness Score<br/>(0 to 1)"]
-```
-
-**Interpretation**:
-- **High score (→ 1)**: The explanation meaningfully captured the predictor's reasoning — flipping it changed the predictor's answer.
-- **Low score (→ 0)**: The explanation had no real connection to the predictor's decision process.
-
----
-
-## 7. LLM-OPT (Optimization via LLM)
-
-FaithLM uses the explainer LLM itself as an optimizer (inspired by OPRO — Optimization by PROmpting). The optimiser is given:
-
-1. **Previous prompts/explanations** and their **scores**
-2. **Task**: "Generate a new prompt/explanation that scores higher than all previous ones"
-
-This creates a self-improving loop where the explainer iteratively refines either:
-- The **instruction template** (global) — `<INS>...</INS>` delimited
-- The **explanation text** (local) — `<EXP>...</EXP>` delimited
-
----
-
-## 8. Prompt Templates
-
-### Task Prompt (Predictor)
-```
-Below is an instruction that describes a task.
-Write a response that appropriately completes the request of input.
-
-### Instruction: {task_instruction}
-
-### Input: {question + choices}
-
-### Response: Let's think step by step.
-```
-
-### Explanation Prompt (Explainer)
-```
-{exp_instruction}
-
-### Input: Q:{question}
-A:{predictor_answer}
-```
-
-### Counterfactual Prompt
-```
-Please generate one example of obtaining the opposite meaning from given sentence.
-Make sure you output sentences only.
-
-Sentences: {explanation}
-```
-
-### LLM-OPT Prompt (Global)
-```
-Your task is to generate the instructions <INS> for providing model explanations.
-Below are some previous instructions with their scores.
-The score is calculated as the flipping answer rates and ranges from 0 to 1.
-
-Instructions: {prompt_1}
-Score: {score_1}
-...
-
-Generate an instruction that is different from all above and has a higher score.
-The instructions should begin with <INS> and end with </INS>.
+    Q["Câu hỏi"] --> A["Nhánh A"]
+    Q --> B["Nhánh B"]
+    A -->|"paper: không gợi ý<br/>symmetric: giải thích thật"| PA["Predictor"]
+    B -->|"gợi ý đối nghịch"| PB["Predictor"]
+    PA --> SA["điểm A"]
+    PB --> SB["điểm B"]
+    SA --> D["|A − B| = faithfulness"]
+    SB --> D
 ```
 
 ---
 
-## 9. Output Format
+## 5. Cách chấm điểm
 
-Results are saved as JSON files:
+### `logprob` (mặc định)
 
-**Global**: `global_{data}_{xai_model}_{pred_model}_iter-{N}_sample-{S}.json`
+Tính log-probability chuẩn hóa theo độ dài cho từng lựa chọn, rồi softmax để ra P(đáp án đúng).
+
+Bản gốc so khớp chuỗi trên **một** câu hỏi nên điểm chỉ ra 0.0 hoặc 1.0, và hiệu số gần như luôn bằng 0 — LLM-OPT không có gì để tối ưu. Log-prob cho điểm liên tục chỉ với một forward pass, không tốn thêm thời gian.
+
+Chỉ dùng được với dữ liệu có lựa chọn và predictor chạy cục bộ.
+
+### `exact_match`
+
+Giữ cách so khớp chuỗi của bản gốc, có thể lấy trung bình qua `k_samples` lần sinh. Dùng cho dữ liệu mở (TriviaQA) và predictor qua API.
+
+---
+
+## 6. LLM-OPT
+
+Explainer đóng vai trò optimizer (theo hướng OPRO). Nó nhận danh sách các giải thích/câu lệnh trước đó kèm điểm số, và được yêu cầu viết bản mới có điểm cao hơn.
+
+- Global: tối ưu **câu lệnh**, đánh dấu bằng `<INS>...</INS>`
+- Local: tối ưu **nội dung giải thích**, đánh dấu bằng `<EXP>...</EXP>`
+
+---
+
+## 7. Định dạng kết quả
+
+**Local** — `results/{variant}/local/sample-{idx}.json`:
+
 ```json
-[
-  {"Score": 0.4, "XAI prompt": "..."},
-  {"Score": 0.6, "XAI prompt": "..."},
-  {"Score": "Final", "XAI prompt": "..."}
-]
+{
+  "index": 0,
+  "question": "###Question: What is the cause of the Premise?...",
+  "gold_answer": "anh ấy về nhà",
+  "model_answer": "anh ấy về nhà",
+  "correct": true,
+  "metric": "paper",
+  "scorer": "logprob",
+  "iterations": [
+    {"step": 0, "score": 0.42, "true_arm": 0.85, "counter_arm": 0.43,
+     "explanation": "...", "counterfactual": "..."}
+  ],
+  "best_score": 0.42,
+  "best_explanation": "..."
+}
 ```
 
-**Local**: `local_{data}_{xai_model}_{pred_model}_iter-{N}_sample-{idx}.json`
-```
-============ Correct --> Q:... || GT-A:... || LLM-A:...
-{'Score': 0.0, 'XAI prompt': '...'}
-{'Score': 1.0, 'XAI prompt': '...'}
-```
+**Global** — `results/{variant}/global/round-{n}.json` và `summary.json`.
+
+Trường `true_arm` / `counter_arm` được giữ lại để phục vụ phân tích lỗi: một điểm thấp có thể do giải thích không trung thực, hoặc do cả hai nhánh đều bão hòa.

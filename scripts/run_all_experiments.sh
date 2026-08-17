@@ -1,64 +1,42 @@
 #!/bin/bash
+# Run every experiment variant for the paper, then aggregate.
+#
+#   bash scripts/run_all_experiments.sh
+#   N_QUESTIONS=200 XAI_ITER=15 bash scripts/run_all_experiments.sh
+#
+# Every variant resumes from disk, so re-running after an interruption picks up
+# where it stopped rather than starting over.
 set -euo pipefail
 
-# ============================================
-# FaithLM — Run All Experiment Variants
-# ============================================
-# Each variant is: "PRED_MODEL XAI_MODEL DATA"
-# Add or comment out variants as needed.
-
-VARIANTS=(
-    "qwen deepseek xcopa_vi"    # V1: Qwen3.5-4B + DeepSeek on Vietnamese XCOPA
-    "qwen deepseek copa_en"     # V2: Qwen3.5-4B + DeepSeek on English COPA
-    # "phi deepseek xcopa_vi"   # V3: Phi-2 + DeepSeek on Vietnamese XCOPA
-    # "phi deepseek copa_en"    # V4: Phi-2 + DeepSeek on English COPA
-)
-
-# The original paper processed 500 instances for their main evaluation.
-START_IDX="${START_IDX:-0}"
-END_IDX="${END_IDX:-200}"
+N_QUESTIONS="${N_QUESTIONS:-200}"
 XAI_ITER="${XAI_ITER:-15}"
 
-echo "============================================="
-echo "  FaithLM — All Experiments (Full Benchmark)"
-echo "  Questions: $START_IDX → $END_IDX"
-echo "  Variants: ${#VARIANTS[@]}"
-echo "============================================="
+[ -f .env ] && { set -a; source .env; set +a; }
 
-for variant in "${VARIANTS[@]}"; do
-    read -r pred xai data <<< "$variant"
+CONFIGS=(
+    configs/xcopa_vi_qwen_deepseek.yaml    # main result
+    configs/xcopa_vi_symmetric.yaml        # corrected metric
+    configs/copa_en_qwen_deepseek.yaml     # cross-lingual control
+    configs/baseline_negation.yaml         # non-LLM baseline
+    configs/global_xcopa_vi.yaml           # global pipeline
+)
+
+for config in "${CONFIGS[@]}"; do
     echo ""
-    echo ">>> Running LOCAL Pipeline: pred=$pred xai=$xai data=$data"
-    echo "---"
-
-    # Run the LOCAL pipeline
-    PRED_MODEL=$pred \
-    XAI_MODEL=$xai \
-    DATA=$data \
-    START_IDX=$START_IDX \
-    END_IDX=$END_IDX \
-    XAI_ITER=$XAI_ITER \
-        bash scripts/run_local_xcopa_vi.sh
-
-    echo ">>> Running GLOBAL Pipeline: pred=$pred xai=$xai data=$data"
-    echo "---"
-
-    # Run the GLOBAL pipeline
-    PRED_MODEL=$pred \
-    XAI_MODEL=$xai \
-    DATA=$data \
-        bash scripts/run_global_xcopa_vi.sh
-
-    echo "<<< Finished Variant: pred=$pred xai=$xai data=$data"
+    echo "============================================================"
+    echo " $config"
+    echo "============================================================"
+    # The global pipeline has no per-question range, so only pass it for local runs.
+    if grep -q "pipeline: global" "$config"; then
+        python run.py --config "$config"
+    else
+        python run.py --config "$config" --end "$N_QUESTIONS" --xai_iter "$XAI_ITER"
+    fi
 done
 
 echo ""
-echo "============================================="
-echo "  Aggregating Results"
-echo "============================================="
-python scripts/aggregate_results.py \
-    --results_dir ./results \
-    --output ./docs/experiment_results.md
-
-echo "============ All experiments complete!"
-echo "============ Report: docs/experiment_results.md"
+echo "============================================================"
+echo " Aggregating"
+echo "============================================================"
+python scripts/aggregate_results.py --results_dir ./results --output ./docs/experiment_results.md
+echo "Report: docs/experiment_results.md"

@@ -1,0 +1,30 @@
+# Our corrected metric: both arms receive a hint, so the score reflects
+# meaning reversal rather than the mere presence of a hint.
+dataset:
+  name: xcopa_vi
+  lang: vi
+  split: test
+
+predictor:
+  name: qwen
+  model_id: Qwen/Qwen3-4B-Instruct-2507
+  load_in_4bit: false
+  max_new_tokens: 256
+  temperature: 0.7
+
+explainer:
+  name: deepseek
+  model_id: deepseek-v4-pro
+
+metric:
+  name: symmetric
+  scorer: logprob
+
+run:
+  pipeline: local
+  ques_idx_start: 0
+  ques_idx_end: 200
+  xai_iter: 15
+  output_dir: ./results
+  resume: true
+  seed: 42

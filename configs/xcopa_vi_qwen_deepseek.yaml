@@ -1,0 +1,33 @@
+# Primary variant: Vietnamese XCOPA, Qwen3-4B predictor, DeepSeek explainer.
+# Reproduces the original metric. Pair with symmetric.yaml for the comparison.
+dataset:
+  name: xcopa_vi
+  lang: vi
+  split: test
+
+predictor:
+  name: qwen
+  model_id: Qwen/Qwen3-4B-Instruct-2507
+  load_in_4bit: false        # true for an 8GB local GPU; false on Kaggle T4/P100
+  max_new_tokens: 256
+  temperature: 0.7
+  max_memory_per_gpu: 14GiB
+
+explainer:
+  name: deepseek
+  model_id: deepseek-v4-pro
+  max_tokens: 1000
+  temperature: 0.9
+
+metric:
+  name: paper                # |acc(no hint) - acc(cf hint)|
+  scorer: logprob            # continuous score from choice log-probabilities
+
+run:
+  pipeline: local
+  ques_idx_start: 0
+  ques_idx_end: 200
+  xai_iter: 15
+  output_dir: ./results
+  resume: true
+  seed: 42

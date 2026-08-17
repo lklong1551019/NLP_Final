@@ -1,0 +1,27 @@
+# Baseline: rule-based negation replaces the LLM counterfactual generator.
+# Answers whether an LLM is needed for the counterfactual step at all.
+dataset:
+  name: xcopa_vi
+  lang: vi
+  split: test
+
+predictor:
+  name: qwen
+  model_id: Qwen/Qwen3-4B-Instruct-2507
+  load_in_4bit: false
+
+explainer:
+  name: baseline_negation   # swap for baseline_identity / baseline_shuffle
+
+metric:
+  name: paper
+  scorer: logprob
+
+run:
+  pipeline: local
+  ques_idx_start: 0
+  ques_idx_end: 200
+  xai_iter: 1               # no optimisation loop: the baseline cannot improve
+  output_dir: ./results
+  resume: true
+  seed: 42

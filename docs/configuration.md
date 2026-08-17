@@ -1,173 +1,244 @@
-# FaithLM — Configuration Reference
+# FaithLM — Tham chiếu cấu hình
 
-> This document serves as the **single source of truth** for all CLI arguments, model identifiers, dataset options, and environment variables used in the FaithLM pipeline. Reference this file when setting up new experiments or switching models/datasets.
+Tài liệu chuẩn cho mọi tùy chọn. Mọi thành phần chọn bằng **tên**, nên đổi mô hình không cần sửa code.
 
----
+Xem danh sách thành phần đã đăng ký:
 
-## Environment Variables
-
-Set these in the `.env` file at the project root, or export them in your shell.
-
-| Variable | Description | Default | Example |
-|---|---|---|---|
-| `DEEPSEEK_API_KEY` | DeepSeek API authentication key | *(required)* | `sk-0de6a9...` |
-| `DEEPSEEK_BASE_URL` | DeepSeek API base URL | `https://api.deepseek.com` | `https://api.deepseek.com` |
-| `DEEPSEEK_MODEL` | Default DeepSeek model to use | `deepseek-v4-pro` | `deepseek-v4-flash` |
+```bash
+python run.py --list
+```
 
 ---
 
-## CLI Arguments
+## Biến môi trường
 
-### Common Arguments (both `main_local.py` and `main_global.py`)
+Đặt trong `.env` ở thư mục gốc, hoặc export trong shell. Trên Kaggle dùng *Add-ons → Secrets*; trên Colab dùng *userdata*.
 
-| Argument | Type | Default | Description |
-|---|---|---|---|
-| `--device_num` | int (nargs) | `0` | GPU device ID(s) for model loading |
-| `--data` | str | `ecqa` | Dataset to use (see [Dataset Options](#dataset-options)) |
-| `--pred_model` | str | `vicuna` | Target/Predictor LLM (see [Predictor Models](#predictor-models)) |
-| `--xai_model` | str | `claude` | Explainer LLM (see [Explainer Models](#explainer-models)) |
-| `--max_tokens` | int | `1000` | Max tokens for explainer generation |
-| `--temp_exp` | float | `0.9` | Temperature for explainer generation |
-| `--deepseek_key` | str | `None` | DeepSeek API key (overrides `DEEPSEEK_API_KEY` env var) |
-| `--deepseek_model` | str | `deepseek-v4-pro` | DeepSeek model name |
-| `--xcopa_lang` | str | `vi` | XCOPA language subset code |
-| `--data_split` | str | `test` | Dataset split to use (`train`, `test`, `validation`) |
-| `--load_in_4bit` | flag | `True` | Enable 4-bit quantization (for ≤ 8GB GPUs) |
-| `--no_4bit` | flag | — | Disable 4-bit quantization |
-| `--gpt_key` | str | `None` | OpenAI/Azure GPT API key (legacy) |
-| `--claude_key` | str | `None` | Anthropic Claude API key (legacy) |
-
-### Local Pipeline Only (`main_local.py`)
-
-| Argument | Type | Default | Description |
-|---|---|---|---|
-| `--xai_iter` | int | `20` | Number of LLM-OPT iterations per question |
-| `--ques_idx_start` | int | `40` | Start index for question processing |
-| `--ques_idx_end` | int | `40` | End index for question processing (exclusive) |
-| `--save_cf_file_path` | str | `None` | Path to save counterfactual explanations |
-| `--save_file_path` | str | `./results` | Output directory for results |
-
-### Global Pipeline Only (`main_global.py`)
-
-| Argument | Type | Default | Description |
-|---|---|---|---|
-| `--xai_iter` | int | `3` | Number of LLM-OPT iterations per round |
-| `--round_xai_iter` | int | `10` | Number of optimization rounds |
-| `--ques_sample` | int | `15` | Number of questions sampled per iteration |
-| `--save_file` | str | `./results/global` | Output directory for results |
-
----
-
-## Predictor Models
-
-The `--pred_model` argument selects the target LLM whose predictions we want to explain.
-
-| Value | Model | Source | Type | VRAM Needed | Notes |
-|---|---|---|---|---|---|
-| `qwen` | Qwen3.5-4B | `Qwen/Qwen3.5-4B` | Local (HF) | ~4–5 GB (4-bit) | **Primary**. Uses 4-bit NF4 quantization by default. |
-| `phi` | Phi-2 | `microsoft/phi-2` | Local (HF) | ~5 GB (bf16) | Alternative small model. 2.7B params. |
-| `vicuna` | Vicuna-7B | `lmsys/vicuna-7b-v1.5` | Local (HF) | ~14 GB (bf16) | Original paper's predictor. Too large for 8GB GPU. |
-| `claude` | Claude-2 | Anthropic API | API | — | Legacy. Requires `--claude_key`. |
-| `gpt35` | GPT-3.5 Turbo | Azure OpenAI API | API | — | Legacy. Requires `--gpt_key`. |
-
-### Adding a New Predictor Model
-
-1. Add a new `elif model_name == "your_model"` block in [`model/predictor.py` → `load_model()`](file:///home/long/Master/FaithLM/model/predictor.py#L10-L53)
-2. Add corresponding branches in `generate_predictor_output_ecqa()` and `_ecqa_score()` (same file)
-3. Update this table
-
----
-
-## Explainer Models
-
-The `--xai_model` argument selects the LLM used for generating and refining explanations.
-
-| Value | Model | Source | Type | Notes |
-|---|---|---|---|---|
-| `deepseek` | DeepSeek v4 Pro/Flash | DeepSeek API | API | **Primary**. OpenAI-compatible. Set model via `--deepseek_model`. |
-| `phi` | Phi-2 | `microsoft/phi-2` | Local (HF) | Can be used as both predictor and explainer. |
-| `claude` | Claude-2 | Anthropic API | API | Legacy. Requires `--claude_key`. |
-| `gpt35` | GPT-3.5 Turbo | Azure OpenAI API | API | Legacy. Requires `--gpt_key`. |
-
-### DeepSeek Model Variants
-
-| `--deepseek_model` Value | Description | Use Case |
+| Biến | Mô tả | Bắt buộc khi |
 |---|---|---|
-| `deepseek-v4-pro` | High capability, complex reasoning | Default — best quality explanations |
-| `deepseek-v4-flash` | Cheaper, faster, lower latency | Budget-conscious experiments or large-scale runs |
-
-### Adding a New Explainer Model
-
-1. Add a new `elif model_name == "your_model"` block in [`model/explainer.py` → `reponse_xai_model()`](file:///home/long/Master/FaithLM/model/explainer.py#L10-L65)
-2. Update this table
+| `DEEPSEEK_API_KEY` | Khóa API DeepSeek | `explainer.name: deepseek` |
+| `DEEPSEEK_BASE_URL` | Mặc định `https://api.deepseek.com` | không |
+| `DEEPSEEK_MODEL` | Mặc định `deepseek-v4-pro` | không |
+| `OPENAI_API_KEY` | Khóa OpenAI | `explainer.name: openai` |
+| `ANTHROPIC_API_KEY` | Khóa Anthropic | `explainer.name: claude` |
 
 ---
 
-## Dataset Options
+## Cấu trúc file YAML
 
-The `--data` argument selects the dataset and associated preprocessing/scoring logic.
+```yaml
+dataset:
+  name: xcopa_vi           # xcopa_vi | copa_en | ecqa | social | trivaqa
+  lang: vi                 # mã ngôn ngữ XCOPA
+  split: test              # train | test | validation
 
-| Value | Dataset | Source | Language | Task | Splits Available |
-|---|---|---|---|---|---|
-| `xcopa_vi` | XCOPA Vietnamese | `cambridgeltl/xcopa` (`vi`) | Vietnamese | 2-choice causal reasoning | `validation` (100), `test` (500) |
-| `copa_en` | Balanced COPA | `pkavumba/balanced-copa` | English | 2-choice causal reasoning | `train` (1000), `test` (500) |
-| `copa` | Balanced COPA | `pkavumba/balanced-copa` | English | 2-choice causal reasoning | Legacy — uses original preprocessing |
-| `ecqa` | ECQA | `yangdong/ecqa` | English | 5-choice commonsense QA | `train` |
-| `trivaqa` | TriviaQA | `THUDM/LongBench` (`triviaqa_e`) | English | Open-ended QA with passage | `test` |
-| `social` | Social IQa | `tasksource/bigbench` (`social_iqa`) | English | Multi-choice social reasoning | `validation` |
-| `xcopa` | XCOPA Italian | `xcopa` (`it`) | Italian | 2-choice causal reasoning | Legacy — original code |
+predictor:
+  name: qwen               # qwen | phi | vicuna | hf | deepseek
+  model_id: null           # null -> mặc định của backend
+  load_in_4bit: false      # true nếu GPU dưới 12GB
+  max_new_tokens: 256
+  temperature: 0.7
+  max_memory_per_gpu: 14GiB
+  device_num: [0]
 
-### XCOPA Language Codes
+explainer:
+  name: deepseek           # deepseek | openai | claude | hf | baseline_*
+  model_id: null
+  max_tokens: 1000
+  temperature: 0.9
 
-When using `--data xcopa_vi`, the language is controlled by `--xcopa_lang`. Available codes from `cambridgeltl/xcopa`:
+metric:
+  name: paper              # paper | symmetric
+  scorer: logprob          # logprob | exact_match
+  k_samples: 1             # chỉ dùng với exact_match
 
-`et` (Estonian), `ht` (Haitian), `id` (Indonesian), `it` (Italian), `qu` (Quechua), `sw` (Swahili), `ta` (Tamil), `th` (Thai), `tr` (Turkish), `vi` (Vietnamese), `zh` (Chinese)
+run:
+  pipeline: local          # local | global
+  ques_idx_start: 0
+  ques_idx_end: 200
+  xai_iter: 15             # số vòng LLM-OPT mỗi câu (local)
+  round_xai_iter: 10       # số vòng tối ưu (global)
+  ques_sample: 15          # số câu lấy mẫu mỗi vòng (global)
+  output_dir: ./results
+  resume: true             # bỏ qua phần đã chạy xong
+  seed: 42
+```
+
+Gõ sai tên khóa hoặc tên mục sẽ báo lỗi ngay khi nạp config, không âm thầm bỏ qua.
 
 ---
 
-## Typical Experiment Commands
+## Predictor
 
-### Quick Debug (2 questions, Vietnamese)
-```bash
-python main_local.py \
-    --data xcopa_vi --pred_model qwen --xai_model deepseek \
-    --xai_iter 2 --ques_idx_start 0 --ques_idx_end 2 --device_num 0
+| Tên | Mô hình mặc định | Loại | Hỗ trợ log-prob |
+|---|---|---|---|
+| `qwen` | `Qwen/Qwen3-4B-Instruct-2507` | HF cục bộ | có |
+| `phi` | `microsoft/phi-2` | HF cục bộ | có |
+| `vicuna` | `lmsys/vicuna-7b-v1.5` | HF cục bộ | có |
+| `hf` | *(bắt buộc đặt `model_id`)* | HF cục bộ | có |
+| `deepseek` | `deepseek-v4-pro` | API | **không** |
+
+Predictor qua API không tính được log-prob, phải dùng `scorer: exact_match`. Chương trình kiểm tra và báo lỗi ngay từ đầu thay vì để chạy rồi mới hỏng.
+
+Dùng bất kỳ mô hình nào trên Hub mà không cần sửa code:
+
+```yaml
+predictor:
+  name: hf
+  model_id: Qwen/Qwen3-8B
 ```
 
-### Full Local Run (50 questions, Vietnamese)
+### VRAM tham khảo
+
+| Mô hình | bf16 | 4-bit NF4 |
+|---|---|---|
+| Qwen3-4B | ~9 GB | ~4 GB |
+| Phi-2 (2.7B) | ~6 GB | ~3 GB |
+| Vicuna-7B | ~14 GB | ~5 GB |
+
+Kaggle T4/P100 (16GB) chạy được Qwen3-4B ở bf16. GPU 8GB nên bật `load_in_4bit: true`.
+
+---
+
+## Explainer
+
+| Tên | Mặc định | Loại | Ghi chú |
+|---|---|---|---|
+| `deepseek` | `deepseek-v4-pro` | API | Chính. Có thể đổi `deepseek-v4-flash` cho rẻ hơn |
+| `openai` | `gpt-4o-mini` | API | |
+| `claude` | `claude-sonnet-5` | API | |
+| `hf` | *(bắt buộc `model_id`)* | Cục bộ | Tốn thêm VRAM cùng lúc với predictor |
+| `baseline_negation` | — | Luật | Phủ định theo mẫu |
+| `baseline_identity` | — | Luật | Trả lại nguyên văn |
+| `baseline_shuffle` | — | Luật | Câu ngẫu nhiên |
+
+Các explainer qua API tự thử lại 3 lần với backoff lũy thừa.
+
+---
+
+## Dataset
+
+| Tên | Nguồn | Ngôn ngữ | Split |
+|---|---|---|---|
+| `xcopa_vi` | `cambridgeltl/xcopa` | 11 ngôn ngữ qua `lang` | validation (100), test (500) |
+| `copa_en` | `pkavumba/balanced-copa` | Anh | train (1000), test (500) |
+| `ecqa` | `yangdong/ecqa` | Anh | train |
+| `social` | `tasksource/bigbench` | Anh | validation |
+| `trivaqa` | `THUDM/LongBench` | Anh | test — **chỉ dùng `exact_match`** |
+
+Mã ngôn ngữ XCOPA: `et`, `ht`, `id`, `it`, `qu`, `sw`, `ta`, `th`, `tr`, `vi`, `zh`.
+
+---
+
+## Chỉ số
+
+| `metric.name` | Công thức | Dùng khi |
+|---|---|---|
+| `paper` | \|acc(không gợi ý) − acc(gợi ý đối nghịch)\| | Tái lập bản gốc |
+| `symmetric` | \|acc(giải thích thật) − acc(giải thích đối nghịch)\| | Chỉ số đã sửa |
+
+| `metric.scorer` | Cách chấm | Giới hạn |
+|---|---|---|
+| `logprob` | Log-prob các lựa chọn → điểm liên tục | Cần dữ liệu có lựa chọn + mô hình cục bộ |
+| `exact_match` | So khớp chuỗi, trung bình `k_samples` lần | Điểm rời rạc khi `k_samples: 1` |
+
+---
+
+## Dòng lệnh
+
+Mọi tùy chọn đều ghi đè được mà không cần sửa file YAML:
+
 ```bash
-python main_local.py \
-    --data xcopa_vi --pred_model qwen --xai_model deepseek \
-    --xai_iter 20 --ques_idx_start 0 --ques_idx_end 50 --device_num 0
+python run.py --config configs/xcopa_vi_qwen_deepseek.yaml --end 5
+python run.py --config configs/xcopa_vi_qwen_deepseek.yaml --metric symmetric
+python run.py --config configs/xcopa_vi_qwen_deepseek.yaml \
+    --predictor hf --predictor_model_id Qwen/Qwen3-8B
+python run.py --config configs/global_xcopa_vi.yaml --rounds 5 --ques_sample 10
+python run.py --config configs/xcopa_vi_qwen_deepseek.yaml --no_resume
 ```
 
-### English COPA Baseline
-```bash
-python main_local.py \
-    --data copa_en --data_split train --pred_model qwen --xai_model deepseek \
-    --xai_iter 20 --ques_idx_start 0 --ques_idx_end 50 --device_num 0
+| Cờ | Ghi đè |
+|---|---|
+| `--pipeline` | `run.pipeline` |
+| `--dataset`, `--lang`, `--split` | mục `dataset` |
+| `--predictor`, `--predictor_model_id` | mục `predictor` |
+| `--explainer`, `--explainer_model_id` | mục `explainer` |
+| `--metric`, `--scorer` | mục `metric` |
+| `--start`, `--end`, `--xai_iter` | phạm vi câu hỏi (local) |
+| `--rounds`, `--ques_sample` | tham số global |
+| `--output_dir`, `--no_resume` | ghi kết quả |
+| `--load_in_4bit` | lượng tử hóa |
+| `--list` | in danh sách thành phần rồi thoát |
+
+---
+
+## Dùng trong notebook
+
+Không cần file YAML — dựng config trực tiếp:
+
+```python
+from faithlm import run_experiment, from_dict
+
+cfg = from_dict({
+    "dataset":   {"name": "xcopa_vi", "lang": "vi", "split": "test"},
+    "predictor": {"name": "qwen", "load_in_4bit": False},
+    "explainer": {"name": "deepseek"},
+    "metric":    {"name": "symmetric", "scorer": "logprob"},
+    "run":       {"ques_idx_end": 30, "xai_iter": 5},
+})
+summary = run_experiment(cfg)
 ```
 
-### Global Pipeline (Vietnamese)
-```bash
-python main_global.py \
-    --data xcopa_vi --pred_model qwen --xai_model deepseek \
-    --xai_iter 3 --round_xai_iter 10 --ques_sample 15 --device_num 0
-```
+Chạy nhiều biến thể mà chỉ nạp mô hình một lần:
 
-### Switch to DeepSeek Flash
-```bash
-python main_local.py \
-    --data xcopa_vi --pred_model qwen --xai_model deepseek \
-    --deepseek_model deepseek-v4-flash \
-    --xai_iter 20 --ques_idx_start 0 --ques_idx_end 50
+```python
+from faithlm import predictors, explainers
+
+predictor = predictors.build(cfg.predictor)
+explainer = explainers.build(cfg.explainer)
+
+for metric in ("paper", "symmetric"):
+    cfg.metric.name = metric
+    run_experiment(cfg, predictor=predictor, explainer=explainer)
 ```
 
 ---
 
-## Output File Naming Convention
+## Đường dẫn kết quả
 
-**Local**: `local_{data}_{xai_model}_{pred_model}_iter-{xai_iter}_sample-{question_idx}.json`
-**Global**: `global_{data}_{xai_model}_{pred_model}_iter-{total_iters}_sample-{ques_sample}.json`
+```
+results/{pipeline}_{dataset}_{predictor}_{explainer}_{metric}_{scorer}/
+├── local/sample-{idx}.json      # một file mỗi câu hỏi
+├── global/round-{n}.json        # một file mỗi vòng
+├── global/summary.json
+└── summary_{pipeline}.json      # kèm toàn bộ config đã dùng
+```
 
-Example: `local_xcopa_vi_deepseek_qwen_iter-20_sample-0.json`
+Pipeline nằm trong tên thư mục, nên chạy local và global cùng cấu hình không ghi đè lên nhau.
+
+---
+
+## Thêm thành phần mới
+
+Thêm một predictor:
+
+```python
+# faithlm/predictors.py
+@register_predictor("my_model")
+def _build(cfg):
+    return HFPredictor(model_id=cfg.model_id or "org/my-model",
+                       load_in_4bit=cfg.load_in_4bit)
+```
+
+Thêm một chỉ số:
+
+```python
+# faithlm/metrics.py
+@register_metric("my_metric")
+def my_metric(predictor, example, task_instruction, true_exp, counter_exp,
+              scorer="logprob", **kwargs):
+    ...
+    return ScoreDetail(faithfulness=..., true_arm=..., counter_arm=...)
+```
+
+Sau đó dùng ngay bằng tên trong YAML. Không phải sửa chỗ nào khác.

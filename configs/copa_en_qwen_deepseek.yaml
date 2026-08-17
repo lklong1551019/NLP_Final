@@ -1,0 +1,28 @@
+# English control: same models, same metric, English COPA.
+# The Vietnamese-vs-English gap is the cross-lingual result for the paper.
+dataset:
+  name: copa_en
+  lang: en
+  split: train              # balanced-COPA: train (1000), test (500)
+
+predictor:
+  name: qwen
+  model_id: Qwen/Qwen3-4B-Instruct-2507
+  load_in_4bit: false
+
+explainer:
+  name: deepseek
+  model_id: deepseek-v4-pro
+
+metric:
+  name: paper
+  scorer: logprob
+
+run:
+  pipeline: local
+  ques_idx_start: 0
+  ques_idx_end: 200
+  xai_iter: 15
+  output_dir: ./results
+  resume: true
+  seed: 42
