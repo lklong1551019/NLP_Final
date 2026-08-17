@@ -18,7 +18,7 @@ fi
 
 MODE="${MODE:-both}"                 # local | global | both
 PRED_MODEL="${PRED_MODEL:-qwen}"
-OPENROUTER_MODEL="${OPENROUTER_MODEL:-qwen/qwen3.7-flash}"
+OPENROUTER_MODEL="${OPENROUTER_MODEL:-qwen/qwen3.7-max}"
 DEVICE="${DEVICE:-0}"
 
 # Local pipeline (Algorithm 1: refine the explanation text per instance)
@@ -37,7 +37,7 @@ TOP_P="${TOP_P:-0.9}"
 # Measured on XCOPA-vi with reasoning off: ~106 completion tokens per call.
 # 500 leaves plenty of head-room without paying for runaway generations.
 MAX_TOKENS="${MAX_TOKENS:-500}"
-MAX_SPEND="${MAX_SPEND:-5.0}"
+MAX_SPEND="${MAX_SPEND:-4.5}"
 
 RESULTS_DIR="${RESULTS_DIR:-./results/experiments/xcopa_vi_${PRED_MODEL}_openrouter}"
 USAGE_LOG="${USAGE_LOG:-${RESULTS_DIR}/usage.jsonl}"
