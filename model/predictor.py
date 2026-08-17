@@ -1,3 +1,7 @@
+import os
+import re
+import unicodedata
+
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import LlamaForCausalLM, LlamaTokenizer
 from transformers import BitsAndBytesConfig
@@ -6,9 +10,39 @@ import openai
 from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
 from sklearn.metrics import accuracy_score
 from tqdm import tqdm
-import ipdb
 
-def load_model(model_name, max_memory):
+from model import llm_api
+
+_PUNCT_RE = re.compile(r"[^\w\s]", re.UNICODE)
+
+
+def normalize_answer(text):
+    """Casefold, drop punctuation, collapse whitespace.
+
+    `\\w` is unicode-aware, so Vietnamese diacritics survive - important for the
+    XCOPA-vi / ViMMRC runs.
+    """
+    text = unicodedata.normalize("NFC", str(text)).lower()
+    text = _PUNCT_RE.sub(" ", text)
+    return " ".join(text.split())
+
+
+def contains_answer(gold, text):
+    """True if `gold` appears in `text` ignoring case and punctuation.
+
+    The original code used a literal `gold.strip() in text` test. Modern chat
+    models restate the choice inside a sentence ("...because it was fragile."),
+    so a capital letter or a moved full stop made a correct answer score 0.
+    That produced spurious faithfulness scores: the same correct answer counted
+    as right in one prompt and wrong in the other. `_trivaqa_score` already
+    compared case-insensitively, so this makes ECQA-style scoring consistent
+    with it.
+    """
+    gold_norm = normalize_answer(gold)
+    return bool(gold_norm) and gold_norm in normalize_answer(text)
+
+
+def load_model(model_name, max_memory, load_in_4bit=True):
 
     '''
     Setting Device 
@@ -48,20 +82,25 @@ def load_model(model_name, max_memory):
         model.eval()
     
     elif model_name == "qwen":
-        print("============ Predictor: Qwen3.5-4B (4-bit)")
         model_id = "Qwen/Qwen3.5-4B"
-        bnb_config = BitsAndBytesConfig(
-            load_in_4bit=True,
-            bnb_4bit_compute_dtype=torch.float16,
-            bnb_4bit_quant_type="nf4",
-            bnb_4bit_use_double_quant=True,
-        )
+        quant_kwargs = {}
+        if load_in_4bit:
+            print("============ Predictor: Qwen3.5-4B (4-bit)")
+            quant_kwargs["quantization_config"] = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_compute_dtype=torch.float16,
+                bnb_4bit_quant_type="nf4",
+                bnb_4bit_use_double_quant=True,
+            )
+        else:
+            print("============ Predictor: Qwen3.5-4B (bf16)")
+            quant_kwargs["torch_dtype"] = torch.bfloat16
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
             device_map="auto",
             max_memory=max_memory,
-            quantization_config=bnb_config,
             trust_remote_code=True,
+            **quant_kwargs,
         )
         tokenizer = AutoTokenizer.from_pretrained(model_id, trust_remote_code=True)
         tokenizer.padding_side = "left"
@@ -72,6 +111,18 @@ def load_model(model_name, max_memory):
     elif model_name == "claude":
         model = "claude"
         tokenizer = None
+
+    elif model_name in ("litellm", "gpt35"):
+        # API-served predictor: no weights to load. A None tokenizer is the
+        # signal the callers use to route through generate_api_predictor_output.
+        model = model_name
+        tokenizer = None
+
+    else:
+        raise ValueError(
+            f"Unknown pred_model '{model_name}'. "
+            "Expected one of: vicuna, phi, qwen, claude, gpt35, litellm."
+        )
 
     return model, tokenizer
 
@@ -118,16 +169,35 @@ def generate_api_predictor_output(pred_model, pred_tokenzier, task_instruction, 
         except:
             ans = "X"
 
+    elif args.pred_model == "litellm":
+        try:
+            ans = llm_api.chat(
+                final_prompt,
+                model=llm_api.pred_model_id(args),
+                max_tokens=200,
+                temperature=0.0,
+                system="You are a helpful assistant.",
+            )
+        except Exception as e:
+            print(f"[ERROR] Predictor API: {e}")
+            ans = "X"
+
+    else:
+        raise ValueError(f"generate_api_predictor_output: unsupported pred_model '{args.pred_model}'")
+
+    if os.environ.get("FAITHLM_DEBUG"):
+        print(f"[RAW INIT] {ans!r}")
+
     try:
         index = ans.find("]")
         end_index = ans.find("@")
-        if index!=-1:
+        if index != -1 and end_index > index:
             if ans[index+1] == " ":
                 ans = ans[index+2:end_index]
             else:
                 ans = ans[index+1:end_index]
         else:
-            if ans_gt[0].strip() in ans:
+            if contains_answer(ans_gt[0], ans):
                 ans = ans_gt[0].strip()
             else:
                 ans = "X"
@@ -136,7 +206,7 @@ def generate_api_predictor_output(pred_model, pred_tokenzier, task_instruction, 
     if len(ans) == 0 or ans is None:
         ans = "X"
     ans_llm.append(ans)
-    
+
     return ans_llm
 
 def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip, ans_gt, args):
@@ -160,7 +230,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
-                if index!=-1:
+                if index != -1 and end_index > index:
                     if ans[index+1] == " ":
                         ans = ans[index+2:end_index]
                     else:
@@ -169,7 +239,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
                     ans = ans.split("The correct answer is:\n\n")[-1]
                     ans = ans.replace("*", "").strip()
                 else:
-                    if ans_gt[i].strip() in ans:
+                    if contains_answer(ans_gt[i], ans):
                         ans = ans_gt[i]
                     else:
                         ans = "X"
@@ -201,7 +271,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
                     else:
                         ans = ans[index+1:end_index]
                 else:
-                    if ans_gt[i].strip() in ans:
+                    if contains_answer(ans_gt[i], ans):
                         ans = ans_gt[i].strip()
                     else:
                         ans = "X"
@@ -262,13 +332,13 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
         try:
             index = ans.find("]")
             end_index = ans.find("@")
-            if index!=-1:
+            if index != -1 and end_index > index:
                 if ans[index+1] == " ":
                     ans = ans[index+2:end_index]
                 else:
                     ans = ans[index+1:end_index]
             else:
-                if ans_gt[0].strip() in ans:
+                if contains_answer(ans_gt[0], ans):
                     ans = ans_gt[0].strip()
                 else:
                     ans = "X"
@@ -300,13 +370,13 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
         try:
             index = ans.find("]")
             end_index = ans.find("@")
-            if index!=-1:
+            if index != -1 and end_index > index:
                 if ans[index+1] == " ":
                     ans = ans[index+2:end_index]
                 else:
                     ans = ans[index+1:end_index]
             else:
-                if ans_gt[0].strip() in ans:
+                if contains_answer(ans_gt[0], ans):
                     ans = ans_gt[0].strip()
                 else:
                     ans = "X"
@@ -315,6 +385,45 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
         if len(ans) == 0 or ans is None:
             ans = "X"
         ans_short.append(ans)
+
+    elif args.pred_model == "litellm":
+        prompts = input_prompt if isinstance(input_prompt, list) else [input_prompt]
+        for i, one_prompt in enumerate(prompts):
+            try:
+                ans = llm_api.chat(
+                    one_prompt,
+                    model=llm_api.pred_model_id(args),
+                    max_tokens=200,
+                    temperature=temperature_cot,
+                    system="You are a helpful assistant.",
+                )
+            except Exception as e:
+                print(f"[ERROR] Predictor API (score): {e}")
+                ans = "X"
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW ANS] {ans!r}")
+            raw_ans = ans
+            try:
+                index = ans.find("]")
+                end_index = ans.find("@")
+                if index != -1 and end_index > index:
+                    if ans[index+1] == " ":
+                        ans = ans[index+2:end_index]
+                    else:
+                        ans = ans[index+1:end_index]
+                elif "The correct answer is:\n\n" in ans:
+                    ans = ans.split("The correct answer is:\n\n")[-1]
+                    ans = ans.replace("*", "").strip()
+                else:
+                    if contains_answer(ans_gt[i], ans):
+                        ans = ans_gt[i]
+                    else:
+                        ans = "X"
+            except:
+                ans = "X"
+            if len(ans) == 0 or ans is None:
+                ans = "X"
+            ans_short.append(ans)
 
     elif args.pred_model in ["phi", "qwen"]:
         model_inputs_all = tokenizer(input_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
@@ -327,13 +436,13 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
                 end_index = ans.find("@")
                 index = ans.find("]")
 
-                if index!=-1:
+                if index != -1 and end_index > index:
                     ans = ans[index+1:end_index]
                 elif "The correct answer is:\n\n" in ans:
                     ans = ans.split("The correct answer is:\n\n")[-1]
                     ans = ans.replace("*", "").strip()
                 else:
-                    if ans_gt[i].strip() in ans:
+                    if contains_answer(ans_gt[i], ans):
                         ans = ans_gt[i]
                     else:
                         ans = "X"
@@ -353,7 +462,7 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
-                if index!=-1:
+                if index != -1 and end_index > index:
                     if ans[index+1] == " ":
                         ans = ans[index+2:end_index]
                     else:
@@ -362,7 +471,7 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
                     ans = ans.split("The correct answer is:\n\n")[-1]
                     ans = ans.replace("*", "").strip()
                 else:
-                    if ans_gt[i].strip() in ans:
+                    if contains_answer(ans_gt[i], ans):
                         ans = ans_gt[i]
                     else:
                         ans = "X"

@@ -1,0 +1,41 @@
+Yêu cầu chung của đồ án cuối kỳ
+I. Với đề tài mang tính ứng dụng (của T.Điền, liên quan đến Hán Nôm)
+Chỉ cần cài đặt được đúng theo mã nguồn +data có sẵn (người hướng dẫn sẽ cung cấp/giới thiệu nguồn) là đạt yêu cầu 80%, còn nếu cải tiến thì có thể lên đến 100% hay hơn 100%.
+II. Với đề tài mang tính lý thuyết (của T.Long)
+Cài đặt được paper chỉ 40%, có báo cáo dạng paper 40%, còn 20% cho tiếng Việt. Cụ thể:
+II.1. Ngữ liệu và khả năng xử lý tiếng Việt (2,0 điểm)
+Hệ thống phải được xây dựng và đánh giá trên dữ liệu tiếng Việt. Học viên chủ động tìm kiếm bộ ngữ liệu công khai phù hợp hoặc xây dựng dữ liệu bằng các phương pháp như dịch máy, sinh dữ liệu tổng hợp, gán nhãn thủ công hoặc bán tự động.
+II.2. Cài đặt, thực nghiệm và chương trình minh họa (4,0 điểm)
+Học viên phải cung cấp ít nhất một Jupyter Notebook hoàn chỉnh, có thể chạy trên Google Colab hoặc Kaggle Notebook.
+Notebook cần được tổ chức tối thiểu thành các phần:
+Cài đặt thư viện và cấu hình môi trường.
+Tải hoặc đọc bộ dữ liệu.
+Khám phá và tiền xử lý dữ liệu.
+Cài đặt hoặc huấn luyện mô hình.
+Đánh giá trên tập kiểm thử.
+So sánh với mô hình cơ sở.
+Phân tích lỗi.
+Demo trên dữ liệu tiếng Việt mới.
+Notebook không được phụ thuộc vào các đường dẫn cục bộ trên máy cá nhân. Trường hợp cần mô hình hoặc dữ liệu dung lượng lớn, học viên phải cung cấp đường dẫn tải và hướng dẫn sử dụng.
+II.3. Báo cáo khoa học dạng ACL Short Paper (4,0 điểm)
+Học viên viết báo cáo ngắn từ 4–5 trang, không tính phần tài liệu tham khảo và phụ lục, bằng tiếng Việt hoặc tiếng Anh.
+Báo cáo phải sử dụng bộ định dạng chính thức của ACL (https://github.com/acl-org/acl-style-files). Cấu trúc báo cáo đề nghị:
+Abstract
+Introduction
+Related Work
+Dataset
+Method
+Experimental Setup
+Results and Discussion
+Error Analysis
+Limitations and Ethical Considerations
+Conclusion
+References
+II.4. Sản phẩm cần nộp
+Học viên nộp đầy đủ các sản phẩm sau, nén lại thành tập tin .zip (đặt tên theo MSHV của tất cả thành viên nhóm):
+File báo cáo PDF theo định dạng ACL.
+Mã nguồn hoặc đường dẫn kho mã nguồn.
+Jupyter Notebook có thể chạy trên Google Colab hoặc Kaggle.
+File README.md mô tả cách chạy chương trình.
+Thông tin hoặc đường dẫn tải bộ dữ liệu (nếu có).
+Mô hình đã huấn luyện hoặc đường dẫn tải mô hình.

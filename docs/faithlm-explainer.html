@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="vi">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Giải phẫu FaithLM</title>
+<style>
+  :root {
+    --bg: #f2f5f7;
+    --surface: #ffffff;
+    --surface-2: #e9eef1;
+    --ink: #1b2831;
+    --muted: #5b6e7b;
+    --line: #ccd7dd;
+    --teal: #0e7c7a;
+    --teal-soft: rgba(14, 124, 122, 0.12);
+    --flip: #c2491d;
+    --flip-soft: rgba(194, 73, 29, 0.12);
+    --mark: rgba(14, 124, 122, 0.16);
+    --code-bg: #eef2f4;
+  }
+  :root:not([data-theme="light"]) { }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f161b;
+      --surface: #161f26;
+      --surface-2: #1d2933;
+      --ink: #e2eaef;
+      --muted: #94a6b2;
+      --line: #2c3d49;
+      --teal: #43bfba;
+      --teal-soft: rgba(67, 191, 186, 0.14);
+      --flip: #ef8a52;
+      --flip-soft: rgba(239, 138, 82, 0.14);
+      --mark: rgba(67, 191, 186, 0.18);
+      --code-bg: #131c22;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f161b;
+    --surface: #161f26;
+    --surface-2: #1d2933;
+    --ink: #e2eaef;
+    --muted: #94a6b2;
+    --line: #2c3d49;
+    --teal: #43bfba;
+    --teal-soft: rgba(67, 191, 186, 0.14);
+    --flip: #ef8a52;
+    --flip-soft: rgba(239, 138, 82, 0.14);
+    --mark: rgba(67, 191, 186, 0.18);
+    --code-bg: #131c22;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Sitka Text", Cambria, Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    line-height: 1.75;
+    margin: 0;
+    padding: 0 1.25rem;
+  }
+  .page { max-width: 46rem; margin: 0 auto; padding: 3.5rem 0 5rem; }
+
+  h1, h2, h3, .label, figcaption, table, .role-chip, .qa-tag {
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin: 0.4rem 0 0.8rem;
+    text-wrap: balance;
+  }
+  h2 {
+    font-size: 1.45rem;
+    line-height: 1.3;
+    margin: 0 0 1rem;
+    text-wrap: balance;
+  }
+  h3 { font-size: 1.05rem; margin: 1.6rem 0 0.5rem; }
+  p { margin: 0 0 1rem; }
+  strong { font-weight: 650; }
+
+  .label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+  }
+  .lede { font-size: 1.15rem; color: var(--muted); margin: 0 0 0.5rem; }
+  .meta { font-size: 0.85rem; color: var(--muted); font-family: "Segoe UI", system-ui, sans-serif; }
+  .meta a { color: var(--teal); }
+
+  header.hero { padding-bottom: 2.2rem; border-bottom: 1px solid var(--line); margin-bottom: 2.6rem; }
+  .thesis {
+    margin: 1.6rem 0 0;
+    padding: 1.1rem 1.3rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 1.12rem;
+  }
+  .thesis .formula { margin-top: 0.6rem; }
+
+  section.step {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr;
+    gap: 0 1.1rem;
+    margin: 0 0 3rem;
+  }
+  .step-no {
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1.15;
+    padding-top: 0.15rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .step-body { min-width: 0; }
+
+  /* Quote highlight từ paper */
+  blockquote.paper-quote {
+    margin: 1.4rem 0;
+    padding: 1rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  .paper-quote .en {
+    font-style: italic;
+    font-size: 1.02rem;
+    margin: 0 0 0.5rem;
+  }
+  .paper-quote .en mark {
+    background: linear-gradient(transparent 55%, var(--mark) 55%);
+    color: inherit;
+    padding: 0 1px;
+  }
+  .paper-quote .vi {
+    font-size: 0.94rem;
+    color: var(--muted);
+    margin: 0;
+  }
+  .paper-quote .src {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: "Segoe UI", system-ui, sans-serif;
+  }
+
+  code, .formula, .prompt-card pre {
+    font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+  }
+  code {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 0.06em 0.35em;
+    font-size: 0.86em;
+  }
+  .formula {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.8rem 1.1rem;
+    font-size: 1.02rem;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .formula .t { color: var(--teal); font-weight: 600; }
+  .formula .f { color: var(--flip); font-weight: 600; }
+
+  figure { margin: 1.6rem 0; }
+  .fig-frame {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 1.1rem;
+    overflow-x: auto;
+  }
+  figure svg { display: block; max-width: 100%; height: auto; margin: 0 auto; }
+  figcaption {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.65rem;
+    line-height: 1.55;
+  }
+  figcaption b { color: var(--ink); }
+
+  .callout {
+    margin: 1.3rem 0;
+    padding: 0.9rem 1.2rem;
+    border-radius: 10px;
+    background: var(--teal-soft);
+    border: 1px solid color-mix(in srgb, var(--teal) 35%, transparent);
+    font-size: 0.98rem;
+  }
+  .callout.flip {
+    background: var(--flip-soft);
+    border-color: color-mix(in srgb, var(--flip) 35%, transparent);
+  }
+  .callout .label { display: block; margin-bottom: 0.2rem; }
+  .callout.flip .label { color: var(--flip); }
+
+  .prompt-card {
+    margin: 1.2rem 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+    overflow: hidden;
+  }
+  .prompt-card .head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+    padding: 0.55rem 1rem;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-size: 0.82rem;
+  }
+  .prompt-card .head .where { color: var(--muted); }
+  .prompt-card pre {
+    margin: 0;
+    padding: 0.9rem 1rem;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-x: auto;
+  }
+  .prompt-card .vi-note {
+    padding: 0.6rem 1rem 0.8rem;
+    font-size: 0.9rem;
+    color: var(--muted);
+    border-top: 1px dashed var(--line);
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.88rem;
+    margin: 1.2rem 0;
+  }
+  .table-wrap { overflow-x: auto; }
+  th, td {
+    text-align: left;
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  td b { font-weight: 650; }
+  tr.hl td { background: var(--teal-soft); }
+
+  ul, ol { padding-left: 1.3rem; margin: 0 0 1rem; }
+  li { margin-bottom: 0.45rem; }
+  li::marker { color: var(--teal); }
+
+  .role-chip {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.1rem 0.65rem;
+    background: var(--surface);
+    white-space: nowrap;
+  }
+  .role-chip.t { color: var(--teal); border-color: color-mix(in srgb, var(--teal) 45%, transparent); }
+  .role-chip.f { color: var(--flip); border-color: color-mix(in srgb, var(--flip) 45%, transparent); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding-top: 1.4rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: "Segoe UI", system-ui, sans-serif;
+  }
+
+  .part-divider {
+    border-top: 3px double var(--line);
+    margin: 3.6rem 0 2.6rem;
+    padding-top: 2.8rem;
+  }
+  .part-title {
+    font-size: clamp(1.7rem, 4vw, 2.4rem);
+    margin: 0.4rem 0 0.6rem;
+  }
+  .report h2 { margin-top: 2.6rem; }
+  .report .abstract {
+    margin: 1.6rem 0 0;
+    padding: 1.1rem 1.3rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 1.02rem;
+  }
+  .report .abstract .label { display: block; margin-bottom: 0.4rem; }
+
+  @media (max-width: 560px) {
+    section.step { grid-template-columns: 1fr; }
+    .step-no { padding: 0; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    a { transition: color 120ms ease; }
+  }
+</style>
+
+<div class="page">
+<header class="hero">
+  <span class="label">Diễn giải paper · EACL 2026</span>
+  <h1>Giải phẫu FaithLM</h1>
+  <p class="lede">FaithLM: Towards Faithful Explanations for Large Language Models — Chuang et al., EACL 2026, trang 3802–3824.</p>
+  <p class="meta">Tài liệu học nhóm cho đồ án NLP · nguồn: <a href="https://github.com/ynchuang/FaithLM">github.com/ynchuang/FaithLM</a></p>
+  <div class="thesis">
+    <strong>Toàn bộ paper đứng trên một câu:</strong> lời giải thích của LLM chỉ đáng tin nếu <em>phủ định nó</em> làm mô hình <em>đổi câu trả lời</em>. Đo được điều đó là đo được độ trung thực; tối ưu điều đó là ép mô hình nói thật.
+    <div class="formula">S<sub>E</sub> := <span class="t">f(X)</span> − <span class="f">f(X | ¬E<sub>NL</sub>)</span></div>
+  </div>
+</header>
+
+<!-- ======================= STEP 1 ======================= -->
+<section class="step">
+  <div class="step-no">1</div>
+  <div class="step-body">
+    <h2>Vấn đề: LLM giải thích nghe rất hay — nhưng có thật là lý do nó dùng để quyết định không?</h2>
+    <p>Khi ta hỏi một LLM <em>"vì sao bạn trả lời như vậy?"</em>, nó luôn sinh ra được một đoạn giải thích trôi chảy. Nhưng trôi chảy không có nghĩa là <strong>trung thực (faithful)</strong> — tức là phản ánh đúng thông tin mà mô hình <em>thực sự dựa vào</em> khi ra quyết định. Giải thích có thể chỉ là "văn trang trí" sinh ra sau, không dính gì đến quá trình suy luận bên trong.</p>
+    <blockquote class="paper-quote">
+      <p class="en">"Large language models (LLMs) increasingly produce natural language explanations, yet <mark>these explanations often lack faithfulness, and they do not reliably reflect the evidence the model uses to decide</mark>."</p>
+      <p class="vi">→ Giải thích do LLM sinh ra thường thiếu trung thực: không phản ánh đáng tin cậy bằng chứng mà mô hình dùng để quyết định.</p>
+      <span class="src">Abstract</span>
+    </blockquote>
+    <h3>Phân biệt quan trọng: Explanation ≠ Chain-of-Thought</h3>
+    <p>Mục 2.2 của paper dành riêng để tách ba khái niệm hay bị trộn lẫn. <strong>CoT/reasoning</strong> là các bước sinh ra <em>trước</em> câu trả lời nhằm tăng độ chính xác. <strong>Self-refinement</strong> là vòng tự phản hồi để cải thiện kết quả. Còn <strong>explanation</strong> là làm rõ <em>vì sao</em> mô hình đã trả lời như vậy, <em>sau khi</em> nó đã quyết định (post-hoc).</p>
+    <blockquote class="paper-quote">
+      <p class="en">"These studies show that CoT can improve reasoning performance, but <mark>does not necessarily provide an explanation or even count as explanations of how or why an LLM arrives at its answers</mark>."</p>
+      <p class="vi">→ CoT giúp trả lời đúng hơn, nhưng không đương nhiên là lời giải thích cho việc <em>vì sao</em> mô hình ra đáp án đó.</p>
+      <span class="src">Mục 2.2</span>
+    </blockquote>
+    <h3>Vì sao cách đo fidelity cũ không dùng được?</h3>
+    <p>Cách truyền thống đo fidelity cho giải thích dạng heatmap: xoá các token quan trọng khỏi input <code>X</code> rồi xem dự đoán đổi bao nhiêu (<code>Fidelity = f(X) − f(X \ I)</code>). Nhưng với giải thích bằng ngôn ngữ tự nhiên thì cách này sập ngay ở một điểm:</p>
+    <blockquote class="paper-quote">
+      <p class="en">"It is challenging to evaluate the fidelity of NL explanations… as <mark>the critical components in NL explanations may not contain in the input context X</mark>."</p>
+      <p class="vi">→ Tri thức then chốt trong lời giải thích ("cực cùng dấu đẩy nhau") thường <em>không nằm trong câu hỏi</em> — nó là kiến thức tiềm ẩn của mô hình. Không có token nào trong X để mà xoá!</p>
+      <span class="src">Mục 2.3</span>
+    </blockquote>
+    <p>Đây chính là khoảng trống mà FaithLM lấp: thay vì can thiệp ở <strong>mức token</strong>, hãy can thiệp ở <strong>mức ngữ nghĩa</strong>.</p>
+  </div>
+</section>
+
+<!-- ======================= STEP 2 ======================= -->
+<section class="step">
+  <div class="step-no">2</div>
+  <div class="step-body">
+    <h2>Ý tưởng lõi: contrary hint — "nói ngược lại rồi xem mô hình có đổi ý không"</h2>
+    <p>Không xoá được tri thức khỏi câu hỏi, thì ta <strong>tiêm điều ngược lại</strong> vào câu hỏi. Nếu lời giải thích thật sự chứa thông tin mô hình dùng để quyết định, thì việc chèn <em>phiên bản phủ định</em> của nó (contrary hint <code>¬E</code>) phải làm mô hình <strong>lật câu trả lời</strong>. Đây là ví dụ nam châm mở đầu paper (Table 1):</p>
+
+    <figure>
+      <div class="fig-frame">
+      <svg viewBox="0 0 720 330" role="img" aria-label="Thí nghiệm can thiệp: câu hỏi gốc cho ra No; chèn contrary hint làm mô hình đổi sang Yes, chứng tỏ giải thích là trung thực" style="color: var(--ink); font-family: 'Segoe UI', system-ui, sans-serif;">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+          <marker id="arrF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--flip)"/>
+          </marker>
+        </defs>
+
+        <!-- Row 1: original -->
+        <text x="14" y="26" font-size="11" font-weight="600" fill="var(--teal)" letter-spacing="1.5">LƯỢT 1 — CÂU HỎI GỐC</text>
+        <rect x="14" y="38" width="270" height="58" rx="8" fill="none" stroke="currentColor" stroke-opacity="0.55"/>
+        <text x="28" y="62" font-size="12.5">X: "Hai cực dương của hai nam châm</text>
+        <text x="28" y="80" font-size="12.5">có hút nhau không?"</text>
+        <line x1="284" y1="67" x2="352" y2="67" stroke="currentColor" marker-end="url(#arr)"/>
+        <rect x="354" y="43" width="120" height="48" rx="8" fill="var(--surface-2)" stroke="currentColor" stroke-opacity="0.55"/>
+        <text x="414" y="63" font-size="12.5" text-anchor="middle" font-weight="600">Targeted LLM</text>
+        <text x="414" y="80" font-size="12" text-anchor="middle" fill="var(--muted)">f(·)</text>
+        <line x1="474" y1="67" x2="542" y2="67" stroke="currentColor" marker-end="url(#arr)"/>
+        <rect x="544" y="43" width="140" height="48" rx="8" fill="var(--teal-soft)" stroke="var(--teal)"/>
+        <text x="614" y="63" font-size="13" text-anchor="middle" font-weight="700" fill="var(--teal)">f(X) = "Không"</text>
+        <text x="614" y="80" font-size="11" text-anchor="middle" fill="var(--muted)">câu trả lời gốc Y</text>
+
+        <!-- Explanation box -->
+        <rect x="14" y="122" width="330" height="58" rx="8" fill="var(--teal-soft)" stroke="var(--teal)"/>
+        <text x="28" y="144" font-size="11" font-weight="600" fill="var(--teal)" letter-spacing="1">GIẢI THÍCH E CẦN KIỂM TRA</text>
+        <text x="28" y="164" font-size="12.5">"Các cực <tspan font-weight="700">cùng dấu đẩy nhau</tspan>."</text>
+        <line x1="344" y1="151" x2="410" y2="151" stroke="currentColor" marker-end="url(#arr)"/>
+        <text x="377" y="143" font-size="10.5" text-anchor="middle" fill="var(--muted)">LLM agent</text>
+        <text x="377" y="168" font-size="10.5" text-anchor="middle" fill="var(--muted)">đảo nghĩa</text>
+        <rect x="412" y="122" width="292" height="58" rx="8" fill="var(--flip-soft)" stroke="var(--flip)"/>
+        <text x="426" y="144" font-size="11" font-weight="600" fill="var(--flip)" letter-spacing="1">CONTRARY HINT ¬E</text>
+        <text x="426" y="164" font-size="12.5">"Các cực <tspan font-weight="700">cùng dấu hút nhau</tspan>."</text>
+
+        <!-- Row 2: intervened -->
+        <text x="14" y="222" font-size="11" font-weight="600" fill="var(--flip)" letter-spacing="1.5">LƯỢT 2 — TIÊM ¬E VÀO TRƯỚC CÂU HỎI</text>
+        <rect x="14" y="234" width="270" height="74" rx="8" fill="none" stroke="var(--flip)" stroke-dasharray="5 4"/>
+        <text x="28" y="256" font-size="12.5" fill="var(--flip)" font-weight="600">"Các cực cùng dấu hút nhau.</text>
+        <text x="28" y="274" font-size="12.5">Hai cực dương của hai nam châm</text>
+        <text x="28" y="292" font-size="12.5">có hút nhau không?"</text>
+        <line x1="284" y1="271" x2="352" y2="271" stroke="var(--flip)" marker-end="url(#arrF)"/>
+        <rect x="354" y="247" width="120" height="48" rx="8" fill="var(--surface-2)" stroke="currentColor" stroke-opacity="0.55"/>
+        <text x="414" y="267" font-size="12.5" text-anchor="middle" font-weight="600">Targeted LLM</text>
+        <text x="414" y="284" font-size="12" text-anchor="middle" fill="var(--muted)">f(·)</text>
+        <line x1="474" y1="271" x2="542" y2="271" stroke="var(--flip)" marker-end="url(#arrF)"/>
+        <rect x="544" y="247" width="140" height="48" rx="8" fill="var(--flip-soft)" stroke="var(--flip)"/>
+        <text x="614" y="267" font-size="13" text-anchor="middle" font-weight="700" fill="var(--flip)">f(X|¬E) = "Có"</text>
+        <text x="614" y="284" font-size="11" text-anchor="middle" fill="var(--muted)">LẬT! → E trung thực</text>
+      </svg>
+      </div>
+      <figcaption><b>Thí nghiệm can thiệp của FaithLM</b> (dựng lại từ Table 1). Lượt 1: mô hình trả lời "Không". Lời giải thích E nêu tri thức "cùng dấu đẩy nhau". Lượt 2: tiêm câu ngược nghĩa ¬E vào trước câu hỏi — mô hình đổi sang "Có". Việc lật đáp án chứng tỏ E chứa đúng thông tin mà mô hình dựa vào: E <b>trung thực</b>.</figcaption>
+    </figure>
+
+    <blockquote class="paper-quote">
+      <p class="en">"FaithLM formalizes explanation faithfulness as an intervention property: <mark>a faithful explanation should yield a prediction shift when its content is contradicted</mark>."</p>
+      <p class="vi">→ Định nghĩa trung tâm: giải thích trung thực = phủ định nội dung của nó thì dự đoán phải dịch chuyển.</p>
+      <span class="src">Abstract</span>
+    </blockquote>
+    <p>Trực giác đời thường: bạn hỏi một người <em>"sao anh chọn quán này?"</em> — họ nói <em>"vì gần nhà"</em>. Muốn biết đó có phải lý do thật, hãy bảo <em>"quán này xa nhà anh lắm"</em> rồi xem họ có đổi quán không. Nếu họ vẫn chọn y như cũ, "gần nhà" chỉ là lý do trang trí.</p>
+  </div>
+</section>
+
+<!-- ======================= STEP 3 ======================= -->
+<section class="step">
+  <div class="step-no">3</div>
+  <div class="step-body">
+    <h2>Điểm fidelity S<sub>E</sub>: thước đo bằng số của "độ trung thực"</h2>
+    <div class="formula">S<sub>E</sub> := <span class="t">f(X)</span> − <span class="f">f(X | ¬E<sub>NL</sub>)</span> &nbsp;&nbsp;— hiệu giữa dự đoán gốc và dự đoán khi bị tiêm hint ngược</div>
+    <p>Trong thực hành, <code>f(X)</code> là phân bố xác suất trên các đáp án (hoặc đơn giản hơn: đáp án rời rạc). Fidelity Evaluator làm hai việc: (i) nhờ một LLM sinh <code>¬E</code> từ <code>E</code> theo template cố định, (ii) đo mức dịch chuyển của output. Ở dạng black-box thuần tuý (chỉ thấy đáp án, không thấy logit), điểm số quy về <strong>tỉ lệ lật đáp án</strong> — chính là cách paper mô tả score trong trajectory prompt: <em>"the score is calculated as the flipping answer rates"</em>.</p>
+    <blockquote class="paper-quote">
+      <p class="en">"In this formulation, <mark>faithfulness is defined as prediction sensitivity: an explanation is faithful if altering its truth value changes the model's decision</mark>."</p>
+      <p class="vi">→ Trung thực = độ nhạy của dự đoán: đổi giá trị đúng/sai của lời giải thích thì quyết định phải đổi theo.</p>
+      <span class="src">Mục 3.1</span>
+    </blockquote>
+
+    <figure>
+      <div class="fig-frame">
+      <svg viewBox="0 0 720 240" role="img" aria-label="So sánh: giải thích trung thực làm dự đoán lật (S lớn hơn 0), giải thích trang trí không làm gì thay đổi (S bằng 0)" style="color: var(--ink); font-family: 'Segoe UI', system-ui, sans-serif;">
+        <defs>
+          <marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+        </defs>
+        <!-- faithful row -->
+        <text x="14" y="28" font-size="11.5" font-weight="700" fill="var(--teal)" letter-spacing="1">E TRUNG THỰC — nằm trên đường nhân quả tới đáp án</text>
+        <rect x="14" y="44" width="150" height="46" rx="8" fill="var(--teal-soft)" stroke="var(--teal)"/>
+        <text x="89" y="63" font-size="12" text-anchor="middle" font-weight="600">E → ¬E</text>
+        <text x="89" y="80" font-size="11" text-anchor="middle" fill="var(--muted)">tiêm hint ngược</text>
+        <line x1="164" y1="67" x2="240" y2="67" stroke="currentColor" marker-end="url(#arr2)"/>
+        <rect x="242" y="44" width="130" height="46" rx="8" fill="var(--surface-2)" stroke="currentColor" stroke-opacity="0.55"/>
+        <text x="307" y="72" font-size="12.5" text-anchor="middle" font-weight="600">f(·)</text>
+        <line x1="372" y1="67" x2="448" y2="67" stroke="currentColor" marker-end="url(#arr2)"/>
+        <rect x="450" y="44" width="254" height="46" rx="8" fill="none" stroke="var(--teal)"/>
+        <text x="577" y="63" font-size="13" text-anchor="middle" font-weight="700" fill="var(--teal)">"Không" → "Có"  ⇒  S<tspan font-size="10" dy="3">E</tspan><tspan dy="-3"> &gt; 0</tspan></text>
+        <text x="577" y="80" font-size="11" text-anchor="middle" fill="var(--muted)">dự đoán dịch chuyển — bằng chứng nhân quả</text>
+
+        <!-- decorative row -->
+        <text x="14" y="148" font-size="11.5" font-weight="700" fill="var(--flip)" letter-spacing="1">E "TRANG TRÍ" — chỉ tương quan, không nhân quả</text>
+        <rect x="14" y="164" width="150" height="46" rx="8" fill="var(--flip-soft)" stroke="var(--flip)"/>
+        <text x="89" y="183" font-size="12" text-anchor="middle" font-weight="600">E → ¬E</text>
+        <text x="89" y="200" font-size="11" text-anchor="middle" fill="var(--muted)">tiêm hint ngược</text>
+        <line x1="164" y1="187" x2="240" y2="187" stroke="currentColor" marker-end="url(#arr2)"/>
+        <rect x="242" y="164" width="130" height="46" rx="8" fill="var(--surface-2)" stroke="currentColor" stroke-opacity="0.55"/>
+        <text x="307" y="192" font-size="12.5" text-anchor="middle" font-weight="600">f(·)</text>
+        <line x1="372" y1="187" x2="448" y2="187" stroke="currentColor" marker-end="url(#arr2)"/>
+        <rect x="450" y="164" width="254" height="46" rx="8" fill="none" stroke="var(--flip)" stroke-dasharray="5 4"/>
+        <text x="577" y="183" font-size="13" text-anchor="middle" font-weight="700" fill="var(--flip)">"Không" → "Không"  ⇒  S<tspan font-size="10" dy="3">E</tspan><tspan dy="-3"> = 0</tspan></text>
+        <text x="577" y="200" font-size="11" text-anchor="middle" fill="var(--muted)">mô hình phớt lờ — E không phải lý do thật</text>
+      </svg>
+      </div>
+      <figcaption><b>Hai số phận của một lời giải thích.</b> Cùng một phép can thiệp ¬E: giải thích trung thực khiến đáp án lật (S<sub>E</sub> &gt; 0); giải thích trang trí bị mô hình phớt lờ (S<sub>E</sub> = 0). Đây chính là nội dung Theorem 1.</figcaption>
+    </figure>
+
+    <h3>Theorem 1 — chỉ cần nắm trực giác</h3>
+    <p>Theorem 1 phát biểu: nếu coi việc chèn <code>¬E</code> tương đương can thiệp <code>do(S_E ← s̄)</code> lên "yếu tố ngữ nghĩa" mà lời giải thích nói tới (giữ nguyên mọi thứ khác), thì <code>S_E &gt; 0 ⇔ E trung thực</code> và <code>S_E = 0 ⇔ E không trung thực</code>. Nói cách khác, điểm contrary-hint là một <strong>ước lượng hợp lệ</strong> của độ trung thực, kể cả khi tri thức then chốt không nằm trong input.</p>
+    <blockquote class="paper-quote">
+      <p class="en">"Conversely, <mark>if the explanation is merely correlational or decorative, the intervention leaves the model unchanged and the score remains zero</mark>."</p>
+      <p class="vi">→ Giải thích chỉ mang tính trang trí thì can thiệp không làm mô hình suy suyển — điểm bằng 0.</p>
+      <span class="src">Mục 3.1, phần trực giác của Theorem 1</span>
+    </blockquote>
+    <div class="callout flip">
+      <span class="label">Giả định cần soi khi phản biện</span>
+      Theorem 1 dựa trên hai giả định mạnh: (1) chèn ¬E đúng bằng can thiệp lên yếu tố ngữ nghĩa đó và không đụng gì khác; (2) mô hình bất biến với văn bản không liên quan (f(X) = f(X ∪ R)). Thực tế LLM khá nhạy với mọi thay đổi prompt — đây là điểm yếu đáng đưa vào phần Limitations của báo cáo nhóm.
+    </div>
+  </div>
+</section>
+
+<!-- ======================= STEP 4 ======================= -->
+<section class="step">
+  <div class="step-no">4</div>
+  <div class="step-body">
+    <h2>Algorithm 1 — Vòng lặp "chấm điểm rồi viết lại" để nâng độ trung thực</h2>
+    <p>Có thước đo rồi, FaithLM biến nó thành <strong>mục tiêu tối ưu</strong>. Hệ thống gồm ba vai (đều là LLM, không cần huấn luyện gì):</p>
+    <p>
+      <span class="role-chip t">f(·) — Targeted LLM: mô hình cần giải thích (paper: Vicuna-7B, Phi-2)</span>&ensp;
+      <span class="role-chip">g<sub>E</sub>(·) — Explainer: sinh giải thích (paper: GPT-3.5, Claude-2)</span>&ensp;
+      <span class="role-chip f">LLM agent — đảo nghĩa để tạo ¬E</span>
+    </p>
+
+    <figure>
+      <div class="fig-frame">
+      <svg viewBox="0 0 720 350" role="img" aria-label="Vòng lặp Algorithm 1: explainer sinh E, agent tạo contrary hint, targeted LLM chấm điểm lật, cặp E và điểm ghi vào trajectory, explainer đọc trajectory sinh E mới, dừng khi lật" style="color: var(--ink); font-family: 'Segoe UI', system-ui, sans-serif;">
+        <defs>
+          <marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+          <marker id="arr3t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--teal)"/>
+          </marker>
+        </defs>
+
+        <!-- Explainer -->
+        <rect x="24" y="40" width="170" height="64" rx="10" fill="var(--surface-2)" stroke="currentColor" stroke-opacity="0.6"/>
+        <text x="109" y="66" font-size="13" text-anchor="middle" font-weight="700">Explainer g<tspan font-size="10" dy="3">E</tspan></text>
+        <text x="109" y="86" font-size="11" text-anchor="middle" fill="var(--muted)">viết lời giải thích</text>
+
+        <!-- E box -->
+        <line x1="194" y1="72" x2="268" y2="72" stroke="currentColor" marker-end="url(#arr3)"/>
+        <text x="231" y="62" font-size="10.5" text-anchor="middle" fill="var(--muted)">① sinh E</text>
+        <rect x="270" y="46" width="150" height="52" rx="10" fill="var(--teal-soft)" stroke="var(--teal)"/>
+        <text x="345" y="68" font-size="13" text-anchor="middle" font-weight="700" fill="var(--teal)">E<tspan font-size="10" dy="3">NL</tspan></text>
+        <text x="345" y="86" font-size="11" text-anchor="middle" fill="var(--muted)">giải thích hiện tại</text>
+
+        <!-- agent -->
+        <line x1="420" y1="72" x2="494" y2="72" stroke="currentColor" marker-end="url(#arr3)"/>
+        <text x="457" y="62" font-size="10.5" text-anchor="middle" fill="var(--muted)">② đảo nghĩa</text>
+        <rect x="496" y="46" width="150" height="52" rx="10" fill="var(--flip-soft)" stroke="var(--flip)"/>
+        <text x="571" y="68" font-size="13" text-anchor="middle" font-weight="700" fill="var(--flip)">¬E<tspan font-size="10" dy="3">NL</tspan></text>
+        <text x="571" y="86" font-size="11" text-anchor="middle" fill="var(--muted)">contrary hint</text>
+
+        <!-- target LLM -->
+        <line x1="571" y1="98" x2="571" y2="152" stroke="currentColor" marker-end="url(#arr3)"/>
+        <text x="583" y="130" font-size="10.5" fill="var(--muted)">③ tiêm vào X</text>
+        <rect x="454" y="154" width="234" height="60" rx="10" fill="var(--surface-2)" stroke="currentColor" stroke-opacity="0.6"/>
+        <text x="571" y="179" font-size="13" text-anchor="middle" font-weight="700">Targeted LLM f(·)</text>
+        <text x="571" y="198" font-size="11" text-anchor="middle" fill="var(--muted)">so f(X) với f(X|¬E) → S<tspan font-size="9" dy="2">E</tspan> (0/1)</text>
+
+        <!-- trajectory -->
+        <line x1="454" y1="184" x2="330" y2="184" stroke="currentColor" marker-end="url(#arr3)"/>
+        <text x="392" y="174" font-size="10.5" text-anchor="middle" fill="var(--muted)">④ chấm điểm</text>
+        <rect x="120" y="150" width="210" height="130" rx="10" fill="none" stroke="var(--teal)"/>
+        <text x="225" y="174" font-size="12" text-anchor="middle" font-weight="700" fill="var(--teal)">Trajectory T (bộ nhớ)</text>
+        <text x="138" y="199" font-size="11.5" font-family="Consolas, monospace">[E₁, S=0]</text>
+        <text x="138" y="221" font-size="11.5" font-family="Consolas, monospace">[E₂, S=0]</text>
+        <text x="138" y="243" font-size="11.5" font-family="Consolas, monospace">[E₃, S=1] ✓</text>
+        <text x="138" y="265" font-size="11" fill="var(--muted)">giải thích + điểm, xếp tăng dần</text>
+
+        <!-- feedback -->
+        <path d="M 120 215 L 66 215 L 66 112" fill="none" stroke="var(--teal)" marker-end="url(#arr3t)"/>
+        <text x="20" y="136" font-size="10.5" fill="var(--teal)">⑤ đọc T,</text>
+        <text x="20" y="150" font-size="10.5" fill="var(--teal)">viết E tốt hơn</text>
+
+        <!-- stop -->
+        <rect x="454" y="248" width="234" height="52" rx="10" fill="var(--teal-soft)" stroke="var(--teal)"/>
+        <text x="571" y="270" font-size="12" text-anchor="middle" font-weight="700" fill="var(--teal)">DỪNG khi đáp án lật (S=1)</text>
+        <text x="571" y="288" font-size="11" text-anchor="middle" fill="var(--muted)">hoặc hết số vòng định trước</text>
+        <line x1="571" y1="214" x2="571" y2="246" stroke="var(--teal)" marker-end="url(#arr3t)"/>
+
+        <text x="24" y="330" font-size="11" fill="var(--muted)">In-context learning thuần tuý: không fine-tune, không gradient — "tối ưu" = explainer đọc lịch sử điểm số và tự viết bản tốt hơn.</text>
+      </svg>
+      </div>
+      <figcaption><b>Vòng lặp Algorithm 1 (Fidelity-enhanced Explanation).</b> ① g<sub>E</sub> sinh giải thích từ trigger prompt; ② agent đảo nghĩa thành ¬E; ③–④ tiêm ¬E vào câu hỏi, xem f(·) có lật đáp án không, ghi cặp [E, S<sub>E</sub>] vào trajectory; ⑤ g<sub>E</sub> đọc toàn bộ trajectory và sinh giải thích mới nhắm điểm cao hơn. Lặp đến khi lật hoặc hết bước.</figcaption>
+    </figure>
+
+    <blockquote class="paper-quote">
+      <p class="en">"The iteration terminates at a predetermined step or <mark>ceases earlier as soon as FaithLM observes a flipping performance from the targeted LLM f(·)</mark>."</p>
+      <p class="vi">→ Điều kiện dừng: hết số vòng, hoặc dừng sớm ngay khi đáp án lật — vì lật rồi nghĩa là đã tìm được giải thích trung thực.</p>
+      <span class="src">Mục 3.2, Algorithm 1</span>
+    </blockquote>
+
+    <div class="callout">
+      <span class="label">Điểm hay đáng nhấn khi trình bày</span>
+      Trajectory T chính là "gradient bằng lời": mô hình không được huấn luyện, nhưng nhìn dãy (giải thích, điểm) tăng dần nó tự suy ra nên viết kiểu gì để được điểm cao hơn — cùng triết lý với OPRO (dùng LLM làm optimizer). Toàn bộ FaithLM chạy được trên mô hình đóng (API-only) vì chỉ cần đầu ra.
+    </div>
+  </div>
+</section>
+
+<!-- ======================= STEP 5 ======================= -->
+<section class="step">
+  <div class="step-no">5</div>
+  <div class="step-body">
+    <h2>Algorithm 2 — Tối ưu luôn cả "câu lệnh gọi giải thích" (trigger prompt)</h2>
+    <p>Algorithm 1 vẫn phụ thuộc một thứ do con người viết: <strong>trigger prompt</strong> P<sub>E</sub> — câu lệnh yêu cầu explainer giải thích. Prompt viết tay có thể dở, kéo tụt cả quá trình. Algorithm 2 tối ưu chính nó, trên một <strong>tập hold-out</strong> thay vì từng câu hỏi đơn lẻ:</p>
+
+    <figure>
+      <div class="fig-frame">
+      <svg viewBox="0 0 720 300" role="img" aria-label="Vòng lặp Algorithm 2: trigger prompt sinh giải thích cho cả tập hold-out, điểm trung bình của tập là điểm của prompt, trajectory lưu các prompt kèm điểm, explainer sinh prompt mới tốt hơn" style="color: var(--ink); font-family: 'Segoe UI', system-ui, sans-serif;">
+        <defs>
+          <marker id="arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+          </marker>
+          <marker id="arr4t" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="var(--teal)"/>
+          </marker>
+        </defs>
+
+        <rect x="24" y="34" width="180" height="56" rx="10" fill="var(--flip-soft)" stroke="var(--flip)"/>
+        <text x="114" y="58" font-size="13" text-anchor="middle" font-weight="700" fill="var(--flip)">Trigger prompt P<tspan font-size="10" dy="3">E</tspan></text>
+        <text x="114" y="76" font-size="11" text-anchor="middle" fill="var(--muted)">khởi tạo: viết tay</text>
+
+        <line x1="204" y1="62" x2="272" y2="62" stroke="currentColor" marker-end="url(#arr4)"/>
+        <text x="238" y="52" font-size="10.5" text-anchor="middle" fill="var(--muted)">áp lên</text>
+
+        <!-- holdout stack -->
+        <rect x="286" y="52" width="188" height="94" rx="10" fill="var(--surface)" stroke="currentColor" stroke-opacity="0.6"/>
+        <rect x="280" y="46" width="188" height="94" rx="10" fill="var(--surface)" stroke="currentColor" stroke-opacity="0.6"/>
+        <rect x="274" y="40" width="188" height="94" rx="10" fill="var(--surface-2)" stroke="currentColor" stroke-opacity="0.7"/>
+        <text x="368" y="66" font-size="12.5" text-anchor="middle" font-weight="700">Tập hold-out D</text>
+        <text x="368" y="86" font-size="11" text-anchor="middle" fill="var(--muted)">mỗi (Xᵢ, Yᵢ): sinh Eᵢ = g(P|Xᵢ,Yᵢ)</text>
+        <text x="368" y="104" font-size="11" text-anchor="middle" fill="var(--muted)">rồi chấm Sᵢ bằng contrary hint</text>
+        <text x="368" y="122" font-size="11" text-anchor="middle" fill="var(--muted)">(paper: 15–30 mẫu/vòng)</text>
+
+        <line x1="462" y1="87" x2="530" y2="87" stroke="currentColor" marker-end="url(#arr4)"/>
+        <rect x="532" y="58" width="164" height="58" rx="10" fill="var(--teal-soft)" stroke="var(--teal)"/>
+        <text x="614" y="82" font-size="13" text-anchor="middle" font-weight="700" fill="var(--teal)">S⁠_P = trung bình Sᵢ</text>
+        <text x="614" y="100" font-size="11" text-anchor="middle" fill="var(--muted)">điểm của cả prompt</text>
+
+        <!-- trajectory of prompts -->
+        <line x1="614" y1="116" x2="614" y2="168" stroke="currentColor" marker-end="url(#arr4)"/>
+        <rect x="380" y="170" width="316" height="96" rx="10" fill="none" stroke="var(--teal)"/>
+        <text x="538" y="194" font-size="12" text-anchor="middle" font-weight="700" fill="var(--teal)">Trajectory: các prompt + điểm</text>
+        <text x="398" y="218" font-size="11.5" font-family="Consolas, monospace">"Please provide objective..."  → 0.21</text>
+        <text x="398" y="240" font-size="11.5" font-family="Consolas, monospace">"Provide a concise, objective  → 0.53</text>
+        <text x="398" y="256" font-size="11.5" font-family="Consolas, monospace"> explanation of only the key..."</text>
+
+        <!-- loop back -->
+        <path d="M 380 218 L 114 218 L 114 92" fill="none" stroke="var(--teal)" marker-end="url(#arr4t)"/>
+        <text x="130" y="150" font-size="10.5" fill="var(--teal)">sinh P mới, khác mọi P cũ,</text>
+        <text x="130" y="164" font-size="10.5" fill="var(--teal)">nhắm điểm cao hơn (50 vòng)</text>
+      </svg>
+      </div>
+      <figcaption><b>Vòng lặp Algorithm 2 (Trigger Prompt Optimization).</b> Điểm của một prompt = <b>trung bình fidelity</b> của các giải thích nó tạo ra trên tập hold-out (công thức (1)). Hai prompt ví dụ với điểm 0.21 → 0.53 lấy nguyên văn từ Figure 13 của paper. Kết thúc: trả về prompt tối ưu P*.</figcaption>
+    </figure>
+
+    <p>Điểm khác nhau then chốt giữa hai thuật toán: Algorithm 1 tối ưu <strong>từng lời giải thích</strong> cho <em>một</em> câu hỏi; Algorithm 2 tối ưu <strong>một câu lệnh dùng chung</strong> cho <em>mọi</em> câu hỏi — vì vậy nó cần tập hold-out và lấy điểm trung bình, và chạy dài hơn (50 vòng so với 20).</p>
+  </div>
+</section>
+
+<!-- ======================= STEP 6 ======================= -->
+<section class="step">
+  <div class="step-no">6</div>
+  <div class="step-body">
+    <h2>Thực nghiệm: FaithLM thắng gì, trên đâu, và có "xách đi nơi khác" được không?</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Thành phần</th><th>Paper dùng</th><th>Ghi chú cho nhóm</th></tr>
+      <tr><td><b>Dataset</b></td><td>ECQA (commonsense QA), TriviaQA-Long (đọc hiểu), COPA (suy luận nhân quả)</td><td>ECQA có giải thích vàng → đo được truthfulness</td></tr>
+      <tr><td><b>Targeted LLM f(·)</b></td><td>Vicuna-7B, Phi-2</td><td>mô hình nhỏ, chạy local được</td></tr>
+      <tr><td><b>Explainer g<sub>E</sub>(·)</b></td><td>GPT-3.5-Turbo, Claude-2</td><td>cần mô hình mạnh hơn f(·)</td></tr>
+      <tr><td><b>Baseline</b></td><td>SelfExp (giải thích 1 lượt), Self-consistency (lấy CoT làm giải thích)</td><td>bắt buộc so sánh trong notebook của nhóm</td></tr>
+      <tr><td><b>Cấu hình sinh</b></td><td>temperature 0.9, top-p 0.9</td><td>khảo sát ở Figure 12</td></tr>
+    </table></div>
+
+    <h3>Ba kết quả chính (RQ1–RQ3)</h3>
+    <ul>
+      <li><strong>Fidelity tăng và hội tụ nhanh</strong> — trên cả ba dataset, FaithLM vượt hẳn hai baseline sau tối ưu; ví dụ trên ECQA điểm fidelity trung bình lên vùng ~0.7 trong khi baseline nằm quanh ~0.4–0.5 (đọc từ Figure 3).</li>
+      <li><strong>Truthfulness tăng theo</strong> — dù chỉ tối ưu fidelity (không hề nhìn đáp án vàng), giải thích sinh ra lại <em>giống giải thích của con người hơn</em>: tỉ lệ "similar to ground-truth" trên ECQA cao hơn baseline dưới cả ba trọng tài (GPT-4o, RoBERTa-Large, XLNet-Large). Đây là kết quả đẹp nhất của paper: trung thực với mô hình ⇒ gần với lý lẽ con người.</li>
+      <li><strong>Trigger prompt tối ưu chuyển giao được</strong> — RQ2, và là chỗ dính trực tiếp đến đồ án:</li>
+    </ul>
+    <blockquote class="paper-quote">
+      <p class="en">"20 rounds of optimization are sufficient to converge."</p>
+      <p class="vi">→ Chỉ cần ~20 vòng cho Algorithm 1 — con số quan trọng khi nhóm ước lượng chi phí chạy.</p>
+      <span class="src">Mục 4.3</span>
+    </blockquote>
+    <blockquote class="paper-quote">
+      <p class="en">"We transfer the optimized trigger prompts from the ECQA to the Social-IQA dataset, and <mark>from the COPA to the XCOPA datasets, without any additional optimization</mark>."</p>
+      <p class="vi">→ Prompt tối ưu trên COPA (tiếng Anh) mang sang XCOPA dùng luôn vẫn giữ fidelity cao. <strong>XCOPA chính là bộ dữ liệu có bản tiếng Việt mà nhóm đang dùng</strong> — paper tự mở cửa cho phần Việt hoá của chúng ta.</p>
+      <span class="src">Mục 4.4, RQ2</span>
+    </blockquote>
+    <p><strong>Ablation (RQ3):</strong> chất lượng contrary hint quyết định cả hệ thống — kiểm tra bằng NLI cho thấy hint sinh ra hầu hết thuộc lớp "contradiction" đúng nghĩa; và cấu hình temperature/top-p 0.9/0.9 cho kết quả ổn định nhất.</p>
+  </div>
+</section>
+
+<!-- ======================= STEP 7 ======================= -->
+<section class="step">
+  <div class="step-no">7</div>
+  <div class="step-body">
+    <h2>Bộ prompt gốc — nguyên liệu cài đặt (và thứ nhóm phải Việt hoá)</h2>
+    <p>Toàn bộ "mã nguồn" thật sự của FaithLM nằm ở bốn prompt trong phụ lục. Đây là phần nhóm sẽ dịch/điều chỉnh cho tiếng Việt — tức là 20% điểm "ngữ liệu và xử lý tiếng Việt" nằm ngay đây.</p>
+
+    <div class="prompt-card">
+      <div class="head"><b>① Trigger prompt khởi tạo</b><span class="where">Appendix H, Table 8</span></div>
+      <pre>Please provide objective explanations of why the model generates the answers to the given questions based on your thoughts. Explain the reason why the model provides the answer, no matter if it is wrong or correct. Make sure not to answer the questions or provide any suggestions to better answer the questions by yourself. Q:{Question}. A:{Answer}.</pre>
+      <div class="vi-note">Điểm tinh tế: cấm explainer <em>tự trả lời</em> hay <em>sửa đáp án</em> — nó chỉ được giải thích, kể cả khi đáp án sai.</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="head"><b>② Sinh contrary hint</b><span class="where">Appendix H, Table 8</span></div>
+      <pre>Please generate one example of obtaining the opposite meaning from a given sentence. Make sure you output sentences only. Sentences:{derived explanation}.</pre>
+      <div class="vi-note">Cả framework đứng trên prompt một dòng này — nếu câu đảo nghĩa dở, điểm fidelity vô nghĩa (ablation RQ3 kiểm tra đúng chỗ này).</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="head"><b>③ Trajectory prompt cho giải thích (Algorithm 1)</b><span class="where">Appendix J, Figure 14</span></div>
+      <pre>You have some texts along with their corresponding scores. [...] higher scores indicate better quality. [...]
+Text: The model generates the answer "farmland" because an apple tree is likely found in abundance in farmland.  Score: 0.0
+Text: The model generates the answer "farmland" because apple trees require open spaces and fertile soil, both of which are commonly found in farmland.  Score: 1.0
+[...] Please provide new objective text [...] Every explanation should begin with &lt;EXP&gt;.</pre>
+      <div class="vi-note">Ví dụ trong chính prompt cho thấy thế nào là giải thích điểm 0 (mơ hồ) và điểm 1 (nêu đúng cơ chế: cần đất rộng, màu mỡ).</div>
+    </div>
+
+    <div class="prompt-card">
+      <div class="head"><b>④ Trajectory prompt cho trigger (Algorithm 2)</b><span class="where">Appendix J, Figure 13</span></div>
+      <pre>Your task is to generate the general prompts &lt;INS&gt; for language model generating model explanations [...] The score is calculated as the flipping answer rates and ranges from 0 to 1. [...]
+Generate a prompt &lt;INS&gt; that is different from all prompt &lt;INS&gt; in Inputs above and has a higher score than all the prompts &lt;INS&gt; from Inputs.</pre>
+      <div class="vi-note">Chú ý câu "score = flipping answer rates" — xác nhận ở chế độ black-box, fidelity đo bằng tỉ lệ lật đáp án.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= STEP 8 ======================= -->
+<section class="step">
+  <div class="step-no">8</div>
+  <div class="step-body">
+    <h2>Từ paper đến đồ án: bản đồ ăn điểm</h2>
+    <div class="table-wrap"><table>
+      <tr><th>Yêu cầu của thầy Long</th><th>Điểm</th><th>FaithLM cho ta gì</th></tr>
+      <tr><td>Cài đặt paper + notebook Colab/Kaggle</td><td>4,0</td><td>Algorithm 1 &amp; 2 chỉ cần gọi API/LLM local — không huấn luyện, vừa sức Colab. Baseline so sánh có sẵn trong paper: SelfExp, Self-consistency.</td></tr>
+      <tr class="hl"><td>Ngữ liệu &amp; xử lý tiếng Việt</td><td>2,0</td><td><b>XCOPA-vi</b> (tiếng Việt gốc, 600 mẫu — đã tải) + <b>ECQA dịch Việt</b> (500 mẫu, khung dịch đã dựng). Việt hoá 4 prompt ở mục 7. Paper đã chứng minh trigger prompt chuyển giao COPA→XCOPA — nhóm đi xa hơn một bước: chạy thẳng trên tiếng Việt.</td></tr>
+      <tr><td>Báo cáo ACL short paper</td><td>4,0</td><td>Cấu trúc thí nghiệm bê theo RQ1–RQ3; phần Limitations lấy từ giả định Theorem 1 (mục 3 ở trên) + chất lượng câu đảo nghĩa tiếng Việt.</td></tr>
+    </table></div>
+
+    <h3>Tái hiện local của nhóm — kết quả đầy đủ</h3>
+    <p>Không cần API key: toàn bộ chạy qua Ollama trên một RTX 3060 — <strong>Qwen3.5-4B</strong> đóng vai f(·) (chỗ của Phi-2), <strong>Qwen3.5-9B</strong> đóng vai g<sub>E</sub>(·) và agent đảo nghĩa (chỗ của GPT-3.5/Claude-2). Giữ nguyên thuật toán, prompt (bộ vi là bản dịch), temperature/top-p 0.9, tách hold-out/test; fidelity đo theo tỉ lệ lật đáp án; 20 mẫu test/bộ, Algorithm 1 tối đa 4 vòng, Algorithm 2 chạy 5 vòng trên 8 mẫu hold-out (paper: 500 mẫu, 20 vòng, 50 vòng × 15–30 mẫu — bản nộp cuối cần nâng lên mức này trên Colab/Kaggle).</p>
+    <div class="table-wrap"><table>
+      <tr><th>Phương pháp (fidelity, 20 mẫu test)</th><th>ECQA — tiếng Anh</th><th>XCOPA — tiếng Việt</th></tr>
+      <tr><td>Self-consistency (CoT làm giải thích)</td><td>0.06</td><td>0.33</td></tr>
+      <tr><td>SelfExp (giải thích 1 lượt, prompt viết tay)</td><td>0.30</td><td>0.40</td></tr>
+      <tr class="hl"><td><b>FaithLM — Algorithm 1</b> (4 vòng)</td><td><b>0.75</b></td><td><b>0.85</b></td></tr>
+      <tr><td>Algorithm 2: prompt tối ưu, 1 lượt trên test<br>(điểm trên hold-out trong ngoặc)</td><td>0.15 (0.62)</td><td>0.35 (0.38)</td></tr>
+    </table></div>
+    <ul>
+      <li><strong>RQ1 tái hiện thành công trên cả hai ngôn ngữ</strong>: FaithLM bỏ xa hai baseline, thứ hạng giống hệt paper; trên tiếng Việt đạt 0.85.</li>
+      <li><strong>Self-consistency gần 0 trên ECQA</strong> (0.06) — minh hoạ sống động luận điểm mục 2.2: CoT không phải lời giải thích trung thực.</li>
+      <li><strong>Kết quả âm tính trung thực cho Algorithm 2</strong>: prompt tối ưu thắng lớn trên hold-out tiếng Anh (0.62 vs 0.38) nhưng thua prompt viết tay trên test (0.15 vs 0.30) — overfit vì hold-out chỉ 8 mẫu × 5 vòng, so với 15–30 mẫu × 50 vòng của paper. Đưa thẳng vào Limitations của báo cáo.</li>
+    </ul>
+    <p>Mã: <code>scripts/faithlm_demo.py</code> (Algorithm 1) và <code>scripts/faithlm_experiments.py</code> (bộ đầy đủ). Kết quả từng mẫu, từng vòng: <code>results/full_*.jsonl</code>, <code>results/algo2_*.jsonl</code>, <code>results/summary.json</code>.</p>
+    <div class="callout">
+      <span class="label">Câu hỏi mở cho buổi họp chia việc</span>
+      (1) Dịch 500 mẫu ECQA bằng gì — máy dịch + người rà, hay LLM dịch + người rà? (2) Fidelity đo bằng lật đáp án hay xác suất token (cần logit — Ollama/HF làm được, API đóng thì không)? (3) Chạy bao nhiêu mẫu × bao nhiêu vòng thì vừa ngân sách compute của cả nhóm?
+    </div>
+  </div>
+</section>
+
+<section class="part-divider report">
+  <span class="label">Phần II · Kết quả của nhóm</span>
+  <h1 class="part-title">Báo cáo thực nghiệm</h1>
+  <p class="lede">Tái hiện FaithLM bằng mô hình mở cỡ nhỏ, đánh giá lần đầu trên tiếng Việt.</p>
+  <p class="meta">Bản nháp theo cấu trúc ACL short paper · nguồn Markdown: <code>report/bao-cao-thuc-nghiem.md</code> · mã: <code>scripts/faithlm_experiments.py</code> · dữ liệu thô: <code>results/</code></p>
+
+  <div class="abstract">
+    <span class="label">Tóm tắt</span>
+    Chúng tôi tái hiện FaithLM — đánh giá và cải thiện độ trung thực của lời giải thích LLM qua can thiệp contrary hint — bằng mô hình mở cỡ nhỏ chạy hoàn toàn cục bộ (Qwen3.5-4B làm mô hình đích, Qwen3.5-9B làm explainer) và đánh giá lần đầu trên tiếng Việt (XCOPA-vi). Trên 20 mẫu test mỗi bộ, Algorithm 1 đạt fidelity <strong>0.75 (ECQA)</strong> và <strong>0.85 (XCOPA-vi)</strong>, vượt xa SelfExp (0.30/0.40) và Self-consistency (0.06/0.33) — đúng thứ hạng của paper gốc dù thay toàn bộ backbone. Algorithm 2 cải thiện điểm trên hold-out nhưng không chuyển giao sang test ở quy mô nhỏ (overfit). Nút thắt chính qua phân tích lỗi: chất lượng câu đảo nghĩa.
+  </div>
+
+  <h2>1. Mục tiêu và câu hỏi nghiên cứu</h2>
+  <p>Paper gốc chạy trên backbone thương mại (GPT-3.5-Turbo, Claude-2) với 500 mẫu và hàng chục vòng tối ưu. Thực nghiệm này trả lời ba câu hỏi ở điều kiện ngược lại — mô hình mở, phần cứng phổ thông, ngôn ngữ ít tài nguyên:</p>
+  <ul>
+    <li><strong>RQ1′</strong> — Thay backbone đóng bằng cặp mô hình mở nhỏ (4B/9B), FaithLM có còn vượt các baseline?</li>
+    <li><strong>RQ2′</strong> — Phương pháp có hoạt động trên tiếng Việt, với toàn bộ prompt được dịch và dữ liệu XCOPA-vi?</li>
+    <li><strong>RQ3′</strong> — Algorithm 2 (tối ưu trigger prompt) hành xử ra sao ở quy mô compute nhỏ?</li>
+  </ul>
+
+  <h2>2. Dữ liệu</h2>
+  <div class="table-wrap"><table>
+    <tr><th>Bộ</th><th>Tập đánh giá (test)</th><th>Hold-out cho Algorithm 2</th></tr>
+    <tr><td><b>ECQA</b> (en)</td><td>20 mẫu đầu của <code>ecqa_en_500.jsonl</code> (pool split test, sắp ổn định theo id)</td><td>8 mẫu split <em>train</em> của <code>ecqa_full_en.jsonl</code></td></tr>
+    <tr><td><b>XCOPA-vi</b></td><td>20 mẫu đầu split <em>test</em></td><td>8 mẫu đầu split <em>validation</em></td></tr>
+  </table></div>
+  <p>Hold-out và test không giao nhau, đúng tinh thần Algorithm 2. Bản dịch tiếng Việt của ECQA (500 mẫu, có giải thích vàng) đang xây theo khung <code>data/ecqa_vi_translation_todo.jsonl</code>, chưa dùng ở đây.</p>
+
+  <h2>3. Cấu hình thực nghiệm</h2>
+  <div class="table-wrap"><table>
+    <tr><th>Thành phần</th><th>Paper gốc</th><th>Thực nghiệm này</th></tr>
+    <tr><td>Targeted LLM f(·)</td><td>Vicuna-7B, Phi-2</td><td>Qwen3.5-4B (Ollama)</td></tr>
+    <tr><td>Explainer g<sub>E</sub>(·) + agent đảo nghĩa</td><td>GPT-3.5-Turbo, Claude-2</td><td>Qwen3.5-9B (Ollama)</td></tr>
+    <tr><td>Thước đo fidelity</td><td>chênh lệch logit/xác suất; điểm trajectory = tỉ lệ lật</td><td>tỉ lệ lật đáp án (black-box, nhị phân)</td></tr>
+    <tr><td>Algorithm 1</td><td>20 vòng</td><td>tối đa 4 vòng, dừng sớm khi lật</td></tr>
+    <tr><td>Algorithm 2</td><td>50 vòng × 15–30 mẫu</td><td>5 vòng × 8 mẫu</td></tr>
+    <tr><td>Số mẫu đánh giá</td><td>500 (ECQA)</td><td>20 mỗi bộ</td></tr>
+    <tr><td>Sinh của explainer</td><td>temperature 0.9, top-p 0.9</td><td>giữ nguyên</td></tr>
+    <tr><td>Prompt</td><td>Appendix H, J</td><td>giữ nguyên văn; bộ vi là bản dịch</td></tr>
+    <tr><td>Phần cứng</td><td>—</td><td>1× RTX 3060 12GB, không cần API key</td></tr>
+  </table></div>
+  <p>Thay backbone hợp lệ về phương pháp: FaithLM tự tuyên bố model-agnostic, chỉ cần đầu ra black-box; điều kiện duy nhất là explainer mạnh hơn mô hình đích (9B &gt; 4B, tương tự GPT-3.5 với Phi-2). Baseline: <strong>SelfExp</strong> = giải thích một lượt bằng trigger prompt viết tay; <strong>Self-consistency</strong> = lấy CoT của chính mô hình đích làm lời giải thích, đo fidelity cùng cách.</p>
+
+  <h2>4. Kết quả</h2>
+  <h3>4.1. Fidelity của giải thích (RQ1′, RQ2′)</h3>
+  <div class="table-wrap"><table>
+    <tr><th>Phương pháp</th><th>ECQA (en)</th><th>XCOPA (vi)</th></tr>
+    <tr><td>Self-consistency (CoT làm giải thích)</td><td>0.06</td><td>0.33</td></tr>
+    <tr><td>SelfExp (1 lượt, prompt viết tay)</td><td>0.30</td><td>0.40</td></tr>
+    <tr class="hl"><td><b>FaithLM — Algorithm 1</b></td><td><b>0.75</b></td><td><b>0.85</b></td></tr>
+  </table></div>
+  <p>Thứ hạng FaithLM &gt; SelfExp &gt; Self-consistency giữ nguyên như paper trên cả hai ngôn ngữ (<strong>RQ1′, RQ2′: khẳng định</strong>). Self-consistency trên ECQA gần bằng 0 (1/17 mẫu hợp lệ lật; 3 mẫu CoT không parse được đáp án) — bằng chứng trực tiếp cho luận điểm mục 2.2 của paper: CoT không phải lời giải thích trung thực.</p>
+  <p>Phân bố số vòng đến khi lật (Algorithm 1):</p>
+  <div class="table-wrap"><table>
+    <tr><th>Bộ</th><th>vòng 1</th><th>vòng 2</th><th>vòng 3</th><th>vòng 4</th><th>không lật</th></tr>
+    <tr><td>ECQA</td><td>6</td><td>2</td><td>7</td><td>0</td><td>5</td></tr>
+    <tr><td>XCOPA-vi</td><td>8</td><td>7</td><td>2</td><td>0</td><td>3</td></tr>
+  </table></div>
+  <p>Không mẫu nào lật ở vòng 4 — gần như toàn bộ lợi ích nằm ở 2–3 vòng đầu, gợi ý điểm dừng tiết kiệm compute khi scale.</p>
+
+  <h3>4.2. Tối ưu trigger prompt (RQ3′)</h3>
+  <p>Đường điểm S<sub>P</sub> trên hold-out qua 5 vòng:</p>
+  <div class="table-wrap"><table>
+    <tr><th>Vòng</th><th>1 (prompt tay)</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+    <tr><td>ECQA</td><td>0.38</td><td>0.12</td><td>0.38</td><td><b>0.62</b></td><td>0.62</td></tr>
+    <tr><td>XCOPA-vi</td><td>0.12</td><td>0.12</td><td>0.00</td><td><b>0.38</b></td><td>0.25</td></tr>
+  </table></div>
+  <p>Đường tối ưu dạng sóng, cải thiện rõ trên hold-out (+0.25 ở cả hai bộ) — dáng điệu giống Figure 5 của paper. Nhưng khi đem prompt tốt nhất đánh giá một lượt trên tập test:</p>
+  <div class="table-wrap"><table>
+    <tr><th></th><th>Hold-out (tốt nhất)</th><th>Test, prompt tối ưu</th><th>Test, prompt viết tay (=SelfExp)</th></tr>
+    <tr><td>ECQA</td><td>0.62</td><td><b>0.15</b></td><td>0.30</td></tr>
+    <tr><td>XCOPA-vi</td><td>0.38</td><td><b>0.35</b></td><td>0.40</td></tr>
+  </table></div>
+  <div class="callout flip">
+    <span class="label">RQ3′ — kết quả âm tính</span>
+    Prompt tối ưu tiếng Anh thua prompt viết tay trên test: overfit tập hold-out 8 mẫu. Nguyên nhân khả dĩ: hold-out quá nhỏ so với 15–30 mẫu của paper, 5 vòng so với 50, và nhiễu sinh ở temperature 0.9 (mỗi mẫu hold-out chênh 0.125 điểm).
+  </div>
+
+  <h2>5. Phân tích lỗi</h2>
+  <p>Soi 8 mẫu không lật được (5 en + 3 vi) cho ba nhóm lỗi:</p>
+  <ol>
+    <li><strong>Câu "đảo nghĩa" không thực sự đảo nghĩa</strong> — nút thắt số một, đúng chỗ ablation RQ3 của paper cảnh báo. ECQA #17: contrary hint gần như chép nguyên văn lời giải thích. XCOPA-vi #10: agent chỉ đổi nhãn "đáp án 1" → "đáp án 2" nhưng giữ nguyên toàn bộ lập luận — về ngữ nghĩa không phải phủ định.</li>
+    <li><strong>Niềm tin quá vững của mô hình đích</strong> — ECQA #10 ("mọi thuyền đều cần nước"): hint ngược hợp lệ nhưng không lay chuyển được tri thức phổ quát. Phép đo lật nhị phân tính các dịch chuyển xác suất dưới ngưỡng là 0 — thước đo logit của paper nhạy hơn ở chính các ca này.</li>
+    <li><strong>Câu đảo quá dài, vòng vo</strong> (XCOPA-vi #17) — hint bị pha loãng trong câu phức nhiều mệnh đề, mô hình đích bỏ qua.</li>
+  </ol>
+
+  <h2>6. Hạn chế</h2>
+  <ul>
+    <li><strong>Quy mô nhỏ</strong>: 20 mẫu/bộ → khoảng tin cậy rộng (±~0.2); kết luận là xu hướng, chưa phải số liệu cuối.</li>
+    <li><strong>Fidelity nhị phân</strong> thay vì chênh lệch xác suất: bỏ sót dịch chuyển dưới ngưỡng lật.</li>
+    <li><strong>Một cặp backbone duy nhất</strong>, chưa khảo sát chéo như paper.</li>
+    <li><strong>Prompt tiếng Việt là bản dịch chưa tinh chỉnh</strong>; điểm khởi đầu S<sub>P</sub> thấp (0.12 so với 0.38) có thể một phần do chất lượng bản dịch.</li>
+    <li><strong>Giả định Theorem 1</strong> (chèn ¬E là can thiệp sạch lên đúng một yếu tố ngữ nghĩa; mô hình bất biến với văn bản không liên quan) không kiểm chứng được và không đúng tuyệt đối với LLM.</li>
+  </ul>
+
+  <h2>7. Kết luận và việc tiếp theo</h2>
+  <p>FaithLM tái hiện được bằng mô hình mở cỡ nhỏ trên phần cứng phổ thông và <strong>hoạt động trên tiếng Việt</strong> — vòng lặp tối ưu fidelity cải thiện lớn, ổn định trên cả hai ngôn ngữ; tối ưu trigger prompt cần hold-out lớn hơn mới có ích. Kế hoạch cho bản nộp:</p>
+  <ol>
+    <li>Scale trên Colab/Kaggle: 100–500 mẫu, Algorithm 1 tới 20 vòng, Algorithm 2 với 50 vòng × 15–30 mẫu.</li>
+    <li>Đổi f(·) sang Phi-2 qua <code>transformers</code> để đo fidelity bằng logit như paper gốc (đồng thời khớp backbone).</li>
+    <li>Hoàn thành bản dịch ECQA tiếng Việt để đo thêm <strong>truthfulness</strong> so với giải thích vàng — trục đánh giá thứ hai của paper mà thực nghiệm này chưa chạm tới.</li>
+    <li>Tinh chỉnh prompt đảo nghĩa tiếng Việt (ràng buộc "ngắn gọn, phủ định trực tiếp mệnh đề chính") — nhắm thẳng nhóm lỗi số 1.</li>
+  </ol>
+</section>
+
+<footer>
+  Dựng từ bản gốc: Chuang et al., <em>FaithLM: Towards Faithful Explanations for Large Language Models</em>, EACL 2026 (Long), tr. 3802–3824. Các trích dẫn tiếng Anh giữ nguyên văn (kể cả lỗi ngữ pháp gốc); số liệu đọc từ Figure 3–6 là giá trị xấp xỉ từ đồ thị. Phần II: số liệu từ <code>results/summary.json</code>, chạy ngày 15/08/2026.
+</footer>
+</div>
+
+</html>
