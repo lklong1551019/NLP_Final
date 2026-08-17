@@ -36,6 +36,17 @@ Set these in the `.env` file at the project root, or export them in your shell.
 | `--no_4bit` | flag | — | Disable 4-bit quantization |
 | `--gpt_key` | str | `None` | OpenAI/Azure GPT API key (legacy) |
 | `--claude_key` | str | `None` | Anthropic Claude API key (legacy) |
+| `--openrouter_key` | str | `None` | OpenRouter API key (overrides `OPENROUTER_API_KEY`) |
+| `--openrouter_model` | str | `qwen/qwen3.7-flash` | OpenRouter model slug |
+| `--or_reasoning` | flag | *off* | Allow reasoning tokens. **Leave off** — see below |
+| `--top_p` | float | `0.9` | Top-p for the explainer (paper's Table 2 setting) |
+| `--max_spend` | float | `5.0` | Hard-stop once this many USD are charged (`0` = no limit) |
+| `--usage_log` | str | `None` | JSONL of per-call tokens and charged cost |
+| `--verbose` | flag | *off* | Print full scoring prompts (thousands of lines at scale) |
+
+> **`--load_in_4bit` / `--no_4bit` currently do nothing.** `load_model()` receives only
+> `(model_name, max_memory)`, so the flag is never read and the `qwen` branch always
+> quantizes. Left as-is to avoid changing the other variants' behaviour.
 
 ### Local Pipeline Only (`main_local.py`)
 
@@ -84,7 +95,8 @@ The `--xai_model` argument selects the LLM used for generating and refining expl
 
 | Value | Model | Source | Type | Notes |
 |---|---|---|---|---|
-| `deepseek` | DeepSeek v4 Pro/Flash | DeepSeek API | API | **Primary**. OpenAI-compatible. Set model via `--deepseek_model`. |
+| `deepseek` | DeepSeek v4 Pro/Flash | DeepSeek API | API | OpenAI-compatible. Set model via `--deepseek_model`. |
+| `openrouter` | any OpenRouter model | OpenRouter | API | Qwen variant. Set slug via `--openrouter_model`. |
 | `phi` | Phi-2 | `microsoft/phi-2` | Local (HF) | Can be used as both predictor and explainer. |
 | `claude` | Claude-2 | Anthropic API | API | Legacy. Requires `--claude_key`. |
 | `gpt35` | GPT-3.5 Turbo | Azure OpenAI API | API | Legacy. Requires `--gpt_key`. |
@@ -95,6 +107,37 @@ The `--xai_model` argument selects the LLM used for generating and refining expl
 |---|---|---|
 | `deepseek-v4-pro` | High capability, complex reasoning | Default — best quality explanations |
 | `deepseek-v4-flash` | Cheaper, faster, lower latency | Budget-conscious experiments or large-scale runs |
+
+### OpenRouter Explainer (`--xai_model openrouter`)
+
+Set `OPENROUTER_API_KEY` in `.env`, then:
+
+```bash
+bash scripts/run_qwen_openrouter_xcopa_vi.sh                 # local + global
+MODE=local END_IDX=20 bash scripts/run_qwen_openrouter_xcopa_vi.sh   # short smoke run
+```
+
+**Reasoning tokens must stay off.** They are billed as output *and* count against
+`max_tokens`. Measured on 10 XCOPA-vi instances at `max_tokens=400`:
+
+| Config | completion | reasoning | usable | $/call |
+|---|---|---|---|---|
+| `qwen3.7-flash`, reasoning off | 105.6 | 0 | **105.6** | $0.000021 |
+| `qwen3.7-flash`, reasoning on | 402.0 | 400.0 | **2.0** | $0.000057 |
+| `qwen3.8-max`, reasoning excluded | 457.9 | 431.0 | **26.9** | $0.003211 |
+
+With reasoning on the model returns an **empty string**, which the pipeline would
+otherwise split into a blank "explanation" and score silently. `openrouter_client.py`
+raises `EmptyCompletion` instead. The flag is off by default; `--or_reasoning` re-enables it.
+
+**Do not use `qwen/qwen3.8-max`** — it rejects `reasoning.enabled=false` with
+*"Reasoning is mandatory for this endpoint"*, so ~94% of every call is unavoidable
+reasoning overhead, and a 500×2-target run costs ~$27 instead of ~$0.18.
+
+Reasonable slugs: `qwen/qwen3.7-flash` ($0.03/$0.13 per 1M), `qwen/qwen3.7-plus`
+($0.32/$1.28), `qwen/qwen3.7-max` ($1.475/$4.425). All three allow disabling reasoning.
+
+Spend is tracked per call, written to `--usage_log`, and hard-stopped at `--max_spend`.
 
 ### Adding a New Explainer Model
 

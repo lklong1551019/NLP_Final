@@ -8,6 +8,24 @@ from sklearn.metrics import accuracy_score
 from tqdm import tqdm
 import ipdb
 
+def resolve_max_memory(device_nums, fraction=0.9):
+    """Per-GPU budget taken from the card actually present.
+
+    The original code hardcoded '45GB' (the paper ran on an A40). On an 8-16GB
+    consumer card that tells accelerate it has ~3-5x more room than it does, so
+    device_map='auto' never offloads and the load OOMs instead of spilling to CPU.
+    """
+    mem = {}
+    for i in device_nums:
+        i = int(i)
+        if torch.cuda.is_available():
+            total_gib = torch.cuda.get_device_properties(i).total_memory / 1024 ** 3
+            mem[i] = f"{max(1, int(total_gib * fraction))}GiB"
+        else:
+            mem[i] = "45GB"
+    return mem
+
+
 def load_model(model_name, max_memory):
 
     '''
@@ -72,6 +90,12 @@ def load_model(model_name, max_memory):
     elif model_name == "claude":
         model = "claude"
         tokenizer = None
+
+    else:
+        raise ValueError(
+            f"Unknown --pred_model '{model_name}'. "
+            f"Expected one of: vicuna, phi, qwen, claude."
+        )
 
     return model, tokenizer
 
@@ -392,14 +416,15 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
     ture_score = _ecqa_score(model, tokenizer, ture_final_prompt, answer, args)
     count_score = _ecqa_score(model, tokenizer, count_final_prompt, answer, args)
     
-    print("\n--- DEBUG INFO ---")
-    print("TRUE PROMPT:")
-    print(ture_final_prompt[0] if len(ture_final_prompt) > 0 else "EMPTY")
-    print("COUNT PROMPT:")
-    print(count_final_prompt[0] if len(count_final_prompt) > 0 else "EMPTY")
-    print(f"TRUE SCORE: {ture_score}")
-    print(f"COUNT SCORE: {count_score}")
-    print("------------------\n")
+    if getattr(args, "verbose", False):
+        print("\n--- DEBUG INFO ---")
+        print("TRUE PROMPT:")
+        print(ture_final_prompt[0] if len(ture_final_prompt) > 0 else "EMPTY")
+        print("COUNT PROMPT:")
+        print(count_final_prompt[0] if len(count_final_prompt) > 0 else "EMPTY")
+        print(f"TRUE SCORE: {ture_score}")
+        print(f"COUNT SCORE: {count_score}")
+        print("------------------\n")
 
     diff_score = abs(ture_score - count_score)
     

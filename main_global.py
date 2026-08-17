@@ -6,10 +6,11 @@ import os
 import json
 import argparse
 import random
+import traceback
 from tqdm import tqdm
 from datasets import load_dataset
 from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
-from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
+from model.predictor import load_model, resolve_max_memory, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_exp_prompt, generate_global_xai_prompt
 import time
@@ -170,6 +171,23 @@ def get_args():
                         help='Use 4-bit quantization (for 8GB GPUs)')
     parser.add_argument('--no_4bit', dest='load_in_4bit', action='store_false',
                         help='Disable 4-bit quantization')
+    # OpenRouter explainer (--xai_model openrouter)
+    parser.add_argument('--openrouter_key', type=str, default=None,
+                        help='OpenRouter API key (or set OPENROUTER_API_KEY)')
+    parser.add_argument('--openrouter_model', type=str, default='qwen/qwen3.7-flash',
+                        help='OpenRouter model slug, e.g. qwen/qwen3.7-flash, qwen/qwen3.7-plus')
+    parser.add_argument('--or_reasoning', action='store_true', default=False,
+                        help='Allow reasoning tokens. Off by default: they are billed as '
+                             'output and can consume the whole max_tokens budget, leaving '
+                             'an empty completion.')
+    parser.add_argument('--top_p', type=float, default=0.9,
+                        help='Top-p for the explainer (paper uses 0.9)')
+    parser.add_argument('--max_spend', type=float, default=5.0,
+                        help='Hard stop once this many USD have been charged (0 = no limit)')
+    parser.add_argument('--usage_log', type=str, default=None,
+                        help='JSONL file recording per-call tokens and charged cost')
+    parser.add_argument('--verbose', action='store_true', default=False,
+                        help='Print full scoring prompts (very noisy)')
     args = parser.parse_args()
     return args
 
@@ -178,8 +196,15 @@ if __name__ == "__main__":
     # Config setup
     sleep_range = [x for x in range(10)]
     args = get_args()
-    max_memory = {int(i): '45GB' for i in args.device_num}
+    max_memory = resolve_max_memory(args.device_num)
     print(f"============  GPU Memory: {max_memory}")
+
+    # Global mode optimises the trigger prompt by sampling from the split it loads.
+    # Sampling from `test` and then reporting on `test` is prompt-tuning on the eval
+    # set. XCOPA ships a 100-row `validation` split for exactly this purpose.
+    if args.data == "xcopa_vi" and args.data_split == "test":
+        print("============ WARNING: optimising the trigger prompt on the TEST split. "
+              "Pass --data_split validation to avoid tuning on your evaluation data.")
 
     # Load data
     if args.data == "ecqa":
@@ -195,7 +220,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
         
         # Load predictor and explainer
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "openrouter"]:
             xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
@@ -224,7 +249,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
         
         # Load predictor and explainer
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "openrouter"]:
             xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
@@ -252,7 +277,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
         
         # Load predictor and explainer
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "openrouter"]:
             xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
@@ -279,7 +304,7 @@ if __name__ == "__main__":
                             Make sure not to repeat the input questions and answers. \
                             Please only output the explanation sentences."
 
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "openrouter"]:
             xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
@@ -305,7 +330,7 @@ if __name__ == "__main__":
                             Make sure not to repeat the input questions and answers. \
                             Please only output the explanation sentences."
 
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "openrouter"]:
             xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
@@ -405,8 +430,16 @@ if __name__ == "__main__":
             xai_prompts_write.append({"Score": diff_score_avg, "XAI prompt": save_prompt})
             xai_prompts_list.append(updated_xai_prompt)
 
-        except:
-            print(f"============ API Error: Skip Step:{iter}")
+        except KeyboardInterrupt:
+            raise
+        except Exception as e:
+            # The original bare `except: continue` hid real bugs behind "API Error".
+            # A budget stop must end the run, not be retried away.
+            if type(e).__name__ == "BudgetExceeded":
+                print(f"============ {e}")
+                break
+            traceback.print_exc()
+            print(f"============ Step {iter} failed ({type(e).__name__}): skipping")
             continue
 
     # Save file
@@ -417,3 +450,7 @@ if __name__ == "__main__":
     with open(os.path.join(result_save_path, result_file_name), "w") as f:
         json.dump(xai_prompts_write, f)
     print("============ Successful File Saved")
+
+    if args.xai_model == "openrouter":
+        from model.openrouter_client import spend, call_count
+        print(f"============ OpenRouter: {call_count()} calls, ${spend():.4f} charged")

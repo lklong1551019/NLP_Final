@@ -10,7 +10,7 @@ from tqdm import tqdm
 from random import sample
 from datasets import load_dataset, Dataset
 from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
-from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
+from model.predictor import load_model, resolve_max_memory, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_local_xai_prompt, generate_exp_prompt
 
@@ -196,6 +196,23 @@ def get_args():
                         help='Use 4-bit quantization (for 8GB GPUs)')
     parser.add_argument('--no_4bit', dest='load_in_4bit', action='store_false',
                         help='Disable 4-bit quantization')
+    # OpenRouter explainer (--xai_model openrouter)
+    parser.add_argument('--openrouter_key', type=str, default=None,
+                        help='OpenRouter API key (or set OPENROUTER_API_KEY)')
+    parser.add_argument('--openrouter_model', type=str, default='qwen/qwen3.7-flash',
+                        help='OpenRouter model slug, e.g. qwen/qwen3.7-flash, qwen/qwen3.7-plus')
+    parser.add_argument('--or_reasoning', action='store_true', default=False,
+                        help='Allow reasoning tokens. Off by default: they are billed as '
+                             'output and can consume the whole max_tokens budget, leaving '
+                             'an empty completion.')
+    parser.add_argument('--top_p', type=float, default=0.9,
+                        help='Top-p for the explainer (paper uses 0.9)')
+    parser.add_argument('--max_spend', type=float, default=5.0,
+                        help='Hard stop once this many USD have been charged (0 = no limit)')
+    parser.add_argument('--usage_log', type=str, default=None,
+                        help='JSONL file recording per-call tokens and charged cost')
+    parser.add_argument('--verbose', action='store_true', default=False,
+                        help='Print full scoring prompts (very noisy)')
     args = parser.parse_args()
     return args
 
@@ -205,7 +222,7 @@ if __name__ == "__main__":
     sleep_range = [x for x in range(10)]
     task_acc = 0.0
     args = get_args()
-    max_memory = {int(i): '45GB' for i in args.device_num}
+    max_memory = resolve_max_memory(args.device_num)
     start_idx = args.ques_idx_start
     print(f"============  GPU Memory: {max_memory}")
 
@@ -476,3 +493,7 @@ if __name__ == "__main__":
             for sub_xai_dict in xai_prompts_write:
                 f.write(f"{sub_xai_dict}\n")
         print(f"============ Successful File Saved in {result_file_name}")
+
+    if args.xai_model == "openrouter":
+        from model.openrouter_client import spend, call_count
+        print(f"============ OpenRouter: {call_count()} calls, ${spend():.4f} charged")

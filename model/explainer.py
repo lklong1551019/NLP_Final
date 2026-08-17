@@ -72,21 +72,30 @@ def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=No
         deepseek_model = getattr(args, 'deepseek_model', None) \
             or os.environ.get("DEEPSEEK_MODEL", "deepseek-v4-pro")
 
-        try:
-            input_text = prompt if isinstance(prompt, str) else prompt[0]
-            completion = client.chat.completions.create(
-                model=deepseek_model,
-                temperature=float(args.temp_exp),
-                max_tokens=args.max_tokens,
-                messages=[
-                    {"role": "system", "content": "You are an expert at explaining language model behavior."},
-                    {"role": "user", "content": input_text},
-                ],
-            )
-            response = completion.choices[0].message.content
-        except Exception as e:
-            print(f"[ERROR] DeepSeek API: {e}")
-            response = "API error."
+        input_text = prompt if isinstance(prompt, str) else prompt[0]
+        completion = client.chat.completions.create(
+            model=deepseek_model,
+            temperature=float(args.temp_exp),
+            max_tokens=args.max_tokens,
+            messages=[
+                {"role": "system", "content": "You are an expert at explaining language model behavior."},
+                {"role": "user", "content": input_text},
+            ],
+        )
+        response = completion.choices[0].message.content
+        # An empty reply would be split into a bogus "explanation" and silently scored.
+        if not (response or "").strip():
+            raise RuntimeError(f"DeepSeek ({deepseek_model}) returned empty content")
+
+    elif model_name == "openrouter":
+        from model.openrouter_client import generate as _or_generate
+        response = _or_generate(prompt, args)
+
+    else:
+        raise ValueError(
+            f"Unknown --xai_model '{model_name}'. "
+            f"Expected one of: gpt35, claude, phi, deepseek, openrouter."
+        )
 
     return response
 
@@ -198,6 +207,6 @@ def generate_counterfact_prompt(explanation, args):
         instruction = f"Can you generate a edited version of sentence-1 with opposite meaning \
                         where it states why the model generates the answer in the passage? \
                         Make sure the output sentence is purely edited from sentence-1."
-        final_prompt = f"{instruction}\n\Sentence-1: {explanation}\n\n"
+        final_prompt = f"{instruction}\n\nSentence-1: {explanation}\n\n"
 
     return final_prompt
