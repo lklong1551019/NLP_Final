@@ -97,6 +97,37 @@ def select_choice(response, choices):
     return None
 
 
+def _gen_kwargs(temperature):
+    """Make the requested temperature actually take effect.
+
+    transformers ignores `temperature` unless `do_sample=True`; the upstream code
+    never set it, so every predictor generation ran greedily and the paper's
+    "Temperature of Predictor" row (Table 2: 0.7/0.5/0.7) had no effect. Sampling
+    is enabled when a non-zero temperature is asked for, and suppressed
+    otherwise so scoring stays deterministic.
+    """
+    if temperature and temperature > 0.0:
+        return {"do_sample": True, "temperature": float(temperature)}
+    return {"do_sample": False}
+
+
+def _placement_kwargs(max_memory, load_in_4bit=False):
+    """Device/dtype kwargs that work on CUDA, Apple Silicon (MPS) and CPU.
+
+    The upstream code always passed device_map="auto" together with
+    max_memory={0: '45GB'}, which assumes an A40-class CUDA device. On a machine
+    without CUDA that key refers to a GPU that does not exist, and bfloat16 is
+    poorly supported on MPS. Detect the backend instead.
+    """
+    if torch.cuda.is_available():
+        return {"device_map": "auto", "max_memory": max_memory,
+                "torch_dtype": torch.bfloat16}
+    if getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
+        # MPS has patchy bfloat16 kernels; float16 is the supported half type.
+        return {"device_map": "mps", "torch_dtype": torch.float16}
+    return {"device_map": "cpu", "torch_dtype": torch.float32}
+
+
 def load_model(model_name, max_memory, load_in_4bit=True):
 
     '''
@@ -125,15 +156,16 @@ def load_model(model_name, max_memory, load_in_4bit=True):
         model_id = "microsoft/phi-2"
         model = AutoModelForCausalLM.from_pretrained(
             model_id,
-            device_map="auto",
-            max_memory=max_memory,
-            torch_dtype=torch.bfloat16,
-            trust_remote_code=True
+            trust_remote_code=True,
+            **_placement_kwargs(max_memory),
         )
 
         tokenizer = AutoTokenizer.from_pretrained(model_id)
         tokenizer.padding_side = "left"
-        tokenizer.pad_token = '[PAD]'
+        # Upstream set pad_token to the literal '[PAD]', which is not in phi-2's
+        # vocabulary, so padded positions decoded to <unk>. Reuse EOS instead.
+        if tokenizer.pad_token is None:
+            tokenizer.pad_token = tokenizer.eos_token
         model.eval()
     
     elif model_name == "qwen":
@@ -263,7 +295,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
                             ### Response:" for ques in input_zip ]
         
         model_inputs_all = tokenizer(final_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
-        generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=256)
+        generate_ids = model.generate(**model_inputs_all, **_gen_kwargs(temperature_cot), max_new_tokens=256)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
@@ -298,7 +330,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
                             ### Response: Let's think step by step." for ques in input_zip ]
 
         model_inputs_all = tokenizer(final_prompt, padding=True, truncation=True, return_tensors="pt").to(model.device)
-        generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=256)
+        generate_ids = model.generate(**model_inputs_all, **_gen_kwargs(temperature_cot), max_new_tokens=256)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
@@ -336,7 +368,7 @@ def generate_predictor_output_trivaqa(model, tokenizer, task_instruction, input_
 
     if args.pred_model in ["phi", "qwen"]:
         model_inputs_all = tokenizer(final_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
-        generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=20)
+        generate_ids = model.generate(**model_inputs_all, **_gen_kwargs(temperature_cot), max_new_tokens=20)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
@@ -345,7 +377,7 @@ def generate_predictor_output_trivaqa(model, tokenizer, task_instruction, input_
 
     elif args.pred_model == "vicuna":
         model_inputs_all = tokenizer(final_prompt, padding=True, truncation=True, return_tensors="pt").to(model.device)
-        generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=20)
+        generate_ids = model.generate(**model_inputs_all, **_gen_kwargs(temperature_cot), max_new_tokens=20)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
@@ -452,7 +484,7 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
 
     elif args.pred_model in ["phi", "qwen"]:
         model_inputs_all = tokenizer(input_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
-        generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=256)
+        generate_ids = model.generate(**model_inputs_all, **_gen_kwargs(temperature_cot), max_new_tokens=256)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
@@ -479,7 +511,7 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
 
     else:
         model_inputs_all = tokenizer(input_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
-        generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=256)
+        generate_ids = model.generate(**model_inputs_all, **_gen_kwargs(temperature_cot), max_new_tokens=256)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
@@ -554,7 +586,7 @@ def _trivaqa_score(model, tokenizer, input_prompt, ans_gt, args):
     temperature_cot = 0.0
     if args.pred_model in ["phi", "qwen"]:
         model_inputs_all = tokenizer(input_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
-        generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=10)
+        generate_ids = model.generate(**model_inputs_all, **_gen_kwargs(temperature_cot), max_new_tokens=10)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
@@ -563,7 +595,7 @@ def _trivaqa_score(model, tokenizer, input_prompt, ans_gt, args):
 
     elif args.pred_model == "vicuna":
         model_inputs_all = tokenizer(input_prompt, padding=True, truncation=True, return_tensors="pt").to(model.device)
-        generate_ids = model.generate(**model_inputs_all, temperature=temperature_cot, max_new_tokens=10)
+        generate_ids = model.generate(**model_inputs_all, **_gen_kwargs(temperature_cot), max_new_tokens=10)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):

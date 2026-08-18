@@ -186,6 +186,8 @@ def get_args():
     # New arguments
     parser.add_argument('--deepseek_key', type=str, default=None,
                         help='DeepSeek API key (or set DEEPSEEK_API_KEY env var)')
+    parser.add_argument('--top_p_exp', type=float, default=None,
+                        help='Top-p for the Explainer (paper Table 2 uses 0.9)')
     parser.add_argument('--litellm_pred_model', type=str, default=None,
                         help='Model id for an API-served Predictor (--pred_model litellm). '
                              'Defaults to $LITELLM_PRED_MODEL.')

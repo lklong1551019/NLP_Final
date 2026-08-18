@@ -20,6 +20,10 @@ OUTDIR="${8:-./results/experiments/${DATASET}_${PRED}_${XAI}}"
 
 PYTHON="${PYTHON:-.venv/bin/python}"
 SPLIT="${DATA_SPLIT:-test}"
+# Paper Table 2 (COPA column): explainer temperature 0.9, top-p 0.9.
+TEMP_EXP="${TEMP_EXP:-0.9}"
+TOP_P_EXP="${TOP_P_EXP:-0.9}"
+MAX_TOKENS="${MAX_TOKENS:-1000}"
 
 mkdir -p "$OUTDIR" "$OUTDIR/logs"
 
@@ -31,6 +35,7 @@ echo "  Sharded LOCAL run"
 echo "  Dataset : $DATASET ($SPLIT)"
 echo "  Models  : pred=$PRED xai=$XAI"
 echo "  Range   : $START..$END  (iter=$ITER)"
+echo "  Explainer: temp=$TEMP_EXP top_p=$TOP_P_EXP max_tokens=$MAX_TOKENS"
 echo "  Shards  : $NSHARDS x $CHUNK questions"
 echo "  Output  : $OUTDIR"
 echo "============================================="
@@ -50,6 +55,9 @@ for (( s=0; s<NSHARDS; s++ )); do
         --ques_idx_start "$s_start" \
         --ques_idx_end "$s_end" \
         --xai_iter "$ITER" \
+        --temp_exp "$TEMP_EXP" \
+        --top_p_exp "$TOP_P_EXP" \
+        --max_tokens "$MAX_TOKENS" \
         --save_file_path "$OUTDIR" \
         > "$OUTDIR/logs/shard_${s}.log" 2>&1 &
     # macOS ships bash 3.2, so no negative array subscripts here.

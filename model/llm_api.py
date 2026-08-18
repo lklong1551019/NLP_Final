@@ -77,7 +77,7 @@ def xai_model_id(args=None):
     )
 
 
-def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4):
+def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4, top_p=None):
     """Single chat completion. Raises after `retries` failed attempts.
 
     Callers that want the original fail-soft behaviour should catch the
@@ -97,11 +97,15 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
     STATS["calls"] += 1
     for attempt in range(retries):
         try:
+            kwargs = {}
+            if top_p is not None:
+                kwargs["top_p"] = float(top_p)
             completion = get_client().chat.completions.create(
                 model=model,
                 temperature=temperature,
                 max_tokens=max_tokens,
                 messages=messages,
+                **kwargs,
             )
             content = completion.choices[0].message.content
             if content is None or not content.strip():

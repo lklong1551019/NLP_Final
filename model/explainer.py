@@ -70,6 +70,7 @@ def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=No
                 model=llm_api.xai_model_id(args),
                 max_tokens=args.max_tokens,
                 temperature=float(args.temp_exp),
+                top_p=getattr(args, "top_p_exp", None),
                 system="You are an expert at explaining language model behavior.",
             )
         except Exception as e:
