@@ -151,11 +151,15 @@ These are upstream behaviours we did **not** change, because changing them would
 alter the method rather than fix a defect. They are documented so the report can
 discuss them.
 
-1. **The "true" prompt carries no explanation.** In `diff_task_score_ecqa`,
-   `ture_final_prompt` is built with `for _, ques in true_exp_pair` — the
-   explanation is zipped in and then discarded. So `diff_score` compares
-   *no hint* against *counterfactual hint*, not *explanation* against
-   *counterfactual explanation*.
+1. **The "true" prompt carries no explanation — and this matches the paper.**
+   In `diff_task_score_ecqa`, `ture_final_prompt` is built with
+   `for _, ques in true_exp_pair`, so the explanation is zipped in and then
+   discarded. This is *not* an implementation error: the paper defines fidelity
+   as `S_E := f(X) − f(X | ¬E_NL)` (p. 3805), i.e. the shift between the
+   unconditioned prediction and the prediction under the contrary hint. The
+   explanation is never inserted into any prompt. The consequence is therefore a
+   property of the method, not of this code: the score never tests whether the
+   explanation *helps*, only whether its negation *hurts*.
 2. **`diff_score` is measured on a single instance**, so it can only be 0 or 1.
    The "faithfulness score" is therefore a coin-flip-grained signal per
    iteration, not a continuous measure.
