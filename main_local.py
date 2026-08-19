@@ -12,6 +12,8 @@ from datasets import load_dataset, Dataset
 from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
+from model.predictor import contains_answer
+from model import llm_api
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_local_xai_prompt, generate_exp_prompt
 
 # Load environment variables from .env file
@@ -184,7 +186,16 @@ def get_args():
     # New arguments
     parser.add_argument('--deepseek_key', type=str, default=None,
                         help='DeepSeek API key (or set DEEPSEEK_API_KEY env var)')
-    parser.add_argument('--deepseek_model', type=str, default='deepseek-v4-pro',
+    parser.add_argument('--resume', action='store_true', default=False,
+                        help='Skip questions whose result file already exists in '
+                             '--save_file_path. Only safe when the sampling '
+                             'settings match, since the filename does not encode them.')
+    parser.add_argument('--top_p_exp', type=float, default=None,
+                        help='Top-p for the Explainer (paper Table 2 uses 0.9)')
+    parser.add_argument('--litellm_pred_model', type=str, default=None,
+                        help='Model id for an API-served Predictor (--pred_model litellm). '
+                             'Defaults to $LITELLM_PRED_MODEL.')
+    parser.add_argument('--deepseek_model', type=str, default=None,
                         choices=['deepseek-v4-pro', 'deepseek-v4-flash'],
                         help='DeepSeek model variant')
     parser.add_argument('--xcopa_lang', type=str, default='vi',
@@ -223,7 +234,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
 
         # Load predictor
-        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
         if pred_tokenizer == None:
             generate_ans_function = generate_api_predictor_output
         else:
@@ -246,7 +257,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
 
         # Load predictor
-        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
         if pred_tokenizer == None:
             generate_ans_function = generate_api_predictor_output
         else:
@@ -268,7 +279,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
 
         # Load predictor
-        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
         if pred_tokenizer == None:
             generate_ans_function = generate_api_predictor_output
         else:
@@ -291,7 +302,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
 
         # Load predictor
-        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
         if pred_tokenizer == None:
             generate_ans_function = generate_api_predictor_output
         else:
@@ -316,7 +327,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
 
         # Load predictor
-        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
         if pred_tokenizer == None:
             generate_ans_function = generate_api_predictor_output
         else:
@@ -338,7 +349,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
 
         # Load predictor
-        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
         if pred_tokenizer == None:
             generate_ans_function = generate_api_predictor_output
         else:
@@ -360,7 +371,7 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
 
         # Load predictor
-        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
         if pred_tokenizer == None:
             generate_ans_function = generate_api_predictor_output
         else:
@@ -370,7 +381,26 @@ if __name__ == "__main__":
         diff_task_score = diff_task_score_ecqa
 
 
+    def _result_path(question_idx):
+        name = (f"local_{args.data}_{args.xai_model}_{args.pred_model}"
+                f"_iter-{args.xai_iter}_sample-{question_idx}.json")
+        return os.path.join(args.save_file_path, name)
+
+    def _already_done(question_idx):
+        path = _result_path(question_idx)
+        return os.path.isfile(path) and os.path.getsize(path) > 0
+
+    skipped = 0
     for idx in range(start_idx, args.ques_idx_end):
+        # Resume: a question whose result file already exists is not redone.
+        # NOTE the filename encodes only data/xai/pred/iter - not temperature or
+        # top-p. Do not resume into a directory produced with different sampling
+        # settings; use a fresh --save_file_path instead.
+        if args.resume and _already_done(idx):
+            skipped += 1
+            print(f"============ Resume: skipping question {idx} (already done)")
+            continue
+
         # Select init score for LLM optimization
         fed_score_llm = 0.0
         fed_score_org = 0.0
@@ -399,8 +429,8 @@ if __name__ == "__main__":
         # Generate prediction from LLMs
         output_ans = generate_ans_function(pred_model, pred_tokenizer, task_instruction, input_zip, answer, args)
         if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
-            if answer[0].strip() in output_ans[0]:
-                target = f"============ Corrct --> Q:{question} || GT-A:{answer[0]} || LLM-A:{answer[0]}"
+            if contains_answer(answer[0], output_ans[0]):
+                target = f"============ Corrct --> Q:{question} || GT-A:{answer[0]} || LLM-A:{output_ans[0]}"
             else:
                 target = f"============ Wrong  --> Q:{question} || GT-A:{answer[0]} || LLM-A:{output_ans[0]}"
             print(target)
@@ -476,3 +506,7 @@ if __name__ == "__main__":
             for sub_xai_dict in xai_prompts_write:
                 f.write(f"{sub_xai_dict}\n")
         print(f"============ Successful File Saved in {result_file_name}")
+
+    if skipped:
+        print(f"============ Resume: skipped {skipped} already-completed questions")
+    print(f"============ API stats | {llm_api.stats_summary()}")

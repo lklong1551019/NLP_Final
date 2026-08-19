@@ -4,7 +4,8 @@ import torch
 from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import LlamaForCausalLM, LlamaTokenizer
-import ipdb
+
+from model import llm_api
 
 
 def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=None):
@@ -62,31 +63,25 @@ def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=No
         ans_tkn = xai_local_tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
         response = ans_tkn[0].split("### Response:")[-1]
 
-    elif model_name == "deepseek":
-        from openai import OpenAI
-
-        client = OpenAI(
-            api_key=os.environ.get("DEEPSEEK_API_KEY", getattr(args, 'deepseek_key', None)),
-            base_url=os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
-        )
-        deepseek_model = getattr(args, 'deepseek_model', None) \
-            or os.environ.get("DEEPSEEK_MODEL", "deepseek-v4-pro")
-
+    elif model_name in ("deepseek", "litellm"):
         try:
-            input_text = prompt if isinstance(prompt, str) else prompt[0]
-            completion = client.chat.completions.create(
-                model=deepseek_model,
-                temperature=float(args.temp_exp),
+            response = llm_api.chat(
+                prompt,
+                model=llm_api.xai_model_id(args),
                 max_tokens=args.max_tokens,
-                messages=[
-                    {"role": "system", "content": "You are an expert at explaining language model behavior."},
-                    {"role": "user", "content": input_text},
-                ],
+                temperature=float(args.temp_exp),
+                top_p=getattr(args, "top_p_exp", None),
+                system="You are an expert at explaining language model behavior.",
             )
-            response = completion.choices[0].message.content
         except Exception as e:
-            print(f"[ERROR] DeepSeek API: {e}")
+            print(f"[ERROR] Explainer API: {e}")
             response = "API error."
+
+    else:
+        raise ValueError(
+            f"Unknown xai_model '{model_name}'. "
+            "Expected one of: gpt35, claude, phi, deepseek, litellm."
+        )
 
     return response
 

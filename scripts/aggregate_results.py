@@ -87,14 +87,17 @@ def generate_report(results_dir, output_path):
     local_results = []
     global_results = []
 
-    # Scan results directories
-    for subdir in ["local", "global", ""]:
-        scan_dir = os.path.join(results_dir, subdir) if subdir else results_dir
-        if not os.path.isdir(scan_dir):
-            continue
+    # Walk the whole tree. The previous version only looked at results/,
+    # results/local and results/global, so anything written by
+    # run_experiment.sh into results/experiments/<variant>/ was never picked up.
+    for root, dirs, filenames in os.walk(results_dir):
+        dirs[:] = [d for d in dirs if d != "logs"]
+        subdir = os.path.relpath(root, results_dir)
+        if subdir == ".":
+            subdir = ""
 
-        for filename in sorted(os.listdir(scan_dir)):
-            filepath = os.path.join(scan_dir, filename)
+        for filename in sorted(filenames):
+            filepath = os.path.join(root, filename)
             if not os.path.isfile(filepath):
                 continue
 

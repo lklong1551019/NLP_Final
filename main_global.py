@@ -6,11 +6,13 @@ import os
 import json
 import argparse
 import random
+import traceback
 from tqdm import tqdm
 from datasets import load_dataset
 from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
+from model import llm_api
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_exp_prompt, generate_global_xai_prompt
 import time
 
@@ -154,11 +156,18 @@ def get_args():
     parser.add_argument('--xai_iter', type=int, default=3)
     parser.add_argument('--round_xai_iter', type=int, default=10)
     parser.add_argument('--ques_sample', type=int, default=15)
-    parser.add_argument('--save_file', type=str, default="./results/global")
+    parser.add_argument('--save_file', '--save_file_path', dest='save_file', type=str, default="./results/global",
+                        help='Output dir. --save_file_path is accepted as an alias so the '
+                             'same flag works for main_local.py and main_global.py.')
     # New arguments
     parser.add_argument('--deepseek_key', type=str, default=None,
                         help='DeepSeek API key (or set DEEPSEEK_API_KEY env var)')
-    parser.add_argument('--deepseek_model', type=str, default='deepseek-v4-pro',
+    parser.add_argument('--top_p_exp', type=float, default=None,
+                        help='Top-p for the Explainer (paper Table 2 uses 0.9)')
+    parser.add_argument('--litellm_pred_model', type=str, default=None,
+                        help='Model id for an API-served Predictor (--pred_model litellm). '
+                             'Defaults to $LITELLM_PRED_MODEL.')
+    parser.add_argument('--deepseek_model', type=str, default=None,
                         choices=['deepseek-v4-pro', 'deepseek-v4-flash'],
                         help='DeepSeek model variant')
     parser.add_argument('--xcopa_lang', type=str, default='vi',
@@ -195,13 +204,13 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
         
         # Load predictor and explainer
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
-            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "litellm"]:
+            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory, args.load_in_4bit)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
 
-        if args.pred_model not in ["claude", "gpt35"]:
-            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        if args.pred_model not in ["claude", "gpt35", "litellm"]:
+            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
             generate_ans_function = generate_predictor_output_ecqa
         else:
             pred_model, pred_tokenizer = "", ""
@@ -224,13 +233,13 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
         
         # Load predictor and explainer
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
-            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "litellm"]:
+            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory, args.load_in_4bit)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
 
-        if args.pred_model not in ["claude", "gpt35"]:
-            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        if args.pred_model not in ["claude", "gpt35", "litellm"]:
+            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
             generate_ans_function = generate_predictor_output_trivaqa
         else:
             pred_model, pred_tokenizer = "", ""
@@ -252,13 +261,13 @@ if __name__ == "__main__":
                             Please only output the explanation sentences."
         
         # Load predictor and explainer
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
-            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "litellm"]:
+            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory, args.load_in_4bit)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
 
-        if args.pred_model not in ["claude", "gpt35"]:
-            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        if args.pred_model not in ["claude", "gpt35", "litellm"]:
+            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
             generate_ans_function = generate_predictor_output_ecqa
         else:
             pred_model, pred_tokenizer = "", ""
@@ -279,13 +288,13 @@ if __name__ == "__main__":
                             Make sure not to repeat the input questions and answers. \
                             Please only output the explanation sentences."
 
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
-            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "litellm"]:
+            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory, args.load_in_4bit)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
 
-        if args.pred_model not in ["claude", "gpt35"]:
-            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        if args.pred_model not in ["claude", "gpt35", "litellm"]:
+            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
             generate_ans_function = generate_predictor_output_ecqa
         else:
             pred_model, pred_tokenizer = "", ""
@@ -305,13 +314,13 @@ if __name__ == "__main__":
                             Make sure not to repeat the input questions and answers. \
                             Please only output the explanation sentences."
 
-        if args.xai_model not in ["claude", "gpt35", "deepseek"]:
-            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory)
+        if args.xai_model not in ["claude", "gpt35", "deepseek", "litellm"]:
+            xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory, args.load_in_4bit)
         else:
             xai_local_model, xai_local_tokenizer = "", ""
 
-        if args.pred_model not in ["claude", "gpt35"]:
-            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory)
+        if args.pred_model not in ["claude", "gpt35", "litellm"]:
+            pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
             generate_ans_function = generate_predictor_output_ecqa
         else:
             pred_model, pred_tokenizer = "", ""
@@ -344,6 +353,8 @@ if __name__ == "__main__":
 
     # LLM optimization
     print("============ Starting Optimization")
+    error_count = 0
+    max_errors = max(3, args.xai_iter // 2)
     for iter in range(args.xai_iter):
         try:
             print(f"============ Step:{iter} LLM Optimizing")
@@ -405,8 +416,17 @@ if __name__ == "__main__":
             xai_prompts_write.append({"Score": diff_score_avg, "XAI prompt": save_prompt})
             xai_prompts_list.append(updated_xai_prompt)
 
-        except:
-            print(f"============ API Error: Skip Step:{iter}")
+        except Exception as e:
+            # Previously a bare `except: continue`, which silently turned a bad
+            # API key or model id into an empty results file that looked like a
+            # successful run. Surface the error and count it.
+            error_count += 1
+            print(f"============ Error at Step:{iter} ({type(e).__name__}): {e}")
+            traceback.print_exc()
+            if error_count >= max_errors:
+                raise RuntimeError(
+                    f"Aborting: {error_count} consecutive/total failures. Last error: {e}"
+                ) from e
             continue
 
     # Save file
@@ -417,3 +437,5 @@ if __name__ == "__main__":
     with open(os.path.join(result_save_path, result_file_name), "w") as f:
         json.dump(xai_prompts_write, f)
     print("============ Successful File Saved")
+
+    print(f"============ API stats | {llm_api.stats_summary()}")
