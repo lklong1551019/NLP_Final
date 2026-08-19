@@ -24,6 +24,10 @@ SPLIT="${DATA_SPLIT:-test}"
 TEMP_EXP="${TEMP_EXP:-0.9}"
 TOP_P_EXP="${TOP_P_EXP:-0.9}"
 MAX_TOKENS="${MAX_TOKENS:-1000}"
+# RESUME=1 skips questions already present in OUTDIR. Only safe when the
+# sampling settings match - the result filename does not encode them.
+RESUME_FLAG=""
+if [ "${RESUME:-1}" = "1" ]; then RESUME_FLAG="--resume"; fi
 
 mkdir -p "$OUTDIR" "$OUTDIR/logs"
 
@@ -38,6 +42,7 @@ echo "  Range   : $START..$END  (iter=$ITER)"
 echo "  Explainer: temp=$TEMP_EXP top_p=$TOP_P_EXP max_tokens=$MAX_TOKENS"
 echo "  Shards  : $NSHARDS x $CHUNK questions"
 echo "  Output  : $OUTDIR"
+echo "  Resume  : ${RESUME:-1}"
 echo "============================================="
 
 pids=()
@@ -58,7 +63,7 @@ for (( s=0; s<NSHARDS; s++ )); do
         --temp_exp "$TEMP_EXP" \
         --top_p_exp "$TOP_P_EXP" \
         --max_tokens "$MAX_TOKENS" \
-        --save_file_path "$OUTDIR" \
+        --save_file_path "$OUTDIR" $RESUME_FLAG \
         > "$OUTDIR/logs/shard_${s}.log" 2>&1 &
     # macOS ships bash 3.2, so no negative array subscripts here.
     shard_pid=$!

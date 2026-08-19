@@ -186,6 +186,10 @@ def get_args():
     # New arguments
     parser.add_argument('--deepseek_key', type=str, default=None,
                         help='DeepSeek API key (or set DEEPSEEK_API_KEY env var)')
+    parser.add_argument('--resume', action='store_true', default=False,
+                        help='Skip questions whose result file already exists in '
+                             '--save_file_path. Only safe when the sampling '
+                             'settings match, since the filename does not encode them.')
     parser.add_argument('--top_p_exp', type=float, default=None,
                         help='Top-p for the Explainer (paper Table 2 uses 0.9)')
     parser.add_argument('--litellm_pred_model', type=str, default=None,
@@ -377,7 +381,26 @@ if __name__ == "__main__":
         diff_task_score = diff_task_score_ecqa
 
 
+    def _result_path(question_idx):
+        name = (f"local_{args.data}_{args.xai_model}_{args.pred_model}"
+                f"_iter-{args.xai_iter}_sample-{question_idx}.json")
+        return os.path.join(args.save_file_path, name)
+
+    def _already_done(question_idx):
+        path = _result_path(question_idx)
+        return os.path.isfile(path) and os.path.getsize(path) > 0
+
+    skipped = 0
     for idx in range(start_idx, args.ques_idx_end):
+        # Resume: a question whose result file already exists is not redone.
+        # NOTE the filename encodes only data/xai/pred/iter - not temperature or
+        # top-p. Do not resume into a directory produced with different sampling
+        # settings; use a fresh --save_file_path instead.
+        if args.resume and _already_done(idx):
+            skipped += 1
+            print(f"============ Resume: skipping question {idx} (already done)")
+            continue
+
         # Select init score for LLM optimization
         fed_score_llm = 0.0
         fed_score_org = 0.0
@@ -484,4 +507,6 @@ if __name__ == "__main__":
                 f.write(f"{sub_xai_dict}\n")
         print(f"============ Successful File Saved in {result_file_name}")
 
+    if skipped:
+        print(f"============ Resume: skipped {skipped} already-completed questions")
     print(f"============ API stats | {llm_api.stats_summary()}")
