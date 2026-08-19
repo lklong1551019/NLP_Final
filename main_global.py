@@ -108,11 +108,10 @@ def preprocess_xcopa_vi(lang="vi", split="test"):
     choice = [f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
 
     for idx, ques_txt in enumerate(question_text):
-        purp_vi = "Nguyên nhân" if question_purp[idx] == "cause" else "Kết quả"
         question = (
-            f"### Câu hỏi: {purp_vi} của Tiền đề là gì?\n"
-            f"### Tiền đề: {ques_txt}\n"
-            f"### Lựa chọn: {choice[idx]}"
+            f"###Question: What is the {question_purp[idx]} of the Premise?\n"
+            f"### Premise: {ques_txt}\n"
+            f"### Choices: {choice[idx]}"
         )
         train_dict['question'].append(question)
         train_dict['answer'].append(option[idx][labels[idx]])
@@ -379,22 +378,16 @@ if __name__ == "__main__":
 
                     # Generate true explanation
                     output_exp_prompt = generate_exp_prompt(xai_prompts_list[-1], [input_zip[idx]], output_ans, args)
-                    exp_reply_raw = reponse_xai_model(output_exp_prompt, args, xai_local_model, xai_local_tokenizer)
-                    exp_reply_raw = exp_reply_raw.split(":\n\n")[-1].strip()
-                    if not exp_reply_raw:
-                        print("[WARNING] Generated explanation is empty! Skipping this question.")
-                        continue
-                    
-                    # Generate counterfactual explanation
-                    counter_xai_prompt = generate_counterfact_prompt(exp_reply_raw, args)
-                    counter_exp_reply_raw = reponse_xai_model(counter_xai_prompt, args, xai_local_model, xai_local_tokenizer)
-                    counter_exp_reply_raw = counter_exp_reply_raw.split(":\n\n")[-1].strip()
-                    if not counter_exp_reply_raw:
-                        print(f"\n[WARNING] Counterfactual hint is empty! Skipping this question.")
-                        continue
+                    exp_reply = reponse_xai_model(output_exp_prompt, args, xai_local_model, xai_local_tokenizer)
+                    exp_reply = exp_reply.split(":\n\n")[-1]
+                    exp_reply = exp_reply.split("\n\n")
+                    # print(f"============ True Exp: {exp_reply[0]}")
 
-                    exp_reply = [exp_reply_raw]
-                    counter_exp_reply = [counter_exp_reply_raw]
+                    # Generate counterfactual explanation
+                    counter_xai_prompt = generate_counterfact_prompt(exp_reply, args)
+                    counter_exp_reply = reponse_xai_model(counter_xai_prompt, args, xai_local_model, xai_local_tokenizer)
+                    counter_exp_reply = counter_exp_reply.split(":\n\n")[-1]
+                    counter_exp_reply = counter_exp_reply.split("\n\n")
                     # print(f"============ Counterfact Exp: {counter_exp_reply[0]}")
 
                     # Score difference for updating xai prompt format

@@ -133,11 +133,10 @@ def preprocess_xcopa_vi(lang="vi", split="test"):
     choice = [f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
 
     for idx, ques_txt in enumerate(question_text):
-        purp_vi = "Nguyên nhân" if question_purp[idx] == "cause" else "Kết quả"
         question = (
-            f"### Câu hỏi: {purp_vi} của Tiền đề là gì?\n"
-            f"### Tiền đề: {ques_txt}\n"
-            f"### Lựa chọn: {choice[idx]}"
+            f"###Question: What is the {question_purp[idx]} of the Premise?\n"
+            f"### Premise: {ques_txt}\n"
+            f"### Choices: {choice[idx]}"
         )
         train_dict['question'].append(question)
         train_dict['answer'].append(option[idx][labels[idx]])
@@ -339,8 +338,8 @@ if __name__ == "__main__":
 
     elif args.data == "xcopa_vi":
         train_dict = preprocess_xcopa_vi(lang=args.xcopa_lang, split=args.data_split if args.data_split != 'train' else 'test')
-        task_instruction = "Vui lòng chọn câu trả lời đúng cho mỗi câu hỏi. Đảm bảo không lặp lại ngữ cảnh đầu vào."
-        exp_instruction = "Vui lòng cung cấp lời giải thích khách quan về lý do tại sao mô hình tạo ra câu trả lời cho các câu hỏi đã cho dựa trên suy nghĩ của bạn. Đoán lý do tại sao mô hình cung cấp câu trả lời dù đúng hay sai. Đảm bảo không tự trả lời câu hỏi hoặc cung cấp bất kỳ đề xuất nào để trả lời câu hỏi tốt hơn. Mọi lời giải thích phải bắt đầu bằng <EXP>. Đảm bảo không lặp lại câu hỏi và câu trả lời đầu vào. Vui lòng chỉ xuất ra các câu giải thích."
+        task_instruction = "Hãy chọn đáp án đúng cho mỗi câu hỏi. Lưu ý không lặp lại phần ngữ cảnh đầu vào."
+        exp_instruction = "Dựa trên suy luận của bạn, hãy giải thích một cách khách quan lý do mô hình đưa ra câu trả lời cho các câu hỏi này. Hãy đưa ra lý do bất kể câu trả lời đó đúng hay sai. Tuyệt đối không tự trả lời câu hỏi hay đưa ra gợi ý để trả lời tốt hơn. Mỗi câu giải thích phải bắt đầu bằng <EXP>. Không lặp lại câu hỏi hay câu trả lời đầu vào. Lưu ý: Chỉ xuất ra các câu giải thích, không thêm bất kỳ nội dung nào khác."
 
         # Load predictor
         pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
@@ -441,64 +440,31 @@ if __name__ == "__main__":
             print(target)
 
 
-        # ==========================================
-        # STEP 1: GENERATE INITIAL TRUE EXPLANATION
-        # ==========================================
-        # Model: EXPLAINER (DeepSeek/Claude)
-        # Input: Question + Predictor's Answer
-        # Output: Initial True Explanation (<EXP>...)
-        # Purpose: Create a baseline explanation guessing why Predictor answered this way.
+        # Generate init true explanation
         output_exp_prompt = generate_exp_prompt(exp_instruction, input_zip, output_ans, args)
-        exp_reply_raw = reponse_xai_model(output_exp_prompt, args)
-        exp_reply_raw = exp_reply_raw.split(":\n\n")[-1].strip()
-        # Fallback if explanation is empty
-        if not exp_reply_raw:
-            print("[WARNING] Generated initial explanation is empty! Skipping this question.")
-            continue
-            
-        exp_reply = [exp_reply_raw]
-        xai_list.append(exp_reply_raw)
+        exp_reply = reponse_xai_model(output_exp_prompt, args)
+        exp_reply = exp_reply.split(":\n\n")[-1]
+        exp_reply = exp_reply.split("\n\n")
+        xai_list.extend(exp_reply)
+        # print(f"============ Init Exp: {exp_reply[0]}")
 
-        # ==========================================
-        # STEP 2: ITERATIVE OPTIMIZATION LOOP
-        # ==========================================
-        # We iteratively refine the explanation to be more "faithful" to the Predictor's logic.
         with tqdm(total=args.xai_iter) as pbar:
             for iter in range(args.xai_iter):
                 print(f"============ Step:{iter} LLM Optimizing")
 
-                # ==========================================
-                # 2.1: Generate Counterfactual Explanation
-                # ==========================================
-                # Model: EXPLAINER (DeepSeek/Claude)
-                # Input: The Current True Explanation
-                # Output: A fake/opposite Explanation
-                # Purpose: Used to see if the Predictor can be easily "fooled" by a fake hint.
-                counter_xai_prompt = generate_counterfact_prompt(exp_reply_raw, args)
-                counter_exp_reply_raw = reponse_xai_model(counter_xai_prompt, args)
-                raw_response_before_split = counter_exp_reply_raw
-                counter_exp_reply_raw = counter_exp_reply_raw.split(":\n\n")[-1].strip()
-                # Fallback if counterfactual is empty
-                if not counter_exp_reply_raw:
-                    print(f"\n[WARNING] Counterfactual hint is empty! Skipping iteration.")
-                    continue
-                    
-                counter_exp_reply = [counter_exp_reply_raw]
+                # Generate counterfactual explanation
+                counter_xai_prompt = generate_counterfact_prompt(exp_reply, args)
+                counter_exp_reply = reponse_xai_model(counter_xai_prompt, args)
+                counter_exp_reply = counter_exp_reply.split(":\n\n")[-1]
+                counter_exp_reply = counter_exp_reply.split("\n\n")
                 cf_write.append(counter_exp_reply)
                 # print(f"============ Counterfact Exp: {counter_exp_reply[0]}")
 
-                # ==========================================
-                # 2.2: Score Difference Calculation
-                # ==========================================
-                # Model: PREDICTOR (Qwen/Vicuna)
-                # Input: (Question + True Hint) AND (Question + Counterfactual Hint)
-                # Output: Score (diff_score = Score(True) - Score(Counterfactual))
-                # Purpose: Evaluate how faithful the explanation is. High diff_score means 
-                #          the Predictor is highly faithful to the True explanation.
+                # Score difference for updating xai prompt format
                 diff_score = diff_task_score(pred_model, pred_tokenizer, task_instruction, input_zip, answer, exp_reply, counter_exp_reply, args)
                 scores_list.append(diff_score)
 
-                # 2.3: Save and Log Iteration Results
+                # Save explanation
                 save_explanation = xai_list[-1]
                 xai_prompts_write.append({"Score": diff_score, "XAI prompt": save_explanation})
                 print(f"=== Score: {diff_score} || Explanation: {save_explanation}")
@@ -510,23 +476,14 @@ if __name__ == "__main__":
                     print("============ Bad Answer")
                     break
 
-                # ==========================================
-                # 2.3: LLM Optimizer (Generate New Explanation)
-                # ==========================================
-                # Model: EXPLAINER (DeepSeek/Claude)
-                # Input: History list of (Explanation, Score) pairs + Prompt asking to maximize score
-                # Output: A brand new optimized Explanation (<EXP>...)
-                # Purpose: Use OPRO to let the Explainer learn from past scores and generate a better hint.
-                xai_prompt = generate_local_xai_prompt(xai_list, scores_list, question, output_ans, args)
-                exp_reply_raw = reponse_xai_model(xai_prompt, args)
+                # LLM optimizer
+                xai_prompt = generate_local_xai_prompt(xai_list, scores_list, question, output_ans)
+                exp_reply = reponse_xai_model(xai_prompt, args)
                 
-                exp_reply_raw = exp_reply_raw.split(":\n\n")[-1].strip()
-                if not exp_reply_raw:
-                    print("[WARNING] LLM Optimizer generated empty explanation! Stopping optimization for this question.")
-                    break
+                exp_reply = exp_reply.split(":\n\n")[-1]
+                exp_reply = exp_reply.split("\n\n")
                 
-                exp_reply = [exp_reply_raw]
-                xai_list.append(exp_reply_raw)
+                xai_list.extend(exp_reply)
                 pbar.update(1)
 
                 if iter%5 == 0 and ("apologize" in exp_reply[0]) or ("Unfortunately" in exp_reply[0]):
