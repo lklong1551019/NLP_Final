@@ -143,6 +143,25 @@ def _build_claude(cfg):
     )
 
 
+@register_explainer("gemini")
+def _build_gemini(cfg):
+    """Google Gemini through its OpenAI-compatible endpoint.
+
+    gemini-3.5-flash is the stable series as of 2026-08; the 2.5 series is
+    scheduled for shutdown in October 2026.
+    """
+    return OpenAICompatExplainer(
+        model_id=cfg.model_id or os.environ.get("GEMINI_MODEL", "gemini-3.5-flash"),
+        api_key_env="GEMINI_API_KEY",
+        base_url=os.environ.get(
+            "GEMINI_BASE_URL",
+            "https://generativelanguage.googleapis.com/v1beta/openai/",
+        ),
+        max_tokens=cfg.max_tokens,
+        temperature=cfg.temperature,
+    )
+
+
 @register_explainer("api")
 def _build_generic_api_explainer(cfg):
     """Any OpenAI-compatible endpoint as the explainer (Gemini, Groq, vLLM...).

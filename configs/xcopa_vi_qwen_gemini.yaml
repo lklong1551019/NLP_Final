@@ -1,0 +1,39 @@
+# Explainer-swap variant: identical to xcopa_vi_qwen_deepseek.yaml except the
+# explainer is Gemini. One variable changes, so the two runs form a controlled
+# comparison ("does a stronger multilingual explainer help on Vietnamese?").
+#
+#   echo 'GEMINI_API_KEY="..."' >> .env
+#   python run.py --config configs/xcopa_vi_qwen_gemini.yaml --end 5    # smoke test
+#   python run.py --config configs/xcopa_vi_qwen_gemini.yaml --end 50   # sweep scale
+dataset:
+  name: xcopa_vi
+  lang: vi
+  split: test
+
+predictor:
+  name: qwen
+  model_id: Qwen/Qwen3-4B-Instruct-2507
+  load_in_4bit: false
+  max_new_tokens: 256
+  temperature: 0.7
+  max_memory_per_gpu: 14GiB
+
+explainer:
+  name: gemini
+  model_id: gemini-3.5-flash # stable series 2026-08; 2.5 shuts down 2026-10
+  max_tokens: 1000
+  temperature: 0.9
+
+metric:
+  name: paper                # same metric as the deepseek run it is compared to
+  scorer: logprob
+
+run:
+  pipeline: local
+  ques_idx_start: 0
+  ques_idx_end: 200          # cap with --end 50 for the sweep table
+  sampling: random           # same seed + sampling as the main variant ->
+  seed: 42                   # identical questions, comparable row by row
+  xai_iter: 15
+  output_dir: ./results
+  resume: true

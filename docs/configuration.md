@@ -21,6 +21,8 @@ python run.py --list
 | `DEEPSEEK_MODEL` | Mặc định `deepseek-v4-pro` | không |
 | `OPENAI_API_KEY` | Khóa OpenAI | `explainer.name: openai` |
 | `ANTHROPIC_API_KEY` | Khóa Anthropic | `explainer.name: claude` |
+| `GEMINI_API_KEY` | Khóa Google AI Studio | `explainer.name: gemini` |
+| `GEMINI_BASE_URL` | Mặc định endpoint OpenAI-compat của Gemini | không |
 | `OLLAMA_BASE_URL` | Mặc định `http://localhost:11434` | không |
 | *(tùy chọn trong config)* | `predictor.api_key_env` / `base_url_env` trỏ tới biến bất kỳ | `predictor.name: api` |
 
@@ -121,6 +123,7 @@ Kaggle T4/P100 (16GB) chạy được Qwen3-4B ở bf16. GPU 8GB nên bật `loa
 | `deepseek` | `deepseek-v4-pro` | API | Chính. Có thể đổi `deepseek-v4-flash` cho rẻ hơn |
 | `openai` | `gpt-4o-mini` | API | |
 | `claude` | `claude-sonnet-5` | API | |
+| `gemini` | `gemini-3.5-flash` | API | Cần `GEMINI_API_KEY`; endpoint OpenAI-compat dựng sẵn |
 | `ollama` | `qwen3.5:9b` | Ollama cục bộ | Không cần khóa API; explainer nên mạnh hơn predictor |
 | `hf` | *(bắt buộc `model_id`)* | Cục bộ | Tốn thêm VRAM cùng lúc với predictor |
 | `baseline_negation` | — | Luật | Phủ định theo mẫu |
