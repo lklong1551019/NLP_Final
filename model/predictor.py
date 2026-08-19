@@ -541,7 +541,59 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
     short_acc = accuracy_score(ans_short, ans_gt)
     return short_acc
 
+# Populated by diff_task_score_ecqa on every call so the entry points can log all
+# metrics per iteration, whichever one is being optimised on.
+LAST_METRICS = {}
+
+
+def _answer_cue_prompt(task_instruction, question, hint=None):
+    """Same content the baseline sends, but ending in a direct answer cue.
+
+    The baseline ends with "Let's think step by step", which is right when you are
+    going to sample a chain of thought and parse it. For probability scoring we
+    read the distribution over the choices instead, so the cue has to invite the
+    answer itself. Instruction, hint and input are byte-identical to the baseline.
+    """
+    head = ("Below is an instruction that describes a task. "
+            "Write a response that appropriately completes the request of input.")
+    hint_block = f"### Hint: {hint}\n\n" if hint is not None else ""
+    return (f"{head}\n\n### Instruction: {task_instruction}\n\n"
+            f"{hint_block}### Input: {question}\n\n### Answer:")
+
+
+def _diff_logprob_ecqa(model, tokenizer, task_instruction, question, answer,
+                       counter_exp_reply, args):
+    """Fidelity as a shift in the target's probability over the answer choices."""
+    from model.fidelity import choice_probs, fidelity_metrics
+
+    global LAST_METRICS
+    ques = question[0] if isinstance(question, (list, tuple)) else question
+    gold = answer[0] if isinstance(answer, (list, tuple)) else answer
+    hint = counter_exp_reply[0] if isinstance(counter_exp_reply, (list, tuple)) else counter_exp_reply
+
+    choices = parse_choices(ques)
+    if len(choices) < 2:
+        # Without candidates there is nothing to put a distribution over.
+        LAST_METRICS = {"mode": "logprob", "error": "no choices parsed"}
+        return 0.0
+
+    p_before = choice_probs(model, tokenizer, _answer_cue_prompt(task_instruction, ques), choices, args)
+    p_after = choice_probs(model, tokenizer, _answer_cue_prompt(task_instruction, ques, hint), choices, args)
+
+    m = fidelity_metrics(p_before, p_after, choices, gold)
+    m["mode"] = "logprob"
+    LAST_METRICS = m
+    if getattr(args, "verbose", False):
+        print(f"[fidelity] P({m['pred_before'][:28]!r}) {m['p_before']:.4f} -> {m['p_after']:.4f} "
+              f"| shift {m['prob_shift']:+.4f} | tv {m['tv']:.4f} | flip {m['flip']:.0f} "
+              f"| acc {m['accuracy']:.0f}")
+    return m["prob_shift"]
+
 def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, exp_reply, counter_exp_reply, args):
+
+    if getattr(args, "score_mode", "accuracy") == "logprob":
+        return _diff_logprob_ecqa(model, tokenizer, task_instruction, question, answer,
+                                  counter_exp_reply, args)
 
     true_exp_pair = zip(exp_reply, question)
     count_exp_pair = zip(counter_exp_reply, question)
@@ -568,7 +620,11 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
     print("------------------\n")
 
     diff_score = abs(ture_score - count_score)
-    
+
+    global LAST_METRICS
+    LAST_METRICS = {"mode": "accuracy", "accuracy": diff_score,
+                    "score_true": ture_score, "score_cf": count_score}
+
     return diff_score
 
 def _trivaqa_score(model, tokenizer, input_prompt, ans_gt, args):

@@ -13,6 +13,7 @@ from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
 from model.predictor import contains_answer
+from model import predictor as _predictor
 from model import llm_api
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_local_xai_prompt, generate_exp_prompt
 
@@ -207,6 +208,20 @@ def get_args():
                         help='Use 4-bit quantization (for 8GB GPUs)')
     parser.add_argument('--no_4bit', dest='load_in_4bit', action='store_false',
                         help='Disable 4-bit quantization')
+    parser.add_argument('--score_mode', type=str, default='accuracy',
+                        choices=['accuracy', 'logprob'],
+                        help="Fidelity signal the optimiser follows. 'accuracy' is the "
+                             "published metric |acc(f(X)) - acc(f(X|!E))|, binary on a "
+                             "single instance. 'logprob' is the signed shift in the "
+                             "target's probability over the answer choices.")
+    parser.add_argument('--stop_threshold', type=float, default=0.5,
+                        help='logprob mode: stop once the best probability shift reaches this')
+    parser.add_argument('--stop_patience', type=int, default=4,
+                        help='logprob mode: stop after this many rewrites fail to beat the best')
+    parser.add_argument('--metrics_log', type=str, default=None,
+                        help='JSONL with every metric each iteration, whichever one is optimised')
+    parser.add_argument('--verbose', action='store_true', default=False,
+                        help='Print per-iteration fidelity detail')
     args = parser.parse_args()
     return args
 
@@ -391,6 +406,8 @@ if __name__ == "__main__":
         return os.path.isfile(path) and os.path.getsize(path) > 0
 
     skipped = 0
+    metrics_rows = []
+
     for idx in range(start_idx, args.ques_idx_end):
         # Resume: a question whose result file already exists is not redone.
         # NOTE the filename encodes only data/xai/pred/iter - not temperature or
@@ -471,12 +488,29 @@ if __name__ == "__main__":
                 diff_score = diff_task_score(pred_model, pred_tokenizer, task_instruction, input_zip, answer, exp_reply, counter_exp_reply, args)
                 scores_list.append(diff_score)
 
+                _m = dict(getattr(_predictor, "LAST_METRICS", {}) or {})
+                _m.update({"question_idx": idx, "iter": iter, "optimised_score": diff_score})
+                metrics_rows.append(_m)
+
                 # Save explanation
                 save_explanation = xai_list[-1]
                 xai_prompts_write.append({"Score": diff_score, "XAI prompt": save_explanation})
                 print(f"=== Score: {diff_score} || Explanation: {save_explanation}")
 
-                if iter%5 == 0 and sum(scores_list) != 0:
+                if args.score_mode == "logprob":
+                    # prob_shift is continuous, so "!= 0" would fire on iteration 0
+                    # and there would be no optimisation left to do. Stop once the
+                    # target has been convincingly moved, or once the rewrites stop
+                    # improving on the best score so far.
+                    best = max(scores_list)
+                    stalled = len(scores_list) - 1 - scores_list.index(best)
+                    if best >= args.stop_threshold:
+                        print(f"============ Early Stop: shift {best:.4f} >= {args.stop_threshold}")
+                        break
+                    if stalled >= args.stop_patience:
+                        print(f"============ Early Stop: no gain in {stalled} steps (best {best:.4f})")
+                        break
+                elif iter%5 == 0 and sum(scores_list) != 0:
                     print("============ Early Stop Optimization")
                     break
                 elif iter%5 == 0 and "X" in output_ans:
@@ -506,6 +540,12 @@ if __name__ == "__main__":
             for sub_xai_dict in xai_prompts_write:
                 f.write(f"{sub_xai_dict}\n")
         print(f"============ Successful File Saved in {result_file_name}")
+
+        if args.metrics_log:
+            os.makedirs(os.path.dirname(args.metrics_log) or ".", exist_ok=True)
+            with open(args.metrics_log, "w") as f:
+                for row in metrics_rows:
+                    f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
     if skipped:
         print(f"============ Resume: skipped {skipped} already-completed questions")

@@ -179,6 +179,15 @@ def get_args():
                         help='Use 4-bit quantization (for 8GB GPUs)')
     parser.add_argument('--no_4bit', dest='load_in_4bit', action='store_false',
                         help='Disable 4-bit quantization')
+    parser.add_argument('--score_mode', type=str, default='accuracy',
+                        choices=['accuracy', 'logprob'],
+                        help="Fidelity signal averaged over the sampled questions. "
+                             "'accuracy' is the published metric; 'logprob' is the signed "
+                             "shift in the target's probability over the answer choices.")
+    parser.add_argument('--metrics_log', type=str, default=None,
+                        help='JSONL with every metric for each scored question')
+    parser.add_argument('--verbose', action='store_true', default=False,
+                        help='Print per-question fidelity detail')
     args = parser.parse_args()
     return args
 

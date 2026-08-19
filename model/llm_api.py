@@ -143,3 +143,60 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
     else:
         STATS["errors"] += 1
     raise RuntimeError(f"LLM call failed after {retries} attempts: {last_error}")
+
+
+def chat_token_logprobs(prompt, model, top_logprobs=20, retries=3):
+    """Probabilities of the candidate first answer tokens.
+
+    Used by the logprob fidelity metric: the reply is capped at one token and we
+    read the distribution over it, so nothing has to be parsed out of free text.
+
+    Reasoning is disabled explicitly. Reasoning tokens are billed as output *and*
+    count against max_tokens, so with max_tokens=1 a thinking model returns an
+    empty completion and no logprobs at all. Not every provider serves logprobs
+    even when the model advertises them - callers get a RuntimeError so the run
+    stops rather than silently scoring on a uniform prior.
+
+    Returns: [{"token": str, "logprob": float, "prob": float}, ...]
+    """
+    import math
+
+    STATS["calls"] += 1
+    last_error = None
+    for attempt in range(retries):
+        try:
+            extra_body = {"reasoning": {"enabled": False}}
+            # A gateway may route the same model to several providers, and only
+            # some of them return logprobs. Pin the ones that do via
+            # LITELLM_PROVIDER_ORDER (comma separated) so scoring is reproducible.
+            order = _first_env("LITELLM_PROVIDER_ORDER")
+            if order:
+                extra_body["provider"] = {
+                    "order": [o.strip() for o in order.split(",") if o.strip()],
+                    "allow_fallbacks": False,
+                }
+            completion = get_client().chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.0,
+                max_tokens=1,
+                logprobs=True,
+                top_logprobs=top_logprobs,
+                extra_body=extra_body,
+            )
+            logprobs = completion.choices[0].logprobs
+            if not logprobs or not logprobs.content:
+                raise ValueError("provider returned no logprobs")
+            return [{"token": t.token, "logprob": t.logprob, "prob": math.exp(t.logprob)}
+                    for t in logprobs.content[0].top_logprobs]
+        except Exception as exc:  # noqa: BLE001 - retried, then re-raised
+            last_error = exc
+            if attempt < retries - 1:
+                time.sleep(2 ** attempt)
+
+    STATS["errors"] += 1
+    raise RuntimeError(
+        f"logprob call failed after {retries} attempts: {last_error}. "
+        f"Not all providers serve logprobs; pin one that does, or use "
+        f"--score_mode accuracy. Pin with LITELLM_PROVIDER_ORDER."
+    )
