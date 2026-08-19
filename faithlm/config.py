@@ -27,6 +27,10 @@ class PredictorConfig:
     temperature: float = 0.7
     max_memory_per_gpu: str = "14GiB"
     device_num: list = field(default_factory=lambda: [0])
+    # Only used by the generic "api" predictor, so any OpenAI-compatible
+    # endpoint can be the target model without a new registry entry.
+    api_key_env: str = "DEEPSEEK_API_KEY"
+    base_url_env: str = "DEEPSEEK_BASE_URL"
 
 
 @dataclass
@@ -52,7 +56,7 @@ class MetricConfig:
 
 @dataclass
 class RunConfig:
-    pipeline: str = "local"             # "local" or "global"
+    pipeline: str = "local"             # "local", "global" or "selfcons"
     ques_idx_start: int = 0
     ques_idx_end: int = 50
     # "sequential" takes examples[start:end]; "random" draws (end - start)
@@ -66,6 +70,15 @@ class RunConfig:
     output_dir: str = "./results"
     resume: bool = True                 # skip questions whose result file exists
     seed: int = 42
+    # Language of every prompt template (instructions, counterfactual,
+    # optimizer): "en" keeps the paper's wording verbatim, "vi" uses the
+    # Vietnamese pack. Dataset text is untouched either way.
+    prompt_lang: str = "en"
+    # Global only: optimise the instruction on this split instead of the
+    # evaluation split, then measure how well the best instruction transfers
+    # to the evaluation split. None keeps the old single-pool behaviour.
+    holdout_split: Optional[str] = None
+    holdout_size: int = 15              # questions drawn from the holdout split
 
 
 @dataclass
@@ -86,10 +99,15 @@ class Config:
         identical settings are different experiments and must not share a
         results directory.
         """
-        return (
+        base = (
             f"{self.run.pipeline}_{self.dataset.name}_{self.predictor.name}"
             f"_{self.explainer.name}_{self.metric.name}_{self.metric.scorer}"
         )
+        # English prompts are the default; only a non-default pack changes the
+        # id, so every result directory from before this option still matches.
+        if self.run.prompt_lang != "en":
+            base += f"_{self.run.prompt_lang}"
+        return base
 
 
 _SECTIONS = {

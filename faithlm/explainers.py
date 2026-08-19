@@ -66,6 +66,26 @@ class OpenAICompatExplainer:
         raise RuntimeError(f"Explainer failed after {self.max_retries} attempts: {last_error}")
 
 
+class OllamaExplainer(Explainer):
+    """A local Ollama model writing the explanations — fully offline runs.
+
+    Reuses OllamaPredictor's transport, including the `think: false` flag and
+    the <think> stripping that reasoning models need.
+    """
+
+    def __init__(self, model_id: str, max_tokens: int, temperature: float):
+        from .predictors import OllamaPredictor
+
+        self.backend = OllamaPredictor(model_id=model_id)
+        self.max_tokens = max_tokens
+        self.temperature = temperature
+
+    def respond(self, prompt: str) -> str:
+        if isinstance(prompt, list):
+            prompt = prompt[0] if prompt else ""
+        return self.backend._chat(prompt, self.max_tokens, self.temperature)
+
+
 class HFExplainer:
     """A local hub model acting as the explainer."""
 
@@ -118,6 +138,34 @@ def _build_claude(cfg):
         model_id=cfg.model_id or "claude-sonnet-5",
         api_key_env="ANTHROPIC_API_KEY",
         base_url="https://api.anthropic.com/v1/",
+        max_tokens=cfg.max_tokens,
+        temperature=cfg.temperature,
+    )
+
+
+@register_explainer("api")
+def _build_generic_api_explainer(cfg):
+    """Any OpenAI-compatible endpoint as the explainer (Gemini, Groq, vLLM...).
+
+    Point `api_key_env`/`base_url_env` at the provider's variables in YAML —
+    e.g. Gemini: GEMINI_API_KEY + GEMINI_BASE_URL
+    (https://generativelanguage.googleapis.com/v1beta/openai/).
+    """
+    if not cfg.model_id:
+        raise ValueError("explainer.name='api' requires explainer.model_id to be set")
+    return OpenAICompatExplainer(
+        model_id=cfg.model_id,
+        api_key_env=cfg.api_key_env,
+        base_url=os.environ.get(cfg.base_url_env) or None,
+        max_tokens=cfg.max_tokens,
+        temperature=cfg.temperature,
+    )
+
+
+@register_explainer("ollama")
+def _build_ollama_explainer(cfg):
+    return OllamaExplainer(
+        model_id=cfg.model_id or "qwen3.5:9b",
         max_tokens=cfg.max_tokens,
         temperature=cfg.temperature,
     )

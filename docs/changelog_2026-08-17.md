@@ -126,6 +126,54 @@ Trả lời câu hỏi: bước sinh đối nghịch có thực sự cần LLM k
 
 ---
 
+## E. Port từ thực nghiệm độc lập `final_thesis` (bổ sung cùng ngày)
+
+Các thành phần dưới đây được chuyển từ bộ thực nghiệm chạy tay (Ollama, RTX 3060)
+đã có kết quả thật trên ECQA/XCOPA-vi vào kiến trúc registry của package.
+
+### E1. Backend Ollama (`predictor: ollama`, `explainer: ollama`)
+
+Chạy toàn bộ pipeline cục bộ, không cần GPU CUDA hay khóa API. Gọi API native
+`/api/chat` với `think: false` và lọc block `<think>` — mô hình reasoning
+(Qwen3.5) nếu không sẽ đốt hết token trong phần suy nghĩ. Config mẫu:
+`configs/xcopa_vi_ollama.yaml`. Đã kiểm chứng end-to-end trên XCOPA-vi thật.
+
+### E2. Predictor `api` tổng quát
+
+Mọi endpoint OpenAI-compatible làm mô hình đích; khóa và base URL đặt qua
+`predictor.api_key_env` / `base_url_env` — thêm nhà cung cấp mới chỉ cần sửa YAML.
+
+### E3. Bộ prompt tiếng Việt (`run.prompt_lang: vi`)
+
+Toàn bộ mẫu prompt (instruction, counterfactual, optimizer local/global) có bản
+tiếng Việt, dịch tương đương từ Appendix H/J và đã dùng trong các run thật của
+`final_thesis`. Bộ tiếng Anh giữ nguyên văn làm mặc định nên kết quả cũ không đổi;
+`variant_id` chỉ thêm hậu tố `_vi` khi dùng pack mới.
+
+### E4. Chỉ số `flip` — flipping answer rate black-box
+
+`1.0` nếu gợi ý đối nghịch làm đổi **đáp án của chính mô hình** (không so với
+nhãn vàng). Không cần log-prob → dùng được với predictor API/Ollama và với dữ
+liệu không nhãn (phần demo tiếng Việt mới của notebook). Đây chính là "score"
+trong trajectory prompt của paper (Figure 13).
+
+### E5. Pipeline `selfcons` — baseline self-consistency
+
+Lấy chuỗi CoT của chính predictor làm lời giải thích rồi chấm cùng quy trình
+counterfactual. Đo trực tiếp luận điểm mục 2.2 của paper (CoT không phải giải
+thích trung thực); `final_thesis` đo được 0.06 (en) / 0.33 (vi) so với 0.75 /
+0.85 của FaithLM.
+
+### E6. Hold-out + transfer eval cho pipeline global
+
+`run.holdout_split` tách tập tối ưu prompt khỏi tập đánh giá (đúng tinh thần
+Algorithm 2); sau khi tối ưu, prompt tốt nhất được chấm one-shot trên test và so
+với prompt viết tay (`transfer_eval` trong `summary.json`). `final_thesis` cho
+thấy hold-out nhỏ thắng trên chính nó nhưng **thua trên test** — khoảng chênh
+transfer là con số trung thực cần báo cáo.
+
+---
+
 ## D. Đã gỡ bỏ
 
 | File | Thay bằng |

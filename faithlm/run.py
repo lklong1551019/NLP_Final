@@ -33,14 +33,26 @@ def _set_seed(seed: int) -> None:
 
 def _validate(cfg: Config, examples: List) -> None:
     """Fail fast on combinations that cannot work, before any model loads."""
-    if cfg.metric.scorer == "logprob":
+    from .prompts import check_lang
+
+    check_lang(cfg.run.prompt_lang)
+    if cfg.metric.scorer == "logprob" and cfg.metric.name != "flip":
         if examples and not examples[0].is_multiple_choice:
             raise ValueError(
                 f"metric.scorer='logprob' needs answer choices, but dataset "
                 f"'{cfg.dataset.name}' is open-ended. Use scorer='exact_match'."
             )
-    if cfg.run.pipeline not in ("local", "global"):
-        raise ValueError(f"run.pipeline must be 'local' or 'global', got '{cfg.run.pipeline}'")
+    if cfg.metric.name == "flip" and examples and not examples[0].is_multiple_choice:
+        raise ValueError(
+            f"metric 'flip' needs answer choices, but dataset "
+            f"'{cfg.dataset.name}' is open-ended."
+        )
+    if cfg.run.pipeline not in ("local", "global", "selfcons"):
+        raise ValueError(
+            f"run.pipeline must be 'local', 'global' or 'selfcons', got '{cfg.run.pipeline}'"
+        )
+    if cfg.run.holdout_split and cfg.run.pipeline != "global":
+        raise ValueError("run.holdout_split only applies to the global pipeline")
 
 
 def run_experiment(cfg: Optional[Config] = None, predictor=None, explainer=None) -> Dict:
@@ -63,10 +75,12 @@ def run_experiment(cfg: Optional[Config] = None, predictor=None, explainer=None)
 
     if predictor is None:
         predictor = predictor_mod.build(cfg.predictor)
-    if cfg.metric.scorer == "logprob" and not predictor.supports_logprobs:
+    # `flip` never touches log-probabilities, whatever the scorer field says.
+    if (cfg.metric.scorer == "logprob" and cfg.metric.name != "flip"
+            and not predictor.supports_logprobs):
         raise ValueError(
             f"predictor '{cfg.predictor.name}' cannot produce log-probabilities. "
-            "Use metric.scorer='exact_match' or a local HF predictor."
+            "Use metric.scorer='exact_match', metric.name='flip', or a local HF predictor."
         )
     if explainer is None:
         explainer = explainer_mod.build(cfg.explainer)
@@ -86,8 +100,33 @@ def run_experiment(cfg: Optional[Config] = None, predictor=None, explainer=None)
                 sum(r.get("best_score", 0.0) for r in scored) / len(scored) if scored else 0.0
             ),
         }
+    elif cfg.run.pipeline == "selfcons":
+        results = pipelines.run_selfcons(cfg, examples, predictor, explainer)
+        scored = [r for r in results if not r.get("error")]
+        summary = {
+            "variant": cfg.variant_id(),
+            "pipeline": "selfcons",
+            "questions": len(results),
+            "failed": len(results) - len(scored),
+            "task_accuracy": (
+                sum(1 for r in scored if r.get("correct")) / len(scored) if scored else 0.0
+            ),
+            "mean_faithfulness": (
+                sum(r.get("score", 0.0) for r in scored) / len(scored) if scored else 0.0
+            ),
+        }
     else:
-        rounds = pipelines.run_global(cfg, examples, predictor, explainer)
+        holdout = None
+        if cfg.run.holdout_split:
+            holdout = datasets_mod.load(cfg.dataset.name, cfg.dataset.lang,
+                                        cfg.run.holdout_split)
+            # A fixed, seed-independent slice keeps the pool identical across
+            # machines; the per-round subsample is what the seed controls.
+            holdout = holdout[:max(cfg.run.holdout_size, cfg.run.ques_sample)]
+            print(f"[run] holdout: {len(holdout)} examples from "
+                  f"{cfg.dataset.name}/{cfg.run.holdout_split}")
+        rounds = pipelines.run_global(cfg, examples, predictor, explainer,
+                                      holdout=holdout)
         summary = {
             "variant": cfg.variant_id(),
             "pipeline": "global",
@@ -107,7 +146,7 @@ def run_experiment(cfg: Optional[Config] = None, predictor=None, explainer=None)
 def main(argv=None) -> None:
     parser = argparse.ArgumentParser(description="Run a FaithLM experiment variant.")
     parser.add_argument("--config", type=str, help="Path to a YAML config file")
-    parser.add_argument("--pipeline", choices=["local", "global"])
+    parser.add_argument("--pipeline", choices=["local", "global", "selfcons"])
     parser.add_argument("--dataset", type=str)
     parser.add_argument("--lang", type=str)
     parser.add_argument("--split", type=str)
@@ -124,6 +163,10 @@ def main(argv=None) -> None:
     parser.add_argument("--xai_iter", type=int)
     parser.add_argument("--rounds", type=int)
     parser.add_argument("--ques_sample", type=int)
+    parser.add_argument("--prompt_lang", type=str, help="en | vi — language of all prompt templates")
+    parser.add_argument("--holdout_split", type=str,
+                        help="global only: optimise on this split, then transfer-eval on the main split")
+    parser.add_argument("--holdout_size", type=int)
     parser.add_argument("--output_dir", type=str)
     parser.add_argument("--load_in_4bit", action="store_true", default=None)
     parser.add_argument("--no_resume", action="store_true")
@@ -149,6 +192,8 @@ def main(argv=None) -> None:
         "run": {"pipeline": args.pipeline, "ques_idx_start": args.start,
                 "ques_idx_end": args.end, "xai_iter": args.xai_iter,
                 "round_xai_iter": args.rounds, "ques_sample": args.ques_sample,
+                "prompt_lang": args.prompt_lang, "holdout_split": args.holdout_split,
+                "holdout_size": args.holdout_size,
                 "output_dir": args.output_dir, "sampling": args.sampling,
                 "seed": args.seed,
                 "resume": False if args.no_resume else None},

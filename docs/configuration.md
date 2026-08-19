@@ -21,6 +21,10 @@ python run.py --list
 | `DEEPSEEK_MODEL` | Mặc định `deepseek-v4-pro` | không |
 | `OPENAI_API_KEY` | Khóa OpenAI | `explainer.name: openai` |
 | `ANTHROPIC_API_KEY` | Khóa Anthropic | `explainer.name: claude` |
+| `OLLAMA_BASE_URL` | Mặc định `http://localhost:11434` | không |
+| *(tùy chọn trong config)* | `predictor.api_key_env` / `base_url_env` trỏ tới biến bất kỳ | `predictor.name: api` |
+
+Backend `ollama` **không cần khóa API** — chỉ cần Ollama đang chạy trên máy.
 
 ---
 
@@ -33,33 +37,38 @@ dataset:
   split: test              # train | test | validation
 
 predictor:
-  name: qwen               # qwen | phi | vicuna | hf | deepseek
+  name: qwen               # qwen | phi | vicuna | hf | ollama | api | deepseek
   model_id: null           # null -> mặc định của backend
   load_in_4bit: false      # true nếu GPU dưới 12GB
   max_new_tokens: 256
   temperature: 0.7
   max_memory_per_gpu: 14GiB
   device_num: [0]
+  api_key_env: DEEPSEEK_API_KEY    # chỉ dùng với name: api
+  base_url_env: DEEPSEEK_BASE_URL  # chỉ dùng với name: api
 
 explainer:
-  name: deepseek           # deepseek | openai | claude | hf | baseline_*
+  name: deepseek           # deepseek | openai | claude | ollama | hf | baseline_*
   model_id: null
   max_tokens: 1000
   temperature: 0.9
 
 metric:
-  name: paper              # paper | symmetric
-  scorer: logprob          # logprob | exact_match
+  name: paper              # paper | symmetric | flip
+  scorer: logprob          # logprob | exact_match (flip bỏ qua trường này)
   k_samples: 1             # chỉ dùng với exact_match
 
 run:
-  pipeline: local          # local | global
+  pipeline: local          # local | global | selfcons
   ques_idx_start: 0
   ques_idx_end: 200
   sampling: random         # sequential | random
   xai_iter: 15             # số vòng LLM-OPT mỗi câu (local)
   round_xai_iter: 10       # số vòng tối ưu (global)
   ques_sample: 15          # số câu lấy mẫu mỗi vòng (global)
+  prompt_lang: en          # en | vi — ngôn ngữ toàn bộ mẫu prompt
+  holdout_split: null      # global: tối ưu trên split này, transfer-eval trên split chính
+  holdout_size: 15         # số câu lấy từ holdout split
   output_dir: ./results
   resume: true             # bỏ qua phần đã chạy xong
   seed: 42
@@ -77,9 +86,13 @@ Gõ sai tên khóa hoặc tên mục sẽ báo lỗi ngay khi nạp config, khô
 | `phi` | `microsoft/phi-2` | HF cục bộ | có |
 | `vicuna` | `lmsys/vicuna-7b-v1.5` | HF cục bộ | có |
 | `hf` | *(bắt buộc đặt `model_id`)* | HF cục bộ | có |
+| `ollama` | `qwen3.5:4b` | Ollama cục bộ | **không** |
+| `api` | *(bắt buộc `model_id`)* | OpenAI-compatible bất kỳ | **không** |
 | `deepseek` | `deepseek-v4-pro` | API | **không** |
 
-Predictor qua API không tính được log-prob, phải dùng `scorer: exact_match`. Chương trình kiểm tra và báo lỗi ngay từ đầu thay vì để chạy rồi mới hỏng.
+Predictor qua API/Ollama không tính được log-prob, phải dùng `scorer: exact_match` hoặc `metric: flip`. Chương trình kiểm tra và báo lỗi ngay từ đầu thay vì để chạy rồi mới hỏng.
+
+Backend `api` nhận mọi endpoint OpenAI-compatible mà không cần thêm code — đặt `api_key_env`/`base_url_env` trỏ tới biến môi trường tương ứng của nhà cung cấp.
 
 Dùng bất kỳ mô hình nào trên Hub mà không cần sửa code:
 
@@ -108,6 +121,7 @@ Kaggle T4/P100 (16GB) chạy được Qwen3-4B ở bf16. GPU 8GB nên bật `loa
 | `deepseek` | `deepseek-v4-pro` | API | Chính. Có thể đổi `deepseek-v4-flash` cho rẻ hơn |
 | `openai` | `gpt-4o-mini` | API | |
 | `claude` | `claude-sonnet-5` | API | |
+| `ollama` | `qwen3.5:9b` | Ollama cục bộ | Không cần khóa API; explainer nên mạnh hơn predictor |
 | `hf` | *(bắt buộc `model_id`)* | Cục bộ | Tốn thêm VRAM cùng lúc với predictor |
 | `baseline_negation` | — | Luật | Phủ định theo mẫu |
 | `baseline_identity` | — | Luật | Trả lại nguyên văn |
@@ -137,6 +151,9 @@ Mã ngôn ngữ XCOPA: `et`, `ht`, `id`, `it`, `qu`, `sw`, `ta`, `th`, `tr`, `vi
 |---|---|---|
 | `paper` | \|acc(không gợi ý) − acc(gợi ý đối nghịch)\| | Tái lập bản gốc |
 | `symmetric` | \|acc(giải thích thật) − acc(giải thích đối nghịch)\| | Chỉ số đã sửa |
+| `flip` | 1 nếu gợi ý đối nghịch làm đổi **đáp án của chính mô hình** | Black-box: predictor API/Ollama, dữ liệu không nhãn |
+
+`flip` so với đáp án mô hình tự đưa ra (không cần nhãn vàng) nên dùng được cho phần demo trên dữ liệu tiếng Việt mới. Nó luôn tự sinh văn bản để chấm, bỏ qua `scorer`.
 
 | `metric.scorer` | Cách chấm | Giới hạn |
 |---|---|---|
@@ -167,6 +184,8 @@ python run.py --config configs/xcopa_vi_qwen_deepseek.yaml --no_resume
 | `--metric`, `--scorer` | mục `metric` |
 | `--start`, `--end`, `--xai_iter` | phạm vi câu hỏi (local) |
 | `--rounds`, `--ques_sample` | tham số global |
+| `--prompt_lang` | `run.prompt_lang` (en \| vi) |
+| `--holdout_split`, `--holdout_size` | hold-out cho global |
 | `--output_dir`, `--no_resume` | ghi kết quả |
 | `--load_in_4bit` | lượng tử hóa |
 | `--list` | in danh sách thành phần rồi thoát |

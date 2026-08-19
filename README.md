@@ -16,6 +16,13 @@ python run.py --config configs/xcopa_vi_qwen_deepseek.yaml           # chạy đ
 python run.py --list                                                 # xem thành phần đã đăng ký
 ```
 
+**Không có GPU và không có khóa API?** Chạy hoàn toàn cục bộ qua [Ollama](https://ollama.com), prompt toàn tiếng Việt:
+
+```bash
+ollama pull qwen3.5:4b && ollama pull qwen3.5:9b
+python run.py --config configs/xcopa_vi_ollama.yaml --end 5
+```
+
 **Notebook** (chạy trên Colab/Kaggle, không cần cài đặt gì trên máy): [`notebooks/FaithLM_Vietnamese.ipynb`](notebooks/FaithLM_Vietnamese.ipynb)
 
 ## Đổi mô hình
@@ -56,11 +63,13 @@ def _build(cfg):
 | | Bản gốc | Bản này |
 |---|---|---|
 | Chấm điểm | So khớp chuỗi trên 1 câu → chỉ ra 0.0 hoặc 1.0 | Log-prob các lựa chọn → liên tục trong [0,1] |
-| Chỉ số | Nhánh "thật" không hề nhận giải thích | Thêm `symmetric`: cả hai nhánh đều có gợi ý |
-| Chọn mô hình | Chuỗi `if/elif` ở 4 chỗ | Registry + YAML |
+| Chỉ số | Nhánh "thật" không hề nhận giải thích | Thêm `symmetric` (cả hai nhánh có gợi ý) và `flip` (black-box) |
+| Chọn mô hình | Chuỗi `if/elif` ở 4 chỗ | Registry + YAML: HF, Ollama, mọi API OpenAI-compatible |
+| Ngôn ngữ prompt | Chỉ tiếng Anh | Bộ prompt en/vi, chọn bằng `run.prompt_lang` |
 | Mất session | Chạy lại từ đầu | Tiếp tục từ câu dang dở |
-| Baseline | Không có | Phủ định theo luật, đồng nhất, ngẫu nhiên |
-| Kiểm thử | Không có | 26 unit test, không cần GPU |
+| Baseline | Không có | Phủ định theo luật, đồng nhất, ngẫu nhiên, self-consistency (CoT) |
+| Global (Algorithm 2) | Tối ưu và chấm trên cùng một pool | Hold-out riêng + transfer eval trên test |
+| Kiểm thử | Không có | 45 unit test, không cần GPU |
 
 Chi tiết kỹ thuật: [`docs/changelog_2026-08-17.md`](docs/changelog_2026-08-17.md)
 
@@ -74,12 +83,12 @@ faithlm/
 ├── predictors.py    # mô hình đích + chấm điểm log-prob
 ├── explainers.py    # mô hình sinh giải thích (API/cục bộ)
 ├── baselines.py     # baseline không dùng LLM
-├── metrics.py       # chỉ số paper / symmetric
-├── prompts.py       # toàn bộ mẫu prompt
-├── pipelines.py     # vòng lặp local & global, có checkpoint
+├── metrics.py       # chỉ số paper / symmetric / flip
+├── prompts.py       # toàn bộ mẫu prompt, hai bộ en/vi
+├── pipelines.py     # vòng lặp local, global (hold-out) & selfcons, có checkpoint
 └── run.py           # entrypoint dùng chung cho CLI và notebook
-configs/             # 5 biến thể thực nghiệm
-tests/               # 26 unit test
+configs/             # 7 biến thể thực nghiệm
+tests/               # 45 unit test
 notebooks/           # notebook nộp bài
 ```
 

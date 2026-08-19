@@ -1,0 +1,37 @@
+# Fully local variant: everything runs through Ollama, no API key and no
+# CUDA/transformers setup — the entry-level way to run the pipeline.
+# Ported from the standalone final_thesis experiments (RTX 3060 12GB).
+#
+#   ollama pull qwen3.5:4b && ollama pull qwen3.5:9b
+#   python run.py --config configs/xcopa_vi_ollama.yaml --end 5
+dataset:
+  name: xcopa_vi
+  lang: vi
+  split: test
+
+predictor:
+  name: ollama
+  model_id: qwen3.5:4b       # targeted LLM f(.)
+  max_new_tokens: 256
+  temperature: 0.0           # deterministic answers -> a stable flip reference
+
+explainer:
+  name: ollama
+  model_id: qwen3.5:9b       # explainer g_E(.) — must be stronger than f(.)
+  max_tokens: 1000
+  temperature: 0.9
+
+metric:
+  name: flip                 # black-box flipping answer rate; no logprobs needed
+  scorer: exact_match        # ignored by flip, kept for the variant id
+
+run:
+  pipeline: local
+  ques_idx_start: 0
+  ques_idx_end: 50
+  sampling: random
+  xai_iter: 4                # final_thesis: no sample ever flipped after round 3
+  prompt_lang: vi            # all-Vietnamese prompt pack
+  output_dir: ./results
+  resume: true
+  seed: 42

@@ -1,0 +1,30 @@
+# Self-consistency baseline: the predictor's own chain-of-thought is used as
+# the explanation and scored with the same counterfactual procedure. The paper
+# (section 2.2) predicts this scores poorly; final_thesis measured 0.06 (en) /
+# 0.33 (vi) versus 0.75 / 0.85 for FaithLM.
+dataset:
+  name: xcopa_vi
+  lang: vi
+  split: test
+
+predictor:
+  name: qwen
+  model_id: Qwen/Qwen3-4B-Instruct-2507
+  load_in_4bit: false
+
+explainer:
+  name: deepseek
+  model_id: deepseek-v4-pro
+
+metric:
+  name: flip                 # same reference metric as the ollama variant
+  scorer: exact_match
+
+run:
+  pipeline: selfcons
+  ques_idx_start: 0
+  ques_idx_end: 200
+  sampling: random           # same seed + sampling as the main variant ->
+  seed: 42                   # scores are comparable question-by-question
+  output_dir: ./results
+  resume: true

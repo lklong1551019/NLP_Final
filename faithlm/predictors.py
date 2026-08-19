@@ -128,6 +128,56 @@ class HFPredictor(Predictor):
         return scores
 
 
+class OllamaPredictor(Predictor):
+    """A model served by a local Ollama instance — no GPU setup, no API key.
+
+    Talks to the native /api/chat endpoint rather than Ollama's OpenAI shim so
+    that `think: false` can be sent; reasoning models otherwise burn their
+    token budget inside a think block and return an empty answer.
+    """
+
+    def __init__(self, model_id: str, base_url: Optional[str] = None, timeout: int = 600):
+        self.model_id = model_id
+        base = base_url or os.environ.get("OLLAMA_BASE_URL", "http://localhost:11434")
+        self.endpoint = base.rstrip("/") + "/api/chat"
+        self.timeout = timeout
+
+    def _chat(self, prompt: str, max_new_tokens: int, temperature: float) -> str:
+        import json
+        import urllib.request
+
+        body = json.dumps({
+            "model": self.model_id,
+            "messages": [{"role": "user", "content": prompt}],
+            "stream": False,
+            "think": False,
+            "options": {"temperature": temperature, "num_predict": max_new_tokens},
+        }).encode("utf-8")
+        req = urllib.request.Request(
+            self.endpoint, data=body, headers={"Content-Type": "application/json"}
+        )
+        with urllib.request.urlopen(req, timeout=self.timeout) as resp:
+            content = json.loads(resp.read())["message"]["content"]
+        return strip_think(content)
+
+    def generate(self, prompts, max_new_tokens=256, temperature=0.7):
+        outputs = []
+        for prompt in prompts:
+            try:
+                outputs.append(self._chat(prompt, max_new_tokens, temperature))
+            except Exception as exc:
+                print(f"[predictor] Ollama error: {exc}")
+                outputs.append("")
+        return outputs
+
+
+def strip_think(text: str) -> str:
+    """Remove a <think>...</think> block some reasoning models still emit."""
+    if not text:
+        return ""
+    return re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL).strip()
+
+
 class APIPredictor(Predictor):
     """OpenAI-compatible chat endpoint used as the target model."""
 
@@ -214,6 +264,27 @@ def _build_deepseek_predictor(cfg):
         api_key_env="DEEPSEEK_API_KEY",
         base_url=os.environ.get("DEEPSEEK_BASE_URL", "https://api.deepseek.com"),
     )
+
+
+@register_predictor("api")
+def _build_generic_api(cfg):
+    """Any OpenAI-compatible endpoint as the target model.
+
+    The key and base URL come from the env vars named in the config, so a new
+    provider is a YAML change, not a code change.
+    """
+    if not cfg.model_id:
+        raise ValueError("predictor.name='api' requires predictor.model_id to be set")
+    return APIPredictor(
+        model_id=cfg.model_id,
+        api_key_env=cfg.api_key_env,
+        base_url=os.environ.get(cfg.base_url_env) or None,
+    )
+
+
+@register_predictor("ollama")
+def _build_ollama_predictor(cfg):
+    return OllamaPredictor(model_id=cfg.model_id or "qwen3.5:4b")
 
 
 def build(cfg):

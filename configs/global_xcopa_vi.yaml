@@ -1,8 +1,12 @@
 # Global pipeline: search for one explanation instruction that generalises.
+# The search runs on the validation split; the best instruction is then
+# transfer-evaluated one-shot on the test selection against the hand-written
+# instruction. final_thesis showed a small holdout wins on itself but loses
+# on test — the transfer gap is the number to report.
 dataset:
   name: xcopa_vi
   lang: vi
-  split: test
+  split: test                # transfer evaluation happens here
 
 predictor:
   name: qwen
@@ -21,6 +25,11 @@ run:
   pipeline: global
   round_xai_iter: 10        # optimisation rounds
   ques_sample: 15           # questions sampled per round
+  holdout_split: validation # optimise on validation (100 q), never on test
+  holdout_size: 30          # paper uses 15-30 holdout questions
+  ques_idx_start: 0
+  ques_idx_end: 50          # test questions for the transfer evaluation
+  sampling: random
   output_dir: ./results
   resume: true
   seed: 42

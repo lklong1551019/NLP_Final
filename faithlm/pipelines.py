@@ -1,9 +1,9 @@
-"""The local and global FaithLM pipelines.
+"""The local, global and self-consistency FaithLM pipelines.
 
-Both write one JSON file per unit of work (a question for local, a round for
-global) and skip units that already have a result file when `run.resume` is on.
-That keeps a run restartable across Kaggle's 12-hour session limit without
-losing finished work.
+All pipelines write one JSON file per unit of work (a question for local and
+selfcons, a round for global) and skip units that already have a result file
+when `run.resume` is on. That keeps a run restartable across Kaggle's 12-hour
+session limit without losing finished work.
 """
 
 import json
@@ -19,18 +19,14 @@ from . import metrics as metrics_mod
 from . import predictors as predictor_mod
 from .datasets import Example
 from .prompts import (
-    EXP_INSTRUCTION,
-    TASK_INSTRUCTION_MC,
-    TASK_INSTRUCTION_QA,
     counterfactual_prompt,
+    exp_instruction_for,
     explanation_prompt,
     global_optimizer_prompt,
     local_optimizer_prompt,
+    task_instruction_for,
+    task_prompt,
 )
-
-
-def _task_instruction(example: Example) -> str:
-    return TASK_INSTRUCTION_MC if example.is_multiple_choice else TASK_INSTRUCTION_QA
 
 
 def _write_json(path: str, payload) -> None:
@@ -64,6 +60,35 @@ def select_indices(cfg, n_examples: int) -> List[int]:
     )
 
 
+def _answer_question(cfg, example: Example, predictor, task_instruction: str,
+                     lang: str, cot: bool = True):
+    """Ask the predictor and parse the answer.
+
+    Returns (raw_output, model_answer, parsed_choice, is_correct); for
+    open-ended datasets parsed_choice is None and correctness is alias-based.
+    """
+    prompt = task_prompt(task_instruction, example.question,
+                         passage=example.passage, cot=cot, lang=lang)
+    raw = predictor.generate(
+        [prompt],
+        max_new_tokens=cfg.predictor.max_new_tokens,
+        temperature=cfg.predictor.temperature,
+    )[0]
+
+    if example.is_multiple_choice:
+        parsed = predictor_mod.extract_choice(raw, example.choices)
+        model_answer = parsed if parsed else raw.strip()[:200]
+        is_correct = parsed == example.answer
+        return raw, model_answer, parsed, is_correct
+
+    aliases = example.answer_aliases or [example.answer]
+    is_correct = any(a.lower() in raw.lower() for a in aliases if a)
+    return raw, raw.strip()[:200], None, is_correct
+
+
+# ------------------------------------------------------------------- local
+
+
 def run_local(cfg, examples: List[Example], predictor, explainer) -> List[Dict]:
     """Refine the explanation text per question, maximising faithfulness."""
     out_dir = os.path.join(cfg.run.output_dir, cfg.variant_id(), "local")
@@ -81,11 +106,10 @@ def run_local(cfg, examples: List[Example], predictor, explainer) -> List[Dict]:
             continue
 
         example = examples[idx]
-        task_instruction = _task_instruction(example)
         started = time.time()
 
         try:
-            record = _run_local_one(cfg, example, idx, predictor, explainer, task_instruction)
+            record = _run_local_one(cfg, example, idx, predictor, explainer)
         except Exception as exc:
             # One bad question must not end a multi-hour run.
             print(f"[local] question {idx} failed: {exc}")
@@ -98,30 +122,17 @@ def run_local(cfg, examples: List[Example], predictor, explainer) -> List[Dict]:
     return results
 
 
-def _run_local_one(cfg, example: Example, idx: int, predictor, explainer,
-                   task_instruction: str) -> Dict:
+def _run_local_one(cfg, example: Example, idx: int, predictor, explainer) -> Dict:
+    lang = cfg.run.prompt_lang
+    task_instruction = task_instruction_for(example.is_multiple_choice, lang)
+
     # 1. What does the predictor actually answer?
-    from .prompts import task_prompt
-
-    base_prompt = task_prompt(task_instruction, example.question,
-                              passage=example.passage, cot=True)
-    raw_answer = predictor.generate(
-        [base_prompt],
-        max_new_tokens=cfg.predictor.max_new_tokens,
-        temperature=cfg.predictor.temperature,
-    )[0]
-
-    if example.is_multiple_choice:
-        parsed = predictor_mod.extract_choice(raw_answer, example.choices)
-        model_answer = parsed if parsed else raw_answer.strip()[:200]
-        is_correct = parsed == example.answer
-    else:
-        aliases = example.answer_aliases or [example.answer]
-        is_correct = any(a.lower() in raw_answer.lower() for a in aliases if a)
-        model_answer = raw_answer.strip()[:200]
+    _, model_answer, parsed_choice, is_correct = _answer_question(
+        cfg, example, predictor, task_instruction, lang
+    )
 
     # 2. Explain that answer, then iteratively improve the explanation.
-    exp_prompt = explanation_prompt(EXP_INSTRUCTION, example.question,
+    exp_prompt = explanation_prompt(exp_instruction_for(lang), example.question,
                                     model_answer, passage=example.passage)
     explanations = explainer_mod.parse_explanations(explainer.respond(exp_prompt))
     current = explanations[0]
@@ -132,7 +143,8 @@ def _run_local_one(cfg, example: Example, idx: int, predictor, explainer,
 
     for step in range(cfg.run.xai_iter):
         counter_reply = explainer.respond(
-            counterfactual_prompt(current, open_ended=not example.is_multiple_choice)
+            counterfactual_prompt(current, open_ended=not example.is_multiple_choice,
+                                  lang=lang)
         )
         counter = explainer_mod.parse_explanations(counter_reply)[0]
 
@@ -140,6 +152,7 @@ def _run_local_one(cfg, example: Example, idx: int, predictor, explainer,
             cfg.metric, predictor, example, task_instruction, current, counter,
             max_new_tokens=cfg.predictor.max_new_tokens,
             temperature=cfg.predictor.temperature,
+            base_answer=parsed_choice, lang=lang,
         )
 
         history_exps.append(current)
@@ -157,7 +170,7 @@ def _run_local_one(cfg, example: Example, idx: int, predictor, explainer,
             break
 
         optimizer_prompt = local_optimizer_prompt(
-            history_exps, history_scores, example.question, model_answer
+            history_exps, history_scores, example.question, model_answer, lang=lang
         )
         reply = explainer.respond(optimizer_prompt)
         if explainer_mod.is_refusal(reply):
@@ -183,13 +196,133 @@ def _run_local_one(cfg, example: Example, idx: int, predictor, explainer,
     }
 
 
-def run_global(cfg, examples: List[Example], predictor, explainer) -> List[Dict]:
-    """Search for one explanation instruction that is faithful across questions."""
+# --------------------------------------------------------------- selfcons
+
+
+def run_selfcons(cfg, examples: List[Example], predictor, explainer) -> List[Dict]:
+    """Self-consistency baseline: the predictor's own CoT as the explanation.
+
+    The paper's section 2.2 argues a chain-of-thought is not a faithful account
+    of why the model answered; this pipeline measures that claim directly by
+    scoring the CoT with the same counterfactual procedure as FaithLM. One
+    score per question, no optimisation loop.
+    """
+    out_dir = os.path.join(cfg.run.output_dir, cfg.variant_id(), "selfcons")
+    os.makedirs(out_dir, exist_ok=True)
+    lang = cfg.run.prompt_lang
+
+    results = []
+    for idx in tqdm(select_indices(cfg, len(examples)), desc="questions"):
+        result_path = os.path.join(out_dir, f"sample-{idx}.json")
+        if cfg.run.resume and os.path.isfile(result_path):
+            with open(result_path, "r", encoding="utf-8") as f:
+                results.append(json.load(f))
+            continue
+
+        example = examples[idx]
+        task_instruction = task_instruction_for(example.is_multiple_choice, lang)
+        started = time.time()
+        try:
+            raw, model_answer, parsed_choice, is_correct = _answer_question(
+                cfg, example, predictor, task_instruction, lang, cot=True
+            )
+            # The whole CoT is the "explanation"; cap it so the counterfactual
+            # prompt stays inside the explainer's context.
+            explanation = raw.strip()[:1500]
+            counter = explainer_mod.parse_explanations(
+                explainer.respond(counterfactual_prompt(
+                    explanation, open_ended=not example.is_multiple_choice, lang=lang))
+            )[0]
+            detail = metrics_mod.compute(
+                cfg.metric, predictor, example, task_instruction, explanation, counter,
+                max_new_tokens=cfg.predictor.max_new_tokens,
+                temperature=cfg.predictor.temperature,
+                base_answer=parsed_choice, lang=lang,
+            )
+            record = {
+                "index": idx,
+                "question": example.question,
+                "gold_answer": example.answer,
+                "model_answer": model_answer,
+                "correct": is_correct,
+                "metric": cfg.metric.name,
+                "scorer": cfg.metric.scorer,
+                "score": round(detail.faithfulness, 4),
+                "abstained": detail.abstained,
+                "explanation": explanation,
+                "counterfactual": counter,
+            }
+        except Exception as exc:
+            print(f"[selfcons] question {idx} failed: {exc}")
+            record = {"index": idx, "error": str(exc)}
+
+        record["elapsed_sec"] = round(time.time() - started, 2)
+        _write_json(result_path, record)
+        results.append(record)
+
+    return results
+
+
+# ------------------------------------------------------------------ global
+
+
+def _score_instruction_once(cfg, example: Example, instruction: str,
+                            predictor, explainer, lang: str) -> float:
+    """One-shot faithfulness of `instruction` on one question (no refinement)."""
+    task_instruction = task_instruction_for(example.is_multiple_choice, lang)
+    _, answer, parsed_choice, _ = _answer_question(
+        cfg, example, predictor, task_instruction, lang
+    )
+    exp = explainer_mod.parse_explanations(
+        explainer.respond(explanation_prompt(
+            instruction, example.question, answer, passage=example.passage))
+    )[0]
+    counter = explainer_mod.parse_explanations(
+        explainer.respond(counterfactual_prompt(
+            exp, open_ended=not example.is_multiple_choice, lang=lang))
+    )[0]
+    detail = metrics_mod.compute(
+        cfg.metric, predictor, example, task_instruction, exp, counter,
+        max_new_tokens=cfg.predictor.max_new_tokens,
+        temperature=cfg.predictor.temperature,
+        base_answer=parsed_choice, lang=lang,
+    )
+    return detail.faithfulness
+
+
+def _mean_instruction_score(cfg, pool: List[Example], indices: List[int],
+                            instruction: str, predictor, explainer, lang: str,
+                            tag: str) -> Optional[float]:
+    total, counted = 0.0, 0
+    for idx in indices:
+        try:
+            total += _score_instruction_once(cfg, pool[idx], instruction,
+                                             predictor, explainer, lang)
+            counted += 1
+        except Exception as exc:
+            print(f"[global] {tag}, question {idx} failed: {exc}")
+    return total / counted if counted else None
+
+
+def run_global(cfg, examples: List[Example], predictor, explainer,
+               holdout: Optional[List[Example]] = None) -> List[Dict]:
+    """Search for one explanation instruction that is faithful across questions.
+
+    When `holdout` is given, the search only ever sees the holdout pool; the
+    best instruction is then evaluated one-shot on the `examples` selection,
+    against the human-written instruction it started from. Small holdouts
+    overfit — the transfer gap is the honest number to report.
+    """
     out_dir = os.path.join(cfg.run.output_dir, cfg.variant_id(), "global")
     os.makedirs(out_dir, exist_ok=True)
+    lang = cfg.run.prompt_lang
+    initial_instruction = exp_instruction_for(lang)
+
+    pool = holdout if holdout is not None else examples
+    pool_size = min(cfg.run.ques_sample, len(pool))
 
     rng = random.Random(cfg.run.seed)
-    instructions: List[str] = [EXP_INSTRUCTION]
+    instructions: List[str] = [initial_instruction]
     scores: List[float] = []
     rounds: List[Dict] = []
 
@@ -203,56 +336,25 @@ def run_global(cfg, examples: List[Example], predictor, explainer) -> List[Dict]
             scores.append(record["score"])
             if record.get("next_instruction"):
                 instructions.append(record["next_instruction"])
+            # Keep the RNG stream aligned with the run being resumed.
+            rng.sample(range(len(pool)), pool_size)
             continue
 
-        sample = rng.sample(range(len(examples)), min(cfg.run.ques_sample, len(examples)))
+        sample = rng.sample(range(len(pool)), pool_size)
         current_instruction = instructions[-1]
 
-        total, counted = 0.0, 0
-        for idx in sample:
-            example = examples[idx]
-            task_instruction = _task_instruction(example)
-            try:
-                from .prompts import task_prompt
-
-                raw = predictor.generate(
-                    [task_prompt(task_instruction, example.question,
-                                 passage=example.passage, cot=True)],
-                    max_new_tokens=cfg.predictor.max_new_tokens,
-                    temperature=cfg.predictor.temperature,
-                )[0]
-                answer = predictor_mod.extract_choice(raw, example.choices) or raw.strip()[:200]
-
-                exp = explainer_mod.parse_explanations(
-                    explainer.respond(explanation_prompt(
-                        current_instruction, example.question, answer, passage=example.passage))
-                )[0]
-                counter = explainer_mod.parse_explanations(
-                    explainer.respond(counterfactual_prompt(
-                        exp, open_ended=not example.is_multiple_choice))
-                )[0]
-
-                detail = metrics_mod.compute(
-                    cfg.metric, predictor, example, task_instruction, exp, counter,
-                    max_new_tokens=cfg.predictor.max_new_tokens,
-                    temperature=cfg.predictor.temperature,
-                )
-                total += detail.faithfulness
-                counted += 1
-            except Exception as exc:
-                print(f"[global] round {round_idx}, question {idx} failed: {exc}")
-
-        if counted == 0:
+        avg = _mean_instruction_score(cfg, pool, sample, current_instruction,
+                                      predictor, explainer, lang,
+                                      tag=f"round {round_idx}")
+        if avg is None:
             print(f"[global] round {round_idx} scored no questions; stopping.")
             break
-
-        avg = total / counted
         scores.append(avg)
 
         # Ask the optimizer for a better instruction for the next round.
         next_instruction = ""
         try:
-            reply = explainer.respond(global_optimizer_prompt(instructions, scores))
+            reply = explainer.respond(global_optimizer_prompt(instructions, scores, lang=lang))
             next_instruction = explainer_mod.parse_instruction(reply)
             if next_instruction:
                 instructions.append(next_instruction)
@@ -262,21 +364,38 @@ def run_global(cfg, examples: List[Example], predictor, explainer) -> List[Dict]
         record = {
             "round": round_idx,
             "score": round(avg, 4),
-            "scored_questions": counted,
+            "scored_questions": pool_size,
             "instruction": current_instruction,
             "next_instruction": next_instruction,
         }
         _write_json(round_path, record)
         rounds.append(record)
 
-    summary_path = os.path.join(out_dir, "summary.json")
     best = max(rounds, key=lambda r: r["score"]) if rounds else None
-    _write_json(summary_path, {
+    summary = {
         "variant": cfg.variant_id(),
         "metric": cfg.metric.name,
         "scorer": cfg.metric.scorer,
+        "optimised_on": "holdout" if holdout is not None else "eval split",
         "rounds": rounds,
         "best_score": best["score"] if best else 0.0,
-        "best_instruction": best["instruction"] if best else EXP_INSTRUCTION,
-    })
+        "best_instruction": best["instruction"] if best else initial_instruction,
+    }
+
+    # Transfer check: does the searched instruction beat the hand-written one
+    # outside the pool it was optimised on?
+    if holdout is not None and best is not None:
+        test_indices = select_indices(cfg, len(examples))
+        print(f"[global] transfer eval on {len(test_indices)} test questions...")
+        summary["transfer_eval"] = {
+            "test_questions": len(test_indices),
+            "optimized_instruction": _mean_instruction_score(
+                cfg, examples, test_indices, best["instruction"],
+                predictor, explainer, lang, tag="transfer/optimized"),
+            "initial_instruction": _mean_instruction_score(
+                cfg, examples, test_indices, initial_instruction,
+                predictor, explainer, lang, tag="transfer/initial"),
+        }
+
+    _write_json(os.path.join(out_dir, "summary.json"), summary)
     return rounds

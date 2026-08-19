@@ -15,9 +15,15 @@ from faithlm.baselines import IdentityBaseline, NegationBaseline, ShuffleBaselin
 from faithlm.config import Config, from_dict
 from faithlm.datasets import Example
 from faithlm.explainers import is_refusal, parse_explanations, parse_instruction
-from faithlm.metrics import _softmax_gold_prob, paper_metric, symmetric_metric
-from faithlm.predictors import extract_choice
-from faithlm.prompts import task_prompt
+from faithlm.metrics import _softmax_gold_prob, flip_metric, paper_metric, symmetric_metric
+from faithlm.predictors import extract_choice, strip_think
+from faithlm.prompts import (
+    counterfactual_prompt,
+    exp_instruction_for,
+    global_optimizer_prompt,
+    task_instruction_for,
+    task_prompt,
+)
 
 
 # ----------------------------------------------------------------- config
@@ -265,9 +271,9 @@ def test_all_expected_components_registered():
     from faithlm.registry import available
 
     assert {"xcopa_vi", "copa_en", "ecqa"} <= set(available("dataset"))
-    assert {"qwen", "phi", "hf"} <= set(available("predictor"))
-    assert {"deepseek", "baseline_negation", "baseline_identity"} <= set(available("explainer"))
-    assert {"paper", "symmetric"} <= set(available("metric"))
+    assert {"qwen", "phi", "hf", "ollama", "api"} <= set(available("predictor"))
+    assert {"deepseek", "ollama", "baseline_negation", "baseline_identity"} <= set(available("explainer"))
+    assert {"paper", "symmetric", "flip"} <= set(available("metric"))
 
 
 def test_duplicate_registration_is_rejected():
@@ -275,3 +281,127 @@ def test_duplicate_registration_is_rejected():
 
     with pytest.raises(KeyError, match="already registered"):
         register_metric("paper")(lambda *a, **k: None)
+
+
+# ------------------------------------------------------------- prompt packs
+
+
+def test_vietnamese_pack_exists_for_every_template():
+    assert "giải thích" in exp_instruction_for("vi")
+    assert "phương án" in task_instruction_for(True, "vi")
+    assert "ngược lại" in counterfactual_prompt("X", lang="vi")
+    assert "<INS>" in global_optimizer_prompt(["p"], [0.5], lang="vi")
+
+
+def test_task_prompt_lang_switches_scaffold():
+    en = task_prompt("Pick one.", "Q?", lang="en")
+    vi = task_prompt("Chọn một.", "Q?", lang="vi")
+    assert "Let's think step by step" in en
+    assert "Hãy suy luận từng bước" in vi
+    # Structure markers stay identical so extract_choice and hint parsing
+    # work the same in both packs.
+    assert "### Input:" in en and "### Input:" in vi
+
+
+def test_unknown_prompt_lang_rejected():
+    with pytest.raises(ValueError, match="prompt_lang"):
+        task_prompt("T", "Q?", lang="fr")
+
+
+def test_variant_id_reflects_prompt_lang():
+    default = from_dict({})
+    vi = from_dict({"run": {"prompt_lang": "vi"}})
+    assert default.variant_id() == "local_xcopa_vi_qwen_deepseek_paper_logprob"
+    assert vi.variant_id().endswith("_vi")
+
+
+# -------------------------------------------------------------- flip metric
+
+
+class _GenStubPredictor:
+    """Answers by string, switching when a hint is present in the prompt."""
+
+    supports_logprobs = False
+
+    def __init__(self, no_hint: str, hinted: str):
+        self.no_hint = no_hint
+        self.hinted = hinted
+        self.calls = 0
+
+    def generate(self, prompts, max_new_tokens=256, temperature=0.7):
+        self.calls += 1
+        return [self.hinted if "### Hint:" in prompts[0] else self.no_hint]
+
+
+def _mc_example():
+    return Example(question="Q?", answer="alpha", choices=["alpha", "beta"])
+
+
+def test_flip_metric_detects_a_flip():
+    predictor = _GenStubPredictor(no_hint="I pick alpha.", hinted="Now I pick beta.")
+    detail = flip_metric(predictor, _mc_example(), "T", "TRUE", "CF")
+    assert detail.faithfulness == 1.0
+    assert detail.predicted_choice == "alpha"
+
+
+def test_flip_metric_scores_zero_when_answer_holds():
+    predictor = _GenStubPredictor(no_hint="alpha.", hinted="still alpha.")
+    detail = flip_metric(predictor, _mc_example(), "T", "TRUE", "CF")
+    assert detail.faithfulness == 0.0
+
+
+def test_flip_metric_reuses_base_answer():
+    """With base_answer given, only the hinted arm should cost a generation."""
+    predictor = _GenStubPredictor(no_hint="alpha.", hinted="beta.")
+    detail = flip_metric(predictor, _mc_example(), "T", "TRUE", "CF", base_answer="alpha")
+    assert predictor.calls == 1
+    assert detail.faithfulness == 1.0
+
+
+def test_flip_metric_abstains_on_unparseable_answers():
+    predictor = _GenStubPredictor(no_hint="no idea", hinted="beta.")
+    detail = flip_metric(predictor, _mc_example(), "T", "TRUE", "CF")
+    assert detail.abstained
+    assert detail.faithfulness == 0.0  # an unparseable answer is not a flip
+
+
+def test_flip_metric_rejects_open_ended():
+    predictor = _GenStubPredictor("x", "y")
+    open_ended = Example(question="Q?", answer="A")
+    with pytest.raises(ValueError, match="choices"):
+        flip_metric(predictor, open_ended, "T", "TRUE", "CF")
+
+
+# ------------------------------------------------------------------ ollama
+
+
+def test_strip_think_removes_reasoning_block():
+    assert strip_think("<think>hidden chain</think>The answer is 2.") == "The answer is 2."
+    assert strip_think("no block at all") == "no block at all"
+    assert strip_think("") == ""
+
+
+# -------------------------------------------------------------- validation
+
+
+def test_selfcons_is_a_valid_pipeline():
+    from faithlm.run import _validate
+
+    cfg = from_dict({"run": {"pipeline": "selfcons"}})
+    _validate(cfg, [_mc_example()])  # must not raise
+
+
+def test_holdout_split_requires_global_pipeline():
+    from faithlm.run import _validate
+
+    cfg = from_dict({"run": {"pipeline": "local", "holdout_split": "validation"}})
+    with pytest.raises(ValueError, match="holdout_split"):
+        _validate(cfg, [_mc_example()])
+
+
+def test_flip_metric_config_rejected_for_open_ended_dataset():
+    from faithlm.run import _validate
+
+    cfg = from_dict({"metric": {"name": "flip"}, "dataset": {"name": "trivaqa"}})
+    with pytest.raises(ValueError, match="flip"):
+        _validate(cfg, [Example(question="Q?", answer="A")])

@@ -69,7 +69,18 @@ flowchart TD
 
 Khác biệt: **local** sửa *nội dung* giải thích cho từng câu; **global** sửa *câu lệnh* dùng chung cho mọi câu.
 
-Cả hai đều ghi kết quả sau mỗi đơn vị công việc, nên bị ngắt giữa chừng vẫn chạy tiếp được.
+Với `run.holdout_split`, global tối ưu câu lệnh trên split riêng (validation) rồi
+**transfer-eval** câu lệnh tốt nhất trên test — tách bạch "điểm trên hold-out"
+với "điểm chuyển giao", vì hold-out nhỏ rất dễ overfit.
+
+### 3.3 Selfcons — baseline self-consistency
+
+Chế độ thứ ba (`run.pipeline: selfcons`): lấy chuỗi Chain-of-Thought của chính
+predictor làm lời giải thích, chấm cùng quy trình counterfactual, không có vòng
+tối ưu. Đây là baseline đo trực tiếp luận điểm mục 2.2 của paper: CoT không phải
+lời giải thích trung thực về lý do quyết định.
+
+Cả ba chế độ đều ghi kết quả sau mỗi đơn vị công việc, nên bị ngắt giữa chừng vẫn chạy tiếp được.
 
 ---
 
