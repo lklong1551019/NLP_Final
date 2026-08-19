@@ -288,18 +288,20 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
     ans_llm = []
 
     if args.pred_model in ["phi", "qwen"]:
-        instruction = f"Below is an instruction that describes a task. \
-                    Write a response that appropriately completes the request of input."
-        final_prompt = [ f"{instruction}\n\n### Instruction: {task_instruction}\n\n \
-                            ### Input: {ques}\n\n \
-                            ### Response:" for ques in input_zip ]
+        if getattr(args, 'data', '') == "xcopa_vi":
+            instruction = "Dưới đây là một hướng dẫn mô tả một nhiệm vụ. Hãy viết một phản hồi hoàn thành yêu cầu của đầu vào."
+            final_prompt = [ f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Đầu vào: {ques}\n\n### Phản hồi:" for ques in input_zip ]
+        else:
+            instruction = "Below is an instruction that describes a task. Write a response that appropriately completes the request of input."
+            final_prompt = [ f"{instruction}\n\n### Instruction: {task_instruction}\n\n### Input: {ques}\n\n### Response:" for ques in input_zip ]
         
         model_inputs_all = tokenizer(final_prompt, padding="max_length", max_length=1000, truncation=True, return_tensors="pt").to(model.device)
         generate_ids = model.generate(**model_inputs_all, **_gen_kwargs(temperature_cot), max_new_tokens=256)
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
-            ans = ans_tkn[i].split("### Response:")[-1]
+            split_str = "### Phản hồi:" if getattr(args, 'data', '') == "xcopa_vi" else "### Response:"
+            ans = ans_tkn[i].split(split_str)[-1]
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
@@ -488,7 +490,8 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
-            ans = ans_tkn[i].split("### Response:")[-1]
+            split_str = "### Phản hồi:" if getattr(args, 'data', '') == "xcopa_vi" else "### Response:"
+            ans = ans_tkn[i].split(split_str)[-1]
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
@@ -546,15 +549,14 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
     true_exp_pair = zip(exp_reply, question)
     count_exp_pair = zip(counter_exp_reply, question)
 
-    instruction = f"Below is an instruction that describes a task. \
-                    Write a response that appropriately completes the request of input."
-    ture_final_prompt = [f"{instruction}\n\n### Instruction: {task_instruction}\n\n \
-                        ### Input: {ques}\n\n \
-                        ### Response: Let's think step by step." for _, ques in true_exp_pair ]
-    count_final_prompt = [f"{instruction}\n\n### Instruction: {task_instruction}\n\n \
-                        ### Hint: {exp}\n\n \
-                        ### Input: {ques}\n\n \
-                        ### Response: Let's think step by step." for exp, ques in count_exp_pair ]
+    if getattr(args, 'data', '') == "xcopa_vi":
+        instruction = "Dưới đây là một hướng dẫn mô tả một nhiệm vụ. Hãy viết một phản hồi hoàn thành yêu cầu của đầu vào."
+        ture_final_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Đầu vào: {ques}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for _, ques in true_exp_pair ]
+        count_final_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Gợi ý: {exp}\n\n### Đầu vào: {ques}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for exp, ques in count_exp_pair ]
+    else:
+        instruction = "Below is an instruction that describes a task. Write a response that appropriately completes the request of input."
+        ture_final_prompt = [f"{instruction}\n\n### Instruction: {task_instruction}\n\n### Input: {ques}\n\n### Response: Let's think step by step." for _, ques in true_exp_pair ]
+        count_final_prompt = [f"{instruction}\n\n### Instruction: {task_instruction}\n\n### Hint: {exp}\n\n### Input: {ques}\n\n### Response: Let's think step by step." for exp, ques in count_exp_pair ]
     ture_score = _ecqa_score(model, tokenizer, ture_final_prompt, answer, args)
     count_score = _ecqa_score(model, tokenizer, count_final_prompt, answer, args)
     
