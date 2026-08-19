@@ -7,7 +7,10 @@ from transformers import LlamaForCausalLM, LlamaTokenizer
 from transformers import BitsAndBytesConfig
 import torch
 import openai
-from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+try:
+    from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+except ImportError:  # legacy --pred_model/--xai_model claude only
+    Anthropic, HUMAN_PROMPT, AI_PROMPT = None, "", ""
 from sklearn.metrics import accuracy_score
 from tqdm import tqdm
 
@@ -545,6 +548,25 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
 # metrics per iteration, whichever one is being optimised on.
 LAST_METRICS = {}
 
+# Modes scored from the target's choice distribution -> which metric field the
+# optimiser follows. "accuracy" is absent on purpose: it means the published
+# generate-and-parse path, left byte-identical.
+#
+#   prob_shift    signed shift in P(the target's own first pick). Continuous, and
+#                 the only mode that tells the optimiser it went backwards.
+#   tv            total variation between the two distributions. Non-negative, so
+#                 it is the divergence Theorem 1 of the paper actually defines.
+#   flip          did the argmax change. Label-free but binary.
+#   prob_accuracy the published |Δacc| formula, computed from the argmax over
+#                 choices instead of by parsing generated text. Isolates "the
+#                 continuous signal helped" from "dropping the text parser helped".
+PROB_SCORE_MODES = {
+    "logprob": "prob_shift",
+    "tv": "tv",
+    "flip": "flip",
+    "prob_accuracy": "accuracy",
+}
+
 
 def _answer_cue_prompt(task_instruction, question, hint=None):
     """Same content the baseline sends, but ending in a direct answer cue.
@@ -581,17 +603,22 @@ def _diff_logprob_ecqa(model, tokenizer, task_instruction, question, answer,
     p_after = choice_probs(model, tokenizer, _answer_cue_prompt(task_instruction, ques, hint), choices, args)
 
     m = fidelity_metrics(p_before, p_after, choices, gold)
-    m["mode"] = "logprob"
+    mode = getattr(args, "score_mode", "logprob")
+    m["mode"] = mode
     LAST_METRICS = m
     if getattr(args, "verbose", False):
         print(f"[fidelity] P({m['pred_before'][:28]!r}) {m['p_before']:.4f} -> {m['p_after']:.4f} "
               f"| shift {m['prob_shift']:+.4f} | tv {m['tv']:.4f} | flip {m['flip']:.0f} "
               f"| acc {m['accuracy']:.0f}")
-    return m["prob_shift"]
+    # Every mode reads the same two probability vectors; only the field the
+    # optimiser follows differs, so the modes are directly comparable.
+    return m[PROB_SCORE_MODES[mode]]
 
 def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, exp_reply, counter_exp_reply, args):
 
-    if getattr(args, "score_mode", "accuracy") == "logprob":
+    # "accuracy" keeps the published generate-and-parse path untouched. Every other
+    # mode reads the target's distribution over the answer choices instead.
+    if getattr(args, "score_mode", "accuracy") in PROB_SCORE_MODES:
         return _diff_logprob_ecqa(model, tokenizer, task_instruction, question, answer,
                                   counter_exp_reply, args)
 
@@ -610,14 +637,17 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
     ture_score = _ecqa_score(model, tokenizer, ture_final_prompt, answer, args)
     count_score = _ecqa_score(model, tokenizer, count_final_prompt, answer, args)
     
-    print("\n--- DEBUG INFO ---")
-    print("TRUE PROMPT:")
-    print(ture_final_prompt[0] if len(ture_final_prompt) > 0 else "EMPTY")
-    print("COUNT PROMPT:")
-    print(count_final_prompt[0] if len(count_final_prompt) > 0 else "EMPTY")
-    print(f"TRUE SCORE: {ture_score}")
-    print(f"COUNT SCORE: {count_score}")
-    print("------------------\n")
+    if getattr(args, "verbose", False):
+        # Unconditionally dumping both full prompts is thousands of lines at
+        # 200 questions x 15 iterations x 2 scorings.
+        print("\n--- DEBUG INFO ---")
+        print("TRUE PROMPT:")
+        print(ture_final_prompt[0] if len(ture_final_prompt) > 0 else "EMPTY")
+        print("COUNT PROMPT:")
+        print(count_final_prompt[0] if len(count_final_prompt) > 0 else "EMPTY")
+        print(f"TRUE SCORE: {ture_score}")
+        print(f"COUNT SCORE: {count_score}")
+        print("------------------\n")
 
     diff_score = abs(ture_score - count_score)
 

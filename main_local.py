@@ -9,7 +9,6 @@ import argparse
 from tqdm import tqdm
 from random import sample
 from datasets import load_dataset, Dataset
-from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
 from model.predictor import contains_answer
@@ -208,8 +207,12 @@ def get_args():
                         help='Use 4-bit quantization (for 8GB GPUs)')
     parser.add_argument('--no_4bit', dest='load_in_4bit', action='store_false',
                         help='Disable 4-bit quantization')
+    parser.add_argument('--openai_key', type=str, default=None,
+                        help='OpenAI API key (or set OPENAI_API_KEY)')
+    parser.add_argument('--openai_model', type=str, default='gpt-3.5-turbo',
+                        help='Model for --xai_model openai')
     parser.add_argument('--score_mode', type=str, default='accuracy',
-                        choices=['accuracy', 'logprob'],
+                        choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'tv'],
                         help="Fidelity signal the optimiser follows. 'accuracy' is the "
                              "published metric |acc(f(X)) - acc(f(X|!E))|, binary on a "
                              "single instance. 'logprob' is the signed shift in the "
@@ -497,8 +500,8 @@ if __name__ == "__main__":
                 xai_prompts_write.append({"Score": diff_score, "XAI prompt": save_explanation})
                 print(f"=== Score: {diff_score} || Explanation: {save_explanation}")
 
-                if args.score_mode == "logprob":
-                    # prob_shift is continuous, so "!= 0" would fire on iteration 0
+                if args.score_mode in ("logprob", "tv"):
+                    # These are continuous, so "!= 0" would fire on iteration 0
                     # and there would be no optimisation left to do. Stop once the
                     # target has been convincingly moved, or once the rewrites stop
                     # improving on the best score so far.

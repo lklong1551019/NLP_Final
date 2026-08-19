@@ -7,3 +7,5 @@ test_deepseek.py
 
 .venv/
 .env.bak
+
+.hf_datasets/

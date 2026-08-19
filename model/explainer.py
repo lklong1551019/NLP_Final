@@ -1,7 +1,10 @@
 import os
 import openai
 import torch
-from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+try:
+    from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+except ImportError:  # legacy --pred_model/--xai_model claude only
+    Anthropic, HUMAN_PROMPT, AI_PROMPT = None, "", ""
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import LlamaForCausalLM, LlamaTokenizer
 
@@ -77,10 +80,36 @@ def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=No
             print(f"[ERROR] Explainer API: {e}")
             response = "API error."
 
+    elif model_name == "openai":
+        # Straight to api.openai.com, no gateway. Reads OPENAI_API_KEY.
+        # Chat Completions rather than the Responses API: the pipeline only needs
+        # plain text back, and chat completions is what llm_api already speaks.
+        from openai import OpenAI as _OpenAI
+        key = (getattr(args, "openai_key", None) or os.environ.get("OPENAI_API_KEY"))
+        if not key:
+            raise RuntimeError("Set OPENAI_API_KEY (or pass --openai_key).")
+        model_id = getattr(args, "openai_model", None) or os.environ.get(
+            "OPENAI_XAI_MODEL", "gpt-3.5-turbo")
+        client = _OpenAI(api_key=key)
+        completion = client.chat.completions.create(
+            model=model_id,
+            temperature=float(args.temp_exp),
+            top_p=getattr(args, "top_p_exp", None) or 1.0,
+            max_tokens=args.max_tokens,
+            messages=[
+                {"role": "system", "content": "You are an expert at explaining language model behavior."},
+                {"role": "user", "content": prompt if isinstance(prompt, str) else prompt[0]},
+            ],
+        )
+        response = completion.choices[0].message.content
+        if not (response or "").strip():
+            # An empty reply becomes a blank "explanation" and is then scored.
+            raise RuntimeError(f"{model_id} returned empty content")
+
     else:
         raise ValueError(
             f"Unknown xai_model '{model_name}'. "
-            "Expected one of: gpt35, claude, phi, deepseek, litellm."
+            "Expected one of: gpt35, openai, claude, phi, deepseek, litellm."
         )
 
     return response
