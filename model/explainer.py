@@ -119,8 +119,8 @@ def generate_global_xai_prompt(xai_prompts_list, scores_list, args):
             # ### Inputs: Prompt: <INS>...</INS> Score: 0.5
             # ### Task Instruction: Tạo một hướng dẫn <INS> khác với...
             # ---------------------------------------------------------
-            meta_instruction = "Nhiệm vụ của bạn là tạo các hướng dẫn chung <INS> cho mô hình ngôn ngữ tạo ra các lời giải thích mô hình cho mỗi câu hỏi. Dưới đây là một số hướng dẫn trước đó với điểm số của chúng trong phần ### Đầu vào. Điểm số được tính bằng tỷ lệ lật ngược câu trả lời và nằm trong khoảng từ 0 đến 1."
-            task_instruction = "Tạo một hướng dẫn <INS> khác với tất cả các hướng dẫn <INS> trong ### Đầu vào ở trên và có điểm cao hơn tất cả các hướng dẫn <INS> từ ### Đầu vào. Các hướng dẫn nên bắt đầu bằng <INS> và kết thúc bằng </INS> và tuân theo định dạng của các ví dụ trong ### Đầu vào. Các hướng dẫn nên ngắn gọn, hiệu quả và có thể áp dụng chung cho tất cả các vấn đề trên. Đảm bảo chỉ tạo các hướng dẫn <INS>."
+            meta_instruction = "Nhiệm vụ của bạn là viết một câu lệnh (prompt) chung <INS> để hướng dẫn mô hình ngôn ngữ giải thích câu trả lời của từng câu hỏi. Bên dưới (phần ### Đầu vào) là một số câu lệnh trước đây kèm theo điểm số của chúng. Điểm số này được tính dựa trên tỷ lệ đảo ngược câu trả lời và nằm trong khoảng từ 0 đến 1."
+            task_instruction = "Hãy tạo một câu lệnh <INS> hoàn toàn mới, khác biệt và có khả năng đạt điểm cao hơn tất cả các câu lệnh <INS> ở phần ### Đầu vào. Câu lệnh của bạn phải bắt đầu bằng <INS> và kết thúc bằng </INS>, đồng thời bám sát định dạng của các ví dụ trên. Đảm bảo câu lệnh phải ngắn gọn, hiệu quả và có thể áp dụng cho mọi trường hợp. Chỉ xuất ra duy nhất câu lệnh <INS> vừa tạo."
         else:
             meta_instruction = f"Your task is to generate the general prompts <INS> for language model generating model explanations of each question. \
                                 Below are some previous prompt with their scores in the ### Inputs. \
@@ -167,9 +167,9 @@ def generate_local_xai_prompt(xai_prompts_list, scores_list, question, output_an
         # Văn bản: <EXP>...</EXP> \n Điểm số: 0.5
         # Vui lòng cung cấp văn bản khách quan mới...
         # ---------------------------------------------------------
-        meta_instruction = "Tôi có một số văn bản cùng với điểm số tương ứng của chúng. Các văn bản này là lời giải thích có thể có cho câu hỏi và câu trả lời đã cho dưới đây. Các văn bản được sắp xếp theo thứ tự ngẫu nhiên dựa trên điểm số của chúng, trong đó điểm cao hơn cho thấy chất lượng tốt hơn. Điểm số được tính bằng mức độ liên quan của các văn bản đối với câu hỏi và câu trả lời đã cho như là lời giải thích. Điểm số dao động từ 0 đến 1 dựa trên văn bản đầu ra của bạn."
-        task_instruction = "Các ví dụ sau đây cho thấy cách áp dụng văn bản của bạn: Bạn thay thế <EXP> bằng văn bản của mình. Chúng tôi nói đầu ra của bạn là tệ nếu đầu ra của bạn đạt điểm thấp hơn văn bản trước đó, và chúng tôi nói đầu ra của bạn là tốt nếu đầu ra của bạn đạt điểm cao hơn văn bản trước đó. Đầu ra phải bắt đầu bằng <EXP>."
-        act_instruction = "Vui lòng cung cấp văn bản khách quan mới để mô tả lý do tại sao các câu trả lời được đưa ra cho các câu hỏi dựa trên suy nghĩ của bạn. Đoán lý do dù đúng hay sai. Đảm bảo không tự trả lời các câu hỏi hoặc cung cấp bất kỳ đề xuất nào để trả lời các câu hỏi tốt hơn. Mọi lời giải thích phải bắt đầu bằng <EXP>. Đảm bảo không lặp lại các câu hỏi và câu trả lời đầu vào. Vui lòng chỉ xuất ra các câu giải thích."
+        meta_instruction = "Tôi có một số đoạn văn bản và điểm số tương ứng của chúng. Đây là những lời giải thích tiềm năng cho câu hỏi và câu trả lời được cung cấp bên dưới. Các đoạn văn này đã được xáo trộn ngẫu nhiên; điểm càng cao thì chất lượng giải thích cho câu trả lời càng tốt (điểm dao động từ 0 đến 1, dựa trên mức độ liên quan). Đầu ra của bạn sẽ được đánh giá dựa trên thang điểm này."
+        task_instruction = "Các ví dụ dưới đây minh họa cách áp dụng câu giải thích của bạn: Bạn sẽ thay thế thẻ <EXP> bằng câu giải thích đó. Kết quả của bạn được coi là kém nếu điểm số thấp hơn văn bản trước đó, và được coi là tốt nếu điểm số cao hơn. Lưu ý: Đầu ra phải luôn bắt đầu bằng <EXP>."
+        act_instruction = "Dựa trên suy luận của bạn, hãy cung cấp một câu giải thích khách quan mới về lý do mô hình chọn các câu trả lời này, bất kể chúng đúng hay sai. Tuyệt đối không tự trả lời câu hỏi hay đưa ra gợi ý nào khác. Mọi lời giải thích phải bắt đầu bằng <EXP>. Không lặp lại câu hỏi hay câu trả lời ban đầu. Chỉ xuất ra câu giải thích."
         few_shot_template = "Văn bản:\n{0}\nĐiểm số:\n{1}\n\n"
     else:
         meta_instruction = f"I have some texts along with their corresponding scores. \
@@ -216,7 +216,7 @@ def generate_counterfact_prompt(explanation, args):
             # Câu đã cho: <EXP>Mô hình suy luận rằng bọc bong bóng...</EXP>
             # Câu trái ngược:
             # ---------------------------------------------------------
-            instruction = "Vui lòng tạo một ví dụ mang ý nghĩa trái ngược với câu đã cho. Đảm bảo bạn chỉ xuất ra câu, không kèm giải thích thêm."
+            instruction = "Hãy tạo một phiên bản mang ý nghĩa hoàn toàn trái ngược với câu được cung cấp. Chỉ xuất ra câu văn kết quả, không giải thích gì thêm."
             final_prompt = f"{instruction}\n\nCâu đã cho: {explanation}\n\nCâu trái ngược:"
         else:
             instruction = "Please generate one example of obtaining the opposite meaning from given sentence. Make sure you output sentences only."

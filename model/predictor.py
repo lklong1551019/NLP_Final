@@ -289,7 +289,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
 
     if args.pred_model in ["phi", "qwen"]:
         if getattr(args, 'data', '') == "xcopa_vi":
-            instruction = "Dưới đây là một hướng dẫn mô tả một nhiệm vụ. Hãy viết một phản hồi hoàn thành yêu cầu của đầu vào."
+            instruction = "Dưới đây là mô tả về một tác vụ. Hãy viết một phản hồi để hoàn thành yêu cầu được giao."
             final_prompt = [ f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Đầu vào: {ques}\n\n### Phản hồi:" for ques in input_zip ]
         else:
             instruction = "Below is an instruction that describes a task. Write a response that appropriately completes the request of input."
@@ -550,7 +550,7 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
     count_exp_pair = zip(counter_exp_reply, question)
 
     if getattr(args, 'data', '') == "xcopa_vi":
-        instruction = "Dưới đây là một hướng dẫn mô tả một nhiệm vụ. Hãy viết một phản hồi hoàn thành yêu cầu của đầu vào."
+        instruction = "Dưới đây là mô tả về một tác vụ. Hãy viết một phản hồi để hoàn thành yêu cầu được giao."
         ture_final_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Đầu vào: {ques}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for _, ques in true_exp_pair ]
         count_final_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Gợi ý: {exp}\n\n### Đầu vào: {ques}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for exp, ques in count_exp_pair ]
     else:

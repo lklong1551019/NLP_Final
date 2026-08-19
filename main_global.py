@@ -279,8 +279,8 @@ if __name__ == "__main__":
     # Add xcopa_vi and copa_en data branches
     elif args.data == "xcopa_vi":
         train_dict = preprocess_xcopa_vi(lang=args.xcopa_lang, split=args.data_split if args.data_split != 'train' else 'test')
-        task_instruction = "Vui lòng chọn câu trả lời đúng cho mỗi câu hỏi. Đảm bảo không lặp lại ngữ cảnh đầu vào."
-        exp_instruction = "Vui lòng cung cấp lời giải thích khách quan về lý do tại sao mô hình tạo ra câu trả lời cho các câu hỏi đã cho dựa trên suy nghĩ của bạn. Đoán lý do tại sao mô hình cung cấp câu trả lời dù đúng hay sai. Đảm bảo không tự trả lời câu hỏi hoặc cung cấp bất kỳ đề xuất nào để trả lời câu hỏi tốt hơn. Mọi lời giải thích phải bắt đầu bằng <EXP>. Đảm bảo không lặp lại câu hỏi và câu trả lời đầu vào. Vui lòng chỉ xuất ra các câu giải thích."
+        task_instruction = "Hãy chọn đáp án đúng cho mỗi câu hỏi. Lưu ý không lặp lại phần ngữ cảnh đầu vào."
+        exp_instruction = "Dựa trên suy luận của bạn, hãy giải thích một cách khách quan lý do mô hình đưa ra câu trả lời cho các câu hỏi này. Hãy đưa ra lý do bất kể câu trả lời đó đúng hay sai. Tuyệt đối không tự trả lời câu hỏi hay đưa ra gợi ý để trả lời tốt hơn. Mỗi câu giải thích phải bắt đầu bằng <EXP>. Không lặp lại câu hỏi hay câu trả lời đầu vào. Lưu ý: Chỉ xuất ra các câu giải thích, không thêm bất kỳ nội dung nào khác."
 
         if args.xai_model not in ["claude", "gpt35", "deepseek", "litellm"]:
             xai_local_model, xai_local_tokenizer = load_model(args.xai_model, max_memory, args.load_in_4bit)
