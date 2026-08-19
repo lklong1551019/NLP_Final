@@ -338,15 +338,8 @@ if __name__ == "__main__":
 
     elif args.data == "xcopa_vi":
         train_dict = preprocess_xcopa_vi(lang=args.xcopa_lang, split=args.data_split if args.data_split != 'train' else 'test')
-        task_instruction = f"Please select a correct choice for the each question. \
-                            Make sure not to repeat the input context."
-        exp_instruction = f"Please provide the objective explanations of why model generates \
-                            the answers of the given questions based on your thoughts. \
-                            Guess the reason why model provides answer no matter it is wrong or correct.\
-                            Make sure not answer the questions or provide any suggestions to better answer the questions by yourself. \
-                            Every explanations should begin with <EXP>. \
-                            Make sure not to repeat the input questions and answers. \
-                            Please only output the explanation sentences."
+        task_instruction = "Hãy chọn đáp án đúng cho mỗi câu hỏi. Lưu ý không lặp lại phần ngữ cảnh đầu vào."
+        exp_instruction = "Dựa trên suy luận của bạn, hãy giải thích một cách khách quan lý do mô hình đưa ra câu trả lời cho các câu hỏi này. Hãy đưa ra lý do bất kể câu trả lời đó đúng hay sai. Tuyệt đối không tự trả lời câu hỏi hay đưa ra gợi ý để trả lời tốt hơn. Mỗi câu giải thích phải bắt đầu bằng <EXP>. Không lặp lại câu hỏi hay câu trả lời đầu vào. Lưu ý: Chỉ xuất ra các câu giải thích, không thêm bất kỳ nội dung nào khác."
 
         # Load predictor
         pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
