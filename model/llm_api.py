@@ -9,6 +9,15 @@ Configuration is read from the environment (see .env):
     LITELLM_BASE_URL / DEEPSEEK_BASE_URL           - gateway base url
     LITELLM_PRED_MODEL                             - model id for the Predictor
     LITELLM_XAI_MODEL / DEEPSEEK_MODEL             - model id for the Explainer
+
+Vertex AI route: a model id prefixed with "vertex/" is sent to Vertex AI's
+OpenAI-compatible endpoint instead of the gateway, authenticated with a
+service-account JSON. Everything after the prefix is the Vertex model id,
+e.g. "vertex/google/gemini-3.5-flash". Extra environment variables:
+    VERTEX_CREDENTIALS - path to the service-account JSON
+                         (default: ./config/gen-lang-client.json)
+    VERTEX_LOCATION    - region, default "global"
+    VERTEX_PROJECT     - GCP project id, default read from the JSON
 """
 
 import os
@@ -61,6 +70,91 @@ def get_client():
     return _CLIENT
 
 
+VERTEX_PREFIX = "vertex/"
+_VERTEX_CLIENT = None
+_VERTEX_CREDS = None
+
+
+def _vertex_client():
+    """OpenAI client for Vertex AI, recreated whenever the OAuth token renews.
+
+    Vertex has no static API keys - the bearer token comes from the service
+    account and expires after ~1h, so long runs must refresh it mid-flight.
+    """
+    global _VERTEX_CLIENT, _VERTEX_CREDS
+    import json
+
+    from google.auth.transport.requests import Request
+    from google.oauth2 import service_account
+
+    cred_path = os.environ.get("VERTEX_CREDENTIALS", "./config/gen-lang-client.json")
+    if _VERTEX_CREDS is None:
+        if not os.path.isfile(cred_path):
+            raise RuntimeError(
+                f"Vertex credentials not found at '{cred_path}'. "
+                "Set VERTEX_CREDENTIALS in .env"
+            )
+        _VERTEX_CREDS = service_account.Credentials.from_service_account_file(
+            cred_path, scopes=["https://www.googleapis.com/auth/cloud-platform"]
+        )
+
+    if not _VERTEX_CREDS.valid or _VERTEX_CREDS.expired:
+        _VERTEX_CREDS.refresh(Request())
+        _VERTEX_CLIENT = None  # force a client with the fresh token
+
+    if _VERTEX_CLIENT is None:
+        project = os.environ.get("VERTEX_PROJECT")
+        if not project:
+            with open(cred_path, "r", encoding="utf-8") as f:
+                project = json.load(f)["project_id"]
+        location = os.environ.get("VERTEX_LOCATION", "global")
+        host = (
+            "aiplatform.googleapis.com"
+            if location == "global"
+            else f"{location}-aiplatform.googleapis.com"
+        )
+        _VERTEX_CLIENT = OpenAI(
+            api_key=_VERTEX_CREDS.token,
+            base_url=(
+                f"https://{host}/v1/projects/{project}"
+                f"/locations/{location}/endpoints/openapi"
+            ),
+        )
+    return _VERTEX_CLIENT
+
+
+def _vertex_extra_body():
+    """Thinking budget for Gemini on Vertex.
+
+    Gemini 2.5+/3.x are thinking models: unconstrained, a one-word answer can
+    burn ~800 reasoning tokens, which multiplies cost and latency and can eat
+    the whole max_tokens budget before any visible text is produced. Default
+    is 0 (thinking off); set VERTEX_THINKING_BUDGET to a token count, or to
+    "off" to send no thinking config at all.
+    """
+    budget = os.environ.get("VERTEX_THINKING_BUDGET", "0")
+    if budget.lower() in ("off", "none", ""):
+        return {}
+    return {
+        "google": {
+            "thinking_config": {
+                "thinking_budget": int(budget),
+                "include_thoughts": False,
+            }
+        }
+    }
+
+
+def resolve_client(model):
+    """Map a model id to (client, actual model id sent on the wire).
+
+    "vertex/<id>" goes to Vertex AI; anything else keeps the gateway path.
+    """
+    if model and model.startswith(VERTEX_PREFIX):
+        return _vertex_client(), model[len(VERTEX_PREFIX):]
+    return get_client(), model
+
+
 def pred_model_id(args=None):
     return (
         getattr(args, "litellm_pred_model", None)
@@ -100,8 +194,11 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
             kwargs = {}
             if top_p is not None:
                 kwargs["top_p"] = float(top_p)
-            completion = get_client().chat.completions.create(
-                model=model,
+            client, wire_model = resolve_client(model)
+            if model and model.startswith(VERTEX_PREFIX):
+                kwargs["extra_body"] = _vertex_extra_body()
+            completion = client.chat.completions.create(
+                model=wire_model,
                 temperature=temperature,
                 max_tokens=max_tokens,
                 messages=messages,
@@ -125,8 +222,9 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
     fallback = _first_env("LITELLM_FALLBACK_MODEL")
     if fallback and fallback != model:
         try:
-            completion = get_client().chat.completions.create(
-                model=fallback,
+            fb_client, fb_model = resolve_client(fallback)
+            completion = fb_client.chat.completions.create(
+                model=fb_model,
                 temperature=temperature,
                 max_tokens=max_tokens,
                 messages=messages,
