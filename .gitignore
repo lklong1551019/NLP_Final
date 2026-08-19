@@ -9,3 +9,4 @@ test_deepseek.py
 .env.bak
 
 .hf_datasets/
+results/

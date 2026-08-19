@@ -652,8 +652,29 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
     diff_score = abs(ture_score - count_score)
 
     global LAST_METRICS
-    LAST_METRICS = {"mode": "accuracy", "accuracy": diff_score,
+    LAST_METRICS = {"mode": "accuracy", "accuracy_parsed": diff_score,
                     "score_true": ture_score, "score_cf": count_score}
+
+    # Also record the probability-based metrics, even though the optimiser is not
+    # following them here. Without this the accuracy run and the logprob run share
+    # no common yardstick and "which mode reached higher fidelity" is unanswerable
+    # -- each would only be measured by its own objective. Two extra forward passes
+    # on a local target, ~90 ms.
+    if getattr(args, "log_all_metrics", True):
+        try:
+            from model.fidelity import choice_probs, fidelity_metrics
+            ques = question[0] if isinstance(question, (list, tuple)) else question
+            gold = answer[0] if isinstance(answer, (list, tuple)) else answer
+            hint = (counter_exp_reply[0] if isinstance(counter_exp_reply, (list, tuple))
+                    else counter_exp_reply)
+            choices = parse_choices(ques)
+            if len(choices) >= 2:
+                pb = choice_probs(model, tokenizer, _answer_cue_prompt(task_instruction, ques), choices, args)
+                pa = choice_probs(model, tokenizer, _answer_cue_prompt(task_instruction, ques, hint), choices, args)
+                LAST_METRICS.update(fidelity_metrics(pb, pa, choices, gold))
+                LAST_METRICS["mode"] = "accuracy"
+        except Exception as exc:  # noqa: BLE001 - logging must never break the run
+            LAST_METRICS["log_all_metrics_error"] = f"{type(exc).__name__}: {exc}"
 
     return diff_score
 

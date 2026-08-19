@@ -182,6 +182,11 @@ def get_args():
                         help='OpenAI API key (or set OPENAI_API_KEY)')
     parser.add_argument('--openai_model', type=str, default='gpt-3.5-turbo',
                         help='Model for --xai_model openai')
+    parser.add_argument('--no_log_all_metrics', dest='log_all_metrics', action='store_false',
+                        default=True,
+                        help='Do not compute the probability metrics alongside the optimised '
+                             'one. They are what makes runs in different --score_mode values '
+                             'comparable, so only turn this off if the target has no logits.')
     parser.add_argument('--score_mode', type=str, default='accuracy',
                         choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'tv'],
                         help="Fidelity signal averaged over the sampled questions. "
