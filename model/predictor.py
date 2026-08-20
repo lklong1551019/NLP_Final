@@ -288,7 +288,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
     ans_llm = []
 
     if args.pred_model in ["phi", "qwen"]:
-        if getattr(args, 'data', '') == "xcopa_vi":
+        if llm_api.vi_prompts(args):
             instruction = "Dưới đây là mô tả về một tác vụ. Hãy viết một phản hồi để hoàn thành yêu cầu được giao."
             final_prompt = [ f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Đầu vào: {ques}\n\n### Phản hồi:" for ques in input_zip ]
         else:
@@ -300,7 +300,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
-            split_str = "### Phản hồi:" if getattr(args, 'data', '') == "xcopa_vi" else "### Response:"
+            split_str = "### Phản hồi:" if llm_api.vi_prompts(args) else "### Response:"
             ans = ans_tkn[i].split(split_str)[-1]
             try:
                 end_index = ans.find("@")
@@ -490,7 +490,7 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
-            split_str = "### Phản hồi:" if getattr(args, 'data', '') == "xcopa_vi" else "### Response:"
+            split_str = "### Phản hồi:" if llm_api.vi_prompts(args) else "### Response:"
             ans = ans_tkn[i].split(split_str)[-1]
             try:
                 end_index = ans.find("@")
@@ -549,7 +549,7 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
     true_exp_pair = zip(exp_reply, question)
     count_exp_pair = zip(counter_exp_reply, question)
 
-    if getattr(args, 'data', '') == "xcopa_vi":
+    if llm_api.vi_prompts(args):
         instruction = "Dưới đây là mô tả về một tác vụ. Hãy viết một phản hồi để hoàn thành yêu cầu được giao."
         ture_final_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Đầu vào: {ques}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for _, ques in true_exp_pair ]
         count_final_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Gợi ý: {exp}\n\n### Đầu vào: {ques}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for exp, ques in count_exp_pair ]

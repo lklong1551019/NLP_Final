@@ -155,6 +155,19 @@ def resolve_client(model):
     return get_client(), model
 
 
+def vi_prompts(args=None):
+    """True when the Vietnamese prompt templates should be used.
+
+    Vietnamese is the default for xcopa_vi (the team's translated set, PR #1).
+    PROMPT_LANG=en forces the paper's original English prompts on any dataset,
+    so prompt language is a controlled experimental variable rather than a
+    side effect of the dataset choice.
+    """
+    if os.environ.get("PROMPT_LANG", "vi") == "en":
+        return False
+    return args is not None and getattr(args, "data", "") == "xcopa_vi"
+
+
 def pred_model_id(args=None):
     return (
         getattr(args, "litellm_pred_model", None)
