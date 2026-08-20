@@ -34,15 +34,20 @@ Tất cả trên XCOPA-vi test, cùng 100 câu (0–99), cùng `xai_iter=8`, tr�
 | Run | Target | Prompt | Explainer | Acc | Không parse (X) | **Faithfulness** | Flip ≥1 | Vòng TB |
 |---|---|---|---|---|---|---|---|---|
 | Baseline team (18/8, gateway) | v4-flash | EN | DeepSeek-v4-pro | 90% | 9% | 0.920 | 92% | 3.48 |
-| **Cải tiến (run chính)** | v4-flash | EN | **Gemini-3.5-flash** | 93% | 3% | **0.960** | **96%** | 4.40 |
+| Sweep — run chính | v4-flash | EN | **Gemini-3.5-flash** | 93% | 3% | 0.960 | 96% | 4.40 |
+| Sweep | v4-flash | EN | **GPT-5.6-luna** | 93% | 2% | **0.970** | **97%** | 4.00 |
+| Sweep | v4-flash | EN | **Qwen3.7-max** | 96% | 1% | 0.950 | 95% | 4.65 |
 | Tham khảo — trục prompt-VI¹ | v4-flash | VI | Gemini-3.5-flash | 97% | 1% | 0.910 | 91% | 4.94 |
 
 ¹ Chạy bằng bản dịch prompt tiếng Việt (PR #1) — bàn giao làm data point cho trục thực nghiệm prompt-VI.
 
-**Kết luận chính**: cùng điều kiện prompt EN, Gemini explainer đạt fidelity cao hơn
-baseline (+0.04, flip 96% vs 92%) và đo sạch hơn rõ rệt (X: 3% vs 9%; call rỗng:
-0/1.865 vs ~19,6% ở đợt đo đầu của team). Tuy nhiên cả hai đều ở vùng bão hòa của
-metric (>0.9) — chênh lệch nhỏ, cần đọc kèm §4.
+**Kết luận chính**: cả bốn explainer 2026 (bốn lab khác nhau) đều nằm trong dải
+0.92–0.97 — chênh lệch giữa các explainer hiện đại (±0.02) nằm trong biên độ nhiễu
+nhị thức ở N=100 (se ≈ 2%). Điều này **xác nhận metric đã bão hòa**: đổi explainer
+không dịch chuyển được fidelity một cách có ý nghĩa. Khác biệt thật nằm ở chất
+lượng đo: unparsed giảm từ 9% (baseline) xuống 1–3%, call rỗng từ ~19,6% (đợt đo
+đầu của team) xuống 0/hơn 5.500 call ở ba arm sweep. GPT-5.6-luna đứng đầu danh
+nghĩa (0.970) nhưng không nên diễn giải là "explainer tốt nhất" — xem §4.
 
 ## 4. Bộ Phi-2: lý do chọn target + bằng chứng giới hạn metric
 
@@ -96,7 +101,21 @@ bản. Fix (commit `d35e9cf`): công tắc `PROMPT_LANG=en|vi`, mặc định `v
 hành vi main cho trục prompt-VI), `en` ép đúng nguyên văn paper. Đã xác minh cả hai
 chiều bằng test.
 
-### 5.3 Lịch sử run và loại trừ
+### 5.3 Rate limit tài khoản mới + fallback = nhiễm explainer trong im lặng
+
+OpenRouter giới hạn tài khoản mới **10 request/phút cho các model premium**
+(gpt-5.6-luna, qwen3.7-max; deepseek-flash không bị). Chạy 6 shard vượt trần →
+429 dồn dập → retry backoff 1–4s không qua nổi cửa sổ phút → cơ chế fallback của
+pipeline **lặng lẽ để deepseek-v3.2 viết giải thích thay model chính**: 23% call
+của arm luna đầu tiên bị nhiễm (phát hiện qua counter `fallback used`, arm đã
+cách ly: `openai-gpt-5-6-luna_CONTAMINATED*`). Fix (commit `54db4fa`): gặp 429
+thì chờ `RATE_LIMIT_WAIT` (mặc định 20s) rồi thử lại và **cấm fallback với lỗi
+rate-limit** — fallback chỉ còn cho content-filter trả rỗng; mọi lần chờ/fallback
+đều được in ra log. Kiểm chứng arm chạy lại: 175 + 184 dòng 429 tự nêu tên đúng
+model, 0 fallback, 0 record rỗng. Bài học cho mọi người dùng pipeline: chạy model
+premium trên tài khoản OpenRouter mới thì dùng `NSHARDS=2` trở xuống.
+
+### 5.4 Lịch sử run và loại trừ
 
 - Run Gemini×prompt-VI đầu tiên (0.910) chạy trước khi phát hiện baseline 18/8 dùng
   prompt EN → giữ lại, dán nhãn, bàn giao trục prompt-VI.
