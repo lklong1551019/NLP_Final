@@ -132,6 +132,14 @@ PROMPT_LANG=en LITELLM_XAI_MODEL="vertex/google/gemini-3.5-flash" PYTHONUTF8=1 P
   bash scripts/run_sharded.sh xcopa_vi litellm litellm 0 100 8 6 \
   ./results/experiments/xcopa_vi_xai_sweep_en/vertex-google-gemini-3-5-flash
 
+# Hai arm sweep còn lại (model premium: NSHARDS toi da 2 vi tran 10 req/phut, xem §5.3):
+PROMPT_LANG=en LITELLM_XAI_MODEL="openai/gpt-5.6-luna" PYTHONUTF8=1 PYTHON=python \
+  bash scripts/run_sharded.sh xcopa_vi litellm litellm 0 100 8 2 \
+  ./results/experiments/xcopa_vi_xai_sweep_en/openai-gpt-5-6-luna
+PROMPT_LANG=en LITELLM_XAI_MODEL="qwen/qwen3.7-max" PYTHONUTF8=1 PYTHON=python \
+  bash scripts/run_sharded.sh xcopa_vi litellm litellm 0 100 8 2 \
+  ./results/experiments/xcopa_vi_xai_sweep_en/qwen-qwen3-7-max
+
 # Phi-2 trên XCOPA-vi (prompt EN):
 PROMPT_LANG=en LITELLM_XAI_MODEL="vertex/google/gemini-3.5-flash" PYTHONUTF8=1 PYTHON=python \
   bash scripts/run_sharded.sh xcopa_vi phi litellm 0 100 8 1 \
