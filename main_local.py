@@ -115,6 +115,18 @@ def preprocess_copa():
         train_dict['answer'] = [opt[answer[idx]] for opt in option]
     return train_dict
 
+def split_reply(text):
+    """Split an explainer reply into segments, dropping empty ones.
+
+    Some explainers (e.g. GPT-5.6) pad replies with blank lines; a bare
+    split on blank lines then yields empty segments which get scored as
+    explanations - an empty "explanation" whose counterfactual flips the
+    predictor manufactures a fake faithfulness signal.
+    """
+    parts = [s.strip() for s in text.split("\n\n") if s.strip()]
+    return parts if parts else [text.strip()]
+
+
 def preprocess_xcopa_vi(lang="vi", split="test"):
     """Load XCOPA dataset for cross-lingual experiments.
     Available langs: et, ht, id, it, qu, sw, ta, th, tr, vi, zh
@@ -448,8 +460,7 @@ if __name__ == "__main__":
         # Generate init true explanation
         output_exp_prompt = generate_exp_prompt(exp_instruction, input_zip, output_ans, args)
         exp_reply = reponse_xai_model(output_exp_prompt, args)
-        exp_reply = exp_reply.split(":\n\n")[-1]
-        exp_reply = exp_reply.split("\n\n")
+        exp_reply = split_reply(exp_reply.split(":\n\n")[-1])
         xai_list.extend(exp_reply)
         # print(f"============ Init Exp: {exp_reply[0]}")
 
@@ -460,8 +471,7 @@ if __name__ == "__main__":
                 # Generate counterfactual explanation
                 counter_xai_prompt = generate_counterfact_prompt(exp_reply, args)
                 counter_exp_reply = reponse_xai_model(counter_xai_prompt, args)
-                counter_exp_reply = counter_exp_reply.split(":\n\n")[-1]
-                counter_exp_reply = counter_exp_reply.split("\n\n")
+                counter_exp_reply = split_reply(counter_exp_reply.split(":\n\n")[-1])
                 cf_write.append(counter_exp_reply)
                 # print(f"============ Counterfact Exp: {counter_exp_reply[0]}")
 
@@ -484,9 +494,8 @@ if __name__ == "__main__":
                 # LLM optimizer
                 xai_prompt = generate_local_xai_prompt(xai_list, scores_list, question, output_ans)
                 exp_reply = reponse_xai_model(xai_prompt, args)
+                exp_reply = split_reply(exp_reply.split(":\n\n")[-1])
                 
-                exp_reply = exp_reply.split(":\n\n")[-1]
-                exp_reply = exp_reply.split("\n\n")
                 
                 xai_list.extend(exp_reply)
                 pbar.update(1)
