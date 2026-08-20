@@ -477,7 +477,7 @@ if __name__ == "__main__":
                     break
 
                 # LLM optimizer
-                xai_prompt = generate_local_xai_prompt(xai_list, scores_list, question, output_ans)
+                xai_prompt = generate_local_xai_prompt(xai_list, scores_list, question, output_ans, args)
                 exp_reply = reponse_xai_model(xai_prompt, args)
                 
                 exp_reply = exp_reply.split(":\n\n")[-1]
