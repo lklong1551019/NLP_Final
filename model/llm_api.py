@@ -244,7 +244,9 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
             # out the window instead, and never fall back on a rate limit.
             if "429" in str(exc) or type(exc).__name__ == "RateLimitError":
                 STATS["rate_limited"] = STATS.get("rate_limited", 0) + 1
-                time.sleep(float(os.environ.get("RATE_LIMIT_WAIT", "20")))
+                wait = float(os.environ.get("RATE_LIMIT_WAIT", "20"))
+                print(f"[llm_api] 429 rate-limited on {model}; waiting {wait:.0f}s")
+                time.sleep(wait)
                 continue
             if attempt < retries - 1:
                 time.sleep(2 ** attempt)
@@ -269,6 +271,7 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
             content = completion.choices[0].message.content
             if content and content.strip():
                 STATS["fallback_used"] = STATS.get("fallback_used", 0) + 1
+                print(f"[llm_api] FALLBACK: {model} -> {fallback} (empty completions)")
                 return content
         except Exception:  # noqa: BLE001 - fall through to the error below
             pass
