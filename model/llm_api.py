@@ -237,13 +237,26 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
             return content
         except Exception as exc:  # noqa: BLE001 - retried and re-raised below
             last_error = exc
+            # Rate limits (429) are per-minute windows: exponential backoff of
+            # 1-4s retries inside the same window and then silently falls back
+            # to a DIFFERENT model - which corrupts any experiment keyed on the
+            # model id (measured: 23% of one run served by the fallback). Wait
+            # out the window instead, and never fall back on a rate limit.
+            if "429" in str(exc) or type(exc).__name__ == "RateLimitError":
+                STATS["rate_limited"] = STATS.get("rate_limited", 0) + 1
+                time.sleep(float(os.environ.get("RATE_LIMIT_WAIT", "20")))
+                continue
             if attempt < retries - 1:
                 time.sleep(2 ** attempt)
 
     # Some providers return an empty body rather than an error for prompts their
     # content filter dislikes. Retrying the same model does not help, so fall
     # back to a different one once before giving up.
-    fallback = _first_env("LITELLM_FALLBACK_MODEL")
+    # The fallback exists for provider content filters that return empty
+    # bodies (B4). A rate-limited primary is NOT a content problem - swapping
+    # models there silently changes the experiment, so let it fail loudly.
+    rate_limited = "429" in str(last_error) or type(last_error).__name__ == "RateLimitError"
+    fallback = None if rate_limited else _first_env("LITELLM_FALLBACK_MODEL")
     if fallback and fallback != model:
         try:
             fb_client, fb_model = resolve_client(fallback)
