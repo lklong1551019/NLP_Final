@@ -197,6 +197,17 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
             client, wire_model = resolve_client(model)
             if model and model.startswith(VERTEX_PREFIX):
                 kwargs["extra_body"] = _vertex_extra_body()
+            else:
+                # Hybrid-reasoning models (deepseek v4, ...) think by default on
+                # OpenRouter: measured 179 reasoning tokens inside the
+                # predictor's 200-token cap - one long thought away from an
+                # empty completion, and billed as output. Off unless
+                # LITELLM_REASONING=native (send nothing) or an effort level.
+                reasoning = os.environ.get("LITELLM_REASONING", "off")
+                if reasoning == "off":
+                    kwargs["extra_body"] = {"reasoning": {"enabled": False}}
+                elif reasoning != "native":
+                    kwargs["extra_body"] = {"reasoning": {"effort": reasoning}}
             completion = client.chat.completions.create(
                 model=wire_model,
                 temperature=temperature,
