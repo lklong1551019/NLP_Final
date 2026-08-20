@@ -554,6 +554,9 @@ LAST_METRICS = {}
 #
 #   prob_shift    signed shift in P(the target's own first pick). Continuous, and
 #                 the only mode that tells the optimiser it went backwards.
+#   margin        signed distance past the decision boundary, 0.5 - P(first pick).
+#                 prob_shift rewards movement wherever it happens; margin only pays
+#                 for approaching the flip, which is the event the loop stops on.
 #   tv            total variation between the two distributions. Non-negative, so
 #                 it is the divergence Theorem 1 of the paper actually defines.
 #   flip          did the argmax change. Label-free but binary.
@@ -562,6 +565,7 @@ LAST_METRICS = {}
 #                 continuous signal helped" from "dropping the text parser helped".
 PROB_SCORE_MODES = {
     "logprob": "prob_shift",
+    "margin": "margin",
     "tv": "tv",
     "flip": "flip",
     "prob_accuracy": "accuracy",

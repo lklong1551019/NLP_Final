@@ -21,6 +21,10 @@ TOP_P="${TOP_P:-0.9}"
 MAX_TOKENS="${MAX_TOKENS:-300}"
 STOP_THRESHOLD="${STOP_THRESHOLD:-0.5}"
 STOP_PATIENCE="${STOP_PATIENCE:-4}"
+# Set NO_EARLY_STOP=1 to give every mode the same budget. Required before
+# comparing iterations-to-first-flip across modes.
+EARLY_STOP_ARG=""
+[ "${NO_EARLY_STOP:-0}" = "1" ] && EARLY_STOP_ARG="--no_early_stop"
 
 # accuracy      = published metric, generate-and-parse. The baseline.
 # prob_accuracy = same |Δacc| formula but from the choice argmax, no text parsing.
@@ -53,7 +57,7 @@ for MODE in $MODES; do
         --score_mode "$MODE" \
         --ques_idx_start "$START_IDX" --ques_idx_end "$END_IDX" \
         --xai_iter "$XAI_ITER" \
-        --stop_threshold "$STOP_THRESHOLD" --stop_patience "$STOP_PATIENCE" \
+        --stop_threshold "$STOP_THRESHOLD" --stop_patience "$STOP_PATIENCE" $EARLY_STOP_ARG \
         --temp_exp "$TEMP_EXP" --top_p_exp "$TOP_P" --max_tokens "$MAX_TOKENS" \
         --save_file_path "$OUT" --metrics_log "$OUT/metrics.jsonl"
 done

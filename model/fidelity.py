@@ -92,8 +92,20 @@ def fidelity_metrics(p_before, p_after, choices, gold):
 
     acc_before = float(normalize_answer(choices[i0]) == gold_norm)
     acc_after = float(normalize_answer(choices[i1]) == gold_norm)
+    # Distance past the decision boundary, after the hint. Positive means the target
+    # no longer picks a0 -- the flip has happened -- and the size says by how much.
+    #
+    # Note this is NOT the difference of the two margins: (p_before - 0.5) minus
+    # (p_after - 0.5) cancels the 0.5 and collapses back to prob_shift exactly. The
+    # point of a margin signal is to stop rewarding movement that does not approach
+    # the boundary, so it has to be anchored at the boundary rather than at the
+    # starting point. prob_shift scores 0.40 for 0.95 -> 0.55 (a lot of movement, no
+    # flip) and 0.02 for 0.51 -> 0.49 (a flip); margin ranks those the other way round.
+    margin = 0.5 - p_after[i0]
+
     return {
-        "prob_shift": p_before[i0] - p_after[i0],                     # signed, optimise on this
+        "prob_shift": p_before[i0] - p_after[i0],                     # signed movement
+        "margin": margin,                                             # signed distance past the boundary
         "tv": 0.5 * sum(abs(a - b) for a, b in zip(p_before, p_after)),  # divergence, paper-aligned
         "flip": float(i0 != i1),
         "accuracy": abs(acc_before - acc_after),                      # baseline, for comparison

@@ -216,8 +216,12 @@ def get_args():
                         help='Do not compute the probability metrics alongside the optimised '
                              'one. They are what makes runs in different --score_mode values '
                              'comparable, so only turn this off if the target has no logits.')
+    parser.add_argument('--no_early_stop', action='store_true', default=False,
+                        help='Run the full --xai_iter budget in every mode. Needed to '
+                             'compare iterations-to-first-flip, since the published rule '
+                             'and the continuous rule stop on different events.')
     parser.add_argument('--score_mode', type=str, default='accuracy',
-                        choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'tv'],
+                        choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'margin', 'tv'],
                         help="Fidelity signal the optimiser follows. 'accuracy' is the "
                              "published metric |acc(f(X)) - acc(f(X|!E))|, binary on a "
                              "single instance. 'logprob' is the signed shift in the "
@@ -505,7 +509,12 @@ if __name__ == "__main__":
                 xai_prompts_write.append({"Score": diff_score, "XAI prompt": save_explanation})
                 print(f"=== Score: {diff_score} || Explanation: {save_explanation}")
 
-                if args.score_mode in ("logprob", "tv"):
+                if getattr(args, "no_early_stop", False):
+                    # Fixed budget for every mode. Iterations-to-first-flip is only a
+                    # fair comparison if no mode is allowed to quit early on its own
+                    # terms; the flip event itself is mode independent.
+                    pass
+                elif args.score_mode in ("logprob", "tv", "margin"):
                     # These are continuous, so "!= 0" would fire on iteration 0
                     # and there would be no optimisation left to do. Stop once the
                     # target has been convincingly moved, or once the rewrites stop

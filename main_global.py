@@ -188,7 +188,7 @@ def get_args():
                              'one. They are what makes runs in different --score_mode values '
                              'comparable, so only turn this off if the target has no logits.')
     parser.add_argument('--score_mode', type=str, default='accuracy',
-                        choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'tv'],
+                        choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'margin', 'tv'],
                         help="Fidelity signal averaged over the sampled questions. "
                              "'accuracy' is the published metric; 'logprob' is the signed "
                              "shift in the target's probability over the answer choices.")
