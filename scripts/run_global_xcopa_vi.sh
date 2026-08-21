@@ -16,7 +16,7 @@ ROUND_XAI_ITER="${ROUND_XAI_ITER:-10}"
 QUES_SAMPLE="${QUES_SAMPLE:-15}"
 SAVE_PATH="${SAVE_PATH:-./results/global}"
 XCOPA_LANG="${XCOPA_LANG:-vi}"
-DATA_SPLIT="${DATA_SPLIT:-test}"
+DATA_SPLIT="${DATA_SPLIT:-validation}"
 
 mkdir -p "$SAVE_PATH"
 
