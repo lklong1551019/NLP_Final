@@ -119,6 +119,12 @@ def _gen_kwargs(temperature):
     is enabled when a non-zero temperature is asked for, and suppressed
     otherwise so scoring stays deterministic.
     """
+    if os.environ.get("FAITHLM_PRED_GREEDY"):
+        # Reproduce what the released code actually did: it never set
+        # do_sample, so transformers ignored `temperature` and decoded greedily.
+        # The paper's Table 2 nonetheless specifies 0.7/0.5/0.7, so the two are
+        # not the same experiment. This switch makes the difference measurable.
+        return {"do_sample": False}
     if temperature and temperature > 0.0:
         return {"do_sample": True, "temperature": float(temperature)}
     return {"do_sample": False}
