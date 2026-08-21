@@ -157,6 +157,20 @@ def build(results_dir, output_path):
     out.append(f"| Explainer | `{os.environ.get('LITELLM_XAI_MODEL', 'n/a')}` | `--temp_exp` | 1000 |")
     out.append(f"| Fallback (empty completions) | `{os.environ.get('LITELLM_FALLBACK_MODEL', 'n/a')}` | — | — |")
     out.append("")
+    # Sample size and index range are derived from the files actually present,
+    # so the deviations table cannot drift out of sync with the data (N=100 was
+    # hardcoded here originally and silently misreported wider runs).
+    _idxs = []
+    for _v in variants.values():
+        for _r in _v["local"]:
+            _m = re.search(r"sample-(\d+)\.json$", _r["file"])
+            if _m:
+                _idxs.append(int(_m.group(1)))
+    if _idxs:
+        _n_eval = f"{len(set(_idxs))} (indices {min(_idxs)}–{max(_idxs)}, **not** a random sample)"
+    else:
+        _n_eval = "n/a"
+
     out.append("### Deviations from the paper's Table 2")
     out.append("")
     out.append("These are material and must be quoted alongside any number in this report.")
@@ -170,7 +184,7 @@ def build(results_dir, output_path):
     out.append("| Trigger-prompt steps (Alg. 2) | 100 | 8 |")
     out.append("| Sampled instances per step | 30 (Table 2) / 15 (§4.3) | 12 |")
     out.append("| Repetitions | 3 runs averaged, grid search | 1 |")
-    out.append("| Instances evaluated | 500 | 100 (indices 0–99, **not** a random sample) |")
+    out.append(f"| Instances evaluated | 500 | {_n_eval} |")
     out.append("| Target model | Vicuna-7B, Phi-2 | API model (see above) |")
     out.append("| Explainer | GPT-3.5-Turbo, Claude-2 | API model (see above) |")
     out.append("| Baselines | SelfExp, Self-consistency | **not implemented** |")

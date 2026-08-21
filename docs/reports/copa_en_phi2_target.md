@@ -9,10 +9,10 @@ local model weights were used. See `docs/changelog_2026-08-17.md` §E.
 
 | Role | Model | Temperature | max_tokens |
 |---|---|---|---|
-| Predictor — initial answer | `n/a` | 0.0 | 200 |
-| Predictor — scoring | `n/a` | 0.01 | 200 |
-| Explainer | `n/a` | `--temp_exp` | 1000 |
-| Fallback (empty completions) | `n/a` | — | — |
+| Predictor — initial answer | `deepseek/deepseek-v4-flash` | 0.0 | 200 |
+| Predictor — scoring | `deepseek/deepseek-v4-flash` | 0.01 | 200 |
+| Explainer | `vertex/google/gemini-3.5-flash` | `--temp_exp` | 1000 |
+| Fallback (empty completions) | `deepseek/deepseek-v3.2` | — | — |
 
 ### Deviations from the paper's Table 2
 
@@ -27,7 +27,7 @@ These are material and must be quoted alongside any number in this report.
 | Trigger-prompt steps (Alg. 2) | 100 | 8 |
 | Sampled instances per step | 30 (Table 2) / 15 (§4.3) | 12 |
 | Repetitions | 3 runs averaged, grid search | 1 |
-| Instances evaluated | 500 | 100 (indices 0–99, **not** a random sample) |
+| Instances evaluated | 500 | 200 (indices 0–199, **not** a random sample) |
 | Target model | Vicuna-7B, Phi-2 | API model (see above) |
 | Explainer | GPT-3.5-Turbo, Claude-2 | API model (see above) |
 | Baselines | SelfExp, Self-consistency | **not implemented** |
@@ -36,7 +36,7 @@ These are material and must be quoted alongside any number in this report.
 ### API call statistics
 
 - Processes reporting: 1
-- Total LLM calls: **380**
+- Total LLM calls: **675**
 - Calls that failed outright: 0
 - Calls the primary model left empty and that were retried away: 0
 - Calls served by the **fallback** model: **0** (0.0%)
@@ -45,7 +45,7 @@ These are material and must be quoted alongside any number in this report.
 
 | Variant | N | Predictor accuracy | Unparsed (`X`) | Mean faithfulness (max/question) | Questions with any flip | Mean iterations |
 |---|---|---|---|---|---|---|
-| `(root)` | 100 | 74.0% | 16.0% | 0.880 | 88.0% | 3.92 |
+| `(root)` | 200 | 72.0% | 19.0% | 0.860 | 86.0% | 3.63 |
 
 **Faithfulness** is FaithLM's `diff_score` = |accuracy with the explanation − accuracy with the counterfactual explanation|, per question, over a single instance. It is therefore 0 or 1 per iteration; the table reports the maximum reached across that question's optimisation iterations.
 
@@ -53,25 +53,25 @@ These are material and must be quoted alongside any number in this report.
 
 ### `(root)`
 
-- Questions evaluated: **100**
-- Predictor accuracy (no explanation): **74.0%**
-- Answers the parser could not resolve (`X`): **16**
-- Questions where the counterfactual flipped the prediction at least once: **88/100**
+- Questions evaluated: **200**
+- Predictor accuracy (no explanation): **72.0%**
+- Answers the parser could not resolve (`X`): **38**
+- Questions where the counterfactual flipped the prediction at least once: **172/200**
 
 Iterations before early-stop:
 
 | Iterations | Questions |
 |---|---|
-| 1 | 44 |
-| 6 | 50 |
-| 8 | 6 |
+| 1 | 100 |
+| 6 | 87 |
+| 8 | 13 |
 
 ## 3. Error analysis
 
-### `(root)` — 26 incorrect predictions
+### `(root)` — 56 incorrect predictions
 
-- Genuinely picked the wrong option: **10**
-- Response the parser could not resolve to any option (`X`): **16**
+- Genuinely picked the wrong option: **18**
+- Response the parser could not resolve to any option (`X`): **38**
 
 > Most 'errors' are parsing failures, not reasoning failures. What this
 > pipeline calls *accuracy* is closer to a **parse-success rate**, and it
@@ -81,19 +81,19 @@ Iterations before early-stop:
 | Gold answer | Model answer |
 |---|---|
 | It was fragile. | X |
-| She recited it to herself. | X |
-| I ran out of breath. | I lost my voice. |
-| She climbed up a rope. | X |
-| The balloon popped. | X |
-| Juice spilled out. | X |
-| Dust blew out of the hole. | X |
-| People gave him change. | X |
-| The leaves accumulated on the ground. | The leaves turned colors. |
-| He sealed the envelope shut. | X |
-| She stepped out of the line. | More people entered the line. |
-| They moved to different cities. | X |
-| She won a contest. | X |
-| She forgot to set her alarm clock. | X |
-| The referee made a bad call. | The game went into overtime. |
-| … | … (11 more) |
+| A drop of blood formed on my finger. | X |
+| It was dead. | X |
+| His parents grounded him. | X |
+| He stood over the calm lake. | X |
+| I called her back. | X |
+| The weather was chilly. | My chest felt tight. |
+| She wore high heels. | X |
+| I wore sandals. | I wore boots. |
+| The couple eloped. | X |
+| The sales associate saw the girl put merchandise in her purse. | X |
+| I dashed to get inside. | The storm worsened. |
+| The elevator was out of order. | X |
+| The lid was off the garbage can. | X |
+| He was talking to himself. | He was studying for an exam. |
+| … | … (41 more) |
 
