@@ -112,74 +112,138 @@ còn 9 điểm. Hai hệ quả:
    vẫn chấm cao. Cùng với việc mọi cấu hình khả dụng đều >0.9 (bão hòa), đây là chất
    liệu chính cho mục Discussion/Limitations về tính hợp lệ của flip-rate.
 
-## 5. Cú lật có tái lập không? (flip reproducibility, arm Gemini)
+## 5. Cú lật có tái lập không? (flip reproducibility, 2 arm)
 
-Position bias (§4) cho thấy metric chấm cao một target **không** suy luận. Câu hỏi kế
-tiếp nhắm vào chính biến cố sinh ra điểm: pipeline chấm 1.0 khi câu-đảo-nghĩa — sinh ở
-`temperature=0.9` — làm target đổi đáp án, rồi **dừng ngay lần lật đầu**. Vậy cú lật là
-tính chất của *lời giải thích*, hay chỉ của *lần gieo xúc xắc* đã sinh ra câu đảo nghĩa đó?
+Position bias (§4) cho thấy metric chấm cao một target **không** suy luận — lỗi về
+*tính hợp lệ*. Mục này nhắm vào một lỗi khác và cơ bản hơn: *độ tin cậy*. Pipeline chấm
+1.0 khi câu-đảo-nghĩa — sinh ở `temperature=0.9` — làm target đổi đáp án, rồi **dừng
+ngay lần lật đầu**. Vậy cú lật là tính chất của *lời giải thích*, hay chỉ của *lần gieo
+xúc xắc* đã sinh ra câu đảo nghĩa đó? Điểm số lẽ ra phải trả lời câu hỏi về lời giải
+thích — thứ cố định — nên đo lại phải ra cùng kết quả.
 
 **Thiết kế**: giữ nguyên lời giải thích đã lật, gieo lại câu đảo nghĩa **đúng một lần**
-(cùng model/nhiệt độ/prompt), hỏi lại target, chấm bằng đúng công thức pipeline
+(cùng explainer/nhiệt độ/prompt), hỏi lại target, chấm bằng đúng công thức pipeline
 (`correctness(đáp án mới) != correctness(LLM-A không-hint)`). Không chạy lại pipeline —
-chỉ tái dùng 183 câu đã lật của arm Gemini (186 file có Score 1.0, trừ 3 file `LLM-A:X`).
+chỉ tái dùng các câu đã lật của hai arm. Đo **hai** arm để phân biệt "tính chất của
+metric" với "tính chất của một explainer cụ thể".
 
-| Nhóm | N | Tái lập | Tỷ lệ | 95% CI (Wilson) |
-|---|---|---|---|---|
-| **Toàn bộ** | 178¹ | 108 | **0.607** | **[0.533 – 0.676]** |
-| Lật ở vòng 1 | 66 | 47 | 0.712 | [0.594 – 0.807] |
-| Lật ở vòng ≥2 | 112¹ | 61 | 0.545 | [0.452 – 0.634] |
+| Arm | Flip gốc (§3) | N câu lật | Tái lập | **Tỷ lệ** | 95% CI (Wilson) |
+|---|---|---|---|---|---|
+| Gemini-3.5-flash | 93.0% | 178¹ | 108 | **0.607** | [0.533 – 0.676] |
+| GPT-5.6-luna | 95.5% | 187¹ | 128 | **0.684** | [0.615 – 0.747] |
+| **Gộp hai arm** | — | **365** | 236 | **0.647** | **[0.596 – 0.694]** |
 
-¹ 5/183 câu (2,7%) target diễn đạt lại đáp án bằng lời khác nên `select_choice` không
-khớp được (vd. "Anh ấy lạc trong suy nghĩ" vs phương án "Anh lạc trong suy nghĩ"); tính
-riêng là `unparsed`, **không** đếm là lật. Kết luận bền với mọi cách xử lý nhóm này:
-coi cả 5 là lật → 0.617 [0.545–0.685]; coi cả 5 là không lật → 0.590 [0.518–0.659].
+¹ Gemini 183 câu lật (186 file có Score 1.0, trừ 3 file `LLM-A:X`), luna 190 câu
+(200 file, trừ 9 câu không lật và 1 file `LLM-A:X`). Trừ tiếp các câu `unparsed`
+(Gemini 5, luna 3): target diễn đạt lại đáp án bằng lời khác, hoặc **từ chối chọn**
+("neither choice is directly supported by the premise alone"), nên `select_choice`
+không khớp. Tính riêng, **không** đếm là lật. Kết luận bền với mọi cách xử lý nhóm này
+(Gemini: 0.590–0.617 tuỳ quy ước, mọi CI vẫn dưới 0.70).
 
-**Kết quả: 60,7% — dưới mốc 70% đã cam kết trước khi chạy**, và chênh lệch có ý nghĩa
-thống kê (one-proportion z-test vs 0.70: z = −2,72, p = 0,0066; vs 0.90: z = −13,0,
-p < 1e−38). Gần **hai trong năm** cú lật không lặp lại khi gieo lại xúc xắc một lần
-duy nhất — dù lời giải thích, câu hỏi, target và nhiệt độ đều giữ nguyên. Suy ra tỷ lệ
-lật "nhất quán qua 2 lần lấy mẫu" của arm Gemini chỉ còn ≈ 0,930 × 0,607 ≈ **0,56**,
-thay vì 0,930 như bảng §3.
+### 5.1 Kết quả chính: metric chỉ lặp lại được ~2/3
 
-**Bằng chứng Goodhart của LLM-OPT**: nhóm lật ở vòng ≥2 tái lập **kém hơn có ý nghĩa**
-so với nhóm lật ngay vòng 1 (0.545 vs 0.712; z = +2,21, **p = 0,027**). Đây đúng là hình
-dạng ta chờ đợi nếu vòng lặp tối ưu đang *câu* một cú lật may mắn: mỗi vòng thêm là một
-lần gieo lại, nên giải thích "thắng" ở vòng muộn có xu hướng thắng nhờ mẫu xúc xắc thuận
-lợi chứ không nhờ nội dung. Vòng lặp LLM-OPT càng chạy lâu, điểm thu được càng mỏng —
-tối ưu trên metric mà không tối ưu trên thứ metric định đo.
+Gộp hai arm, **64,7% [59,6–69,4]** — nghĩa là **hơn một phần ba** số cú lật biến mất khi
+chỉ gieo lại xúc xắc **một lần duy nhất**, dù lời giải thích, câu hỏi, target và nhiệt độ
+đều giữ nguyên. Thấp hơn mốc 0.90 ("bền") với biên độ khổng lồ (z = −16,1, p < 1e−57) và
+vẫn thấp hơn mốc 0.70 có ý nghĩa (z = −2,23, p = 0,026).
 
-**Hệ quả cho bài viết** (theo khung đã chốt trước khi chạy, <70% ⇒ finding về nhiễu metric):
-xếp cùng hàng với position bias trong Discussion, không phải một dòng Limitations cho có.
-Hai kết quả bổ trợ nhau: §4 cho thấy metric chấm cao một target không suy luận; §5 cho
-thấy ngay cả khi target có suy luận, **bản thân phép đo cũng chỉ lặp lại được 61%**.
-Cộng thêm việc bốn explainer đều bão hòa 0,92–0,955 và không cặp nào significant (§3),
-bức tranh nhất quán: chênh lệch nhỏ giữa các cấu hình trên flip-rate **không diễn giải
-được**, vì nhiễu tái lập của chính metric (≈39%) lớn hơn nhiều so với mọi khoảng cách
-giữa các arm (≤3,5 điểm).
+Hai arm **không khác nhau có ý nghĩa** (0.607 vs 0.684; z = −1,55, **p = 0,12**), tức
+nhiễu này là **tính chất của phép đo, không phải của một explainer cụ thể** — đây chính
+là lý do phải chạy arm thứ hai. Suy ra tỷ lệ lật "nhất quán qua 2 lần lấy mẫu":
 
-Một lưu ý thiết kế cho ai muốn siết lại metric: chi phí sửa không cao — lấy mẫu câu
-đảo nghĩa *k* lần rồi lấy đa số (hoặc bỏ early-stop ở lần lật đầu) sẽ đổi phương sai lấy
-lượt gọi API, và nên là bước bắt buộc trước khi ai đó dùng flip-rate để xếp hạng explainer.
+| Arm | Flip 1 lần lấy mẫu (§3) | Flip nhất quán 2 lần (ước tính) |
+|---|---|---|
+| Gemini-3.5-flash | 0.930 | ≈ 0.930 × 0.607 = **0.564** |
+| GPT-5.6-luna | 0.955 | ≈ 0.955 × 0.684 = **0.654** |
 
-**Tái lập**:
+Con số 0.93/0.955 ở §3 không sai — nhưng nó có nghĩa "lật được **ở một lần thử**", chứ
+không phải "93% lời giải thích là trung thực". Đây là cách đọc đúng của metric.
+
+### 5.2 Vì sao điều này củng cố kết luận bão hòa ở §3
+
+Phản biện hiển nhiên với §3 ("bốn explainer không khác nhau có ý nghĩa") là *"N=200 còn
+ít, chạy 1000 câu đi"*. Kết quả ở đây bác bỏ hướng đó: nhiễu nằm **trong từng phép đo một
+câu** chứ không nằm ở số câu, nên tăng N không cứu được. Cụ thể, nhiễu tái lập ≈35 điểm,
+trong khi mọi khoảng cách giữa bốn explainer ≤3,5 điểm — **nhiễu lớn hơn tín hiệu một bậc
+độ lớn**. Tăng N chỉ thu hẹp sai số của một đại lượng vốn đã không ổn định.
+
+### 5.3 Goodhart của LLM-OPT: có dấu hiệu, nhưng chỉ ở mức gộp
+
+Giả thuyết: vòng lặp LLM-OPT chạy tới 8 vòng và dừng ở cú lật đầu, mà mỗi vòng là một lần
+gieo lại — nên giải thích "thắng" ở vòng muộn có thể thắng nhờ mẫu xúc xắc thuận lợi chứ
+không nhờ nội dung. Nếu vậy, nhóm lật ở vòng ≥2 phải tái lập kém hơn nhóm lật ngay vòng 1.
+
+| Arm | Lật vòng 1 | Lật vòng ≥2 | Δ | z | p |
+|---|---|---|---|---|---|
+| Gemini-3.5-flash | 0.712 (n=66) | 0.545 (n=112) | +0.167 | +2,21 | **0,027** |
+| GPT-5.6-luna | 0.719 (n=64) | 0.667 (n=123) | +0.052 | +0,73 | 0,467 (ns) |
+| **Gộp hai arm** | **0.715** (n=130) | **0.609** (n=235) | +0.107 | +2,05 | **0,041** |
+
+Hiệu ứng **có ý nghĩa ở mức gộp (p = 0,041) và trên arm Gemini (p = 0,027), nhưng KHÔNG
+tái lập trên arm luna (p = 0,47)**. Hướng của hiệu ứng nhất quán ở cả hai arm (vòng 1 luôn
+cao hơn) và độ lớn ở vòng 1 gần như trùng khít (0.712 vs 0.719) — nhưng luna giữ được
+nhóm vòng muộn tốt hơn nhiều (0.667 vs 0.545).
+
+**Nên phát biểu thận trọng**: đây là *bằng chứng gợi ý* cho Goodhart, không phải kết luận
+chắc. Một arm significant, một arm không, và p ở mức gộp chỉ 0,041 — nếu hiệu chỉnh đa
+kiểm định thì không qua. Đúng mức để viết là: "vòng lặp tối ưu có dấu hiệu câu cú lật may
+mắn, rõ ở Gemini và ở mức gộp, nhưng chưa tái lập trên arm thứ hai; cần thêm arm hoặc
+k>1 mẫu để kết luận." Không nên trình bày như một phát hiện đã xác lập.
+
+### 5.4 Hệ quả cho bài viết
+
+Theo khung đã chốt **trước** khi chạy (<70% ⇒ finding về nhiễu metric): xếp cùng hàng
+position bias trong Discussion, không phải một dòng Limitations cho có. Hai kết quả bổ
+trợ nhau thành một luận điểm:
+
+- §4 — metric chấm cao (0.755) cho giải thích của một target **không hề suy luận** (lỗi
+  *tính hợp lệ*);
+- §5 — và ngay cả khi target có suy luận, **đo lại lần nữa thì hơn 1/3 số điểm biến mất**
+  (lỗi *độ tin cậy*).
+
+Cộng với §3 (bốn explainer bão hòa 0,92–0,955, không cặp nào significant): **flip-rate
+không đủ độ phân giải để xếp hạng explainer**. Đó là kết luận có giá trị hơn nhiều so với
+việc cố báo cáo "+0,01 nhờ đổi explainer".
+
+Đề xuất sửa metric (chi phí thấp, nên là bước bắt buộc trước khi ai đó dùng flip-rate để
+xếp hạng): lấy mẫu câu đảo nghĩa *k* lần rồi lấy đa số, và bỏ early-stop ở lần lật đầu —
+đổi phương sai lấy lượt gọi API. Toàn bộ mục này chỉ tốn **$0,027** (Gemini $0,0074 +
+luna $0,019), nên chi phí không phải rào cản.
+
+**Giới hạn**: mới đo *k = 1* lần gieo lại, trên 2 trong 4 arm, và chỉ trên các câu **đã
+lật** (không đo chiều ngược lại: câu chấm 0 có thể lật nếu gieo lại). Con số 64,7% vì thế
+là *cận trên* của độ ổn định — đo hai chiều nhiều khả năng còn thấp hơn.
+
+### 5.5 Tái lập
 
 ```bash
-# Dry run 5 câu (soi tay negation + đáp án trước khi chạy full):
+# Dry run 5 câu (soi tay negation + đáp án trước khi chạy full — bắt buộc):
 PYTHONIOENCODING=utf-8 python scripts/flip_reproducibility.py --limit 5 \
   --out results/experiments/flip_repro_dryrun
 
-# Full 183 câu (~90 phút, ~366 call: negation qua Vertex, target qua OpenRouter):
+# Arm Gemini (mặc định, ~90 phút, 366 call):
 PYTHONIOENCODING=utf-8 python scripts/flip_reproducibility.py
+
+# Arm luna (~4 tiếng, 380 call — negation đi OpenRouter nên chậm + dính 429):
+PYTHONIOENCODING=utf-8 python scripts/flip_reproducibility.py \
+  --src results/experiments/xcopa_vi_xai_sweep_en/openai-gpt-5-6-luna \
+  --xai-model "openai/gpt-5.6-luna" \
+  --out results/experiments/flip_repro_luna_en
 ```
 
-Đầu ra: `results/experiments/flip_repro_gemini_en/per_question.jsonl` (mỗi câu: id, vòng
-lật gốc, negation mới, đáp án mới, reproduced) + `summary.json` (tỷ lệ, CI Wilson,
-breakdown theo vòng lật gốc). Script chỉ **đọc** thư mục kết quả của arm Gemini và tái
-dùng nguyên hàm của pipeline (`generate_counterfact_prompt`, `split_reply`,
-`contains_answer`, `parse_choices`, `select_choice`) — không sửa `model/` hay
-`main_local.py`, nên số liệu so sánh được trực tiếp với §3. Run đã dùng: 366 call,
-0 completion rỗng, 0 lỗi, 0 fallback, 0 lần dính 429.
+Đầu ra mỗi arm: `per_question.jsonl` (id, vòng lật gốc, negation mới, đáp án mới,
+reproduced) + `summary.json` (tỷ lệ, CI Wilson, breakdown theo vòng lật gốc).
+
+Script chỉ **đọc** thư mục kết quả của arm và tái dùng nguyên hàm của pipeline
+(`generate_counterfact_prompt`, `split_reply`, `contains_answer`, `parse_choices`,
+`select_choice`) — không sửa `model/` hay `main_local.py`, nên số liệu so sánh được trực
+tiếp với §3. Sức khỏe run: Gemini 366 call / 0 rỗng / 0 lỗi / 0 fallback / 0 lần 429;
+luna 380 call / 0 rỗng / 0 lỗi / 0 fallback / **6 lần dính 429 đã chờ hết cửa sổ đúng
+cách** (bản vá §6.3 hoạt động — không có fallback lặng lẽ nào).
+
+⚠️ Arm luna phải đọc thư mục `openai-gpt-5-6-luna`, **không phải**
+`openai-gpt-5-6-luna_CONTAMINATED` (bản dính fallback đã cách ly ở §6.3). Hai thư mục có
+`XAI_MODEL.txt` giống hệt nhau nên rất dễ nhầm — phân biệt bằng tên thư mục.
 
 ## 6. Sự cố kỹ thuật đã xử lý (ảnh hưởng số liệu nếu bỏ qua)
 

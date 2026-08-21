@@ -36,14 +36,14 @@ HDR = re.compile(r"^=+ (Corrct|Wrong)\s+--> Q:(.*) \|\| GT-A:(.*) \|\| LLM-A:(.*
 ARGS = types.SimpleNamespace(data="xcopa_vi")
 
 
-def load_flips():
+def load_flips(src):
     """One entry per file whose LLM-OPT loop ever scored 1.0.
 
     The flip record is the FIRST 1.0, not the last: early-stop only fires at
     iter % 5 == 0, so a flip at iter 1-4 leaves further records behind it.
     """
     out = []
-    for path in sorted(glob.glob(os.path.join(SRC, "local_*.json")),
+    for path in sorted(glob.glob(os.path.join(src, "local_*.json")),
                        key=lambda p: int(p.rsplit("sample-", 1)[1].split(".")[0])):
         lines = [l for l in open(path, encoding="utf-8").read().splitlines() if l.strip()]
         m = HDR.match(lines[0])
@@ -75,10 +75,10 @@ def wilson(k, n, z=1.96):
     return (max(0.0, c - h), min(1.0, c + h))
 
 
-def run_one(item):
+def run_one(item, xai_model):
     reply = llm_api.chat(
         generate_counterfact_prompt([item["explanation"]], ARGS),
-        model=XAI_MODEL, max_tokens=1000, temperature=0.9, top_p=0.9,
+        model=xai_model, max_tokens=1000, temperature=0.9, top_p=0.9,
         system="You are an expert at explaining language model behavior.",
     )
     # Same post-processing the pipeline applies to a counterfactual reply, so
@@ -115,9 +115,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--limit", type=int, default=0)
     ap.add_argument("--out", default=OUT)
+    ap.add_argument("--src", default=SRC,
+                    help="sweep-arm results dir to re-sample flips from")
+    ap.add_argument("--xai-model", default=XAI_MODEL, dest="xai_model",
+                    help="explainer that re-generates the negation")
     a = ap.parse_args()
 
-    items = load_flips()
+    items = load_flips(a.src)
     if a.limit:
         items = items[:a.limit]
     os.makedirs(a.out, exist_ok=True)
@@ -126,7 +130,7 @@ def main():
     with open(jsonl, "w", encoding="utf-8") as fh:
         for n, it in enumerate(items, 1):
             try:
-                negation, raw, picked, reproduced = run_one(it)
+                negation, raw, picked, reproduced = run_one(it, a.xai_model)
             except Exception as exc:
                 print(f"[{n}/{len(items)}] id={it['id']} ERROR {exc}", flush=True)
                 negation, raw, picked, reproduced = "", "", None, None
@@ -148,7 +152,7 @@ def main():
                 "ci95_wilson": [lo, hi]}
 
     summary = {
-        "source_dir": SRC, "xai_model": XAI_MODEL, "pred_model": PRED_MODEL,
+        "source_dir": a.src, "xai_model": a.xai_model, "pred_model": PRED_MODEL,
         "prompt_lang": "en", "negation_temperature": 0.9, "negation_top_p": 0.9,
         "overall": bucket(lambda r: True),
         "flip_round_1": bucket(lambda r: r["orig_flip_round"] == 1),
