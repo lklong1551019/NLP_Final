@@ -7,7 +7,20 @@ from transformers import LlamaForCausalLM, LlamaTokenizer
 from transformers import BitsAndBytesConfig
 import torch
 import openai
-from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+try:
+    from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+except ImportError:  # anthropic >=1.0 dropped the legacy completions constants
+    # Only the (unused) claude path needs these. Importing them unconditionally
+    # made the whole module unimportable on a modern SDK.
+    HUMAN_PROMPT, AI_PROMPT = "\n\nHuman:", "\n\nAssistant:"
+
+    class Anthropic:  # pragma: no cover - legacy path
+        def __init__(self, *args, **kwargs):
+            raise RuntimeError(
+                "The claude path needs an anthropic SDK that still exports "
+                "HUMAN_PROMPT/AI_PROMPT (pre-1.0). Install one, or select "
+                "--pred_model/--xai_model litellm."
+            )
 from sklearn.metrics import accuracy_score
 from tqdm import tqdm
 

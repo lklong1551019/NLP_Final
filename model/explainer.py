@@ -1,7 +1,20 @@
 import os
 import openai
 import torch
-from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+try:
+    from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+except ImportError:  # anthropic >=1.0 dropped the legacy completions constants
+    # Only the (unused) claude path needs these. Importing them unconditionally
+    # made the whole module unimportable on a modern SDK.
+    HUMAN_PROMPT, AI_PROMPT = "\n\nHuman:", "\n\nAssistant:"
+
+    class Anthropic:  # pragma: no cover - legacy path
+        def __init__(self, *args, **kwargs):
+            raise RuntimeError(
+                "The claude path needs an anthropic SDK that still exports "
+                "HUMAN_PROMPT/AI_PROMPT (pre-1.0). Install one, or select "
+                "--pred_model/--xai_model litellm."
+            )
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import LlamaForCausalLM, LlamaTokenizer
 
@@ -224,6 +237,10 @@ def generate_counterfact_prompt(explanation, args):
 
     elif args.data == "trivaqa":
         instruction = "Can you generate a edited version of sentence-1 with opposite meaning where it states why the model generates the answer in the passage? Make sure the output sentence is purely edited from sentence-1."
-        final_prompt = f"{instruction}\n\Sentence-1: {explanation}\n\n"
+        # NOTE: "\\S" is almost certainly a typo for "\\n" (i.e. "\\n\\nSentence-1:"),
+        # so this emits a literal backslash. Kept byte-identical to upstream because
+        # the trivaqa path is not exercised by our runs and the change cannot be
+        # validated here; escaped only to silence the SyntaxWarning.
+        final_prompt = f"{instruction}\n\\Sentence-1: {explanation}\n\n"
 
     return final_prompt
