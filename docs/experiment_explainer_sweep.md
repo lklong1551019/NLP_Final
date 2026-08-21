@@ -19,7 +19,7 @@ Chỉ đổi explainer.
 
 | Vai trò | Model | Đường phục vụ | Ghi chú |
 |---|---|---|---|
-| Target f(·) | `deepseek/deepseek-v4-flash` | OpenRouter | `reasoning.enabled=false` (xem §5.1) |
+| Target f(·) | `deepseek/deepseek-v4-flash` | OpenRouter | `reasoning.enabled=false` (xem §6.1) |
 | Explainer g_E(·) | `gemini-3.5-flash` | Vertex AI (service account) | `thinking_budget=0` |
 | Target (bộ Phi-2) | `microsoft/phi-2` | Local, RTX 3060, bf16 | 1 shard do VRAM |
 
@@ -112,9 +112,78 @@ còn 9 điểm. Hai hệ quả:
    vẫn chấm cao. Cùng với việc mọi cấu hình khả dụng đều >0.9 (bão hòa), đây là chất
    liệu chính cho mục Discussion/Limitations về tính hợp lệ của flip-rate.
 
-## 5. Sự cố kỹ thuật đã xử lý (ảnh hưởng số liệu nếu bỏ qua)
+## 5. Cú lật có tái lập không? (flip reproducibility, arm Gemini)
 
-### 5.1 Model 2026 là thinking model — phải tắt suy nghĩ
+Position bias (§4) cho thấy metric chấm cao một target **không** suy luận. Câu hỏi kế
+tiếp nhắm vào chính biến cố sinh ra điểm: pipeline chấm 1.0 khi câu-đảo-nghĩa — sinh ở
+`temperature=0.9` — làm target đổi đáp án, rồi **dừng ngay lần lật đầu**. Vậy cú lật là
+tính chất của *lời giải thích*, hay chỉ của *lần gieo xúc xắc* đã sinh ra câu đảo nghĩa đó?
+
+**Thiết kế**: giữ nguyên lời giải thích đã lật, gieo lại câu đảo nghĩa **đúng một lần**
+(cùng model/nhiệt độ/prompt), hỏi lại target, chấm bằng đúng công thức pipeline
+(`correctness(đáp án mới) != correctness(LLM-A không-hint)`). Không chạy lại pipeline —
+chỉ tái dùng 183 câu đã lật của arm Gemini (186 file có Score 1.0, trừ 3 file `LLM-A:X`).
+
+| Nhóm | N | Tái lập | Tỷ lệ | 95% CI (Wilson) |
+|---|---|---|---|---|
+| **Toàn bộ** | 178¹ | 108 | **0.607** | **[0.533 – 0.676]** |
+| Lật ở vòng 1 | 66 | 47 | 0.712 | [0.594 – 0.807] |
+| Lật ở vòng ≥2 | 112¹ | 61 | 0.545 | [0.452 – 0.634] |
+
+¹ 5/183 câu (2,7%) target diễn đạt lại đáp án bằng lời khác nên `select_choice` không
+khớp được (vd. "Anh ấy lạc trong suy nghĩ" vs phương án "Anh lạc trong suy nghĩ"); tính
+riêng là `unparsed`, **không** đếm là lật. Kết luận bền với mọi cách xử lý nhóm này:
+coi cả 5 là lật → 0.617 [0.545–0.685]; coi cả 5 là không lật → 0.590 [0.518–0.659].
+
+**Kết quả: 60,7% — dưới mốc 70% đã cam kết trước khi chạy**, và chênh lệch có ý nghĩa
+thống kê (one-proportion z-test vs 0.70: z = −2,72, p = 0,0066; vs 0.90: z = −13,0,
+p < 1e−38). Gần **hai trong năm** cú lật không lặp lại khi gieo lại xúc xắc một lần
+duy nhất — dù lời giải thích, câu hỏi, target và nhiệt độ đều giữ nguyên. Suy ra tỷ lệ
+lật "nhất quán qua 2 lần lấy mẫu" của arm Gemini chỉ còn ≈ 0,930 × 0,607 ≈ **0,56**,
+thay vì 0,930 như bảng §3.
+
+**Bằng chứng Goodhart của LLM-OPT**: nhóm lật ở vòng ≥2 tái lập **kém hơn có ý nghĩa**
+so với nhóm lật ngay vòng 1 (0.545 vs 0.712; z = +2,21, **p = 0,027**). Đây đúng là hình
+dạng ta chờ đợi nếu vòng lặp tối ưu đang *câu* một cú lật may mắn: mỗi vòng thêm là một
+lần gieo lại, nên giải thích "thắng" ở vòng muộn có xu hướng thắng nhờ mẫu xúc xắc thuận
+lợi chứ không nhờ nội dung. Vòng lặp LLM-OPT càng chạy lâu, điểm thu được càng mỏng —
+tối ưu trên metric mà không tối ưu trên thứ metric định đo.
+
+**Hệ quả cho bài viết** (theo khung đã chốt trước khi chạy, <70% ⇒ finding về nhiễu metric):
+xếp cùng hàng với position bias trong Discussion, không phải một dòng Limitations cho có.
+Hai kết quả bổ trợ nhau: §4 cho thấy metric chấm cao một target không suy luận; §5 cho
+thấy ngay cả khi target có suy luận, **bản thân phép đo cũng chỉ lặp lại được 61%**.
+Cộng thêm việc bốn explainer đều bão hòa 0,92–0,955 và không cặp nào significant (§3),
+bức tranh nhất quán: chênh lệch nhỏ giữa các cấu hình trên flip-rate **không diễn giải
+được**, vì nhiễu tái lập của chính metric (≈39%) lớn hơn nhiều so với mọi khoảng cách
+giữa các arm (≤3,5 điểm).
+
+Một lưu ý thiết kế cho ai muốn siết lại metric: chi phí sửa không cao — lấy mẫu câu
+đảo nghĩa *k* lần rồi lấy đa số (hoặc bỏ early-stop ở lần lật đầu) sẽ đổi phương sai lấy
+lượt gọi API, và nên là bước bắt buộc trước khi ai đó dùng flip-rate để xếp hạng explainer.
+
+**Tái lập**:
+
+```bash
+# Dry run 5 câu (soi tay negation + đáp án trước khi chạy full):
+PYTHONIOENCODING=utf-8 python scripts/flip_reproducibility.py --limit 5 \
+  --out results/experiments/flip_repro_dryrun
+
+# Full 183 câu (~90 phút, ~366 call: negation qua Vertex, target qua OpenRouter):
+PYTHONIOENCODING=utf-8 python scripts/flip_reproducibility.py
+```
+
+Đầu ra: `results/experiments/flip_repro_gemini_en/per_question.jsonl` (mỗi câu: id, vòng
+lật gốc, negation mới, đáp án mới, reproduced) + `summary.json` (tỷ lệ, CI Wilson,
+breakdown theo vòng lật gốc). Script chỉ **đọc** thư mục kết quả của arm Gemini và tái
+dùng nguyên hàm của pipeline (`generate_counterfact_prompt`, `split_reply`,
+`contains_answer`, `parse_choices`, `select_choice`) — không sửa `model/` hay
+`main_local.py`, nên số liệu so sánh được trực tiếp với §3. Run đã dùng: 366 call,
+0 completion rỗng, 0 lỗi, 0 fallback, 0 lần dính 429.
+
+## 6. Sự cố kỹ thuật đã xử lý (ảnh hưởng số liệu nếu bỏ qua)
+
+### 6.1 Model 2026 là thinking model — phải tắt suy nghĩ
 
 Đo được: `deepseek-v4-flash` qua OpenRouter đốt **179 reasoning token trong cap 200**
 của predictor (chừa ~20 token cho đáp án — một suy nghĩ dài là trả rỗng);
@@ -124,14 +193,14 @@ Vertex `thinking_budget=0` (env `VERTEX_THINKING_BUDGET`). Sau fix: **0 call r�
 trên toàn bộ các run tính điểm** (1.865 + 2.350 + … call). Việc tắt thinking cũng đưa
 model 2026 về gần điều kiện paper (GPT-3.5/Claude-2 không có thinking).
 
-### 5.2 Ngôn ngữ prompt là biến thực nghiệm, không phải side-effect
+### 6.2 Ngôn ngữ prompt là biến thực nghiệm, không phải side-effect
 
 Main hardcode prompt VI cho xcopa_vi (PR #1) trong khi trục này cần prompt EN nguyên
 bản. Fix (commit `d35e9cf`): công tắc `PROMPT_LANG=en|vi`, mặc định `vi` (giữ nguyên
 hành vi main cho trục prompt-VI), `en` ép đúng nguyên văn paper. Đã xác minh cả hai
 chiều bằng test.
 
-### 5.3 Rate limit tài khoản mới + fallback = nhiễm explainer trong im lặng
+### 6.3 Rate limit tài khoản mới + fallback = nhiễm explainer trong im lặng
 
 OpenRouter giới hạn tài khoản mới **10 request/phút cho các model premium**
 (gpt-5.6-luna, qwen3.7-max; deepseek-flash không bị). Chạy 6 shard vượt trần →
@@ -148,7 +217,7 @@ model, 0 fallback, 0 record rỗng. **Đợt mở rộng N=200 (21/8) xác nhậ
 bằng 0 ở cả hai arm, đúng như thiết kế của bản sửa. Bài học cho mọi người dùng pipeline: chạy model
 premium trên tài khoản OpenRouter mới thì dùng `NSHARDS=2` trở xuống.
 
-### 5.4 Lịch sử run và loại trừ
+### 6.4 Lịch sử run và loại trừ
 
 - Run Gemini×prompt-VI đầu tiên (0.910) chạy trước khi phát hiện baseline 18/8 dùng
   prompt EN → giữ lại, dán nhãn, bàn giao trục prompt-VI.
@@ -157,7 +226,7 @@ premium trên tài khoản OpenRouter mới thì dùng `NSHARDS=2` trở xuống
 - Chi phí: ~$1.80 / $10 OpenRouter tổng cộng sau khi mở rộng N=200 (đợt 21/8 tốn thêm
   ~$0.31); Gemini tính vào project Google của service account.
 
-## 6. Tái lập
+## 7. Tái lập
 
 ```bash
 # Run chính (Gemini explainer, prompt EN):
@@ -165,7 +234,7 @@ PROMPT_LANG=en LITELLM_XAI_MODEL="vertex/google/gemini-3.5-flash" PYTHONUTF8=1 P
   bash scripts/run_sharded.sh xcopa_vi litellm litellm 0 200 8 6 \
   ./results/experiments/xcopa_vi_xai_sweep_en/vertex-google-gemini-3-5-flash
 
-# Hai arm sweep còn lại (model premium: NSHARDS toi da 2 vi tran 10 req/phut, xem §5.3):
+# Hai arm sweep còn lại (model premium: NSHARDS toi da 2 vi tran 10 req/phut, xem §6.3):
 PROMPT_LANG=en LITELLM_XAI_MODEL="openai/gpt-5.6-luna" PYTHONUTF8=1 PYTHON=python \
   bash scripts/run_sharded.sh xcopa_vi litellm litellm 0 200 8 2 \
   ./results/experiments/xcopa_vi_xai_sweep_en/openai-gpt-5-6-luna
