@@ -315,6 +315,8 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
         for i in range(len(ans_tkn)):
             split_str = "### Phản hồi:" if getattr(args, 'data', '') == "xcopa_vi" else "### Response:"
             ans = ans_tkn[i].split(split_str)[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
@@ -350,6 +352,8 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             try:
                 index = ans.find("]")
                 end_index = ans.find("@")
@@ -388,6 +392,8 @@ def generate_predictor_output_trivaqa(model, tokenizer, task_instruction, input_
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             ans_llm.append(ans)
 
     elif args.pred_model == "vicuna":
@@ -397,6 +403,8 @@ def generate_predictor_output_trivaqa(model, tokenizer, task_instruction, input_
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             ans_llm.append(ans)
 
     return ans_llm
@@ -505,6 +513,8 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
         for i in range(len(ans_tkn)):
             split_str = "### Phản hồi:" if getattr(args, 'data', '') == "xcopa_vi" else "### Response:"
             ans = ans_tkn[i].split(split_str)[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
@@ -532,6 +542,8 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
@@ -606,6 +618,8 @@ def _trivaqa_score(model, tokenizer, input_prompt, ans_gt, args):
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             ans_short.append(ans)
 
     elif args.pred_model == "vicuna":
@@ -615,6 +629,8 @@ def _trivaqa_score(model, tokenizer, input_prompt, ans_gt, args):
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             ans_short.append(ans)
 
     elif args.pred_model == "claude":
