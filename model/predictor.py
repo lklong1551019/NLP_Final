@@ -185,7 +185,18 @@ def load_model(model_name, max_memory, load_in_4bit=True):
         else:
             print("============ Predictor: Qwen3.5-4B (bf16)")
             quant_kwargs["torch_dtype"] = torch.bfloat16
-        model = AutoModelForCausalLM.from_pretrained(
+        # Qwen3.5-4B is Qwen3_5ForConditionalGeneration - a vision-language
+        # checkpoint whose config nests the text settings under `text_config`.
+        # AutoModelForCausalLM resolves to the text-only Qwen3_5ForCausalLM, which
+        # looks for cfg.vocab_size at the top level and dies with
+        # "'Qwen3_5Config' object has no attribute 'vocab_size'". Load the class the
+        # checkpoint actually declares; text-only input works fine on it and the
+        # logits we need for probability scoring are the same.
+        try:
+            from transformers import AutoModelForImageTextToText as _QwenAuto
+        except ImportError:
+            _QwenAuto = AutoModelForCausalLM
+        model = _QwenAuto.from_pretrained(
             model_id,
             device_map="auto",
             max_memory=max_memory,

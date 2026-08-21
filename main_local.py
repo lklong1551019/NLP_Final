@@ -221,6 +221,13 @@ def get_args():
                         help='Run the full --xai_iter budget in every mode. Needed to '
                              'compare iterations-to-first-flip, since the published rule '
                              'and the continuous rule stop on different events.')
+    parser.add_argument('--stop_rule', type=str, default='paper',
+                        choices=['paper', 'eager', 'flip'],
+                        help="paper: the released rule, tested only on iterations "
+                             "0/5/10/15. eager: same condition, tested every iteration. "
+                             "flip: stop the moment the decision flips, in every mode - "
+                             "the only setting under which iteration counts are "
+                             "comparable across --score_mode values.")
     parser.add_argument('--score_mode', type=str, default='accuracy',
                         choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'margin', 'tv'],
                         help="Fidelity signal the optimiser follows. 'accuracy' is the "
@@ -478,8 +485,21 @@ if __name__ == "__main__":
         xai_list.extend(exp_reply)
         # print(f"============ Init Exp: {exp_reply[0]}")
 
+        # output_ans never changes inside the loop, so the published "Bad Answer"
+        # test was loop-invariant: it burned iteration 0 (two explainer calls) before
+        # breaking. Decide it once, up front.
+        # Only the generate-and-parse mode cares: "X" means the parser could not read
+        # the target's free text. The probability modes never parse text, so an
+        # unreadable generation says nothing about them and must not skip the question.
+        if ("X" in output_ans and args.score_mode == "accuracy"
+                and args.stop_rule in ("flip", "eager")):
+            print("============ Bad Answer (bỏ qua trước khi vào vòng lặp)")
+            bad_answer_skip = True
+        else:
+            bad_answer_skip = False
+
         with tqdm(total=args.xai_iter) as pbar:
-            for iter in range(args.xai_iter):
+            for iter in range(0 if bad_answer_skip else args.xai_iter):
                 print(f"============ Step:{iter} LLM Optimizing")
 
                 # Generate counterfactual explanation
@@ -508,11 +528,29 @@ if __name__ == "__main__":
                     # fair comparison if no mode is allowed to quit early on its own
                     # terms; the flip event itself is mode independent.
                     pass
+
+                elif args.stop_rule == "flip":
+                    # Algorithm 1 says "while steps not end and decision not flips",
+                    # so stop the moment the decision flips - checked every iteration,
+                    # in every mode. Two things follow: iteration counts become
+                    # comparable across modes (they share one stopping event), and no
+                    # mode can inflate its count by holding out for a better score.
+                    # The threshold/patience rule below did exactly that, running 8.40
+                    # iterations against the published rule's 3.15.
+                    flipped = (_predictor.LAST_METRICS or {}).get("flip", 0.0) >= 1.0
+                    if flipped:
+                        print(f"============ Early Stop: decision flipped at iter {iter}")
+                        break
+                    if diff_score != 0 and args.score_mode in ("accuracy", "prob_accuracy"):
+                        # Binary modes: a non-zero score already means the flip crossed
+                        # the correctness boundary.
+                        print("============ Early Stop Optimization")
+                        break
+
                 elif args.score_mode in ("logprob", "tv", "margin"):
-                    # These are continuous, so "!= 0" would fire on iteration 0
-                    # and there would be no optimisation left to do. Stop once the
-                    # target has been convincingly moved, or once the rewrites stop
-                    # improving on the best score so far.
+                    # Continuous scores are almost never exactly 0, so "!= 0" would
+                    # fire on iteration 0. Stop on a threshold, or once the rewrites
+                    # stop improving. Inflates iteration counts - kept for ablation.
                     best = max(scores_list)
                     stalled = len(scores_list) - 1 - scores_list.index(best)
                     if best >= args.stop_threshold:
@@ -521,11 +559,19 @@ if __name__ == "__main__":
                     if stalled >= args.stop_patience:
                         print(f"============ Early Stop: no gain in {stalled} steps (best {best:.4f})")
                         break
+
+                elif args.stop_rule == "eager":
+                    # The published rule, minus the iter%5 gate. That gate only tests
+                    # the condition on iterations 0/5/10/15, so a question satisfying
+                    # it at iteration 2 still runs to 5. Measured over 200 XCOPA-vi
+                    # questions: 105 of 631 iterations, 16.6%, spent after the stop
+                    # condition was already true.
+                    if sum(scores_list) != 0:
+                        print("============ Early Stop Optimization")
+                        break
+
                 elif iter%5 == 0 and sum(scores_list) != 0:
                     print("============ Early Stop Optimization")
-                    break
-                elif iter%5 == 0 and "X" in output_ans:
-                    print("============ Bad Answer")
                     break
 
                 # LLM optimizer
@@ -538,7 +584,7 @@ if __name__ == "__main__":
                 xai_list.extend(exp_reply)
                 pbar.update(1)
 
-                if iter%5 == 0 and ("apologize" in exp_reply[0]) or ("Unfortunately" in exp_reply[0]):
+                if ("apologize" in exp_reply[0]) or ("Unfortunately" in exp_reply[0]):
                     print(f"============ {exp_reply[0]}")
                     print("============ Refuse to Answer")
                     break

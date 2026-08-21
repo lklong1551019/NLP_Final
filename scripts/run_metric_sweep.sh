@@ -21,6 +21,11 @@ TOP_P="${TOP_P:-0.9}"
 MAX_TOKENS="${MAX_TOKENS:-300}"
 STOP_THRESHOLD="${STOP_THRESHOLD:-0.5}"
 STOP_PATIENCE="${STOP_PATIENCE:-4}"
+STOP_RULE="${STOP_RULE:-paper}"
+# Qwen3.5-4B needs bf16 here: bitsandbytes is not installed, and 4-bit would add
+# quantisation noise to the very logits the probability metrics read.
+QUANT_ARG=""
+[ "${NO_4BIT:-0}" = "1" ] && QUANT_ARG="--no_4bit"
 # Set NO_EARLY_STOP=1 to give every mode the same budget. Required before
 # comparing iterations-to-first-flip across modes.
 EARLY_STOP_ARG=""
@@ -54,7 +59,7 @@ for MODE in $MODES; do
         --data "$DATASET" --data_split "$DATA_SPLIT" \
         --pred_model "$PRED_MODEL" \
         --xai_model "$XAI_MODEL" --openai_model "$OPENAI_MODEL" \
-        --score_mode "$MODE" \
+        --score_mode "$MODE" --stop_rule "$STOP_RULE" $QUANT_ARG \
         --ques_idx_start "$START_IDX" --ques_idx_end "$END_IDX" \
         --xai_iter "$XAI_ITER" \
         --stop_threshold "$STOP_THRESHOLD" --stop_patience "$STOP_PATIENCE" $EARLY_STOP_ARG \
