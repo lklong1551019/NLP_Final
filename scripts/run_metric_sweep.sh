@@ -64,7 +64,7 @@ for MODE in $MODES; do
         --xai_iter "$XAI_ITER" \
         --stop_threshold "$STOP_THRESHOLD" --stop_patience "$STOP_PATIENCE" $EARLY_STOP_ARG \
         --temp_exp "$TEMP_EXP" --top_p_exp "$TOP_P" --max_tokens "$MAX_TOKENS" \
-        --save_file_path "$OUT" --metrics_log "$OUT/metrics.jsonl"
+        --save_file_path "$OUT" --metrics_log "$OUT/metrics.jsonl" --usage_log "$OUT/usage.jsonl"
 done
 
 echo ""; echo "=== iterations to stop, per mode ==="

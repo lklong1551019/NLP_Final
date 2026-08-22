@@ -91,17 +91,42 @@ def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=No
         model_id = getattr(args, "openai_model", None) or os.environ.get(
             "OPENAI_XAI_MODEL", "gpt-3.5-turbo")
         client = _OpenAI(api_key=key)
-        completion = client.chat.completions.create(
-            model=model_id,
-            temperature=float(args.temp_exp),
-            top_p=getattr(args, "top_p_exp", None) or 1.0,
-            max_tokens=args.max_tokens,
-            messages=[
-                {"role": "system", "content": "You are an expert at explaining language model behavior."},
-                {"role": "user", "content": prompt if isinstance(prompt, str) else prompt[0]},
-            ],
-        )
+
+        # GPT-5.6 and later reject max_tokens, temperature and top_p: they take
+        # max_completion_tokens and fix the sampling themselves. Older models
+        # (gpt-4o-mini, gpt-3.5-turbo) take the classic parameters. Sending the
+        # wrong set is a hard 400, so pick by model family.
+        modern = model_id.startswith(("gpt-5", "o1", "o3", "o4"))
+        kwargs = {"messages": [
+            {"role": "system", "content": "You are an expert at explaining language model behavior."},
+            {"role": "user", "content": prompt if isinstance(prompt, str) else prompt[0]},
+        ]}
+        if modern:
+            kwargs["max_completion_tokens"] = args.max_tokens
+        else:
+            kwargs["max_tokens"] = args.max_tokens
+            kwargs["temperature"] = float(args.temp_exp)
+            kwargs["top_p"] = getattr(args, "top_p_exp", None) or 1.0
+
+        completion = client.chat.completions.create(model=model_id, **kwargs)
         response = completion.choices[0].message.content
+
+        # Record what the call actually cost. The OpenRouter backend has always done
+        # this; without it here the OpenAI spend could only ever be estimated.
+        _log = getattr(args, "usage_log", None)
+        if _log:
+            import json as _json, os as _os
+            u = completion.usage
+            det = getattr(u, "completion_tokens_details", None)
+            _os.makedirs(_os.path.dirname(_log) or ".", exist_ok=True)
+            with open(_log, "a") as fh:
+                fh.write(_json.dumps({
+                    "backend": "openai", "model": model_id,
+                    "prompt_tokens": getattr(u, "prompt_tokens", None),
+                    "completion_tokens": getattr(u, "completion_tokens", None),
+                    "reasoning_tokens": getattr(det, "reasoning_tokens", 0) if det else 0,
+                }) + "\n")
+
         if not (response or "").strip():
             # An empty reply becomes a blank "explanation" and is then scored.
             raise RuntimeError(f"{model_id} returned empty content")
