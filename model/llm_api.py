@@ -77,7 +77,7 @@ def xai_model_id(args=None):
     )
 
 
-def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4, top_p=None):
+def chat(prompt, model, max_tokens=3000, temperature=0.0, system=None, retries=4, top_p=None):
     """Single chat completion. Raises after `retries` failed attempts.
 
     Callers that want the original fail-soft behaviour should catch the

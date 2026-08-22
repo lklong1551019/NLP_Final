@@ -177,7 +177,7 @@ def get_args():
     parser.add_argument('--data', type=str, default='ecqa')
     parser.add_argument('--pred_model', type=str, default='vicuna')
     parser.add_argument('--xai_model', type=str, default='claude')
-    parser.add_argument('--max_tokens', type=int, default=1000)
+    parser.add_argument('--max_tokens', type=int, default=3000)
     parser.add_argument('--temp_exp', type=float, default=0.01)
     parser.add_argument('--xai_iter', type=int, default=20)
     parser.add_argument('--ques_idx_start', type=int, default=40)

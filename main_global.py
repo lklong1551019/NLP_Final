@@ -153,7 +153,7 @@ def get_args():
     parser.add_argument('--pred_model', type=str, default='vicuna')
     parser.add_argument('--xai_model', type=str, default='claude')
     parser.add_argument('--temp_exp', type=float, default=0.9)
-    parser.add_argument('--max_tokens', type=int, default=1000)
+    parser.add_argument('--max_tokens', type=int, default=3000)
     parser.add_argument('--xai_iter', type=int, default=3)
     parser.add_argument('--round_xai_iter', type=int, default=10)
     parser.add_argument('--ques_sample', type=int, default=15)
