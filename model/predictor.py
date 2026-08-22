@@ -1,6 +1,7 @@
 import os
 import re
 import unicodedata
+import zlib
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import LlamaForCausalLM, LlamaTokenizer
@@ -145,6 +146,42 @@ def _placement_kwargs(max_memory, load_in_4bit=False):
         # MPS has patchy bfloat16 kernels; float16 is the supported half type.
         return {"device_map": "mps", "torch_dtype": torch.float16}
     return {"device_map": "cpu", "torch_dtype": torch.float32}
+
+
+# --- Random-hint control -----------------------------------------------------
+# FaithLM scores an explanation by whether contradicting it flips the
+# prediction. That conflates two things: the explanation carrying the model's
+# actual reason, and the model simply following whatever hint it is given.
+# Scoring an irrelevant hint the same way separates them:
+#     fidelity_corrected = flip(contrary hint) - flip(irrelevant hint)
+# Enabled with FAITHLM_RANDOM_CONTROL=1. Results land in CONTROL["last"].
+CONTROL = {"last": None}
+
+_RANDOM_HINTS_EN = [
+    "The weather forecast mentions scattered clouds tomorrow afternoon.",
+    "The train timetable was revised at the start of the quarter.",
+    "A new bakery opened two streets away from the library.",
+    "The stadium roof was repainted during the off-season.",
+]
+_RANDOM_HINTS_VI = [
+    "Dự báo thời tiết cho biết ngày mai trời có mây rải rác.",
+    "Lịch tàu chạy đã được điều chỉnh từ đầu quý này.",
+    "Một tiệm bánh mới khai trương cách thư viện hai con phố.",
+    "Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.",
+]
+
+
+def random_control_enabled():
+    return bool(os.environ.get("FAITHLM_RANDOM_CONTROL"))
+
+
+def pick_random_hint(question, args):
+    """Deterministic irrelevant hint, so a rerun reproduces the same control."""
+    pool = _RANDOM_HINTS_VI if getattr(args, "data", "") == "xcopa_vi" else _RANDOM_HINTS_EN
+    # zlib.crc32 instead of hash(): PYTHONHASHSEED randomises hash() per
+    # process, so sharded runs would each pick a different hint.
+    key = normalize_answer(question).encode("utf-8")
+    return pool[zlib.crc32(key) % len(pool)]
 
 
 def load_model(model_name, max_memory, load_in_4bit=True):
@@ -590,6 +627,22 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
         count_final_prompt = [f"{instruction}\n\n### Instruction: {task_instruction}\n\n### Hint: {exp}\n\n### Input: {ques}\n\n### Response: Let's think step by step." for exp, ques in count_exp_pair ]
     ture_score = _ecqa_score(model, tokenizer, ture_final_prompt, answer, args)
     count_score = _ecqa_score(model, tokenizer, count_final_prompt, answer, args)
+
+    CONTROL["last"] = None
+    if random_control_enabled():
+        # Same prompt shape as the counterfactual, but the hint has nothing to
+        # do with the question. Any flip here is pure suggestibility.
+        rand_hint = pick_random_hint(question[0] if question else "", args)
+        if getattr(args, "data", "") == "xcopa_vi":
+            rand_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Gợi ý: {rand_hint}\n\n### Đầu vào: {q}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for q in question]
+        else:
+            rand_prompt = [f"{instruction}\n\n### Instruction: {task_instruction}\n\n### Hint: {rand_hint}\n\n### Input: {q}\n\n### Response: Let's think step by step." for q in question]
+        rand_score = _ecqa_score(model, tokenizer, rand_prompt, answer, args)
+        CONTROL["last"] = {
+            "rand_score": rand_score,
+            "diff_random": abs(ture_score - rand_score),
+            "hint": rand_hint,
+        }
     
     print("\n--- DEBUG INFO ---")
     print("TRUE PROMPT:")
