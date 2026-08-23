@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Những quả chín đung đưa dưới nắng.\n### Choices: [choice]Nó đã bị ăn.@ [choice]Nó co rúm lại.@'] || GT-A:Nó co rúm lại. || LLM-A:Nó đã bị ăn.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model likely selected this option due to a semantic association between the concept of ripe fruit and the eventual state of being consumed, treating it as a plausible narrative consequence despite the lack of direct causal evidence in the premise.'}

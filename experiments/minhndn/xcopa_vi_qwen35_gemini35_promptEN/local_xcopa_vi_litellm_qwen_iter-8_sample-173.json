@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Trời bắt đầu mưa.\n### Choices: [choice]Tài xế bật đèn pha.@ [choice]Tài xế lùi xe.@'] || GT-A:Tài xế bật đèn pha. || LLM-A:Tài xế bật đèn pha.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this answer because it correctly identifies a logical and common causal relationship in daily life, where rain reduces visibility and prompts a driver to turn on the headlights (bật đèn pha) for safety, whereas reversing the car (lùi xe) has no logical connection to the onset of rain.'}

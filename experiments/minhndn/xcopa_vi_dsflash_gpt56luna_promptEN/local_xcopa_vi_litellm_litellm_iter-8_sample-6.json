@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ mất chỗ trong hàng.\n### Choices: [choice]Nhiều người hơn đaz vào hàng.@ [choice]Cô bước ra khỏi hàng.@'] || GT-A:Cô bước ra khỏi hàng. || LLM-A:Cô bước ra khỏi hàng.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected this answer because it interpreted the premise as describing a woman losing her position in a queue and inferred that she left the queue, treating that action as a plausible cause of losing her place.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer identifies the woman leaving the queue as the event that explains why she no longer had a place in line, directly linking the stated loss of position to her departure.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer is selected because it states that the woman left the queue, which accounts for her no longer having a place in it.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The selected choice presents the woman’s departure from the line as the event associated with her losing her place, making it the explanation that most directly corresponds to the stated premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The selected answer connects the woman’s loss of her position with her leaving the queue, presenting her departure as the cause of the situation described.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The choice is selected because it directly identifies the woman’s leaving the queue as the event that caused her to lose her place.'}

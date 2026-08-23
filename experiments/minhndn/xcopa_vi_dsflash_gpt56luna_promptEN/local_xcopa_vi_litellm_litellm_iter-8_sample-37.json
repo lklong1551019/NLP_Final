@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông uống thuốc ngủ.\n### Choices: [choice]Ông trở nên buồn ngủ.@ [choice]Ông bị sốt.@'] || GT-A:Ông trở nên buồn ngủ. || LLM-A:Ông trở nên buồn ngủ.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because it represents the direct and typical consequence of the stated action, creating a straightforward semantic connection between taking sleeping medication and becoming sleepy.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Uống thuốc ngủ thường gây ra trạng thái buồn ngủ, nên lựa chọn này phù hợp trực tiếp với tác động được mô tả.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc uống thuốc ngủ tác động trực tiếp đến trạng thái tỉnh táo của người đàn ông, khiến ông có xu hướng buồn ngủ thay vì bị sốt.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Thuốc ngủ làm giảm sự tỉnh táo và gây buồn ngủ, phù hợp với lựa chọn mô tả tác động trực tiếp của việc uống thuốc.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc sử dụng thuốc ngủ làm giảm mức độ tỉnh táo và dẫn đến trạng thái buồn ngủ ở người đàn ông.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Thuốc ngủ có tác dụng an thần, làm giảm sự tỉnh táo và khiến người đàn ông rơi vào trạng thái buồn ngủ.'}

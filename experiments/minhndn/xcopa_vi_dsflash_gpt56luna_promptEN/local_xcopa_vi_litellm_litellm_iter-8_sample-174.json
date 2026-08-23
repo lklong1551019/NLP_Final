@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Bãi đậu xe của tòa nhà trống rỗng.\n### Choices: [choice]Tôi đậu xe bên kia đường.@ [choice]Tôi đậu gần lối vào.@'] || GT-A:Tôi đậu gần lối vào. || LLM-A:Tôi đậu xe bên kia đường.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the first choice because it interprets the premise as describing an empty parking lot and treats parking across the street as a plausible related action, although the premise does not logically entail that specific location.'}

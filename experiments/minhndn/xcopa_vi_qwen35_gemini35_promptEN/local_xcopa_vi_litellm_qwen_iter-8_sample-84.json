@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Mực trên poster bị lem.\n### Choices: [choice]Tôi đợi mực khô.@ [choice]Tôi làm đổ nước lên poster.@'] || GT-A:Tôi làm đổ nước lên poster. || LLM-A:Tôi làm đổ nước lên poster.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects this answer because it correctly identifies the most logical and common physical cause-and-effect relationship: spilling water on a poster (cause) directly results in the ink on the poster running or smudging (effect).'}

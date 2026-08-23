@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi gõ cửa nhà hàng xóm.\n### Choices: [choice]Hàng xóm của tôi mời tôi vào.@ [choice]Hàng xóm của tôi rời khỏi nhà cô ấy.@'] || GT-A:Hàng xóm của tôi mời tôi vào. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': "<EXP>The model selects this option because a person knocking on a neighbor's door is culturally and logically most often followed by the neighbor opening the door and inviting them inside, making it the most plausible direct effect among the choices."}

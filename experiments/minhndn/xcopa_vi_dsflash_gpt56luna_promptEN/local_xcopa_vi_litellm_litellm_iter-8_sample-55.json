@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đứa trẻ rắc thức ăn cho cá vào bể.\n### Choices: [choice]Con cá nhảy ra khỏi bể.@ [choice]Con cá bơi về phía thức ăn.@'] || GT-A:Con cá bơi về phía thức ăn. || LLM-A:Con cá bơi về phía thức ăn.
+{'Score': 0.0, 'XAI prompt': '<EXP> The answer identifies the fish swimming toward the food as the likely effect because the premise describes food being sprinkled into the tank, and this choice represents a direct, expected response to that event.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer reflects the immediate behavioral consequence of introducing fish food into the tank: the fish would be expected to move toward the newly available food.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The selected answer describes the outcome directly associated with placing food in the fish tank, since the fish’s movement toward the food is a natural response to its presence.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The response links the introduced food with the fish’s expected movement toward its source, expressing a plausible immediate consequence of the stated event.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer identifies the fish’s movement toward the food as the expected consequence of food being introduced into its tank.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The explanation is based on the food being introduced into the fish’s environment, which provides a direct stimulus for the fish to approach its source.'}

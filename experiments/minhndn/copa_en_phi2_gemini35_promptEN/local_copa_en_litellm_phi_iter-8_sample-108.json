@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The puppy stayed near its owner.\n### Choices: [choice]The owner put a collar on the puppy.@ [choice]The owner kept the puppy on a leash.@'] || GT-A:The owner kept the puppy on a leash. || LLM-A:The owner kept the puppy on a leash.
+{'Score': 1.0, 'XAI prompt': "<EXP>The model chose this answer because a leash physically restricts a puppy's movement, directly forcing it to stay in close proximity to its owner, which establishes a clear and immediate causal relationship with the premise."}

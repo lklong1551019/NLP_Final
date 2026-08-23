@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi đẩy cửa.\n### Choices: [choice]Cánh cửa mở ra.@ [choice]Cánh cửa bị khóa.@'] || GT-A:Cánh cửa mở ra. || LLM-A:Cánh cửa mở ra.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because it identifies the most common and direct cause-and-effect relationship in everyday scenarios, where pushing a door (Tôi đẩy cửa) typically results in the door opening (Cánh cửa mở ra) as the default successful outcome.'}

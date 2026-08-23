@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi rút phích cắm trong bồn tắm.\n### Choices: [choice]Nước rút ra khỏi bồn.@ [choice]Nước văng lên sàn nhà.@'] || GT-A:Nước rút ra khỏi bồn. || LLM-A:Nước rút ra khỏi bồn.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model correctly identifies the cause-and-effect relationship because the premise describes pulling the plug in a bathtub, and the selected choice directly represents the most common physical consequence of that action, which is water draining out of the tub.'}

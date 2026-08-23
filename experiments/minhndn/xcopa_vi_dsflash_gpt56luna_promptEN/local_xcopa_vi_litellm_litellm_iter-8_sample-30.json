@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái rớt xuống bể bơi.\n### Choices: [choice]Cô chạy trên sàn hồ bơi.@ [choice]Cô nhảy khỏi bảng lặn.@'] || GT-A:Cô nhảy khỏi bảng lặn. || LLM-A:Cô nhảy khỏi bảng lặn.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects the second choice because jumping from a diving board is a plausible direct cause of someone falling into a swimming pool, whereas running on the pool deck does not directly imply falling into the pool.'}

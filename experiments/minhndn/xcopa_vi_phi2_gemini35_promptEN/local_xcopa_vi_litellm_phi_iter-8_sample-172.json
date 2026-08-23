@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi thèm một ly sữa.\n### Choices: [choice]Tôi đang ăn bánh quy.@ [choice]Tôi đang nướng bánh mì.@'] || GT-A:Tôi đang ăn bánh quy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the choice involving eating cookies because there is a strong, culturally common association between eating cookies and desiring a glass of milk to accompany them, making it a highly plausible cause for the premise.'}

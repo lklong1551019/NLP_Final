@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cậu bé gọt bút chì.\n### Choices: [choice]Nó rẻ tiền.@ [choice]Thật là buồn tẻ.@'] || GT-A:Thật là buồn tẻ. || LLM-A:Thật là buồn tẻ.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose "Thật là buồn tẻ" (It is boring) likely because it associated the repetitive, mundane physical action of sharpening a pencil ("Cậu bé gọt bút chì") with a feeling of boredom or monotony, rather than the unrelated concept of something being cheap ("Nó rẻ tiền").'}

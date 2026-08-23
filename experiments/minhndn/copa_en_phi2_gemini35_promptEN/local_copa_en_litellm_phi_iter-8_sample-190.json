@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The criminal turned himself in.\n### Choices: [choice]The evidence implicated him.@ [choice] There was no evidence against him.@'] || GT-A:The evidence implicated him. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model chose this option because turning oneself in to the police is a logical consequence of being implicated by evidence, as the likelihood of being caught and convicted increases significantly, making confession or surrender a strategic or inevitable action.'}

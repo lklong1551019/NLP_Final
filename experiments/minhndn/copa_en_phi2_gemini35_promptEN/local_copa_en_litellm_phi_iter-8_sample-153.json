@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The car broke down.\n### Choices: [choice]I turned the ignition.@ [choice]The engine overheated.@'] || GT-A:The engine overheated. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the correct cause-and-effect relationship because overheating is a well-known physical malfunction that directly results in a mechanical failure, whereas turning the ignition is merely the standard action to start a vehicle and does not inherently cause a breakdown.'}

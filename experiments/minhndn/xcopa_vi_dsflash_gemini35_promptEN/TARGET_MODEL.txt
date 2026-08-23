@@ -1,0 +1,1 @@
+deepseek/deepseek-v4-flash (OpenRouter)

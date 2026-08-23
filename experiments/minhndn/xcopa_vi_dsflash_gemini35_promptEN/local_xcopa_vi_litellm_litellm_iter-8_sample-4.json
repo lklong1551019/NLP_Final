@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Văn phòng đóng cửa.\n### Choices: [choice]Đang vào đợt nghỉ.@ [choice]Đang mùa hè.@'] || GT-A:Đang vào đợt nghỉ. || LLM-A:Đang vào đợt nghỉ.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose this answer because "Đang vào đợt nghỉ" (It is currently a holiday/break) is a direct, highly common, and logical cause for an office to be closed ("Văn phòng đóng cửa"), whereas "Đang mùa hè" (It is currently summer) is too broad and does not typically cause offices to close.'}

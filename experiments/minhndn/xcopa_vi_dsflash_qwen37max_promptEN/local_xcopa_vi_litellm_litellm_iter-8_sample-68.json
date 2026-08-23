@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người phụ nữ mắc lỗi đánh máy trong trình xử lý văn bản.\n### Choices: [choice]Cô xóa tài liệu.@ [choice]Cô nhấn phím xóa lùi.@'] || GT-A:Cô nhấn phím xóa lùi. || LLM-A:Cô nhấn phím xóa lùi.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects this answer because pressing the backspace key is the most direct and immediate corrective action associated with making a typing error in a word processor, establishing a stronger causal link than deleting the entire document.'}

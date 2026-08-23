@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Dung nham chảy từ núi lửa.\n### Choices: [choice]Núi lửa phun trào.@ [choice]Núi lửa không hoạt động.@'] || GT-A:Núi lửa phun trào. || LLM-A:Núi lửa phun trào.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because flowing lava is most directly associated with a volcanic eruption, whereas an inactive volcano would not ordinarily produce flowing lava.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Dung nham chảy là dấu hiệu cho thấy núi lửa đang phun trào, nên lựa chọn này phù hợp với hiện tượng được nêu.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Dung nham chỉ chảy ra khi núi lửa đang phun trào, vì vậy đáp án này giải thích trực tiếp hiện tượng được nêu.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Dòng dung nham cho thấy núi lửa đang phun trào, vì dung nham được magma đẩy lên và chảy ra trong quá trình phun trào.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Dung nham chảy ra cho thấy magma đã được đẩy lên và đang tràn xuống, đây là biểu hiện của quá trình núi lửa phun trào.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Dung nham chảy ra là kết quả của magma được đẩy lên và tràn khỏi núi lửa, cho thấy núi lửa đang phun trào.'}

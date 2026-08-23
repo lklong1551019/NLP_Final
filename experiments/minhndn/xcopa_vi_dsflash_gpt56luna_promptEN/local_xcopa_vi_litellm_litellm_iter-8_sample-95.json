@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người con trai dọn ra khỏi nhà.\n### Choices: [choice]Anh ấy được xuất ngũ.@ [choice]Anh ấy đi học đại học.@'] || GT-A:Anh ấy đi học đại học. || LLM-A:Anh ấy đi học đại học.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely interprets moving out of the family home as more plausibly associated with attending university than with being discharged from military service, based on common real-world patterns and semantic compatibility.'}

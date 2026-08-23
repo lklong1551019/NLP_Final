@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Phòng tắm ngập nước.\n### Choices: [choice]Nước nhà vệ sinh tràn ra.@ [choice]Máy nước nóng bị hỏng.@'] || GT-A:Nước nhà vệ sinh tràn ra. || LLM-A:Nước nhà vệ sinh tràn ra.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because the premise describes a flooded bathroom, and an overflowing toilet is a plausible direct cause that aligns with this situation; the answer likely reflects semantic association rather than verified certainty.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer identifies an overflowing toilet as the cause because excess water from the toilet can spread into and flood the bathroom, directly explaining the stated premise.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The selected answer gives a specific source of water that can reasonably produce the flooding described in the premise, establishing a direct causal connection between the event and its stated cause.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer names an overflowing toilet as the source of the water, which directly accounts for the bathroom becoming flooded.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The selected choice identifies a concrete water source whose overflow would directly cause the bathroom to become flooded.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer points to toilet water overflowing as the immediate event that would result in the bathroom being filled with water.'}

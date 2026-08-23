@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông uống thuốc ngủ.\n### Choices: [choice]Ông trở nên buồn ngủ.@ [choice]Ông bị sốt.@'] || GT-A:Ông trở nên buồn ngủ. || LLM-A:Người đàn ông uống thuốc ngủ.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because it repeated the exact text of the premise provided in the input, likely failing to distinguish between the premise itself and the available choices due to a pattern-matching error or a misunderstanding of the task instructions.'}

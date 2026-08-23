@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông giảm cân.\n### Choices: [choice]Mọi người cô lập anh.@ [choice]Mọi người khen anh.@'] || GT-A:Mọi người khen anh. || LLM-A:Mọi người khen anh.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the second choice because it interpreted the premise “The man lost weight” as a generally positive change that would likely attract praise from others, rather than social isolation.</EXP>'}

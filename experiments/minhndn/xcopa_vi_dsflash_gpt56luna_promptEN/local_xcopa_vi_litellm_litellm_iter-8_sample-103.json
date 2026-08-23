@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Con cá nổi trên mặt bể.\n### Choices: [choice]Nó đói rồi.@ [choice]Nó đã chết.@'] || GT-A:Nó đã chết. || LLM-A:Nó đã chết.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model likely selects “Nó đã chết” because a fish floating on the surface is commonly associated with death, making that choice the most plausible interpretation of the premise.'}

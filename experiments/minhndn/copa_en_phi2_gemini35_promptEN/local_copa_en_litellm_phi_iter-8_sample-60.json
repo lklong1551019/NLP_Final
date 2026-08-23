@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the cause of the Premise?\n### Premise: The friends lost touch.\n### Choices: [choice]They enjoyed each other's company.@ [choice]They moved to different cities.@"] || GT-A:They moved to different cities. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP>The model selected the correct cause-and-effect relationship because moving to different cities is a common, logical reason for people to lose touch, whereas enjoying each other's company would have the opposite effect."}

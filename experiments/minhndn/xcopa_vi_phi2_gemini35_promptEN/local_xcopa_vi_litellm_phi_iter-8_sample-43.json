@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi đẩy cửa.\n### Choices: [choice]Cánh cửa mở ra.@ [choice]Cánh cửa bị khóa.@'] || GT-A:Cánh cửa mở ra. || LLM-A:Cánh cửa mở ra.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because "Cánh cửa mở ra" (The door opens) is the most direct, common, and expected physical consequence of the action "Tôi đẩy cửa" (I push the door) in a standard context, whereas a locked door represents an obstacle that prevents the action\'s intended effect.'}

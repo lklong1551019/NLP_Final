@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cô gái mất kiểm soát chiếc xe đạp của mình.\n### Choices: [choice]Cô buông tay lái.@ [choice]Cô đâm vào một hàng rào.@'] || GT-A:Cô đâm vào một hàng rào. || LLM-A:Cô đâm vào một hàng rào.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects this answer because losing control of a bicycle is interpreted as causing a collision with a nearby obstacle, making the second option a plausible consequence of the premise.'}

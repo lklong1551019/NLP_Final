@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ chật vật bước đi.\n### Choices: [choice]Cô đi giày cao gót.@ [choice]Cô cởi giày ra.@'] || GT-A:Cô đi giày cao gót. || LLM-A:Cô đi giày cao gót.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the first choice because it represents a plausible cause of the described difficulty walking, while the second choice would generally be expected to make walking easier rather than harder.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc đi giày cao gót có thể khiến người phụ nữ khó giữ thăng bằng và bước đi chật vật, phù hợp với tình trạng được mô tả.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc mang giày cao gót có thể làm bước đi trở nên khó khăn và chật vật, nên phù hợp với tình trạng của người phụ nữ.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Giày cao gót có thể làm việc đi lại khó khăn hơn, vì vậy lựa chọn này phù hợp với hình ảnh người phụ nữ đang chật vật bước đi.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Đi giày cao gót có thể làm giảm sự ổn định và khiến người phụ nữ bước đi chật vật, phù hợp với nguyên nhân được hỏi.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Giày cao gót làm giảm độ vững khi đi lại, khiến người phụ nữ khó giữ thăng bằng và phải bước đi chật vật.</EXP>'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Vị giám đốc điều hành đã phá sản.\n### Choices: [choice]Ông đã bán cổ phiếu công ty của mình.@ [choice]Ông phung phí tài sản của mình.@'] || GT-A:Ông phung phí tài sản của mình. || LLM-A:Ông phung phí tài sản của mình.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected this option because it identifies a direct causal relationship where personal financial mismanagement serves as a plausible and semantically coherent explanation for the state of bankruptcy described in the premise.'}

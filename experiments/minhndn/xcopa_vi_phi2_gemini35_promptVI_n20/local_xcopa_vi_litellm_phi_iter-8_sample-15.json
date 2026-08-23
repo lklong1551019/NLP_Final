@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái ghi nhớ mã.\n### Choices: [choice]Cô tự đọc nhẩm lại.@ [choice]Cô quên viết nó xuống.@'] || GT-A:Cô tự đọc nhẩm lại. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình lựa chọn phương án này vì việc đọc nhẩm lại thông tin là một phương pháp chủ động và phổ biến để ghi nhớ, trực tiếp dẫn đến kết quả ở phần tiền đề.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Vé xem phim đã bán hết.\n### Choices: [choice]Đó là ngày khai mạc cho bộ phim.@ [choice]Bộ phim nhận được đánh giá kém.@'] || GT-A:Đó là ngày khai mạc cho bộ phim. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model chose the first option because it correctly identifies a logical cause-and-effect relationship where a highly anticipated event, such as the opening day of a movie, naturally leads to high ticket demand and a sell-out crowd.'}

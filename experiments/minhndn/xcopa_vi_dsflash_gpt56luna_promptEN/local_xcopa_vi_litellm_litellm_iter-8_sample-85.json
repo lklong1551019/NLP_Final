@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Đứa trẻ tỉnh dậy la hét.\n### Choices: [choice]Nó gặp ác mộng.@ [choice]Nó làm ướt giường.@'] || GT-A:Nó gặp ác mộng. || LLM-A:Nó gặp ác mộng.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the first choice because waking up screaming is commonly associated with having a nightmare, making that option appear more directly supported than the alternative.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Waking up while screaming most directly indicates that the child experienced a frightening dream, rather than wetting the bed.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> La hét khi vừa tỉnh giấc phù hợp với phản ứng sợ hãi do một giấc mơ đáng sợ gây ra hơn là với việc làm ướt giường.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc đứa trẻ tỉnh dậy trong trạng thái la hét cho thấy em có thể vừa trải qua cảm giác sợ hãi trong một giấc mơ, phù hợp hơn với việc gặp ác mộng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Đáp án này được chọn vì tiếng la hét ngay khi tỉnh dậy là dấu hiệu phù hợp với việc đứa trẻ vừa trải qua một giấc mơ đáng sợ.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Tỉnh dậy và la hét là biểu hiện thường gặp khi một đứa trẻ vừa trải qua giấc mơ đáng sợ.'}

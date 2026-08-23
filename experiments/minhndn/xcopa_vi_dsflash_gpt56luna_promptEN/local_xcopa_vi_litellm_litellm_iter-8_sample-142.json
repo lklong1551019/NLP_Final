@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Vết xước trên da tôi thật sâu.\n### Choices: [choice]Nó lành nhanh chóng.@ [choice]Nó để lại một vết sẹo.@'] || GT-A:Nó để lại một vết sẹo. || LLM-A:Nó để lại một vết sẹo.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the second choice because a deep scratch is commonly associated with scarring, making that option a plausible consequence of the premise.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Đáp án được chọn vì một vết xước rất sâu có khả năng làm tổn thương nhiều lớp da, khiến quá trình lành lại để lại sẹo.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vết xước sâu thường gây tổn thương đáng kể cho da, vì vậy hậu quả được chọn là hình thành sẹo sau khi lành.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Vết xước sâu có thể làm tổn thương đáng kể các lớp da, nên khi lành lại thường để lại sẹo.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Vết xước càng sâu thì tổn thương da càng nghiêm trọng, làm tăng khả năng để lại sẹo sau quá trình hồi phục.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vết xước sâu thường gây tổn thương đáng kể cho da, vì vậy hậu quả được chọn là hình thành sẹo sau khi lành.</EXP>'}

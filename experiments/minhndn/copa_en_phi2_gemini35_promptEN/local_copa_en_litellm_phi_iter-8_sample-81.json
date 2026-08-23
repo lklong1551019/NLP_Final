@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The surfers returned to the beach.\n### Choices: [choice]They were drenched.@ [choice]They saw a shark.@'] || GT-A:They saw a shark. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected this answer because it correctly identifies a plausible cause-and-effect relationship, recognizing that the sighting of a shark is a direct and logical safety hazard that would prompt surfers to immediately leave the water and return to the shore.'}

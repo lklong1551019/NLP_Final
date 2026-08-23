@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Sách rơi ra khỏi tủ sách.\n### Choices: [choice]Các kệ sách phủ bụi.@ [choice]Một trận động đất làm rung chuyển tủ sách.@'] || GT-A:Một trận động đất làm rung chuyển tủ sách. || LLM-A:Một trận động đất làm rung chuyển tủ sách.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the second choice because it represents a plausible causal event that could make a book fall from a bookshelf, whereas the first choice describes dust on the shelves and does not directly explain the falling book.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Đáp án được chọn vì một trận động đất có thể làm rung chuyển tủ sách, khiến sách rơi ra; việc kệ sách phủ bụi không tạo ra nguyên nhân trực tiếp cho hiện tượng này.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Một trận động đất làm rung chuyển tủ sách có thể trực tiếp khiến sách rơi ra khỏi tủ, trong khi bụi bám trên kệ không gây ra hiện tượng này.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Một trận động đất có thể làm tủ sách rung lắc, từ đó khiến sách rơi ra khỏi tủ; ngược lại, kệ sách phủ bụi không phải là nguyên nhân trực tiếp của việc sách bị rơi.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Một trận động đất làm tủ sách rung chuyển, tạo lực khiến những cuốn sách rơi ra ngoài, còn kệ sách phủ bụi không giải thích được hiện tượng đó.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Một trận động đất có thể làm tủ sách rung lắc, khiến sách bị rơi ra, còn bụi trên kệ không giải thích trực tiếp cho hiện tượng này.</EXP>'}

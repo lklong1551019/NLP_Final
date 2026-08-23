@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tòa nhà trung tâm bị sập.\n### Choices: [choice]Một trận động đất ập đến thành phố.@ [choice]Tỷ lệ tội phạm trong thành phố tăng.@'] || GT-A:Một trận động đất ập đến thành phố. || LLM-A:Một trận động đất ập đến thành phố.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the first choice because an earthquake is a plausible direct cause of a central building collapsing, whereas an increased crime rate does not ordinarily cause such structural failure.</EXP>'}

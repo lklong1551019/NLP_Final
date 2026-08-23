@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái khoe khoang với bạn bè.\n### Choices: [choice]Cô bị điểm kém.@ [choice]Cô đã thắng một cuộc thi.@'] || GT-A:Cô đã thắng một cuộc thi. || LLM-A:Cô đã thắng một cuộc thi.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects the correct choice because winning a competition is a highly plausible and culturally common reason for someone to boast or show off to their friends, establishing a logical cause-and-effect relationship with the premise.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Nhân viên thu ngân từ chối hoàn tiền chiếc váy cho người phụ nữ.\n### Choices: [choice]Cô bị mất biên lai.@ [choice]Chiếc váy không vừa.@'] || GT-A:Cô bị mất biên lai. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP> The model selected the first choice because losing a receipt is a direct causal antecedent that logically necessitates a cashier's refusal to process a refund, whereas an item not fitting is typically a valid reason for a return rather than a rejection."}

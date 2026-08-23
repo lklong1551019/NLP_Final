@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Luật sư đi cầu thang lên văn phòng của cô.\n### Choices: [choice]Thư ký đã về nhà.@ [choice]Thang máy không hoạt động.@'] || GT-A:Thang máy không hoạt động. || LLM-A:Thang máy không hoạt động.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the second choice because the premise states that the lawyer went up the stairs to the office, which is interpreted as indicating that the elevator was unavailable or not functioning.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise describes the lawyer using the stairs to reach the office, supporting the choice that the elevator was not operating.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The lawyer’s choice to use the stairs rather than an elevator suggests that the elevator was unavailable or malfunctioning.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The lawyer went up by staircase, implying that the elevator could not be used.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The lawyer used the stairs, indicating that the elevator was not functioning.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise indicates that the lawyer went up using the stairs, suggesting that the elevator was unavailable or not working.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cái chốt siết chặt.\n### Choices: [choice]Tôi thay chốt.@ [choice]Tôi vặn mỏ lết.@'] || GT-A:Tôi vặn mỏ lết. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the second choice because it identifies a direct cause-and-effect relationship in Vietnamese, where the action of turning a wrench ("vặn mỏ lết") physically results in a bolt or fastener tightening ("chốt siết chặt"), which logically answers the question about the cause of the premise.'}

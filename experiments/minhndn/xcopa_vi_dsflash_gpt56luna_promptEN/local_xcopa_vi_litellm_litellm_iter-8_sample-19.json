@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Dây xích đã bị đứt.\n### Choices: [choice]Dây xích bị quấn quanh một lốp xe.@ [choice]Có một liên kết bị hỏng trong dây.@'] || GT-A:Có một liên kết bị hỏng trong dây. || LLM-A:Có một liên kết bị hỏng trong dây.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the second choice because a broken chain is most directly explained by a damaged or broken link within the chain, whereas the first choice describes a possible entanglement condition rather than the stated cause.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The selected answer identifies a specific internal failure that would cause the chain to break, making it a direct explanation of the stated premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The answer attributes the broken chain to a failed link, which is a direct physical cause of the chain no longer remaining intact.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The chosen statement explains the premise by identifying a damaged link as the structural failure responsible for the chain breaking.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The selected choice gives the specific defect that would directly result in the chain breaking, rather than merely describing the chain’s position or surroundings.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer identifies a broken link as the internal defect that directly accounts for the chain being broken, rather than describing an external circumstance involving the chain.'}

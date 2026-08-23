@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người thủy thủ đã được cách ly.\n### Choices: [choice]Anh đã tiếp xúc với dịch bệnh.@ [choice]Anh đã khỏi bệnh.@'] || GT-A:Anh đã tiếp xúc với dịch bệnh. || LLM-A:Anh đã tiếp xúc với dịch bệnh.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the chosen option because it identifies a direct causal relationship where exposure to an epidemic serves as the logical antecedent for the quarantine action described in the premise.'}

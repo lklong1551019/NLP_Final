@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các mặt hàng đã được đóng gói trong bọc bong bóng.\n### Choices: [choice]Nó dễ vỡ.@ [choice]Nó nhỏ.@'] || GT-A:Nó dễ vỡ. || LLM-A:Nó dễ vỡ.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model likely selected this answer because it inferred a common practical reason for wrapping items in bubble wrap: protecting objects that may break easily. The answer corresponds to the premise through a familiar cause-and-effect association, although the premise itself does not explicitly establish that this is the cause.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc đóng gói các mặt hàng trong bọc bong bóng cho thấy chúng cần được bảo vệ khỏi va đập hoặc hư hỏng, phù hợp với đặc điểm dễ vỡ hơn là kích thước nhỏ.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Đáp án được chọn vì bọc bong bóng thường được dùng để bảo vệ những vật có nguy cơ bị vỡ, nên nguyên nhân phù hợp là mặt hàng dễ vỡ.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc sử dụng bọc bong bóng được liên hệ với nhu cầu bảo vệ hàng hóa khỏi va chạm, nên đáp án mô tả tính dễ vỡ được xem là nguyên nhân phù hợp.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Người ta chọn đáp án này vì bọc bong bóng thường được dùng để bảo vệ các mặt hàng có thể bị vỡ trong quá trình va chạm hoặc vận chuyển.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Bọc bong bóng thường được sử dụng để bảo vệ những mặt hàng có nguy cơ bị hư hỏng hoặc vỡ, nên đáp án này được chọn để giải thích lý do đóng gói.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Đáp án liên kết việc dùng bọc bong bóng với đặc tính dễ bị vỡ của mặt hàng, vì vật dễ vỡ thường cần được đệm và bảo vệ khi đóng gói.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Đáp án được chọn vì bọc bong bóng thường gắn với việc bảo vệ các mặt hàng dễ bị vỡ trong quá trình vận chuyển.</EXP>'}

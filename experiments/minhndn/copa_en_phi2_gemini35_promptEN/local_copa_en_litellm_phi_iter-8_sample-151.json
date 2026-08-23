@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I was lost.\n### Choices: [choice]I counted my cash.@ [choice]I unfolded a map.@'] || GT-A:I unfolded a map. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP>The model selected the second choice because it identifies a strong causal and situational relationship between the state of being lost and the action of unfolding a map to find one's way, whereas counting cash lacks a logical connection to resolving the premise's situation."}

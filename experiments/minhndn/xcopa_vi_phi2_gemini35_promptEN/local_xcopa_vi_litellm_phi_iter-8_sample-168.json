@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông nhìn chằm chằm vào bầu trời đêm.\n### Choices: [choice]Anh ước đó là mùa hè.@ [choice]Anh nghĩ nó thật đẹp.@'] || GT-A:Anh nghĩ nó thật đẹp. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose the second option because it identifies a logical and common causal relationship where looking closely at the night sky is motivated by finding it beautiful, whereas wishing it were summer is a less direct and more speculative cause for the action.'}

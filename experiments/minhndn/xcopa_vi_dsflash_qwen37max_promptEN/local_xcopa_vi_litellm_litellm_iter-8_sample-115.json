@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ chật vật bước đi.\n### Choices: [choice]Cô đi giày cao gót.@ [choice]Cô cởi giày ra.@'] || GT-A:Cô đi giày cao gót. || LLM-A:Cô đi giày cao gót.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects this option because wearing high heels is a widely recognized causal factor for difficulty in walking, establishing a direct logical link to the state of struggling described in the premise.'}

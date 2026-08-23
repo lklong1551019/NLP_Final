@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông ngậm bạc hà.\n### Choices: [choice]Môi anh nứt nẻ.@ [choice]Anh lo bị hôi miệng.@'] || GT-A:Anh lo bị hôi miệng. || LLM-A:Anh lo bị hôi miệng.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the second choice because chewing or holding a mint is commonly associated with freshening breath, so it inferred concern about bad breath as the likely cause.</EXP>'}
+{'Score': 1.0, 'XAI prompt': "<EXP>The answer attributes the man's use of a mint to concern about having unpleasant breath, rather than to discomfort caused by chapped lips.</EXP>"}
+{'Score': 1.0, 'XAI prompt': '<EXP>The selected choice interprets the mint as something used to address or prevent unpleasant breath, making concern about bad breath the relevant explanation rather than chapped lips.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The man is holding a mint because he is concerned that his breath may smell unpleasant.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The mint is associated with addressing unpleasant breath, so the explanation points to concern about bad breath rather than cracked lips.</EXP>'}
+{'Score': 1.0, 'XAI prompt': "<EXP>The answer links the man's mint use to an attempt to deal with or prevent unpleasant breath, rather than to relief from cracked lips.</EXP>"}

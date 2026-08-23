@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái véo mũi.\n### Choices: [choice]Đứa bé chảy nước dãi trên chiếc yếm của cô.@ [choice]Đứa bé làm bẩn tã của mình.@'] || GT-A:Đứa bé làm bẩn tã của mình. || LLM-A:Đứa bé chảy nước dãi trên chiếc yếm của cô.
+{'Score': 1.0, 'XAI prompt': "<EXP>The model selected this option because it identified a direct causal link where the baby drooling on the girl's bib serves as the specific physical stimulus that provokes the reaction of pinching or tweaking the nose described in the premise."}

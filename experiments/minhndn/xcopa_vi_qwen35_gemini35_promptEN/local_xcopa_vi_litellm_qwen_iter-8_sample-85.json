@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Đứa trẻ tỉnh dậy la hét.\n### Choices: [choice]Nó gặp ác mộng.@ [choice]Nó làm ướt giường.@'] || GT-A:Nó gặp ác mộng. || LLM-A:Nó gặp ác mộng.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose "Nó gặp ác mộng" (He/She had a nightmare) because there is a strong, universally understood causal relationship between having a nightmare and waking up screaming, making it the most logically sound and common cause for the premise compared to wetting the bed.'}

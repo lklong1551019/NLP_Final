@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Du khách đã nhận phòng khách sạn.\n### Choices: [choice]Họ tháo vali ra.@ [choice]Họ đã đến sân bay.@'] || GT-A:Họ tháo vali ra. || LLM-A:Họ tháo vali ra.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model likely selected the first choice because it interpreted checking into a hotel as implying that the guests would unpack their luggage, making that option appear more causally related than the alternative of arriving at an airport.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The premise states that the travelers have checked into the hotel, which makes removing their suitcases a more direct consequence than arriving at an airport.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Checking into a hotel indicates that the travelers have arrived and are settling in, a situation naturally associated with unpacking their luggage rather than reaching an airport.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The premise indicates that the travelers have completed hotel check-in, so the selected outcome is that they unpack their luggage rather than arrive at an airport.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Checking into a hotel suggests that the travelers are beginning their stay, so unpacking their luggage is the most appropriate resulting action.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Hotel check-in typically precedes settling into the room, making unpacking the luggage a plausible effect, whereas arriving at an airport does not follow from the premise.</EXP>'}

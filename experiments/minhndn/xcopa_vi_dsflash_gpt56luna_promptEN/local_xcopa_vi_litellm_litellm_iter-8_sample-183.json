@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Nhiếp ảnh gia quên sử dụng đèn flash trên máy ảnh.\n### Choices: [choice]Những bức ảnh trở nên mờ ảo.@ [choice]Mọi người trong ảnh đều từ chối mỉm cười.@'] || GT-A:Những bức ảnh trở nên mờ ảo. || LLM-A:Những bức ảnh trở nên mờ ảo.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the first choice because it interpreted forgetting to use the camera flash as a likely cause of dim or unclear photographs, whereas the second choice describes people’s behavior and does not directly follow from the premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Quên bật đèn flash có thể khiến ảnh thiếu ánh sáng và kém rõ nét, nên lựa chọn về những bức ảnh trở nên mờ ảo phù hợp hơn với nguyên nhân đã nêu.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc không sử dụng đèn flash làm giảm lượng ánh sáng trong ảnh, khiến hình ảnh có thể bị tối, thiếu chi tiết và trông mờ ảo.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc quên sử dụng đèn flash khiến ảnh nhận được ít ánh sáng hơn, do đó chúng có thể trở nên tối, thiếu rõ nét và mờ ảo.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc không bật đèn flash làm giảm ánh sáng chiếu vào cảnh, nên máy ảnh có thể ghi lại hình ảnh thiếu sáng và kém rõ nét hơn.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Đáp án đầu tiên được chọn vì việc quên sử dụng đèn flash có thể làm ảnh thiếu sáng, từ đó khiến chúng trông mờ ảo; đáp án còn lại không phải là hệ quả trực tiếp của việc này.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Đáp án này phù hợp vì khi máy ảnh không dùng đèn flash, lượng ánh sáng thu được có thể giảm, khiến ảnh trông tối, thiếu chi tiết và mờ ảo hơn.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc quên sử dụng đèn flash khiến ảnh có thể không đủ ánh sáng, dẫn đến hình ảnh tối và mờ ảo; điều này phù hợp với lựa chọn đầu tiên hơn lựa chọn còn lại.</EXP>'}

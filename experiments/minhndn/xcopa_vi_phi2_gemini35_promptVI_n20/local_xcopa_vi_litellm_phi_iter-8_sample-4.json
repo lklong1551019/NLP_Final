@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Văn phòng đóng cửa.\n### Choices: [choice]Đang vào đợt nghỉ.@ [choice]Đang mùa hè.@'] || GT-A:Đang vào đợt nghỉ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình lựa chọn phương án này vì kỳ nghỉ là lý do phổ biến và trực tiếp dẫn đến việc các văn phòng ngừng hoạt động hoặc đóng cửa tạm thời trong thực tế.'}

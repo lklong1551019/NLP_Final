@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi treo tấm vải ướt lên dây phơi ngoài trời.\n### Choices: [choice]Vải khô.@ [choice]Vải nhuộm màu.@'] || GT-A:Vải khô. || LLM-A:Vải khô.
+{'Score': 0.0, 'XAI prompt': '<EXP> The response is likely correct because the premise directly describes a typical drying process.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc treo tấm vải ướt ngoài trời giúp nước bay hơi, khiến tấm vải dần trở nên khô.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Phơi tấm vải ướt ngoài trời làm nước trong vải bay hơi, dẫn đến kết quả là vải trở nên khô.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The stated outcome follows from the premise that placing wet fabric on an outdoor clothesline leads to moisture evaporating from the fabric.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì tấm vải đang ướt và được treo ngoài trời, nước trong vải có điều kiện bay hơi ra không khí, dẫn đến kết quả là vải khô.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì tấm vải được đặt ở ngoài trời, tác động của không khí và môi trường xung quanh làm giảm độ ẩm trong vải, phù hợp với kết quả được nêu.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc đặt tấm vải đang ướt lên dây phơi ngoài trời tạo điều kiện cho hơi ẩm thoát ra, nên kết quả được chọn là vải khô.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì tấm vải ướt được treo ngoài trời, nước trong vải bay hơi vào không khí, nên vải trở nên khô.'}

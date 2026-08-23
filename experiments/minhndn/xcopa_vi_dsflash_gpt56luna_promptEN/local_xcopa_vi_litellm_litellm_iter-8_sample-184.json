@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi từ chối lời mời đến bữa tiệc sinh nhật.\n### Choices: [choice]Tôi cô đơn.@ [choice]Tôi không có nhà.@'] || GT-A:Tôi không có nhà. || LLM-A:Tôi cô đơn.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because it interpreted refusing a birthday-party invitation as most plausibly resulting from loneliness or social withdrawal, although that causal inference is weak and the premise does not explicitly establish it.'}

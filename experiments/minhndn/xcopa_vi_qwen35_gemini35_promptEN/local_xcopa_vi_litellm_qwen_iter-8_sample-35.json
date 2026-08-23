@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi mất kiên nhẫn.\n### Choices: [choice]Bạn tôi làm tôi chờ.@ [choice]Bạn tôi đến đúng giờ.@'] || GT-A:Bạn tôi làm tôi chờ. || LLM-A:Bạn tôi làm tôi chờ.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects the correct cause because "Tôi mất kiên nhẫn" (I lost my patience) is a direct psychological consequence of waiting for someone, which logically aligns with the choice "Bạn tôi làm tôi chờ" (My friend made me wait) rather than the friend arriving on time.'}

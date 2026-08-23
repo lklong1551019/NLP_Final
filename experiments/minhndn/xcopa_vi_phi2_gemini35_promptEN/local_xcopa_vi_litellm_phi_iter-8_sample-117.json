@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Toàn bộ tất của tôi đã ở trong máy giặt.\n### Choices: [choice]Tôi đi dép.@ [choice]Tôi đi giày bốt.@'] || GT-A:Tôi đi dép. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model chose "Tôi đi dép" (I wear sandals/slippers) because the premise states that all of the speaker\'s socks are in the washing machine, making wearing boots (which typically require socks to prevent discomfort or blisters) less logical than wearing sandals, which can be easily worn barefoot.'}

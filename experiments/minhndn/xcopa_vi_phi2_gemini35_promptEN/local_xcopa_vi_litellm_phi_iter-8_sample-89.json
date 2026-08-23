@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cậu bé bị lạc trong rừng.\n### Choices: [choice]Cậu dựng lều.@ [choice]Cậu hét lên cầu cứu.@'] || GT-A:Cậu hét lên cầu cứu. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model chose "Cậu hét lên cầu cứu" (He screamed for help) because it represents a more immediate, instinctive, and common causal reaction to the premise "Cậu bé bị lạc trong rừng" (The boy was lost in the forest) than building a tent, which requires resources and preparation that a lost child typically lacks.'}

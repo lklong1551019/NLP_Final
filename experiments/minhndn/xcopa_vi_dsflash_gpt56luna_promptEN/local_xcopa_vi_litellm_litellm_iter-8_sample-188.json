@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Thiếu niên có một hình xăm.\n### Choices: [choice]Cô sợ kim tiêm.@ [choice]Cô muốn nổi loạn.@'] || GT-A:Cô muốn nổi loạn. || LLM-A:Cô muốn nổi loạn.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected the second choice because it interpreted having a tattoo as an expression of rebellion, treating that option as the most direct explanation of the stated premise.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc một thiếu niên có hình xăm thường được liên hệ với mong muốn thể hiện cá tính và sự nổi loạn.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Hình xăm được xem là biểu hiện của mong muốn khẳng định cá tính và chống lại các chuẩn mực thông thường ở tuổi thiếu niên.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc xăm hình có thể được hiểu là cách thiếu niên thể hiện cá tính và mong muốn khác biệt, phù hợp với ý muốn nổi loạn hơn là nỗi sợ kim tiêm.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Hình xăm thường được xem là một cách thể hiện cá tính và thái độ muốn khác biệt, nên phù hợp với động cơ nổi loạn hơn là nỗi sợ kim tiêm.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Hình xăm được hiểu là một lựa chọn nhằm thể hiện cá tính và sự chống đối các chuẩn mực, vì vậy phù hợp với mong muốn nổi loạn hơn là nỗi sợ kim tiêm.'}

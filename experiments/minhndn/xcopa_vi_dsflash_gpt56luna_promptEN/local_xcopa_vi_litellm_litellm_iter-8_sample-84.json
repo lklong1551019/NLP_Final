@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Mực trên poster bị lem.\n### Choices: [choice]Tôi đợi mực khô.@ [choice]Tôi làm đổ nước lên poster.@'] || GT-A:Tôi làm đổ nước lên poster. || LLM-A:Tôi làm đổ nước lên poster.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the second choice because spilling water is interpreted as a plausible direct cause of ink smearing, whereas waiting for the ink to dry is generally an action that would prevent or reduce smearing rather than cause it.</EXP>'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I entered my combination on the lock.\n### Choices: [choice]I shut the lock.@ [choice]The lock popped open.@'] || GT-A:The lock popped open. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects this choice because it correctly identifies the most common and logical physical consequence of entering a combination on a lock, which is that the lock opens.'}

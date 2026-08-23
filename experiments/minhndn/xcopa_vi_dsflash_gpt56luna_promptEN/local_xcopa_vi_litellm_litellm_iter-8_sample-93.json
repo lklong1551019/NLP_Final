@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tóc của người đàn ông chuyển sang màu vàng.\n### Choices: [choice]Ông ấy bỏ thuốc tẩy lên tóc.@ [choice]Ông ấy thoa dầu gội lên đó.@'] || GT-A:Ông ấy bỏ thuốc tẩy lên tóc. || LLM-A:Ông ấy bỏ thuốc tẩy lên tóc.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the first choice because it represents a plausible cause of hair changing to a lighter or yellow color, whereas applying shampoo is generally associated with cleaning rather than intentionally altering hair color.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Người đàn ông chọn thuốc tẩy vì đây là chất có thể làm tóc mất màu tự nhiên và chuyển sang màu vàng, phù hợp trực tiếp với sự thay đổi được nêu trong tiền đề.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Thuốc tẩy có thể làm thay đổi hoặc loại bỏ sắc tố tự nhiên của tóc, dẫn đến màu tóc chuyển sang vàng, trong khi dầu gội chủ yếu dùng để làm sạch tóc.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc sử dụng thuốc tẩy làm thay đổi sắc tố tự nhiên của tóc, nên có thể khiến tóc chuyển sang màu vàng; dầu gội chỉ có tác dụng làm sạch.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Thuốc tẩy có thể làm tóc mất hoặc thay đổi sắc tố tự nhiên, khiến tóc chuyển sang màu vàng, còn dầu gội chủ yếu chỉ được dùng để làm sạch tóc.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Thuốc tẩy có thể loại bỏ hoặc làm thay đổi sắc tố tự nhiên của tóc, khiến tóc chuyển sang màu vàng, còn dầu gội chủ yếu chỉ có tác dụng làm sạch.</EXP>'}

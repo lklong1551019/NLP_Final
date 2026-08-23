@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cậu bé bắt nạt bạn mới.\n### Choices: [choice]Cậu chào đón người bạn mới.@ [choice]Cậu không ưa người bạn mới.@'] || GT-A:Cậu không ưa người bạn mới. || LLM-A:Cậu không ưa người bạn mới.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the second choice because the premise describes the boy bullying the new student, which is interpreted as indicating dislike or hostility rather than welcoming behavior.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise portrays the boy bullying the new student, implying that he does not like or welcome the new student.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Cậu bé bắt nạt bạn mới cho thấy thái độ tiêu cực và không thân thiện, phù hợp với việc cậu không ưa người bạn mới.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Hành vi bắt nạt cho thấy cậu bé có thái độ thù địch và không chấp nhận người bạn mới, trái ngược với việc chào đón bạn.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Hành vi bắt nạt thể hiện sự thù địch và thiếu thiện cảm với người bạn mới, nên phù hợp với việc không ưa bạn ấy.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Hành vi bắt nạt cho thấy cậu bé có thái độ tiêu cực và thù địch với người bạn mới, nên không phù hợp với việc chào đón bạn.'}

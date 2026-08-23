@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tuyết đã chặn đường lái xe.\n### Choices: [choice]Tôi nặn thành một quả cầu tuyết.@ [choice]Tôi xúc tuyết ra khỏi đường.@'] || GT-A:Tôi xúc tuyết ra khỏi đường. || LLM-A:Tôi xúc tuyết ra khỏi đường.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the second choice because it interpreted the Vietnamese premise as stating that snow blocked the driveway, making removing or shoveling snow from the road the most direct effect.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Vì tuyết chặn đường lái xe nên việc xúc tuyết ra khỏi đường là hệ quả trực tiếp và hợp lý nhất.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Vì tuyết chắn lối đi, hành động phù hợp là dọn tuyết để đường có thể sử dụng lại.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>“Chặn đường lái xe” mô tả một vật cản trên lối đi, vì vậy lựa chọn được đưa ra thể hiện hành động loại bỏ vật cản đó để khôi phục việc đi lại.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Premise mô tả tuyết đang gây cản trở cho đường lái xe, nên đáp án được chọn thể hiện việc loại bỏ vật cản đó khỏi đường.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Premise mô tả tuyết đang gây cản trở cho đường lái xe, nên đáp án được chọn thể hiện việc loại bỏ vật cản đó khỏi đường.</EXP>'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Nhà văn đã bỏ lỡ thời hạn của cô cho bản dự thảo.\n### Choices: [choice]Cô ấy tịt ngòi.@ [choice]Cô chỉnh sửa bản nháp.@'] || GT-A:Cô ấy tịt ngòi. || LLM-A:Cô ấy tịt ngòi.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose "Cô ấy tịt ngòi" (She had writer\'s block) because it correctly identifies a plausible cause-and-effect relationship where experiencing writer\'s block prevents a writer from writing, thereby causing them to miss their draft deadline.'}

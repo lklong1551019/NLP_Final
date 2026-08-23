@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cô gái muốn cảm ơn cô giáo dạy toán.\n### Choices: [choice]Cô gái bị giữ lại sau giờ học.@ [choice]Cô gái mang cho cô giáo một quả táo.@'] || GT-A:Cô gái mang cho cô giáo một quả táo. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose this answer because it identified a common cultural and narrative trope where expressing gratitude to a teacher (the premise) is stereotypically represented by the action of bringing them an apple (the selected choice).'}

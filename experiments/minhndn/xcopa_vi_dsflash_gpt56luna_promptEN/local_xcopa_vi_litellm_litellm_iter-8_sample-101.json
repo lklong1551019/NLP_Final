@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Diễn giả đã bình luận không chính xác.\n### Choices: [choice]Anh làm khán giả chán.@ [choice]Anh xúc phạm khán giả.@'] || GT-A:Anh xúc phạm khán giả. || LLM-A:Anh xúc phạm khán giả.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected this answer because it interpreted the premise as indicating that the speaker made an inaccurate comment and associated that behavior with offending the audience, although the premise does not explicitly establish that consequence.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer treats an inaccurate comment by the speaker as an offensive act toward the audience, linking the premise’s negative evaluation of the remark to the stated effect on listeners.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The response interprets the speaker’s inaccurate comment as an act that insults or offends the audience, identifying the selected choice as the presumed effect of the premise.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The explanation connects the speaker’s inaccurate commentary with the interpretation that the audience was insulted, treating the chosen option as the premise’s implied effect.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The explanation interprets the speaker’s inaccurate comment as having offended the audience, which corresponds to the selected effect.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise is interpreted as describing a flawed remark whose effect was to offend the audience, matching the selected choice.'}

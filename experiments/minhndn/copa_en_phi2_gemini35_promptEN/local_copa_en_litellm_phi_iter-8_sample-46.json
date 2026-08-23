@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman felt envious of her sister.\n### Choices: [choice]Her sister was happy.@ [choice]Her sister got divorced.@'] || GT-A:Her sister was happy. || LLM-A:Her sister was happy.
+{'Score': 1.0, 'XAI prompt': "<EXP>The model selected this answer because it relies on common social and psychological associations where envy is typically triggered by someone else's positive circumstances, success, or happiness, making the sister being happy a logical cause for the envy."}

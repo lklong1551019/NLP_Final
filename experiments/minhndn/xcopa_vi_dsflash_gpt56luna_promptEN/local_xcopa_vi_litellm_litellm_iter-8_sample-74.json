@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Những người hâm mộ la ó.\n### Choices: [choice]Trận đấu phải bước vào phút bù giờ.@ [choice]Trọng tài ra quyết định sai.@'] || GT-A:Trọng tài ra quyết định sai. || LLM-A:Trọng tài ra quyết định sai.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected this answer because it interpreted the fans’ booing as a reaction to dissatisfaction with an incorrect referee decision, treating that option as the most plausible causal explanation.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Tiếng la ó của người hâm mộ cho thấy họ không hài lòng với một quyết định của trọng tài, nên nguyên nhân được cho là trọng tài đã ra quyết định sai.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Cổ động viên la ó thường là dấu hiệu họ phản đối hoặc không hài lòng với một quyết định gây tranh cãi của trọng tài, qua đó liên hệ hành động này với việc trọng tài ra quyết định sai.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Sự la ó của người hâm mộ được hiểu là phản ứng tiêu cực trước một quyết định gây bất mãn, đặc biệt là quyết định sai của trọng tài.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Phương án này được chọn vì tiếng la ó thường được diễn giải là phản ứng của khán giả trước sự bất mãn với quyết định của trọng tài.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Tiếng la ó của người hâm mộ được xem là dấu hiệu cho thấy họ phản đối một quyết định gây tranh cãi, từ đó gợi lên khả năng quyết định của trọng tài là nguyên nhân khiến họ bất mãn.'}

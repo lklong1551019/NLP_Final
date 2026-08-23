@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Giọng nói của người đàn ông khàn khàn.\n### Choices: [choice]Anh ấy bị cảm.@ [choice]Anh bỏ thuốc lá.@'] || GT-A:Anh ấy bị cảm. || LLM-A:Anh ấy bị cảm.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because a hoarse voice is commonly associated with having a cold, making that option appear to provide a plausible cause, while the second choice describes quitting smoking rather than a direct cause of the symptom.</EXP>'}

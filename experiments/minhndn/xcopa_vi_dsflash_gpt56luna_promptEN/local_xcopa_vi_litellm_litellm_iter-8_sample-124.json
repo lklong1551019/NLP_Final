@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái ngửi thấy mùi gì đó bốc cháy.\n### Choices: [choice]Cô lấy bánh quy ra khỏi bình.@ [choice]Cô quên bánh quy trong lò nướng.@'] || GT-A:Cô quên bánh quy trong lò nướng. || LLM-A:Cô quên bánh quy trong lò nướng.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the second choice because it represents a plausible cause of detecting something burning, whereas removing cookies from a jar does not normally produce a burning smell.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The second choice is selected because leaving cookies in the oven can cause a burning smell, while taking cookies out of a jar would not cause something to burn.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer identifies the forgotten cookies in the oven as the cause because they could burn and produce the detected smell.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer attributes the burning smell to cookies forgotten in the oven, since they could burn and create that odor.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer links the smell of something burning to cookies that were forgotten in the oven, as they could overheat and produce that odor.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The selected answer explains the burning smell by indicating that the cookies were left in the oven, where they could burn and produce the odor.'}

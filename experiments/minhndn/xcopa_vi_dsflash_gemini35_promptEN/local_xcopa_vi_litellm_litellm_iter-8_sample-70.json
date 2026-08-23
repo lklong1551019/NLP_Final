@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Bãi cỏ lầy lội.\n### Choices: [choice]Trời mưa vào đêm qua.@ [choice]Nó đầy cỏ dại.@'] || GT-A:Trời mưa vào đêm qua. || LLM-A:Trời mưa vào đêm qua.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model generates this answer because it correctly identifies the causal relationship between weather and soil conditions, recognizing that rainfall is a common and logical cause of a muddy lawn, whereas the presence of weeds does not cause mud.'}

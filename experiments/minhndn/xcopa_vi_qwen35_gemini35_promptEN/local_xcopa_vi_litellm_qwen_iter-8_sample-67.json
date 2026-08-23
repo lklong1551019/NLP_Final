@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông mặc áo phao.\n### Choices: [choice]Anh ấy không biết bơi.@ [choice]Nước cạn.@'] || GT-A:Anh ấy không biết bơi. || LLM-A:Anh ấy không biết bơi.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose "Anh ấy không biết bơi" (He does not know how to swim) because wearing a life jacket (áo phao) is a common preventive measure for individuals who cannot swim when they are near or in water, establishing a logical cause-and-effect relationship with the premise.'}

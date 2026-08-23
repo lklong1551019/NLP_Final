@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi thoát ra khỏi phòng ngủ qua cửa sổ.\n### Choices: [choice]Ngôi nhà bị cháy.@ [choice]Ngôi nhà trống rỗng.@'] || GT-A:Ngôi nhà bị cháy. || LLM-A:Ngôi nhà bị cháy.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected this option by interpreting the premise as an unusual escape through a window and inferring an emergency situation, such as a fire, even though that causal connection is not explicitly established.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc thoát ra khỏi phòng ngủ qua cửa sổ được xem là dấu hiệu của một tình huống khẩn cấp, phù hợp với khả năng ngôi nhà đang bị cháy.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc rời khỏi phòng ngủ qua cửa sổ cho thấy người trong nhà đang tìm một lối thoát bất thường, phù hợp với tình huống khẩn cấp như hỏa hoạn.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc thoát ra khỏi phòng ngủ qua cửa sổ cho thấy người trong nhà đang tìm một lối thoát bất thường, phù hợp với tình huống khẩn cấp như hỏa hoạn.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc thoát ra khỏi phòng ngủ qua cửa sổ gợi ý người trong nhà đang tìm cách thoát hiểm bất thường, phù hợp với bối cảnh ngôi nhà bị cháy.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc thoát ra khỏi phòng ngủ qua cửa sổ cho thấy người trong nhà đang tìm một lối thoát khẩn cấp, điều này phù hợp với tình huống ngôi nhà bị cháy.'}

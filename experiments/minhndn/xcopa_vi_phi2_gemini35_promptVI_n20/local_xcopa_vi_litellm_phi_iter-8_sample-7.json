@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái véo mũi.\n### Choices: [choice]Đứa bé chảy nước dãi trên chiếc yếm của cô.@ [choice]Đứa bé làm bẩn tã của mình.@'] || GT-A:Đứa bé làm bẩn tã của mình. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình lựa chọn phương án này vì đã thiết lập mối liên kết logic nguyên nhân - kết quả giữa hành động "véo mũi" (một phản ứng tự nhiên khi gặp mùi hôi thối) với sự việc "đứa bé làm bẩn tã" (nguồn phát ra mùi hôi đặc trưng cần phải tránh).'}

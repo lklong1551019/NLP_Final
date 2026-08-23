@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Một chiếc ô tô lạ đỗ bên ngoài nhà tôi.\n### Choices: [choice]Tôi trở nên nghi ngờ.@ [choice]Tôi gọi cho cảnh sát.@'] || GT-A:Tôi trở nên nghi ngờ. || LLM-A:Tôi trở nên nghi ngờ.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the first choice because an unfamiliar car parked outside the speaker’s home is interpreted as a potentially suspicious situation, making increased suspicion a direct and immediate effect of the premise.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The selected answer reflects the natural reaction of becoming suspicious when an unfamiliar car is parked outside one’s home.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The premise describes an unfamiliar car outside the speaker’s home, which naturally leads the speaker to feel suspicious.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The chosen response indicates an emotional reaction to the unexpected presence of an unfamiliar vehicle near the speaker’s residence.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The unfamiliar car’s presence outside the home creates a sense of unease, leading the person to become suspicious.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The unfamiliar car is perceived as unusual and potentially concerning, which prompts the person to feel suspicious.</EXP>'}
