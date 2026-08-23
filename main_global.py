@@ -108,10 +108,11 @@ def preprocess_xcopa_vi(lang="vi", split="test"):
     choice = [f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
 
     for idx, ques_txt in enumerate(question_text):
+        purp_vi = "nguyên nhân" if question_purp[idx] == "cause" else "kết quả"
         question = (
-            f"###Question: What is the {question_purp[idx]} of the Premise?\n"
-            f"### Premise: {ques_txt}\n"
-            f"### Choices: {choice[idx]}"
+            f"### Câu hỏi: Đâu là {purp_vi} của Tiền đề?\n"
+            f"### Tiền đề: {ques_txt}\n"
+            f"### Lựa chọn: {choice[idx]}"
         )
         train_dict['question'].append(question)
         train_dict['answer'].append(option[idx][labels[idx]])
