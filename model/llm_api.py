@@ -155,6 +155,16 @@ def resolve_client(model):
     return get_client(), model
 
 
+def prompt_lang():
+    """The requested prompt language: "en" or "vi" (default).
+
+    Read straight from the environment so it is usable from code that runs
+    before argparse - the dataset loaders build their question scaffold at
+    import/preprocess time, with no args object in scope.
+    """
+    return "en" if os.environ.get("PROMPT_LANG", "vi") == "en" else "vi"
+
+
 def vi_prompts(args=None):
     """True when the Vietnamese prompt templates should be used.
 
@@ -163,7 +173,7 @@ def vi_prompts(args=None):
     so prompt language is a controlled experimental variable rather than a
     side effect of the dataset choice.
     """
-    if os.environ.get("PROMPT_LANG", "vi") == "en":
+    if prompt_lang() == "en":
         return False
     return args is not None and getattr(args, "data", "") == "xcopa_vi"
 

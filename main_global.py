@@ -107,13 +107,26 @@ def preprocess_xcopa_vi(lang="vi", split="test"):
     option = list(zip(op1, op2))
     choice = [f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
 
+    # The question scaffold is part of the prompt under test, so it has to follow
+    # PROMPT_LANG like every other template. Preprocessing runs before argparse,
+    # so read the switch from the environment via llm_api.prompt_lang().
+    vi_scaffold = llm_api.prompt_lang() == "vi"
+
     for idx, ques_txt in enumerate(question_text):
-        purp_vi = "nguyên nhân" if question_purp[idx] == "cause" else "kết quả"
-        question = (
-            f"### Câu hỏi: Đâu là {purp_vi} của Tiền đề?\n"
-            f"### Tiền đề: {ques_txt}\n"
-            f"### Lựa chọn: {choice[idx]}"
-        )
+        if vi_scaffold:
+            purp_vi = "nguyên nhân" if question_purp[idx] == "cause" else "kết quả"
+            question = (
+                f"### Câu hỏi: Đâu là {purp_vi} của Tiền đề?\n"
+                f"### Tiền đề: {ques_txt}\n"
+                f"### Lựa chọn: {choice[idx]}"
+            )
+        else:
+            # The paper's original English scaffold, verbatim.
+            question = (
+                f"###Question: What is the {question_purp[idx]} of the Premise?\n"
+                f"### Premise: {ques_txt}\n"
+                f"### Choices: {choice[idx]}"
+            )
         train_dict['question'].append(question)
         train_dict['answer'].append(option[idx][labels[idx]])
     return train_dict
