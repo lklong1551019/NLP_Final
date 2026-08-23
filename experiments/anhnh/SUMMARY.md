@@ -37,7 +37,7 @@ These are material and must be quoted alongside any number in this report.
 
 | Variant | N | Predictor accuracy | Unparsed (`X`) | Mean faithfulness (max/question) | Random-hint control | Corrected | Questions with any flip | Mean iterations |
 |---|---|---|---|---|---|---|---|---|
-| `copa_en_phi_gpt35_control` | 84 | 73.8% | 20.2% | 0.869 | 0.607 | **+0.262** | 86.9% | 3.32 |
+| `copa_en_phi_gpt35_control` | 500 | 70.8% | 22.4% | 0.860 | 0.554 | **+0.306** | 86.0% | 3.11 |
 | `copa_en_phi_gpt35_greedy` | 30 | 86.7% | 13.3% | 0.767 | not measured | not measured | 76.7% | 2.47 |
 | `copa_en_phi_gpt35_paper_rep1` | 500 | 70.4% | 22.6% | 0.872 | not measured | not measured | 87.2% | 3.14 |
 | `xcopa_vi_phi_gpt35_greedy` | 30 | 33.3% | 40.0% | 0.233 | not measured | not measured | 23.3% | 3.00 |
@@ -48,18 +48,19 @@ These are material and must be quoted alongside any number in this report.
 
 ### `copa_en_phi_gpt35_control`
 
-- Questions evaluated: **84**
-- Predictor accuracy (no explanation): **73.8%**
-- Answers the parser could not resolve (`X`): **17**
-- Questions where the counterfactual flipped the prediction at least once: **73/84**
+- Questions evaluated: **500**
+- Predictor accuracy (no explanation): **70.8%**
+- Answers the parser could not resolve (`X`): **112**
+- Questions where the counterfactual flipped the prediction at least once: **430/500**
 
 Iterations before early-stop:
 
 | Iterations | Questions |
 |---|---|
-| 1 | 50 |
-| 6 | 29 |
-| 11 | 5 |
+| 1 | 306 |
+| 6 | 180 |
+| 11 | 11 |
+| 16 | 3 |
 
 ### `copa_en_phi_gpt35_greedy`
 
@@ -108,10 +109,10 @@ Iterations before early-stop:
 
 ## 3. Error analysis
 
-### `copa_en_phi_gpt35_control` — 22 incorrect predictions
+### `copa_en_phi_gpt35_control` — 146 incorrect predictions
 
-- Genuinely picked the wrong option: **5**
-- Response the parser could not resolve to any option (`X`): **17**
+- Genuinely picked the wrong option: **34**
+- Response the parser could not resolve to any option (`X`): **112**
 
 > Most 'errors' are parsing failures, not reasoning failures. What this
 > pipeline calls *accuracy* is closer to a **parse-success rate**, and it
@@ -120,22 +121,22 @@ Iterations before early-stop:
 
 | Gold answer | Model answer |
 |---|---|
-| I took a detour. | X |
-| The mother gave birth to twins. | X |
-| She went to the library. | X |
-| Their house caught fire. | X |
-| The can got crushed. | X |
-| I slammed the door upon leaving the house. | X |
-| The paper creased. | X |
-| Leaders of other countries sent emergency relief. | Leaders of other countries formed an alliance. |
-| It was due to be returned to the library. | He borrowed it from a friend. |
-| He was convicted of murder. | X |
-| Her wig came off. | She went bald. |
-| He deemed the sentence unclear. | X |
-| She realized the card was missing. | X |
-| The girl ruffled it. | X |
-| I stepped on the bug. | __. |
-| … | … (7 more) |
+| I retrieved a ticket stub. | X |
+| A drop of blood formed on my finger. | X |
+| It was dead. | X |
+| His parents grounded him. | X |
+| The owner kept the puppy on a leash. | The owner put a collar on the puppy. |
+| I called her back. | I met her for dinner. |
+| Their dog ran away from home. | Expensive jewelry was missing from their home. |
+| She wore high heels. | X |
+| I wore sandals. | I wore boots. |
+| The couple eloped. | The couple got pregnant. |
+| My bank account was empty. | X |
+| A riot broke loose in front of the courthouse. | X |
+| She left the cookies in the oven. | X |
+| I dashed to get inside. | X |
+| They disappointed their fans. | X |
+| … | … (131 more) |
 
 ### `copa_en_phi_gpt35_greedy` — 4 incorrect predictions
 

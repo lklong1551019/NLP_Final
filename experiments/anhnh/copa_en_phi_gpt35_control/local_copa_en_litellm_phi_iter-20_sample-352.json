@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I became enthralled in the book.\n### Choices: [choice]I returned the book.@ [choice]I lost track of time.@'] || GT-A:I lost track of time. || LLM-A:I lost track of time.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "I lost track of time" as the answer because getting engrossed in a book can lead to losing track of time, which is a common experience for many readers.', 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

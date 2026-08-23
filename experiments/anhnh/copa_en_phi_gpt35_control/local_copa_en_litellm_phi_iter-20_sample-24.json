@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The man's eyes watered.\n### Choices: [choice]Dust got into his eyes.@ [choice]He put goggles over his eyes.@"] || GT-A:Dust got into his eyes. || LLM-A:Dust got into his eyes.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "Dust got into his eyes" because it is a common reason for eyes to water, based on general knowledge and everyday experiences.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

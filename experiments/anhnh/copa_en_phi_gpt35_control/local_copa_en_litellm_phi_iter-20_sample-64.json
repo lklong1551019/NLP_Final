@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The bolt tightened.\n### Choices: [choice]I replaced the bolt.@ [choice]I twisted the wrench.@'] || GT-A:I twisted the wrench. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer X because it did not find a direct connection between the cause of the premise "The bolt tightened" and the choices provided.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

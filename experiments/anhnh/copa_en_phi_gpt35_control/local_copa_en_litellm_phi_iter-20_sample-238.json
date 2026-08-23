@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man shuffled through the papers.\n### Choices: [choice]He got a paper cut.@ [choice]He shredded the papers.@'] || GT-A:He got a paper cut. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "He shredded the papers" because it interprets "shuffled through the papers" as a more aggressive action that could lead to shredding.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

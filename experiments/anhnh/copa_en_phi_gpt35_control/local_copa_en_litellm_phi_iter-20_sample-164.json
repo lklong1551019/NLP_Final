@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The cursor on the computer screen moved.\n### Choices: [choice]The user clicked the mouse.@ [choice]The user shifted the mouse.@'] || GT-A:The user shifted the mouse. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it mentions the user clicking the mouse, which is a common action to move the cursor on a computer screen.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

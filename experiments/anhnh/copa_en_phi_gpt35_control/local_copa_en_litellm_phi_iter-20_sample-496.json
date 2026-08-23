@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I thought carefully about the problem.\n### Choices: [choice]I asked for advice.@ [choice]I came up with a solution.@'] || GT-A:I came up with a solution. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen option X because it failed to understand the relationship between the premise and the choices.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

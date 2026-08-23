@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I parked in the driveway.\n### Choices: [choice]The garage was open.@ [choice]The garage was full.@'] || GT-A:The garage was full. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have selected the answer "The garage was open" because it is a common reason for someone to park in the driveway when the garage is accessible.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

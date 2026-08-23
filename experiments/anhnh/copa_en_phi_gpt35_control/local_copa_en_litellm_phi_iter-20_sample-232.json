@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The mercury in the thermometer rose.\n### Choices: [choice]I dropped the thermometer.@ [choice]The weather got warmer.@'] || GT-A:The weather got warmer. || LLM-A:The weather got warmer.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The weather got warmer" as the answer because it is a common cause for the mercury in a thermometer to rise, indicating a higher temperature.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

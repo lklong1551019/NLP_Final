@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The boy felt stumped by the riddle.\n### Choices: [choice]He solved the riddle.@ [choice]He requested a hint.@'] || GT-A:He requested a hint. || LLM-A:He solved the riddle.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "He solved the riddle" because it interprets the feeling of being stumped as a temporary challenge that was eventually overcome by solving the riddle.', 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

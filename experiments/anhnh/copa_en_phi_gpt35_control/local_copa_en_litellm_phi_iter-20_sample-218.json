@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The student received a scholarship to go to college.\n### Choices: [choice]Her classmates respected her.@ [choice]She made good grades.@'] || GT-A:She made good grades. || LLM-A:She made good grades.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "She made good grades" as the answer because it is a common outcome or reason for receiving a scholarship to go to college.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The downtown building collapsed.\n### Choices: [choice]An earthquake hit the city.@ [choice]Crime rates in the city increased.@'] || GT-A:An earthquake hit the city. || LLM-A:An earthquake hit the city.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "An earthquake hit the city" as the answer because it is a common reason for buildings to collapse quickly.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

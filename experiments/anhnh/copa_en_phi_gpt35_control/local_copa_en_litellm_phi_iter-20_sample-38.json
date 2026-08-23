@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The woman bumped into the sofa.\n### Choices: [choice]The leg of the sofa came loose.@ [choice]She bruised her knee.@'] || GT-A:She bruised her knee. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen "She bruised her knee" as the answer because the action of bumping into the sofa could lead to a potential injury like bruising the knee.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

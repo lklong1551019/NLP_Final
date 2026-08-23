@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: A baby chicken emerged from the egg.\n### Choices: [choice]The egg hatched.@ [choice]I cracked the egg.@'] || GT-A:The egg hatched. || LLM-A:The egg hatched.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The egg hatched" as the answer because it directly corresponds to the given premise of a baby chicken emerging from the egg, indicating a successful hatching process.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

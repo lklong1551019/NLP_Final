@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The street musician attracted a crowd.\n### Choices: [choice]People gave him change.@ [choice]He sent the crowd away.@'] || GT-A:People gave him change. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "He sent the crowd away" because it interprets the effect of the premise as the musician\'s action of dispersing the crowd.', 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}
