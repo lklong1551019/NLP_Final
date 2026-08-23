@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man anticipated cold weather on his trip.\n### Choices: [choice]He packed warm clothing in his suitcase.@ [choice]He travelled with a big suitcase.@'] || GT-A:He packed warm clothing in his suitcase. || LLM-A:He packed warm clothing in his suitcase.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose the answer "He packed warm clothing in his suitcase" because it correctly matches the idea that the man anticipated cold weather on his trip, showing understanding of the premise.'}

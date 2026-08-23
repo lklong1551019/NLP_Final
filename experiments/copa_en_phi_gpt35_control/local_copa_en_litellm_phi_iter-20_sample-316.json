@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I woke up in the middle of the night feeling cold.\n### Choices: [choice]I put sweatpants on.@ [choice]I drank a glass of water.@'] || GT-A:I put sweatpants on. || LLM-A:I put sweatpants on.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "I put sweatpants on" because the premise mentions feeling cold, and putting on sweatpants is a common response to feeling cold.', 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Các du khách đã đến biên giới.\n### Lựa chọn: [choice]Các nhân viên tuần tra kiểm tra hộ chiếu của họ.@ [choice]Các nhân viên tuần tra buộc tội họ buôn lậu.@'] || GT-A:Các nhân viên tuần tra kiểm tra hộ chiếu của họ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Các nhân viên tuần tra kiểm tra hộ chiếu của họ" vì đây là một phản ứng hợp lý khi du khách đã đến biên giới, có thể cần phải kiểm tra hộ chiếu của họ để xác định danh tính và mục đích du lịch.'}

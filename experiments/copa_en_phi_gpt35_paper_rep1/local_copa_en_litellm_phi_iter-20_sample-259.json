@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The girl attended her classmate's birthday party.\n### Choices: [choice]She received an invitation.@ [choice]She bought a gift.@"] || GT-A:She received an invitation. || LLM-A:She received an invitation.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "She received an invitation" because it is a common reason for attending a birthday party.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The warring countries wanted peace.\n### Choices: [choice]They developed nuclear weapons.@ [choice]They negotiated a treaty.@'] || GT-A:They negotiated a treaty. || LLM-A:They negotiated a treaty.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "They negotiated a treaty" because it is a more peaceful and diplomatic approach compared to developing nuclear weapons, aligning with the premise of the warring countries wanting peace.'}

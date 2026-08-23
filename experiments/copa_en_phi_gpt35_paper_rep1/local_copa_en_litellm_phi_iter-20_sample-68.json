@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The woman made a typo in the word processor.\n### Choices: [choice]She deleted the document.@ [choice]She hit the backspace key.@'] || GT-A:She hit the backspace key. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer X because it was unable to correctly infer the effect of the premise "The woman made a typo in the word processor" based on the provided choices.'}

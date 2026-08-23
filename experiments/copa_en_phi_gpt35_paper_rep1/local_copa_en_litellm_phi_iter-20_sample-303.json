@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I changed the topic of conversation.\n### Choices: [choice]I ran out of things to talk about.@ [choice]The conversation became tense.@'] || GT-A:The conversation became tense. || LLM-A:I ran out of things to talk about.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "I ran out of things to talk about" because it directly correlates with the premise of changing the topic of conversation.'}

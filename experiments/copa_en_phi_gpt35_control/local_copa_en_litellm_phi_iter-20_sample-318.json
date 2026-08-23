@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: A hole ripped in my jeans.\n### Choices: [choice]I zipped up the jeans.@ [choice]I tripped on the pavement.@'] || GT-A:I tripped on the pavement. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have selected "I tripped on the pavement" as the cause of the premise because it associates ripped jeans with accidents like tripping.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

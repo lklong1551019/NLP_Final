@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The detectives dusted the crime scene for fingerprints.\n### Choices: [choice]They discovered the identity of the murderer.@ [choice]They found the weapon at the crime scene.@'] || GT-A:They discovered the identity of the murderer. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "They discovered the identity of the murderer" because it is a common outcome of dusting a crime scene for fingerprints in detective work.'}

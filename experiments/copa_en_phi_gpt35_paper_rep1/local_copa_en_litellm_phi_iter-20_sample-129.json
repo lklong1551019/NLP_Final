@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man became annoyed with his friend.\n### Choices: [choice]His friend interrupted him.@ [choice]His friend bought him lunch.@'] || GT-A:His friend interrupted him. || LLM-A:His friend interrupted him.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "His friend interrupted him" because it directly correlates with the man becoming annoyed in the premise.'}

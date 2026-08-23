@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: My office door was open.\n### Choices: [choice]I talked to my colleague at my desk.@ [choice]I overheard the conversation in the hall.@'] || GT-A:I overheard the conversation in the hall. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose answer A because it suggests a possible action or consequence that can result from the premise of the office door being open.'}

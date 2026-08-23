@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I scratched my skin.\n### Choices: [choice]It was sweaty.@ [choice]It felt itchy.@'] || GT-A:It felt itchy. || LLM-A:It felt itchy.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose "It felt itchy" as the answer because scratching skin is a common response to feeling itchy, implying a cause-effect relationship.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "It felt itchy" as the answer because scratching one\'s skin is often a natural response to alleviate itchiness.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model could have chosen "It felt itchy" as the answer due to the strong association between scratching skin and the sensation of itchiness, leading to a logical connection in the context of cause and effect.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely determined "It felt itchy" as the answer because scratching the skin is a common response to alleviate discomfort, suggesting a link between the physical action and the sensation of itchiness.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen "It felt itchy" as the answer due to the common association between scratching skin and the sensation of itchiness, suggesting a causal relationship.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected "It felt itchy" as the answer because scratching skin is commonly associated with the sensation of itchiness, indicating a causal link between the action and the feeling.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: I yanked the imposter's hair.\n### Choices: [choice]Her wig came off.@ [choice]She went bald.@"] || GT-A:Her wig came off. || LLM-A:She went bald.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected the answer "She went bald" because it interprets the action of "yanking the imposter\'s hair" as a severe enough act to result in the imposter losing her hair.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

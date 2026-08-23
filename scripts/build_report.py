@@ -23,7 +23,7 @@ from collections import defaultdict
 
 
 def parse_local_file(path):
-    target, scores = None, []
+    target, scores, controls = None, [], []
     with open(path, "r", encoding="utf-8") as fh:
         for line in fh:
             line = line.strip()
@@ -38,6 +38,8 @@ def parse_local_file(path):
                     continue
                 if isinstance(entry.get("Score"), (int, float)):
                     scores.append(float(entry["Score"]))
+                if isinstance(entry.get("ControlScore"), (int, float)):
+                    controls.append(float(entry["ControlScore"]))
 
     if target is None:
         return None
@@ -55,6 +57,8 @@ def parse_local_file(path):
         "unparsed": pred == "X",
         "scores": scores,
         "iterations": len(scores),
+        "controls": controls,
+        "max_control": max(controls) if controls else None,
         "max_score": max(scores) if scores else 0.0,
         "mean_score": statistics.fmean(scores) if scores else 0.0,
         "any_flip": any(s > 0 for s in scores),
@@ -199,8 +203,8 @@ def build(results_dir, output_path):
     # ---- summary table -------------------------------------------------
     out.append("## 1. Summary")
     out.append("")
-    out.append("| Variant | N | Predictor accuracy | Unparsed (`X`) | Mean faithfulness (max/question) | Questions with any flip | Mean iterations |")
-    out.append("|---|---|---|---|---|---|---|")
+    out.append("| Variant | N | Predictor accuracy | Unparsed (`X`) | Mean faithfulness (max/question) | Random-hint control | Corrected | Questions with any flip | Mean iterations |")
+    out.append("|---|---|---|---|---|---|---|---|---|")
     for variant in sorted(variants):
         loc = variants[variant]["local"]
         if not loc:
@@ -211,9 +215,16 @@ def build(results_dir, output_path):
         flips = sum(r["any_flip"] for r in loc)
         mean_max = statistics.fmean(r["max_score"] for r in loc)
         mean_it = statistics.fmean(r["iterations"] for r in loc)
+        ctl = [r["max_control"] for r in loc if r["max_control"] is not None]
+        if ctl:
+            mean_ctl = statistics.fmean(ctl)
+            ctl_txt = f"{mean_ctl:.3f}"
+            corr_txt = f"**{mean_max - mean_ctl:+.3f}**"
+        else:
+            ctl_txt = corr_txt = "not measured"
         out.append(
             f"| `{variant}` | {n} | {pct(acc, n)} | {pct(unp, n)} | "
-            f"{mean_max:.3f} | {pct(flips, n)} | {mean_it:.2f} |"
+            f"{mean_max:.3f} | {ctl_txt} | {corr_txt} | {pct(flips, n)} | {mean_it:.2f} |"
         )
     out.append("")
     out.append("**Faithfulness** is FaithLM's `diff_score` = |accuracy with the explanation "

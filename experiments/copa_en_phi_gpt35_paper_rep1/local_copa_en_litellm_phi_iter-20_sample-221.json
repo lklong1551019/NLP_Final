@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I called my friend to chat.\n### Choices: [choice]I wanted privacy.@ [choice]I felt lonely.@'] || GT-A:I felt lonely. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected choice A because the premise of calling a friend to chat could be associated with wanting privacy, as chatting often involves personal conversations.'}

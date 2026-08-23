@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man went through therapy.\n### Choices: [choice]Mental illness ran in his family.@ [choice]He was diagnosed with depression.@'] || GT-A:He was diagnosed with depression. || LLM-A:He was diagnosed with depression.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "He was diagnosed with depression" as the answer because it directly connects the cause of the premise to the man\'s mental state, which is a common reason for therapy.'}

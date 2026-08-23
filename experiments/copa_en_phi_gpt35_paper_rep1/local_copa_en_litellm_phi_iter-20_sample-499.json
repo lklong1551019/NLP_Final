@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: The boy couldn't fall asleep.\n### Choices: [choice]He set his alarm clock.@ [choice]He counted sheep.@"] || GT-A:He counted sheep. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "He set his alarm clock" because it associates the act of setting an alarm clock with trying to fall asleep. This demonstrates a superficial understanding of sleep preparation without considering the actual context of the inability to fall asleep described in the premise.'}

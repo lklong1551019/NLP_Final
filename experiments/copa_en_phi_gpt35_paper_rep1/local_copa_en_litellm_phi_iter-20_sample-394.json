@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The wood split in half.\n### Choices: [choice]I stacked the wood in the fireplace.@ [choice]I swung the axe down to the wood.@'] || GT-A:I swung the axe down to the wood. || LLM-A:I swung the axe down to the wood.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I swung the axe down to the wood" because it involves an action that can result in splitting the wood, which aligns with the premise of the wood splitting in half.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl pinched her nose.\n### Choices: [choice]The baby drooled on her bib.@ [choice]The baby soiled her diaper.@'] || GT-A:The baby soiled her diaper. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP> The model may have selected answer choice A because it involves a baby, which is mentioned in the premise, even though the action of drooling on a bib doesn't directly relate to the girl pinching her nose."}

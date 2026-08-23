@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The building adjacent to my office was under construction.\n### Choices: [choice]My office was crowded.@ [choice]My office was noisy.@'] || GT-A:My office was noisy. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen option X because it did not directly address the effect of the premise on the office environment.'}

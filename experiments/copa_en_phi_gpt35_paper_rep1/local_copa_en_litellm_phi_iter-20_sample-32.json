@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man lost weight.\n### Choices: [choice]People isolated him.@ [choice]People complimented him.@'] || GT-A:People complimented him. || LLM-A:People complimented him.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "People complimented him" because losing weight is often associated with positive feedback or compliments from others.'}

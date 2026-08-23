@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The electricity in my house shut off.\n### Choices: [choice]I unplugged the lamp.@ [choice]I blew a fuse.@'] || GT-A:I blew a fuse. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen the answer "I blew a fuse" because it is a common reason for electricity shutting off in a house.'}

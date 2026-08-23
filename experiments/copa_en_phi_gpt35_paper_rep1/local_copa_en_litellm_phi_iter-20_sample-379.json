@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I lost track of time.\n### Choices: [choice]I was daydreaming.@ [choice]I was nauseous.@'] || GT-A:I was daydreaming. || LLM-A:I was daydreaming.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected "I was daydreaming" as the answer because it associates losing track of time with being distracted or lost in thought, which fits the context of the premise.'}

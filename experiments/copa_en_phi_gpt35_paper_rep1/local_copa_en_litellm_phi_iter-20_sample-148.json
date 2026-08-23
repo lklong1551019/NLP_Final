@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The woman stayed home from work.\n### Choices: [choice]Her boss praised her.@ [choice]Her coworker covered for her.@'] || GT-A:Her coworker covered for her. || LLM-A:Her coworker covered for her.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "Her coworker covered for her" because it implies a possible scenario where the woman\'s absence from work was managed by a coworker.'}

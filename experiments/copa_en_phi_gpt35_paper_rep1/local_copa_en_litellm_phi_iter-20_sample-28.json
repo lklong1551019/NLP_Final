@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The frozen food thawed.\n### Choices: [choice]I put it in the microwave.@ [choice]I covered it with plastic wrap.@'] || GT-A:I put it in the microwave. || LLM-A:I put it in the microwave.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "I put it in the microwave" because it is a common method for thawing frozen food.'}

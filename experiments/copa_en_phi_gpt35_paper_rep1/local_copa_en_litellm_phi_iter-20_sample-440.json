@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The table wobbled.\n### Choices: [choice]The floor was uneven.@ [choice]The floor was slippery.@'] || GT-A:The floor was uneven. || LLM-A:The floor was uneven.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "The floor was uneven" as the answer because it directly addresses the issue of the table wobbling, suggesting a possible cause-and-effect relationship.'}

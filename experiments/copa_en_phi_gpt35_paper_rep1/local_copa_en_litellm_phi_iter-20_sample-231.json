@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man wanted to act romantic.\n### Choices: [choice]He met his ex-girlfriend for lunch.@ [choice]He bought his girlfriend chocolates.@'] || GT-A:He bought his girlfriend chocolates. || LLM-A:He bought his girlfriend chocolates.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "He bought his girlfriend chocolates" because it associates chocolates with romantic gestures, which aligns with the premise of the man wanting to act romantic.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I worked out at the gym yesterday.\n### Choices: [choice]I woke up today with sore muscles.@ [choice]I woke up today with a sore throat.@'] || GT-A:I woke up today with sore muscles. || LLM-A:I woke up today with sore muscles.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I woke up today with sore muscles" because it is a common effect of working out at the gym, which is mentioned in the premise.'}

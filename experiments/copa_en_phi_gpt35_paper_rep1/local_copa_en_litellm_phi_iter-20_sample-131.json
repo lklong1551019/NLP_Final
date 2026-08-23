@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman was put in a wheelchair.\n### Choices: [choice]She was paralyzed in an accident.@ [choice]She entered the hospital in a stretcher.@'] || GT-A:She was paralyzed in an accident. || LLM-A:She was paralyzed in an accident.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She was paralyzed in an accident" as the answer because it directly explains why the woman was put in a wheelchair, linking the cause to a specific event.'}

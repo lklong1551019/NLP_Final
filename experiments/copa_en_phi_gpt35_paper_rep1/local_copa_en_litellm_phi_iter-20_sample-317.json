@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The mother hushed her son.\n### Choices: [choice]Her son smirked.@ [choice]Her son whined.@'] || GT-A:Her son whined. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "Her son smirked" because it is a plausible reaction that could follow being hushed by his mother.'}

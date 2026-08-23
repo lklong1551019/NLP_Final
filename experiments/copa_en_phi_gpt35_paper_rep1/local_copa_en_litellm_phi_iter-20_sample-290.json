@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Sunlight entered the room.\n### Choices: [choice]I opened the curtains.@ [choice]I unlocked the door.@'] || GT-A:I opened the curtains. || LLM-A:I opened the curtains.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I opened the curtains" as the answer because it directly relates to the premise of sunlight entering the room, indicating a causal relationship.'}

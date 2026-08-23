@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Check tôi viết bị trả lại.\n### Lựa chọn: [choice]Tài khoản ngân hàng của tôi trống rỗng.@ [choice]Tôi đã được tăng lương.@'] || GT-A:Tài khoản ngân hàng của tôi trống rỗng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X có thể dựa vào việc phân tích ngữ cảnh và logic từ câu hỏi, nhưng không thể xác định nguyên nhân cụ thể nào khi đưa ra câu trả lời.'}

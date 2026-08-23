@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The country declared war on the neighboring territory.\n### Choices: [choice]Soldiers were sent out to fight.@ [choice]Soldiers were reunited with their families.@'] || GT-A:Soldiers were sent out to fight. || LLM-A:Soldiers were sent out to fight.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "Soldiers were sent out to fight" as the answer because it is a logical consequence of the country declaring war on a neighboring territory.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the cause of the Premise?\n### Premise: The man's family lived in poverty.\n### Choices: [choice]He was frugal with his earnings.@ [choice]He earned below minimum wage.@"] || GT-A:He earned below minimum wage. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected choice A because it mentions the man being frugal with his earnings, which could be seen as a possible cause for the family living in poverty.'}

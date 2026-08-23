@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The dart missed the bull's eye.\n### Choices: [choice]The man's aim was off.@ [choice]The man was losing the game.@"] || GT-A:The man's aim was off. || LLM-A:The man's aim was off.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The man\'s aim was off" as the answer because it directly explains why the dart missed the bull\'s eye, which is a common reason for missing a target in a dart game.'}

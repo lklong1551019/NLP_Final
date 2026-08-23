@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The criminal turned himself in.\n### Choices: [choice]The evidence implicated him.@ [choice] There was no evidence against him.@'] || GT-A:The evidence implicated him. || LLM-A:The evidence implicated him.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The evidence implicated him" because it directly connects with the premise mentioning the criminal turning himself in, suggesting that there was evidence linking him to the crime.'}

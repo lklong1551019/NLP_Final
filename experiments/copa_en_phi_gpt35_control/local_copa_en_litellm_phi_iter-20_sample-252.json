@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: There was a lot of traffic on the highway.\n### Choices: [choice]I took a detour.@ [choice]I asked for a ride.@'] || GT-A:I took a detour. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected answer choice X because it mentions taking a detour, which is a common action to avoid traffic congestion.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

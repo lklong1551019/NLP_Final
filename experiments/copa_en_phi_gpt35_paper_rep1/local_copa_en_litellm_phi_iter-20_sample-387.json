@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The doctors gave the patient an artificial limb.\n### Choices: [choice]They amputated her leg.@ [choice]They monitored her vitals.@'] || GT-A:They amputated her leg. || LLM-A:They amputated her leg.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "They amputated her leg" because it directly relates to the act of providing an artificial limb, as amputation is often a precursor to receiving a prosthetic.'}

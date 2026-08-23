@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The actor's heart was fluttering before his performance.\n### Choices: [choice]He had stage fright.@ [choice]He memorized his lines.@"] || GT-A:He had stage fright. || LLM-A:He had stage fright.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have selected "He had stage fright" because it is a common reason for an actor\'s heart to flutter before a performance.'}

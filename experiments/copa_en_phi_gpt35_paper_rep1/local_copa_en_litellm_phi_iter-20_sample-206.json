@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The boy was locked out of his house.\n### Choices: [choice]He crawled in through an open window.@ [choice]He climbed up to the roof.@'] || GT-A:He crawled in through an open window. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "He crawled in through an open window." because it is a plausible and common scenario for someone who is locked out of a house to find a way to get back inside through an open window.'}
