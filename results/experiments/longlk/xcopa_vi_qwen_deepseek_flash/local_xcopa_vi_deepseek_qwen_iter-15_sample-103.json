@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Con cá nổi trên mặt bể.\n### Lựa chọn: [choice]Nó đói rồi.@ [choice]Nó đã chết.@'] || GT-A:Nó đã chết. || LLM-A:It is hungry soon.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã diễn giải "nổi trên mặt bể" như là hành động chủ động của con cá, chẳng hạn như ngoi lên mặt nước, và liên hệ trạng thái này với việc cá đang tìm kiếm thức ăn, từ đó chọn nguyên nhân "Nó đói rồi".  \n<EXP> Lựa chọn "Nó đã chết" có thể không được mô hình ưu tiên vì trong dữ liệu huấn luyện, cụm từ "'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi cắn vào quả đào.\n### Lựa chọn: [choice]Quả đào bầm dập.@ [choice]Nước trái cây tràn ra.@'] || GT-A:Nước trái cây tràn ra. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã không tự tin chọn một hệ quả cụ thể vì tiền đề chỉ mô tả hành động cắn vào quả đào mà không nêu rõ trạng thái của quả đào hay mức độ tác động, khiến cả hai lựa chọn đều có thể được liên tưởng nhưng không có đủ căn cứ để xác định một phương án duy nhất.'}

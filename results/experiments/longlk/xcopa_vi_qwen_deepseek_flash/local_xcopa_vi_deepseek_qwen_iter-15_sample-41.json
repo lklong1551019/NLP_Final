@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi cắn vào quả đào.\n### Lựa chọn: [choice]Quả đào bầm dập.@ [choice]Nước trái cây tràn ra.@'] || GT-A:Nước trái cây tràn ra. || LLM-A:Nước trái cây tràn ra.
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình có thể liên kết hành động cắn vào quả đào với việc giải phóng chất lỏng bên trong, do đó chọn "Nước trái cây tràn ra" vì nó mô tả một hệ quả vật lý trực tiếp và phổ biến hơn so với việc quả đào bị bầm dập, vốn thường do lực mạnh hoặc va đập gây ra.</EXP>'}

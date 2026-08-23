@@ -13,8 +13,8 @@ The experiment was run twice to compare the performance of different Explainer m
 |---|---|---|
 | **Predictor (Initial Answer)** | `Qwen/Qwen3.5-4B` | 4-bit precision |
 | **Predictor (Scoring)** | `Qwen/Qwen3.5-4B` | 4-bit precision |
-| **Explainer (Run 1 - Pro)** | `deepseek-v4-pro` | `max_tokens=3000` |
-| **Explainer (Run 2 - Flash)** | `deepseek-v4-flash` | `max_tokens=1000` |
+| **Explainer (Run 1 - Pro)** | `deepseek-v4-pro` | - |
+| **Explainer (Run 2 - Flash)** | `deepseek-v4-flash` | - |
 
 ### Configuration Details
 - **Dataset:** `xcopa_vi` (XCOPA, Vietnamese split)

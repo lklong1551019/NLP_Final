@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cậu bé gọt bút chì.\n### Lựa chọn: [choice]Nó rẻ tiền.@ [choice]Thật là buồn tẻ.@'] || GT-A:Thật là buồn tẻ. || LLM-A:Thật là buồn tẻ.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình đã liên hệ việc gọt bút chì với cảm giác buồn tẻ hoặc nhàm chán, và trong hai lựa chọn, nó coi "Thật là buồn tẻ" là nguyên nhân có khả năng xảy ra hơn vì tính chất công việc đơn điệu, trong khi "Nó rẻ tiền" không tạo ra mối liên kết ngữ nghĩa trực tiếp với hành động gọt bút chì.'}

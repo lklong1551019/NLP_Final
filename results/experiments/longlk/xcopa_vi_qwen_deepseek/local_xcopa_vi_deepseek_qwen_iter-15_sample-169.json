@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi cảm thấy kiệt sức.\n### Lựa chọn: [choice]Tôi đi ngủ sớm.@ [choice]Tôi thức cả đêm.@'] || GT-A:Tôi đi ngủ sớm. || LLM-A:Tôi đi ngủ sớm.
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình có thể đã dựa vào mối liên hệ nhân quả thông thường giữa cảm giác kiệt sức và nhu cầu nghỉ ngơi, từ đó coi việc đi ngủ sớm là kết quả hợp lý hơn so với việc thức cả đêm, vốn thường làm trầm trọng thêm sự mệt mỏi.'}

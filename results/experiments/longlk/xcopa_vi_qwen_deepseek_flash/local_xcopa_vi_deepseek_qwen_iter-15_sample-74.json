@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Những người hâm mộ la ó.\n### Lựa chọn: [choice]Trận đấu phải bước vào phút bù giờ.@ [choice]Trọng tài ra quyết định sai.@'] || GT-A:Trọng tài ra quyết định sai. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã nhận diện mối quan hệ nhân quả thông thường giữa phản ứng của khán giả và hành động của trọng tài, vì'}

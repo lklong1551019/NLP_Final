@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cửa thang máy mở ra.\n### Lựa chọn: [choice]Thang máy đã đến tầng được chỉ định.@ [choice]Thang máy bị kẹt giữa các tầng.@'] || GT-A:Thang máy đã đến tầng được chỉ định. || LLM-A:Thang máy đã đến tầng được chỉ định.
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình có thể đã xác định mối quan hệ nhân quả điển hình giữa việc thang máy đến tầng và hành động mở cửa, do đó lựa chọn này được coi là nguyên nhân có xác suất cao hơn trong ngữ cảnh đời thường.'}

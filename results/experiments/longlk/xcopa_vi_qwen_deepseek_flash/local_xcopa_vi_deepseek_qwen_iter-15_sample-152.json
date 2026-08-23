@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Những quả chín đung đưa dưới nắng.\n### Lựa chọn: [choice]Nó đã bị ăn.@ [choice]Nó co rúm lại.@'] || GT-A:Nó co rúm lại. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': 'API error.'}
