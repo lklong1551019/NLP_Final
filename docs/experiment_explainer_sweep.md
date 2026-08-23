@@ -319,3 +319,104 @@ python scripts/analyze_position_bias.py --results_dir <dir>
 `.env` cần: `LITELLM_API_KEY/BASE_URL` (OpenRouter), `LITELLM_PRED_MODEL=deepseek/deepseek-v4-flash`,
 `VERTEX_CREDENTIALS=./config/gen-lang-client.json`. Seed câu hỏi: index tuần tự 0–199 (chuẩn team; baseline cũ của team dừng ở 0–99).
 Các lệnh trên dùng `RESUME=1` mặc định nên chạy lại chỉ sinh phần còn thiếu.
+
+## 8. Trục target: đồng bộ với trục prompt-VI của team
+
+### 8.1 Lý do chạy
+
+Các §1-§7 quét **explainer** trên một target cố định. Teammate lại quét **prompt VI/EN**
+trên target riêng của họ, nên hai trục không giao nhau ở ô nào — không thể nói khác biệt
+quan sát được là do explainer, do prompt, hay do target. Run này thêm **một điểm target**
+dùng đúng config main của teammate (`Qwen/Qwen3.5-4B` 4-bit NF4) trong khi **giữ cố định**
+explainer = Gemini 3.5 Flash và prompt = EN nguyên văn paper, để hai trục có điểm chung.
+
+Động lực thứ hai: §3 kết luận metric **bão hoà** (5 explainer N=200 đều 0.93-0.955, không
+cặp nào significant). Nếu bão hoà là do *explainer* thì đổi target sang model yếu hơn phải
+làm điểm faithfulness tụt — đó là phép thử.
+
+### 8.2 Đường cong target (explainer Gemini + prompt EN cố định)
+
+| Target (predictor) | Predictor accuracy | Unparsed `X` | Faithfulness | Flip | Mean iter |
+|---|---|---|---|---|---|
+| Phi-2 (không hiểu đề) | 41.5% | 41.5% | **0.755** | 75.5% | 2.58 |
+| **Qwen3.5-4B 4-bit** (config teammate) | **90.5%** | **6.5%** | **0.945** | **94.5%** | **3.04** |
+| deepseek-v4-flash (mạnh) | 92.5% | 2.0% | **0.930** | 93.0% | 4.47 |
+
+Tất cả N=200, indices 0-199, XCOPA-vi test.
+
+### 8.3 Kết quả không như giả thuyết — và nó nói gì
+
+Kỳ vọng trước khi chạy: Qwen3.5-4B là target "trung bình" nên faithfulness phải nằm
+**giữa** 0.755 và 0.930. Thực tế **0.945 — cao hơn cả hai đầu**. Đường cong không đơn điệu.
+
+Điểm mấu chốt: predictor accuracy của Qwen3.5-4B là **90.5%**, gần sát v4-flash (92.5%),
+**không** phải "trung bình" như giả định khi lập kế hoạch. Nghĩa là run này **không** cung
+cấp một target yếu — nó thêm điểm thứ hai vào vùng target-mạnh. Giả thuyết "metric thoát bão
+hoà ở target yếu" **chưa được kiểm chứng**; nó chỉ bị *không phủ định*.
+
+Bằng chứng bão hoà vì thế **mạnh thêm chứ không yếu đi**: ba explainer khác nhau × hai target
+mạnh khác nhau vẫn cho 0.930-0.955, tức khoảng dao động ~0.025 — cùng cỡ với nhiễu giữa các
+explainer ở §3. Chỉ Phi-2 (accuracy 41.5%, tức không thực sự làm được task) mới rơi xuống
+0.755, và §4 đã chỉ ra điểm đó bị nhiễu bởi 41.5% câu unparsed + 100% position bias.
+
+Đọc thẳng: **faithfulness ở pipeline này chủ yếu phản ánh predictor có parse được đáp án hay
+không**, chứ không phân biệt được chất lượng giải thích. `X` giảm 41.5% → 6.5% → 2.0% thì
+faithfulness đi 0.755 → 0.945 → 0.930 — tương quan với parse-rate rõ hơn nhiều so với với
+năng lực model.
+
+### 8.4 Cắt lát index 0-99 (để so với run N=100 của teammate)
+
+| Lát | N | Predictor accuracy | Unparsed `X` | Faithfulness | Flip |
+|---|---|---|---|---|---|
+| 0-99 | 100 | 86.0% | 10.0% | 0.920 | 92.0% |
+| 0-199 (đầy đủ) | 200 | 90.5% | 6.5% | 0.945 | 94.5% |
+
+Lát nửa đầu thấp hơn ~0.025 — cùng cỡ nhiễu, **không** phải tín hiệu. Đây cũng là lời nhắc
+lại bài học §3: trích số từ N=100 rồi so với N=200 là so hai thứ khác nhau.
+
+### 8.5 Cổng quyết định (chỉ ghi nhận, chưa chạy)
+
+Tiêu chí đặt trước: faithfulness < ~0.85 → metric thoát bão hoà → mở rộng luna +
+qwen3.7-max trên target này (~$3). Kết quả **0.945 ≥ 0.9 → KHÔNG mở rộng.**
+
+Đề xuất thay thế, nếu muốn thật sự kiểm giả thuyết "target yếu phá bão hoà": cần một target
+có accuracy nằm **giữa** khoảng 41.5%-90.5% (Phi-2 quá yếu, Qwen3.5-4B/v4-flash đều mạnh) —
+ví dụ Qwen3.5-4B **không** quantize, hoặc một model ~1-2B. Chi phí thấp vì predictor chạy
+local. Chưa chạy, chờ user quyết.
+
+### 8.6 Lưu ý khi đọc report tự sinh
+
+`scripts/build_report.py` hard-code §0 theo giả định run toàn-API, nên trong
+`docs/reports/xcopa_vi_targetqwen35_gemini_promptEN.md` phần "Experimental setup" ghi
+**sai** với run này: nó nói "no local model weights were used", Predictor = `n/a`, explainer
+temp 0.01. Thực tế: **predictor = Qwen/Qwen3.5-4B 4-bit NF4 chạy local trên RTX 3060**,
+explainer temp 0.9 / top-p 0.9. Các bảng số liệu (§1-§3) không bị ảnh hưởng.
+
+### 8.7 Cấu hình + tái lập
+
+Khớp 100% config main của teammate, **không** sửa gì để tối ưu tốc độ (xem ghi chú dưới):
+
+- Predictor: `Qwen/Qwen3.5-4B`, 4-bit NF4 + double-quant, local, `padding="max_length"` 1000
+- Explainer: `vertex/google/gemini-3.5-flash`, temp 0.9, top-p 0.9, thinking budget 0
+- iter=8, NSHARDS=1, PROMPT_LANG=en
+- 1220 LLM call, **0 empty / 0 failed / 0 fallback**; 0 block `<think>`; 0 rò rỉ scaffold VI
+- Thời gian: ~6.5h (1.9 phút/câu)
+
+```bash
+PROMPT_LANG=en LITELLM_XAI_MODEL="vertex/google/gemini-3.5-flash" PYTHONUTF8=1 PYTHON=python \
+  bash scripts/run_sharded.sh xcopa_vi qwen litellm 0 200 8 1 \
+  ./results/experiments/xcopa_vi_target_qwen35/vertex-google-gemini-3-5-flash
+
+PYTHONUTF8=1 python scripts/build_report.py \
+  --results_dir ./results/experiments/xcopa_vi_target_qwen35/vertex-google-gemini-3-5-flash \
+  --output docs/reports/xcopa_vi_targetqwen35_gemini_promptEN.md
+```
+
+**Ghi chú hiệu năng (đã đo, đã quyết định KHÔNG sửa):** predictor local chậm vì
+`padding="max_length", max_length=1000` trong khi prompt XCOPA thực tế chỉ ~97 token và bước
+scoring chỉ sinh 10 token. Phân rã 1 vòng iter (p50 34.7s): Qwen sinh đáp án ~22.3s (64%),
+Qwen scoring ~11.6s (33%), Gemini 2 call ~3.8s (**chỉ 11%**). Dùng `padding=True` nhanh 2.2×
+ở bước scoring. **Không áp** vì đổi attention mask → đổi logits (đang `do_sample=True`), sẽ
+mất so sánh với teammate — đúng thứ run này muốn giữ. Đổi sang Ollama/vLLM cũng không cứu
+được: nghẽn là prefill padding, runtime nào cũng phải làm; thêm nữa đường chat sẽ áp chat
+template → kích hoạt `<think>`, và quantization Q4_K_M ≠ NF4.
