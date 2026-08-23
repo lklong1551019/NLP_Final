@@ -1,6 +1,6 @@
 # FaithLM — Experiment Report
 
-> Results directory: `./experiments`
+> Results directory: `./experiments/anhnh`
 
 ## 0. Experimental setup
 
