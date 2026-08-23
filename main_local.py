@@ -228,6 +228,9 @@ def get_args():
                              "flip: stop the moment the decision flips, in every mode - "
                              "the only setting under which iteration counts are "
                              "comparable across --score_mode values.")
+    parser.add_argument('--usage_log', type=str, default=None,
+                        help='JSONL of per-call token usage for the API explainer. '
+                             'Without it the API spend can only be estimated.')
     parser.add_argument('--score_mode', type=str, default='accuracy',
                         choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'margin', 'tv'],
                         help="Fidelity signal the optimiser follows. 'accuracy' is the "

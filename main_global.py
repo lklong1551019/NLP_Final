@@ -188,6 +188,9 @@ def get_args():
                         help='Do not compute the probability metrics alongside the optimised '
                              'one. They are what makes runs in different --score_mode values '
                              'comparable, so only turn this off if the target has no logits.')
+    parser.add_argument('--usage_log', type=str, default=None,
+                        help='JSONL of per-call token usage for the API explainer. '
+                             'Without it the API spend can only be estimated.')
     parser.add_argument('--score_mode', type=str, default='accuracy',
                         choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'margin', 'tv'],
                         help="Fidelity signal averaged over the sampled questions. "
