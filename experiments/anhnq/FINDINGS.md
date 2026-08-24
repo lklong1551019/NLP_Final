@@ -74,6 +74,31 @@ Ghi lại thay vì bỏ đi:
   A 87% — thiên lệch vị trí. Các lần chạy dùng nó đo trên nền nhiễu, nên kết quả
   Qwen ở trên thay thế chúng.
 
+## Đang chạy — sẽ bổ sung sau
+
+Một lần chạy nữa chưa xong tại thời điểm merge này, ghi ra đây để không ai chạy trùng
+và để người đọc biết vì sao chưa có bảng khớp cấu hình baseline.
+
+**`xcopa_vi_phi_gpt35_matched_{accuracy,prob_accuracy,logprob}`** — 200 câu, 20 bước,
+`stop_rule flip`, explainer temp 0.9 / top-p 0.9. Khớp cấu hình baseline của
+`anhnh` (Phi-2 + gpt-3.5-turbo, Table 2) trừ cỡ mẫu: 200 thay vì 500, vì ở 20 bước
+thì 500 câu mất khoảng 56 giờ.
+
+Nó trả lời câu hỏi mà kết quả chính **không** trả lời được: bảng chính chạy trên
+Qwen3.5-4B + gpt-4o-mini, tức đổi metric **và** đổi target **và** đổi explainer cùng
+lúc. Lần chạy này giữ nguyên mọi thứ theo baseline và chỉ đổi cách chấm, nên bảng
+của nó đặt cạnh bảng của `anhnh` được.
+
+Kỳ vọng nên đặt thấp: cấu hình baseline dùng Phi-2, mà Phi-2 không đọc được tiếng
+Việt (xem mục trên), nên nhiều khả năng cả ba chế độ đều ra số nhỏ và sát nhau. Đó
+vẫn là kết quả đáng báo cáo — *trên chính cấu hình của paper thì cách chấm mới cho
+bao nhiêu* — chỉ là nó không thay thế được bảng Qwen.
+
+Lưu ý sẵn: lần chạy `xcopa_vi_phi_gpt35_{accuracy,logprob}` đã có trong thư mục này
+**ngân sách lệch nhau** (3.15 vòng so với 8.40) vì mỗi chế độ dừng theo luật riêng,
+nên số của nó không so trực tiếp được. Lần đang chạy dùng `stop_rule flip` cho cả ba
+chế độ để sửa đúng chỗ đó.
+
 ## Các thư mục run
 
 | Thư mục | Cấu hình |
