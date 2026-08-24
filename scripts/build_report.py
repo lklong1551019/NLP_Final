@@ -148,6 +148,20 @@ def build(results_dir, output_path):
     out.append(f"> Results directory: `{results_dir}`")
     out.append("")
 
+    # Interpretation lives in FINDINGS.md so that regenerating this file cannot
+    # destroy it. Inline it here so a reader of the report sees the conclusions
+    # next to the numbers instead of having to know another file exists.
+    findings_path = os.path.join(results_dir, "FINDINGS.md")
+    if os.path.isfile(findings_path):
+        with open(findings_path, encoding="utf-8") as fh:
+            body = fh.read().strip()
+        out.append("<!-- inlined from FINDINGS.md - edit that file, not this one -->")
+        out.append("")
+        out.append(body)
+        out.append("")
+        out.append("---")
+        out.append("")
+
     # ---- setup ---------------------------------------------------------
     out.append("## 0. Experimental setup")
     out.append("")
