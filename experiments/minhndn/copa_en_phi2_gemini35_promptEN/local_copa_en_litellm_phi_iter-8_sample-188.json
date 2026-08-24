@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The teenager got a tattoo.\n### Choices: [choice]She was afraid of needles.@ [choice]She wanted to rebel.@'] || GT-A:She wanted to rebel. || LLM-A:She wanted to rebel.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this answer because it correctly identifies a common, socially recognized motivation for a teenager getting a tattoo, whereas the alternative choice represents a fear that would logically prevent the action described in the premise.'}

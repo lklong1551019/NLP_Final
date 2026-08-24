@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi bật quạt.\n### Choices: [choice]Nước rắc lên da tôi.@ [choice]Không khí mát mẻ lướt qua tôi.@'] || GT-A:Không khí mát mẻ lướt qua tôi. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose the second option because it correctly identifies the direct, logical physical consequence of the premise "Tôi bật quạt" (I turn on the fan), which is "Không khí mát mẻ lướt qua tôi" (Cool air brushes past me), relying on common-sense causal reasoning associated with operating a fan.'}

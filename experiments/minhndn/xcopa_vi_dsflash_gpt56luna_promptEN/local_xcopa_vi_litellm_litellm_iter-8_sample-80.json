@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi bật quạt.\n### Choices: [choice]Nước rắc lên da tôi.@ [choice]Không khí mát mẻ lướt qua tôi.@'] || GT-A:Không khí mát mẻ lướt qua tôi. || LLM-A:Không khí mát mẻ lướt qua tôi.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model provides an answer because the prompt explicitly requests a choice from the listed alternatives, so it generates the option it estimates to be most causally related to the premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Bật quạt tạo ra luồng gió, khiến không khí mát mẻ lướt qua người.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The premise states that the speaker turns on a fan, whose usual effect is to create moving air that feels cool, so the selected outcome directly describes the resulting airflow.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Turning on a fan causes air to circulate, so the selected statement describes the immediate physical effect associated with the premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc bật quạt tạo ra chuyển động của không khí, nên không khí mát mẻ lướt qua người là kết quả phù hợp nhất.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc bật quạt tạo ra sự chuyển động của không khí, nên kết quả phù hợp là luồng không khí mát lướt qua người thay vì nước rắc lên da.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc bật quạt tạo ra luồng không khí chuyển động, phù hợp trực tiếp với mô tả về không khí mát mẻ lướt qua người.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc bật quạt làm không khí chuyển động và tạo cảm giác mát mẻ lướt qua người, phù hợp trực tiếp với tác động được mô tả trong lựa chọn.'}

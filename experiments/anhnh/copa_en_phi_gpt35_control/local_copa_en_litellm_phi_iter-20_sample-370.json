@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: I put the flower under my nose.\n### Choices: [choice]The petals came off the flower.@ [choice]I picked up the flower's scent.@"] || GT-A:I picked up the flower's scent. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it describes a plausible effect of putting the flower under the nose, which is that the petals came off the flower.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

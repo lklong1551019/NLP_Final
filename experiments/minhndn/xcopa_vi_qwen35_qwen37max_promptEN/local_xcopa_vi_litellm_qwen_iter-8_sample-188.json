@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Thiếu niên có một hình xăm.\n### Choices: [choice]Cô sợ kim tiêm.@ [choice]Cô muốn nổi loạn.@'] || GT-A:Cô muốn nổi loạn. || LLM-A:Cô muốn nổi loạn.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the chosen answer because it identifies a plausible causal relationship where the desire to rebel serves as a common motivation for acquiring a tattoo, whereas fear of needles would typically act as a deterrent rather than a cause.'}

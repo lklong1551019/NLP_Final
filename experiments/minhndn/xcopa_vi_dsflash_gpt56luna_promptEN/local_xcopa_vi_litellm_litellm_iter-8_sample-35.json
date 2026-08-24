@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi mất kiên nhẫn.\n### Choices: [choice]Bạn tôi làm tôi chờ.@ [choice]Bạn tôi đến đúng giờ.@'] || GT-A:Bạn tôi làm tôi chờ. || LLM-A:Bạn tôi làm tôi chờ.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model likely selected the first choice because the premise “Tôi mất kiên nhẫn” (“I lost patience”) is causally consistent with being made to wait, whereas arriving on time does not normally cause impatience.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>“Tôi mất kiên nhẫn” indicates that the speaker became impatient, which is naturally explained by a friend making the speaker wait.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The selected answer identifies the friend’s action as the event that led to the speaker’s impatience.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer attributes the speaker’s impatience to the friend’s action of making the speaker wait.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The chosen option gives a direct cause for the stated impatience: the friend made the speaker wait.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer links the stated impatience to the friend causing the speaker to wait.'}

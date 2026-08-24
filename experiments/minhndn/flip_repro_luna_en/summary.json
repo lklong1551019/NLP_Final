@@ -1,0 +1,47 @@
+{
+  "source_dir": "results/experiments/xcopa_vi_xai_sweep_en/openai-gpt-5-6-luna",
+  "xai_model": "openai/gpt-5.6-luna",
+  "pred_model": "deepseek/deepseek-v4-flash",
+  "prompt_lang": "en",
+  "negation_temperature": 0.9,
+  "negation_top_p": 0.9,
+  "overall": {
+    "n": 190,
+    "unparsed": 3,
+    "n_scored": 187,
+    "reproduced": 128,
+    "rate": 0.6844919786096256,
+    "ci95_wilson": [
+      0.6147397617700695,
+      0.7468166284509304
+    ]
+  },
+  "flip_round_1": {
+    "n": 66,
+    "unparsed": 2,
+    "n_scored": 64,
+    "reproduced": 46,
+    "rate": 0.71875,
+    "ci95_wilson": [
+      0.598658376004965,
+      0.8140677389451542
+    ]
+  },
+  "flip_round_ge2": {
+    "n": 124,
+    "unparsed": 1,
+    "n_scored": 123,
+    "reproduced": 82,
+    "rate": 0.6666666666666666,
+    "ci95_wilson": [
+      0.5794250199734539,
+      0.7438127821356333
+    ]
+  },
+  "api_stats": {
+    "calls": 380,
+    "empty": 0,
+    "errors": 0,
+    "rate_limited": 6
+  }
+}

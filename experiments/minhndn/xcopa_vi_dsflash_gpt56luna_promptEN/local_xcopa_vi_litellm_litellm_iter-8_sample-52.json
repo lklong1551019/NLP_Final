@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cây rụng lá.\n### Choices: [choice]Lá chuyển màu.@ [choice]Lá dồn trên mặt đường.@'] || GT-A:Lá dồn trên mặt đường. || LLM-A:Lá dồn trên mặt đường.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected this answer because it interpreted “Cây rụng lá” as describing leaves falling from a tree and associated that event with leaves accumulating on the ground, which it considered a direct effect of the premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The response identifies the consequence of a deciduous tree losing its leaves as those leaves collecting on the ground.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer reflects the observable result that when a tree sheds its leaves, the fallen leaves end up accumulating on the ground or roadway.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer identifies leaves collecting on the ground as the direct observable effect of a tree shedding its leaves.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The selected choice states the direct result of leaves falling from the tree: they accumulate on the ground or road.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The selected answer represents the observable consequence that fallen leaves accumulate on the ground or roadway after a tree sheds them.</EXP>'}

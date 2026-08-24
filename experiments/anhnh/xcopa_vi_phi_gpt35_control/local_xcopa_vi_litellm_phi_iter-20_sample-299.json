@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Hàng xóm tôi mở nhạc ầm ĩ.\n### Lựa chọn: [choice]Tôi yêu cầu anh ta vặn nhỏ lại.@ [choice]Tôi hỏi mượn đĩa CD từ anh ấy.@'] || GT-A:Tôi yêu cầu anh ta vặn nhỏ lại. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời X vì nó không chứa thông tin nào liên quan đến việc giải quyết vấn đề về tiếng ồn từ hàng xóm mở nhạc.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

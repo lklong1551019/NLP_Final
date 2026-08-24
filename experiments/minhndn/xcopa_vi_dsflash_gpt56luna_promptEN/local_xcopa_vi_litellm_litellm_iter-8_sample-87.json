@@ -1,0 +1,7 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Bạn tôi quay đầu về phía tôi.\n### Choices: [choice]Tôi hét to tên anh.@ [choice]Tôi vẫy tay.@'] || GT-A:Tôi hét to tên anh. || LLM-A:Tôi vẫy tay.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected the answer because it interpreted turning toward the speaker as a situation that naturally prompts waving, based on a learned association between visual acknowledgment and waving.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Turning toward someone indicates an opportunity to acknowledge them, making waving a suitable response.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Turning toward the speaker signals recognition or engagement, which makes waving an appropriate way to acknowledge the person.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The friend’s act of turning toward the speaker is interpreted as an invitation to acknowledge their attention with a wave.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer reflects a natural social response to noticing that the friend has turned toward the speaker.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer is chosen because waving is a direct, friendly acknowledgment after noticing that the friend has turned toward the speaker.'}

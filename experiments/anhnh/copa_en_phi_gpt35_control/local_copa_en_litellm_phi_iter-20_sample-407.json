@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The college student wanted to meet other students on campus.\n### Choices: [choice]He joined a fraternity.@ [choice]He majored in engineering.@'] || GT-A:He joined a fraternity. || LLM-A:He joined a fraternity.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He joined a fraternity" as the answer because it is a common social activity for college students to meet others on campus.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

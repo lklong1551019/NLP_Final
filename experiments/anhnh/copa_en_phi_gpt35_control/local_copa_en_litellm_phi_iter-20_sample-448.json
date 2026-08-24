@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: The woman's business succeeded.\n### Choices: [choice]She fired her employees.@ [choice]She became wealthy.@"] || GT-A:She became wealthy. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "She became wealthy" because it associates business success with becoming wealthy, which is a common outcome in typical success stories.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

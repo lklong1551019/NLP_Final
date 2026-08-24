@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I took antibiotics.\n### Choices: [choice]My infection cleared up.@ [choice]My infection spread.@'] || GT-A:My infection cleared up. || LLM-A:My infection cleared up.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "My infection cleared up" because it is a common positive outcome associated with taking antibiotics for an infection.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người phụ nữ bị đau họng.\n### Lựa chọn: [choice]Giọng cô khàn khàn.@ [choice]Cô nói với giọng điệu.@'] || GT-A:Giọng cô khàn khàn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Giọng cô khàn khàn" vì thường khi người phụ nữ bị đau họng, giọng của họ có thể bị ảnh hưởng và trở nên khàn khàn.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The poster stuck to the wall.\n### Choices: [choice]I positioned the poster above the door.@ [choice]I put tape on the back of the poster.@'] || GT-A:I put tape on the back of the poster. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "I put tape on the back of the poster" because it associates posters typically being stuck to walls with the use of tape.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I squeezed the damp sponge.\n### Choices: [choice]It soaked up water.@ [choice]Water seeped out of it.@'] || GT-A:Water seeped out of it. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "X" because it did not find a suitable option among the provided choices to describe the effect of squeezing the damp sponge.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

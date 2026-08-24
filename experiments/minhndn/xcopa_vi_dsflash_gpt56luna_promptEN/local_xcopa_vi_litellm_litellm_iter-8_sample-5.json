@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái hết năng lượng.\n### Choices: [choice]Cô chơi cờ đam.@ [choice]Cô nhảy dây.@'] || GT-A:Cô nhảy dây. || LLM-A:Cô nhảy dây.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the rope-jumping statement because it interprets the premise as indicating that the girl has expended energy, and it treats that activity as the more plausible cause compared with playing checkers.'}

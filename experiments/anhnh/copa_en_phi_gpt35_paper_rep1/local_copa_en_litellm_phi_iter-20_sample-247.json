@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman became bored with her date.\n### Choices: [choice]He asked her questions about herself.@ [choice]He talked incessantly about himself.@'] || GT-A:He talked incessantly about himself. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen "He talked incessantly about himself." because it directly addresses a potential cause for the woman becoming bored with her date.'}

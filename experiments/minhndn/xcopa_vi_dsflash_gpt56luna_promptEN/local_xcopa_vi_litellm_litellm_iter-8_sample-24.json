@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông ngấn lệ.\n### Choices: [choice]Bụi bay vào mắt ông ấy.@ [choice]Anh đeo kính lên mắt.@'] || GT-A:Bụi bay vào mắt ông ấy. || LLM-A:Bụi bay vào mắt ông ấy.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because the premise describes a man with tearful eyes, and dust entering his eyes is a plausible cause of that condition. The alternative describes putting on glasses, which does not directly explain the tears.'}

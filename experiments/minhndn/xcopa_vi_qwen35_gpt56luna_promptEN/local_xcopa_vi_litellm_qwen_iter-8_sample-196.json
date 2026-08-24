@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi đã trả tiền cho nhân viên thu phí.\n### Choices: [choice]Cô ấy cho tôi đi qua trạm thu phí.@ [choice]Cô ấy đã giam giữ tôi tại trạm thu phí.@'] || GT-A:Cô ấy cho tôi đi qua trạm thu phí. || LLM-A:Cô ấy cho tôi đi qua trạm thu phí.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because the premise states that the speaker paid the toll collector, which conventionally implies being allowed to pass through the toll station rather than being detained.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Paying the toll indicates that the collector permitted the traveler to continue through the toll station, not that the traveler was held there.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc trả tiền cho nhân viên thu phí cho thấy người nói đã hoàn tất thủ tục cần thiết để được tiếp tục qua trạm, phù hợp với việc cô ấy cho người nói đi qua thay vì giữ lại.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc đã trả tiền cho nhân viên thu phí cho thấy người nói đã đáp ứng yêu cầu để được tiếp tục hành trình, nên phù hợp với việc được cho qua trạm thay vì bị giữ lại.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc thanh toán cho nhân viên thu phí cho thấy người nói đã hoàn thành nghĩa vụ tại trạm, vì vậy hành động tiếp theo hợp lý là được phép đi qua thay vì bị giữ lại.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc thanh toán cho nhân viên thu phí cho thấy người nói đã hoàn tất yêu cầu tại trạm, nên được tiếp tục đi qua thay vì bị giữ lại.'}

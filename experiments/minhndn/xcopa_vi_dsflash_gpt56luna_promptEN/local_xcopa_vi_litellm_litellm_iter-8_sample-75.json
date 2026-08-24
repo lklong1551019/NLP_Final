@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi nhập dãy mã vào ổ khóa.\n### Choices: [choice]Tôi đóng khóa.@ [choice]Khóa bật mở.@'] || GT-A:Khóa bật mở. || LLM-A:Khóa bật mở.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model likely selected the second choice because it interpreted entering a code into a lock as an action that causes the lock to open, relying on a common procedural association between code entry and unlocking.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer reflects the direct outcome implied by entering the correct code into a lock: the locking mechanism releases and becomes open.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The response identifies the lock opening as the effect of entering the code, treating code entry as the action that releases the lock rather than closes it.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Entering a code into a lock is associated with activating its unlocking mechanism, so the expected effect is that the lock opens.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Entering a code into the lock triggers the mechanism that releases the lock, resulting in it opening.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The chosen answer follows the expected causal relationship in which entering the code activates the lock’s release mechanism, causing it to open rather than remain closed.</EXP>'}

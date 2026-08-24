@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người chồng phát hiện ra rằng vợ mình đang ngoại tình.\n### Lựa chọn: [choice]Anh ta sa thải luật sư của mình.@ [choice]Anh nộp đơn ly hôn.@'] || GT-A:Anh nộp đơn ly hôn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là "X" vì trong ngữ cảnh này, không có đủ thông tin để xác định anh ta sẽ sa thải luật sư hay nộp đơn ly hôn.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

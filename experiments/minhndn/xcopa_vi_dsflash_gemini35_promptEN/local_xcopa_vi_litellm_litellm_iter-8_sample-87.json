@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Bạn tôi quay đầu về phía tôi.\n### Choices: [choice]Tôi hét to tên anh.@ [choice]Tôi vẫy tay.@'] || GT-A:Tôi hét to tên anh. || LLM-A:Tôi hét to tên anh.
+{'Score': 1.0, 'XAI prompt': "<EXP> The model selected this answer because shouting someone's name is a highly effective auditory stimulus that naturally causes a person to turn their head toward the source of the sound, establishing a strong and immediate causal relationship with the premise."}

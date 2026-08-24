@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đội thua giải đấu.\n### Choices: [choice]Họ làm người hâm mộ thất vọng.@ [choice]Họ truyền cảm hứng cho người hâm mộ của họ.@'] || GT-A:Họ làm người hâm mộ thất vọng. || LLM-A:Họ làm người hâm mộ thất vọng.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the first choice because losing a tournament is causally and emotionally associated with disappointing fans rather than inspiring them, based on common sense reasoning encoded in its training data.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: Everyone disapproved of the couple's engagement.\n### Choices: [choice]The couple got pregnant.@ [choice]The couple eloped.@"] || GT-A:The couple eloped. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model chose "The couple eloped" because it represents a highly plausible and common narrative consequence of a couple\'s engagement being disapproved of by everyone, whereas getting pregnant is not typically caused or triggered by societal or familial disapproval.'}

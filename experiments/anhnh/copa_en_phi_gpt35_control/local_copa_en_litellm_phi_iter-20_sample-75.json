@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I entered my combination on the lock.\n### Choices: [choice]I shut the lock.@ [choice]The lock popped open.@'] || GT-A:The lock popped open. || LLM-A:The lock popped open.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "The lock popped open" because it interprets the action of entering a combination on a lock as causing it to open, rather than shut.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

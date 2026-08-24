@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tòa nhà trung tâm bị sập.\n### Choices: [choice]Một trận động đất ập đến thành phố.@ [choice]Tỷ lệ tội phạm trong thành phố tăng.@'] || GT-A:Một trận động đất ập đến thành phố. || LLM-A:Một trận động đất ập đến thành phố.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the first choice because a citywide earthquake is a plausible causal event for the collapse of a central building, whereas an increase in the crime rate does not ordinarily cause structural collapse.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Vì động đất có thể làm rung chuyển và phá hủy kết cấu công trình, trong khi tỷ lệ tội phạm tăng không phải là nguyên nhân trực tiếp khiến tòa nhà bị sập.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Đáp án được chọn vì mô tả một hiện tượng tự nhiên có khả năng trực tiếp làm mất ổn định và phá hủy cấu trúc của tòa nhà.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Động đất là nguyên nhân trực tiếp có thể khiến tòa nhà trung tâm rung lắc mạnh, mất ổn định và sụp đổ, phù hợp với mối quan hệ nhân quả được nêu.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Động đất có thể trực tiếp làm rung chuyển, phá hủy kết cấu và khiến tòa nhà trung tâm sụp đổ, nên phù hợp với nguyên nhân của sự việc.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Đáp án được chọn vì động đất có thể gây rung chấn mạnh, làm hư hỏng kết cấu chịu lực và trực tiếp dẫn đến việc tòa nhà trung tâm bị sập.</EXP>'}

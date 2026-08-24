@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đứa trẻ đáp xuống tấm bạt lò xo.\n### Lựa chọn: [choice]Nó bật ngược lên không trung.@ [choice]Nó quyết định thử làm một cú lật.@'] || GT-A:Nó bật ngược lên không trung. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình cho rằng "X" có thể là kết quả của Tiền đề vì không có thông tin cụ thể về việc đứa trẻ đáp xuống tấm bạt lò xo trong câu hỏi ban đầu.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

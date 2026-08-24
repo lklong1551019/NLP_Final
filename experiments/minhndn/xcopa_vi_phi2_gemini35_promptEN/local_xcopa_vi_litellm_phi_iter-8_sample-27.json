@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi dừng lại để dừng nói chuyện.\n### Choices: [choice]Tôi mất giọng.@ [choice]Tôi hết hơi.@'] || GT-A:Tôi hết hơi. || LLM-A:Tôi mất giọng.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose "Tôi mất giọng" (I lost my voice) as the cause for "Tôi dừng lại để dừng nói chuyện" (I stopped to stop talking) because losing one\'s voice is a direct, physical impediment that forces a person to cease speaking, making it a highly logical causal link in semantic association.'}

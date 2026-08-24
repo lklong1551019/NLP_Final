@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The son moved away from home.\n### Choices: [choice]He was discharged from the military.@ [choice]He was going to college.@'] || GT-A:He was going to college. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "He was going to college." because it is a plausible reason for someone to move away from home.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi tự chích bằng kim.\n### Choices: [choice]Một giọt mồ hôi chảy ra từ mặt tôi.@ [choice]Một giọt máu hình thành trên ngón tay của tôi.@'] || GT-A:Một giọt máu hình thành trên ngón tay của tôi. || LLM-A:Một giọt máu hình thành trên ngón tay của tôi.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the option describing blood because puncturing oneself with a needle most directly implies a small break in the skin that can cause bleeding, whereas sweating is not a necessary consequence.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Chích bằng kim làm da bị xuyên thủng, nên máu có thể xuất hiện trên ngón tay; việc này phù hợp trực tiếp với kết quả được nêu hơn so với việc mồ hôi chảy ra từ mặt.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc tự chích bằng kim tạo ra một vết thương nhỏ trên da, khiến máu có thể hình thành tại ngón tay.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Kim đâm xuyên qua da, gây tổn thương nhỏ tại ngón tay nên có thể làm xuất hiện một giọt máu.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc tự chích bằng kim có thể làm da bị tổn thương, dẫn đến một giọt máu xuất hiện trên ngón tay.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Tự chích bằng kim gây tổn thương nhỏ trên da, từ đó có thể dẫn đến việc một giọt máu xuất hiện ở ngón tay.'}

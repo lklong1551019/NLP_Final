@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: My car broke down.\n### Choices: [choice]I went to the mall.@ [choice]I called a mechanic.@'] || GT-A:I called a mechanic. || LLM-A:I called a mechanic.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I called a mechanic" because it understands that when a car breaks down, a common response is to contact a mechanic for assistance.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

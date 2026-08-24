@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Dung nham chảy từ núi lửa.\n### Choices: [choice]Núi lửa phun trào.@ [choice]Núi lửa không hoạt động.@'] || GT-A:Núi lửa phun trào. || LLM-A:Núi lửa phun trào.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because flowing lava is causally associated with a volcanic eruption, while an inactive volcano would not ordinarily produce flowing lava.</EXP>'}

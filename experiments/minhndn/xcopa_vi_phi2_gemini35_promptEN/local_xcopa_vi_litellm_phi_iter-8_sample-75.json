@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi nhập dãy mã vào ổ khóa.\n### Choices: [choice]Tôi đóng khóa.@ [choice]Khóa bật mở.@'] || GT-A:Khóa bật mở. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the correct outcome of entering a code into a lock because it recognizes the causal relationship in Vietnamese where entering a code ("nhập dãy mã") into a lock ("ổ khóa") typically results in the lock opening ("Khóa bật mở").'}

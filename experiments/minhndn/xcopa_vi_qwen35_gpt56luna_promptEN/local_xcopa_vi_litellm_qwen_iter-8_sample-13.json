@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Hộp thư đến của ông ấy đầy thư rác.\n### Choices: [choice]Ông ấy xóa thư rác.@ [choice]Ông đã gửi một email hàng loạt.@'] || GT-A:Ông ấy xóa thư rác. || LLM-A:Ông ấy xóa thư rác.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the first choice because it interprets the premise as indicating that the inbox is full of spam, making deletion the more directly associated consequence; the second choice describes sending a mass email, which is not supported by the premise.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer follows because a spam-filled inbox naturally leads to removing the unwanted messages, whereas sending a mass email is unrelated to the situation.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The selected answer is the direct consequence of having an inbox filled with spam, while sending a mass email does not follow from that circumstance.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The explanation identifies the chosen outcome as the appropriate response to the stated condition, while the alternative does not have a clear causal connection to it.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> A full inbox of unwanted messages implies that those messages need to be removed, whereas sending a mass email is not a consequence indicated by the situation.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The selected choice reflects the practical action prompted by an inbox overwhelmed with spam, while the other choice introduces an unrelated act of sending a mass email.'}

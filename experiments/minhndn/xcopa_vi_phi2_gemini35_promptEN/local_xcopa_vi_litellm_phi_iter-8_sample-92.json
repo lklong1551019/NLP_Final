@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông thấy người ngoài hành tinh.\n### Choices: [choice]Anh ta bị ảo giác.@ [choice]Anh ta đang ngồi thiền.@'] || GT-A:Anh ta bị ảo giác. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this answer because experiencing a hallucination (bị ảo giác) is a common and scientifically plausible explanation for seeing aliens (người ngoài hành tinh), whereas meditation (ngồi thiền) does not typically cause visual hallucinations of extraterrestrial beings.'}

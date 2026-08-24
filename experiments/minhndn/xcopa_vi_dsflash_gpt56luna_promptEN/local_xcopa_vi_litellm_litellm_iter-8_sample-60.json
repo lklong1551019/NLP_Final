@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Bạn bè mất liên lạc.\n### Choices: [choice]Họ rất thích được ở cạnh nhau.@ [choice]Họ chuyển đến các thành phố khác nhau.@'] || GT-A:Họ chuyển đến các thành phố khác nhau. || LLM-A:Họ chuyển đến các thành phố khác nhau.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the second choice because the premise states that the friends lost contact, which is most directly and plausibly explained by their moving to different cities; the first choice suggests closeness rather than a cause of losing contact.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mất liên lạc thường xảy ra khi bạn bè chuyển đến những thành phố khác nhau, vì khoảng cách khiến họ khó duy trì sự liên hệ thường xuyên.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Khi bạn bè chuyển đến những thành phố khác nhau, khoảng cách địa lý có thể khiến họ khó duy trì liên lạc thường xuyên.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc chuyển đến các thành phố khác nhau tạo ra khoảng cách địa lý, khiến bạn bè khó giữ liên lạc thường xuyên.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mất liên lạc thường xảy ra khi bạn bè chuyển đến những thành phố khác nhau, vì khoảng cách khiến họ khó duy trì sự liên hệ thường xuyên.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Bạn bè có thể mất liên lạc vì họ chuyển đến những thành phố khác nhau, khiến khoảng cách địa lý làm việc duy trì liên hệ trở nên khó khăn hơn.'}

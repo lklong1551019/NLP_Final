@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Túi bỏng ngô bắt đầu phồng lên.\n### Choices: [choice]Tôi đổ bơ vào túi.@ [choice]Tôi  hâm nóng nó trong lò vi sóng.@'] || GT-A:Tôi  hâm nóng nó trong lò vi sóng. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this option because heating a bag of popcorn in a microwave is the direct physical cause of the bag expanding and inflating due to the buildup of steam and heat, whereas simply pouring butter into the bag would not cause it to swell.'}

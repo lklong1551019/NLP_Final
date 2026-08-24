@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: The client approved the architect's plans for the building.\n### Choices: [choice]The architect constructed the building.@ [choice]The architect adjusted the plans.@"] || GT-A:The architect constructed the building. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': "<EXP> The model likely chose option A because it involves the architect taking action based on the client's approval of the plans, which seems like a logical consequence in this scenario."}

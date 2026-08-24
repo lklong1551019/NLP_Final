@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the cause of the Premise?\n### Premise: The boy's hair was sticking up.\n### Choices: [choice]The girl ruffled it.@ [choice]The girl pulled it.@"] || GT-A:The girl ruffled it. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP> The model may have chosen answer X because it did not correctly relate the cause of the boy's hair sticking up to the options provided in the choices."}

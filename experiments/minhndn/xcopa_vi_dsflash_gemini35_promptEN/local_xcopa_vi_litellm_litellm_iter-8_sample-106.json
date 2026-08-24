@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cậu thiếu niên lẻn ra khỏi nhà.\n### Choices: [choice]Cậu nói dối bố mẹ.@ [choice]Bố mẹ cậu nhốt cậu anh.@'] || GT-A:Bố mẹ cậu nhốt cậu anh. || LLM-A:Cậu nói dối bố mẹ.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose this answer because "lying to parents" (Cậu nói dối bố mẹ) is a highly associated and logical precursor or accompanying action to "sneaking out of the house" (Cậu thiếu niên lẻn ra khỏi nhà), as sneaking out typically requires deception to prevent detection.'}

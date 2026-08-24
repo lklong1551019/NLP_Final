@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Điện trong nhà tôi tắt.\n### Choices: [choice]Tôi rút phích cắm đèn.@ [choice]Tôi rất tức giận.@'] || GT-A:Tôi rất tức giận. || LLM-A:Tôi rất tức giận.
+{'Score': 1.0, 'XAI prompt': '<EXP> Because language models generate the most statistically plausible continuation rather than verifying causal validity, the response can be produced confidently even when it does not logically follow from the premise.'}

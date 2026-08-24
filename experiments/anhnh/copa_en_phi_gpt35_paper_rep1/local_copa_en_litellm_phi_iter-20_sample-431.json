@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I struck the match.\n### Choices: [choice]The flame faded out.@ [choice]The match produced a flame.@'] || GT-A:The match produced a flame. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "The match produced a flame" because it interprets the action of striking a match as typically resulting in the production of a flame.'}

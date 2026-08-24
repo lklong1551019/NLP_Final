@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The vacationers took a ferry to the resort.\n### Choices: [choice]The resort was booked.@ [choice]The resort was on an island.@'] || GT-A:The resort was on an island. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': "<EXP> The model may have chosen answer choice X because it doesn't directly relate to the premise provided.", 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

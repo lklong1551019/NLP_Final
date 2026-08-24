@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I bit into the peach.\n### Choices: [choice]The peach bruised.@ [choice]Juice spilled out.@'] || GT-A:Juice spilled out. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected answer X because it failed to correctly associate the effect of biting into a peach with the possible outcomes provided in the choices.', 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The enemy ship blew up.\n### Choices: [choice]It passed over the mine.@ [choice]It sailed into the harbor.@'] || GT-A:It passed over the mine. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen the answer "It passed over the mine" because it associates ships blowing up with mines as a common cause in certain contexts.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

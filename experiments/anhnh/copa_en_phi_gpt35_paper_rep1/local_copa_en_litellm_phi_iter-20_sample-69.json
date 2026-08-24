@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl bragged to her friends.\n### Choices: [choice]She got a bad grade.@ [choice]She won a contest.@'] || GT-A:She won a contest. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected choice A, "She got a bad grade," because it associates bragging with trying to cover up a failure or mistake.'}

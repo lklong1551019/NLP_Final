@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi lật đệm ghế lên.\n### Lựa chọn: [choice]Tôi đang tìm tiền lẻ.@ [choice]Tôi đang sắp xếp lại phòng khách.@'] || GT-A:Tôi đang tìm tiền lẻ. || LLM-A:Tôi đang nôi tìm tiền lẻ.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "Tôi đang tìm tiền lẻ" vì trong tiền đề có đề cập đến việc lật đệm ghế lên, điều này có thể được liên kết với việc tìm kiếm tiền lẻ.', 'ControlScore': 1.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

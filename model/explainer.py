@@ -1,7 +1,20 @@
 import os
 import openai
 import torch
-from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+try:
+    from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+except ImportError:  # anthropic >=1.0 dropped the legacy completions constants
+    # Only the (unused) claude path needs these. Importing them unconditionally
+    # made the whole module unimportable on a modern SDK.
+    HUMAN_PROMPT, AI_PROMPT = "\n\nHuman:", "\n\nAssistant:"
+
+    class Anthropic:  # pragma: no cover - legacy path
+        def __init__(self, *args, **kwargs):
+            raise RuntimeError(
+                "The claude path needs an anthropic SDK that still exports "
+                "HUMAN_PROMPT/AI_PROMPT (pre-1.0). Install one, or select "
+                "--pred_model/--xai_model litellm."
+            )
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import LlamaForCausalLM, LlamaTokenizer
 
@@ -71,7 +84,7 @@ def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=No
                 max_tokens=args.max_tokens,
                 temperature=float(args.temp_exp),
                 top_p=getattr(args, "top_p_exp", None),
-                system="Bạn là một chuyên gia về giải thích hành vi của mô hình ngôn ngữ." if getattr(args, 'data', '') == "xcopa_vi" else "You are an expert at explaining language model behavior.",
+                system="Bạn là một chuyên gia về giải thích hành vi của mô hình ngôn ngữ." if llm_api.vi_prompts(args) else "You are an expert at explaining language model behavior.",
             )
         except Exception as e:
             print(f"[ERROR] Explainer API: {e}")
@@ -89,7 +102,7 @@ def generate_exp_prompt(task_instruction, input_zip, output_ans, args, predictor
 
     if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
         qa_pair = zip(input_zip, output_ans)
-        if args.data == "xcopa_vi":
+        if llm_api.vi_prompts(args):
             exp_prompt = [f"{task_instruction}\n\n### Đầu vào:\n{item[0]}\n### Trả lời: {item[1]}" for item in qa_pair]
             if predictor_reasoning:
                 exp_prompt = [f"{prompt}\n\n### Giải thích nội bộ của mô hình: {predictor_reasoning}" for prompt in exp_prompt]
@@ -116,7 +129,7 @@ def generate_global_xai_prompt(xai_prompts_list, scores_list, args):
             score = scores_list[i]
             few_shot_score += f"Prompt:\n{xai_prompt}\nScore:\n{score}\n\n"
 
-        if getattr(args, 'data', '') == "xcopa_vi":
+        if llm_api.vi_prompts(args):
             # ---------------------------------------------------------
             # SAMPLE PROMPT (GLOBAL):
             # ### System instruction: Nhiệm vụ của bạn là tạo các hướng dẫn...
@@ -159,7 +172,7 @@ def generate_global_xai_prompt(xai_prompts_list, scores_list, args):
     return xai_final_prompt
 
 def generate_local_xai_prompt(xai_prompts_list, scores_list, question, output_ans, args=None, predictor_reasoning=None):
-    is_vi = args is not None and getattr(args, 'data', '') == "xcopa_vi"
+    is_vi = llm_api.vi_prompts(args)
     question_answer_list = f"### Đầu vào:\n{question}\n### Trả lời: {output_ans}" if is_vi else f"Q:{question}\nA:{output_ans}"
 
     if predictor_reasoning:
@@ -219,7 +232,7 @@ def generate_counterfact_prompt(explanation, args):
     # instruction = f"Please generate one counterfactual example obtaining opposite meaning of the given sentence. \
     #                 Make sure you output sentence only."
     if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
-        if args.data == "xcopa_vi":
+        if llm_api.vi_prompts(args):
             # ---------------------------------------------------------
             # SAMPLE PROMPT (COUNTERFACTUAL):
             # Vui lòng tạo một ví dụ mang ý nghĩa trái ngược...
@@ -234,6 +247,10 @@ def generate_counterfact_prompt(explanation, args):
 
     elif args.data == "trivaqa":
         instruction = "Can you generate a edited version of sentence-1 with opposite meaning where it states why the model generates the answer in the passage? Make sure the output sentence is purely edited from sentence-1."
-        final_prompt = f"{instruction}\n\Sentence-1: {explanation}\n\n"
+        # NOTE: "\\S" is almost certainly a typo for "\\n" (i.e. "\\n\\nSentence-1:"),
+        # so this emits a literal backslash. Kept byte-identical to upstream because
+        # the trivaqa path is not exercised by our runs and the change cannot be
+        # validated here; escaped only to silence the SyntaxWarning.
+        final_prompt = f"{instruction}\n\\Sentence-1: {explanation}\n\n"
 
     return final_prompt

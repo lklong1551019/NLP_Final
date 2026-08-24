@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đứa trẻ rắc thức ăn cho cá vào bể.\n### Choices: [choice]Con cá nhảy ra khỏi bể.@ [choice]Con cá bơi về phía thức ăn.@'] || GT-A:Con cá bơi về phía thức ăn. || LLM-A:Con cá bơi về phía thức ăn.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model identifies a direct cause-and-effect relationship: introducing food into the fish tank typically attracts the fish, so it selects the option describing movement toward the food.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc rắc thức ăn vào bể tạo ra tác nhân thu hút, khiến con cá hướng đến vị trí có thức ăn thay vì rời khỏi bể.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Thức ăn được rắc vào bể đóng vai trò là yếu tố thu hút, nên con cá có xu hướng di chuyển về phía nguồn thức ăn trong bể.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Con cá được thu hút bởi thức ăn vừa được rắc vào bể nên sẽ bơi về phía nguồn thức ăn.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Thức ăn xuất hiện trong bể tạo ra một tác nhân hấp dẫn tự nhiên, khiến cá hướng chuyển động đến nơi có nguồn thức ăn.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Do thức ăn được đưa vào môi trường sống, con cá nhận biết đây là nguồn thức ăn và di chuyển đến vị trí đó.</EXP>'}

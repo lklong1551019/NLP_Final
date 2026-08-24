@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The man's voice sounded hoarse.\n### Choices: [choice]He had a cold.@ [choice]He quit smoking.@"] || GT-A:He had a cold. || LLM-A:He had a cold.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "He had a cold" as the answer because a hoarse voice is commonly associated with having a cold, which is a plausible explanation for the given premise.'}

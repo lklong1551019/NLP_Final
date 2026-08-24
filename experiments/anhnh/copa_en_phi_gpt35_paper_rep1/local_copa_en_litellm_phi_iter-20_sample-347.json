@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I shielded my face.\n### Choices: [choice]My enemy taunted me.@ [choice]My enemy cocked a fist.@'] || GT-A:My enemy cocked a fist. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer choice A because it mentions an action related to taunting, which could be seen as a cause for someone to shield their face.'}

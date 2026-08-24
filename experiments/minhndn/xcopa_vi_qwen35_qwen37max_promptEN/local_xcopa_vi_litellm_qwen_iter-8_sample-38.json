@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người phụ nữ va vào ghế sofa.\n### Choices: [choice]Chân ghế sofa bị lỏng ra.@ [choice]Cô bầm tím đầu gối.@'] || GT-A:Cô bầm tím đầu gối. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model likely selected the incorrect option because it prioritized a direct physical interaction with the object mentioned in the premise over the more plausible consequence for the human agent, failing to apply commonsense reasoning regarding cause and effect in physical collisions.'}

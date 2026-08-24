@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman declared bankruptcy.\n### Choices: [choice]She received alimony payment.@ [choice]She acquired massive debt.@'] || GT-A:She acquired massive debt. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "She acquired massive debt" as the answer because bankruptcy is often associated with having excessive debt that one cannot repay.'}

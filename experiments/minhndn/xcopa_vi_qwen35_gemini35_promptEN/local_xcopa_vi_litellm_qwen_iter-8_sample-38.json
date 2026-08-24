@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người phụ nữ va vào ghế sofa.\n### Choices: [choice]Chân ghế sofa bị lỏng ra.@ [choice]Cô bầm tím đầu gối.@'] || GT-A:Cô bầm tím đầu gối. || LLM-A:Cô bầm tím đầu gối.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected this answer because it correctly identifies a highly probable and direct physical consequence of a person bumping into a piece of furniture, aligning with common-sense causal reasoning in Vietnamese.'}

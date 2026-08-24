@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cậu bé bước xuống bùn.\n### Lựa chọn: [choice]Bùn dính vào giày cậu.@ [choice]Bùn đập vào mặt cậu.@'] || GT-A:Bùn dính vào giày cậu. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn kết quả "X" vì nó có thể liên kết với việc cậu bé bước xuống bùn mà không cần đưa ra giải thích cụ thể cho sự kết nối đó.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

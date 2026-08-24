@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Nước văng lên từ hồ bơi.\n### Lựa chọn: [choice]Người bơi nhảy xuống hồ bơi.@ [choice]Người bơi nổi trong hồ bơi.@'] || GT-A:Người bơi nhảy xuống hồ bơi. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Người bơi nhảy xuống hồ bơi" là nguyên nhân của tiền đề vì việc người bơi nhảy xuống hồ bơi có thể tạo ra động lực để nước văng lên từ hồ bơi.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

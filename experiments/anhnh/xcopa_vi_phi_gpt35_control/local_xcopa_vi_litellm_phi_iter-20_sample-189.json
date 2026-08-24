@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Một chiếc ô tô lạ đỗ bên ngoài nhà tôi.\n### Lựa chọn: [choice]Tôi trở nên nghi ngờ.@ [choice]Tôi gọi cho cảnh sát.@'] || GT-A:Tôi trở nên nghi ngờ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng kết quả của Tiền đề là "X" vì chiếc ô tô lạ đỗ bên ngoài nhà tác giả, khiến tác giả trở nên nghi ngờ và có thể sẽ gọi cho cảnh sát.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

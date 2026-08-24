@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl bragged to her friends.\n### Choices: [choice]She got a bad grade.@ [choice]She won a contest.@'] || GT-A:She won a contest. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the correct option because it understands the common social and psychological cause-and-effect relationship associated with "bragging," associating the act of boasting with a positive achievement like winning a contest rather than a negative outcome like receiving a bad grade.'}

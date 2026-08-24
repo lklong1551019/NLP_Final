@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cô gái mất kiểm soát chiếc xe đạp của mình.\n### Choices: [choice]Cô buông tay lái.@ [choice]Cô đâm vào một hàng rào.@'] || GT-A:Cô đâm vào một hàng rào. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model chose the second option because it correctly identified a cause-and-effect relationship, where losing control of a bicycle (the premise) logically results in a physical crash, such as colliding with a fence, rather than the intentional action of letting go of the handlebars.'}

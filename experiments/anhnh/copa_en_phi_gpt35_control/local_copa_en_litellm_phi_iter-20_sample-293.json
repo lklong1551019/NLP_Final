@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman cancelled her credit card account.\n### Choices: [choice]She realized the card was missing.@ [choice]She realized the card was expired.@'] || GT-A:She realized the card was missing. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "She realized the card was missing" because it could be a common reason for someone to cancel a credit card account.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

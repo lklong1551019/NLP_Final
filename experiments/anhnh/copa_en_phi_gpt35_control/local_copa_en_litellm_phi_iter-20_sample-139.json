@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The raccoon ransacked the garbage can.\n### Choices: [choice]There was cardboard in the garbage can.@ [choice]The lid was off the garbage can.@'] || GT-A:The lid was off the garbage can. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer based on the presence of cardboard being a common reason for raccoons to ransack garbage cans.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

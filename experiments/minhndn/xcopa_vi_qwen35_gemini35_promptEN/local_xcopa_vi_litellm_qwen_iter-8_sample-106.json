@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cậu thiếu niên lẻn ra khỏi nhà.\n### Choices: [choice]Cậu nói dối bố mẹ.@ [choice]Bố mẹ cậu nhốt cậu anh.@'] || GT-A:Bố mẹ cậu nhốt cậu anh. || LLM-A:Bố mẹ cậu nhốt cậu anh.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose this answer because it identified a strong cause-and-effect relationship between being locked inside by parents (the cause) and the rebellious action of sneaking out of the house (the effect), which logically explains the premise.'}

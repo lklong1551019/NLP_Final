@@ -13,6 +13,7 @@ from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
 from model.predictor import contains_answer
+from model.predictor import CONTROL as PRED_CONTROL
 from model import llm_api
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_local_xai_prompt, generate_exp_prompt
 
@@ -115,6 +116,18 @@ def preprocess_copa():
         train_dict['answer'] = [opt[answer[idx]] for opt in option]
     return train_dict
 
+def split_reply(text):
+    """Split an explainer reply into segments, dropping empty ones.
+
+    Some explainers (e.g. GPT-5.6) pad replies with blank lines; a bare
+    split on blank lines then yields empty segments which get scored as
+    explanations - an empty "explanation" whose counterfactual flips the
+    predictor manufactures a fake faithfulness signal.
+    """
+    parts = [s.strip() for s in text.split("\n\n") if s.strip()]
+    return parts if parts else [text.strip()]
+
+
 def preprocess_xcopa_vi(lang="vi", split="test"):
     """Load XCOPA dataset for cross-lingual experiments.
     Available langs: et, ht, id, it, qu, sw, ta, th, tr, vi, zh
@@ -132,13 +145,26 @@ def preprocess_xcopa_vi(lang="vi", split="test"):
     option = list(zip(op1, op2))
     choice = [f"[choice]{opt[0]}@ [choice]{opt[1]}@" for opt in option]
 
+    # The question scaffold is part of the prompt under test, so it has to follow
+    # PROMPT_LANG like every other template. Preprocessing runs before argparse,
+    # so read the switch from the environment via llm_api.prompt_lang().
+    vi_scaffold = llm_api.prompt_lang() == "vi"
+
     for idx, ques_txt in enumerate(question_text):
-        purp_vi = "nguyên nhân" if question_purp[idx] == "cause" else "kết quả"
-        question = (
-            f"### Câu hỏi: Đâu là {purp_vi} của Tiền đề?\n"
-            f"### Tiền đề: {ques_txt}\n"
-            f"### Lựa chọn: {choice[idx]}"
-        )
+        if vi_scaffold:
+            purp_vi = "nguyên nhân" if question_purp[idx] == "cause" else "kết quả"
+            question = (
+                f"### Câu hỏi: Đâu là {purp_vi} của Tiền đề?\n"
+                f"### Tiền đề: {ques_txt}\n"
+                f"### Lựa chọn: {choice[idx]}"
+            )
+        else:
+            # The paper's original English scaffold, verbatim.
+            question = (
+                f"###Question: What is the {question_purp[idx]} of the Premise?\n"
+                f"### Premise: {ques_txt}\n"
+                f"### Choices: {choice[idx]}"
+            )
         train_dict['question'].append(question)
         train_dict['answer'].append(option[idx][labels[idx]])
     return train_dict
@@ -341,8 +367,13 @@ if __name__ == "__main__":
 
     elif args.data == "xcopa_vi":
         train_dict = preprocess_xcopa_vi(lang=args.xcopa_lang, split=args.data_split if args.data_split != 'train' else 'test')
-        task_instruction = "Hãy chọn đáp án đúng cho mỗi câu hỏi. Lưu ý không lặp lại phần ngữ cảnh đầu vào."
-        exp_instruction = "Dựa trên suy luận của bạn, hãy giải thích một cách khách quan lý do mô hình đưa ra câu trả lời cho các câu hỏi này. Hãy đưa ra lý do bất kể câu trả lời đó đúng hay sai. Tuyệt đối không tự trả lời câu hỏi hay đưa ra gợi ý để trả lời tốt hơn. Mỗi câu giải thích phải bắt đầu bằng <EXP>. Không lặp lại câu hỏi hay câu trả lời đầu vào. Lưu ý: Chỉ xuất ra các câu giải thích, không thêm bất kỳ nội dung nào khác."
+        if not llm_api.vi_prompts(args):
+            # PROMPT_LANG=en: the paper's original English instructions, verbatim.
+            task_instruction = f"Please select a correct choice for the each question.                             Make sure not to repeat the input context."
+            exp_instruction = f"Please provide the objective explanations of why model generates                             the answers of the given questions based on your thoughts.                             Guess the reason why model provides answer no matter it is wrong or correct.                            Make sure not answer the questions or provide any suggestions to better answer the questions by yourself.                             Every explanations should begin with <EXP>.                             Make sure not to repeat the input questions and answers.                             Please only output the explanation sentences."
+        else:
+            task_instruction = "Hãy chọn đáp án đúng cho mỗi câu hỏi. Lưu ý không lặp lại phần ngữ cảnh đầu vào."
+            exp_instruction = "Dựa trên suy luận của bạn, hãy giải thích một cách khách quan lý do mô hình đưa ra câu trả lời cho các câu hỏi này. Hãy đưa ra lý do bất kể câu trả lời đó đúng hay sai. Tuyệt đối không tự trả lời câu hỏi hay đưa ra gợi ý để trả lời tốt hơn. Mỗi câu giải thích phải bắt đầu bằng <EXP>. Không lặp lại câu hỏi hay câu trả lời đầu vào. Lưu ý: Chỉ xuất ra các câu giải thích, không thêm bất kỳ nội dung nào khác."
 
         # Load predictor
         pred_model, pred_tokenizer = load_model(args.pred_model, max_memory, args.load_in_4bit)
@@ -456,8 +487,7 @@ if __name__ == "__main__":
         if getattr(args, 'use_predictor_reasoning', False):
             print(f"============ Init Explainer Prompt:\n{output_exp_prompt[0] if isinstance(output_exp_prompt, list) else output_exp_prompt}\n========================")
         exp_reply = reponse_xai_model(output_exp_prompt, args)
-        exp_reply = exp_reply.split(":\n\n")[-1]
-        exp_reply = exp_reply.split("\n\n")
+        exp_reply = split_reply(exp_reply.split(":\n\n")[-1])
         xai_list.extend(exp_reply)
         # print(f"============ Init Exp: {exp_reply[0]}")
 
@@ -468,8 +498,7 @@ if __name__ == "__main__":
                 # Generate counterfactual explanation
                 counter_xai_prompt = generate_counterfact_prompt(exp_reply, args)
                 counter_exp_reply = reponse_xai_model(counter_xai_prompt, args)
-                counter_exp_reply = counter_exp_reply.split(":\n\n")[-1]
-                counter_exp_reply = counter_exp_reply.split("\n\n")
+                counter_exp_reply = split_reply(counter_exp_reply.split(":\n\n")[-1])
                 cf_write.append(counter_exp_reply)
                 # print(f"============ Counterfact Exp: {counter_exp_reply[0]}")
 
@@ -485,7 +514,12 @@ if __name__ == "__main__":
 
                 # Save explanation
                 save_explanation = xai_list[-1]
-                xai_prompts_write.append({"Score": diff_score, "XAI prompt": save_explanation})
+                record = {"Score": diff_score, "XAI prompt": save_explanation}
+                if PRED_CONTROL.get("last"):
+                    # Irrelevant-hint baseline for this same instance.
+                    record["ControlScore"] = PRED_CONTROL["last"]["diff_random"]
+                    record["ControlHint"] = PRED_CONTROL["last"]["hint"]
+                xai_prompts_write.append(record)
                 print(f"=== Score: {diff_score} || Explanation: {save_explanation}")
 
                 if iter%5 == 0 and sum(scores_list) != 0:
@@ -498,9 +532,8 @@ if __name__ == "__main__":
                 # LLM optimizer
                 xai_prompt = generate_local_xai_prompt(xai_list, scores_list, question, output_ans, args)
                 exp_reply = reponse_xai_model(xai_prompt, args)
+                exp_reply = split_reply(exp_reply.split(":\n\n")[-1])
                 
-                exp_reply = exp_reply.split(":\n\n")[-1]
-                exp_reply = exp_reply.split("\n\n")
                 
                 xai_list.extend(exp_reply)
                 pbar.update(1)

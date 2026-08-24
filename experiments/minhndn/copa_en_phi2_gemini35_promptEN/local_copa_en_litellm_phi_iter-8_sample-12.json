@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The check I wrote bounced.\n### Choices: [choice]My bank account was empty.@ [choice]I earned a pay raise.@'] || GT-A:My bank account was empty. || LLM-A:My bank account was empty.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose "My bank account was empty" because it successfully identified the cause-and-effect relationship associated with financial transactions, recognizing that a bounced check is a direct and common consequence of having insufficient funds in a bank account.'}

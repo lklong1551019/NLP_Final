@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I hung artwork in the room.\n### Choices: [choice]The carpet looked dirty.@ [choice]The walls looked bare.@'] || GT-A:The walls looked bare. || LLM-A:The walls looked bare.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The walls looked bare" as the answer because it is a plausible reason for hanging artwork in a room to make the walls appear less empty or bare.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

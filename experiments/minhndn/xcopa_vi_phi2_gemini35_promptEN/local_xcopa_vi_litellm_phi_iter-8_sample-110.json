@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi nhỡ cuộc gọi của bạn gái tôi.\n### Choices: [choice]Tôi gọi lại cho cô ấy.@ [choice]Tôi gặp cô ấy đi ăn tối.@'] || GT-A:Tôi gọi lại cho cô ấy. || LLM-A:Tôi gọi lại cho cô ấy.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this answer because it identifies the most logical and common cause-and-effect relationship in daily communication, where missing a phone call from a partner typically prompts a return call.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The student knew the answer to the question.\n### Choices: [choice]He raised his hand.@ [choice]He goofed off.@'] || GT-A:He raised his hand. || LLM-A:He raised his hand.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He raised his hand." as the answer because it is a common response when a student knows the answer to a question in a classroom setting.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

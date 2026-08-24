@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các mặt hàng đã được đóng gói trong bọc bong bóng.\n### Choices: [choice]Nó dễ vỡ.@ [choice]Nó nhỏ.@'] || GT-A:Nó dễ vỡ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the correct choice because wrapping items in bubble wrap (bọc bong bóng) is a common real-world practice used to protect fragile (dễ vỡ) items during transit, establishing a direct causal relationship between the fragility of the items and the action of packaging them.'}

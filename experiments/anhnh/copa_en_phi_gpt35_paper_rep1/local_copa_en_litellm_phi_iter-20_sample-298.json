@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I opened my eyes.\n### Choices: [choice]I woke up.@ [choice]I relaxed.@'] || GT-A:I woke up. || LLM-A:I woke up.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I woke up" as the answer because it relates to the action of opening eyes, indicating a possible connection between waking up and opening one\'s eyes.'}

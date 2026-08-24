@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman declared bankruptcy.\n### Choices: [choice]She received alimony payment.@ [choice]She acquired massive debt.@'] || GT-A:She acquired massive debt. || LLM-A:She acquired massive debt.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose the answer "She acquired massive debt" because it directly relates to the premise of the woman declaring bankruptcy.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

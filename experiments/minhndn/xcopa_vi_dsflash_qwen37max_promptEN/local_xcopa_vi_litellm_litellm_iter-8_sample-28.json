@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các thực phẩm đông lạnh tan băng.\n### Choices: [choice]Tôi cho nó vào lò vi sóng.@ [choice]Tôi bọc nó bằng bọc nhựa.@'] || GT-A:Tôi cho nó vào lò vi sóng. || LLM-A:Tôi cho nó vào lò vi sóng.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects this option because placing frozen food in a microwave is a direct causal mechanism for thawing, whereas wrapping it in plastic wrap does not inherently cause the physical state change of melting.'}

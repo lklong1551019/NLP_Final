@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Mưa đã trút xuống.\n### Choices: [choice]Cơn bão trở nên tồi tệ hơn.@ [choice]Tôi lao vào trong.@'] || GT-A:Tôi lao vào trong. || LLM-A:Cơn bão trở nên tồi tệ hơn.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose "Cơn bão trở nên tồi tệ hơn" (The storm got worse) because it associated the premise "Mưa đã trút xuống" (The rain poured down) with a natural progression of worsening weather conditions, linking the onset of heavy rain directly to the intensification of a storm.'}

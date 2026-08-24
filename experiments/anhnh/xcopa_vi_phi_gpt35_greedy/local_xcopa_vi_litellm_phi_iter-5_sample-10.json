@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Các trại viên trẻ cảm thấy sợ hãi.\n### Lựa chọn: [choice]Cố vấn trại của họ kể cho họ một câu chuyện ma.@ [choice]Họ nướng marshmallows trên lửa trại.@'] || GT-A:Cố vấn trại của họ kể cho họ một câu chuyện ma. || LLM-A:Cố vấn trại của họ kể cho họ một câu chuyện ma.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Cố vấn trại của họ kể cho họ một câu chuyện ma" có thể là do nó nhận thấy mối liên kết giữa việc cố vấn kể chuyện ma và sự sợ hãi của các trại viên trẻ.'}

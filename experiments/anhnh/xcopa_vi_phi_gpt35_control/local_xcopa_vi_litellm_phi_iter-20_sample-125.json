@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Mưa đã trút xuống.\n### Lựa chọn: [choice]Cơn bão trở nên tồi tệ hơn.@ [choice]Tôi lao vào trong.@'] || GT-A:Tôi lao vào trong. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì nó có liên quan đến tiền đề về việc mưa đã trút xuống, trong khi các lựa chọn khác không có sự kết nối hoặc logic rõ ràng.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

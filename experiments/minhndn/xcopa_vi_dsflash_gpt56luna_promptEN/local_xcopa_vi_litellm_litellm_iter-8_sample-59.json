@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông ấn mặt ẩm của phong bì.\n### Choices: [choice]Ông dán tem lên phong bì.@ [choice]Ông đóng kín phong bì.@'] || GT-A:Ông đóng kín phong bì. || LLM-A:Ông đóng kín phong bì.
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer likely arises from interpreting the Vietnamese premise as describing a man pressing the moistened flap of an envelope, which conventionally indicates sealing the envelope rather than attaching a stamp.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Pressing the damp flap indicates that the man is securing the envelope closed, which corresponds to the selected answer rather than putting a stamp on it.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Moistening and pressing the envelope flap is the action used to make it adhere, indicating that the envelope is being closed securely.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Pressing the moistened part of the envelope flap makes it stick to the envelope, showing that the man is sealing it closed.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Ẩn dụ chỉ việc làm ẩm và ấn phần nắp phong bì là hành động khiến nắp dính vào thân phong bì, qua đó thể hiện việc đóng kín nó.</EXP>'}

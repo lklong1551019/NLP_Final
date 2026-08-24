@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Gió thổi qua cửa sổ.\n### Choices: [choice]Chuông cửa reo.@ [choice]Rèm cửa rung rinh.@'] || GT-A:Rèm cửa rung rinh. || LLM-A:Rèm cửa rung rinh.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the option describing curtains moving because it represents a plausible physical consequence of wind passing through a window, whereas the alternative is not directly caused by the premise.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The wind blowing through the window causes the curtains to sway, making the curtain movement the direct effect.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Airflow through the window directly makes the curtains move, so their swaying is the immediate effect described by the premise.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The wind passing through the window causes the curtains to move, making their swaying the direct physical effect of the premise.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The stated effect follows directly from the premise because moving air passing through the window causes the curtains to sway.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer is the direct physical consequence of air moving through the window, which makes the curtains sway rather than causing the doorbell to ring.</EXP>'}

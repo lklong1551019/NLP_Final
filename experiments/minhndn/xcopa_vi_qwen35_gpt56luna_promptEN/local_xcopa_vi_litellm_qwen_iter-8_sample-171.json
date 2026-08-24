@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cậu bé bắt nạt bạn mới.\n### Choices: [choice]Cậu chào đón người bạn mới.@ [choice]Cậu không ưa người bạn mới.@'] || GT-A:Cậu không ưa người bạn mới. || LLM-A:Cậu không ưa người bạn mới.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the second choice because the premise describes the boy bullying the new friend, which conventionally implies dislike or hostility rather than a welcoming attitude.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The second choice is supported because bullying a new friend indicates that the boy does not like or accept him, rather than welcoming him.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Bullying the new friend reflects rejection and hostility, so the statement that the boy dislikes him best explains the premise.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The second choice follows because bullying behavior signals negative feelings and rejection toward the new friend, not an effort to welcome him.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The selected answer is implied by the boy’s bullying behavior, which shows hostility toward the new friend rather than acceptance or welcome.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Bullying the new friend conveys antagonism and a lack of acceptance, supporting the choice that the boy dislikes him.'}

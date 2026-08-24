@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông đập đầu.\n### Choices: [choice]Anh lạc trong suy nghĩ.@ [choice]Anh ấy bị chấn động.@'] || GT-A:Anh ấy bị chấn động. || LLM-A:Anh ấy bị chấn động.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because "bị chấn động" (suffering a concussion/being shaken) is a direct, physically logical consequence of "đập đầu" (hitting one\'s head), whereas getting lost in thought is a metaphorical or unrelated state.'}

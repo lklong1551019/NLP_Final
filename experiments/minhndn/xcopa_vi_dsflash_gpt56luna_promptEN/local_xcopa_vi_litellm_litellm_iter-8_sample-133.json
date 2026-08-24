@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đội thua giải đấu.\n### Choices: [choice]Họ làm người hâm mộ thất vọng.@ [choice]Họ truyền cảm hứng cho người hâm mộ của họ.@'] || GT-A:Họ làm người hâm mộ thất vọng. || LLM-A:Họ làm người hâm mộ thất vọng.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because the Vietnamese premise means “The team lost the tournament,” which conventionally implies disappointing its fans, while the alternative expresses a contrasting positive consequence not directly supported by the premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise describes a team losing a competition, an outcome that is naturally associated with disappointing its supporters rather than inspiring them.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Losing a tournament is an unfavorable result for the team, so the consequence is that its fans feel disappointed rather than inspired.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The selected answer reflects the negative emotional reaction that typically follows a team’s defeat, making disappointment among its fans the most direct consequence.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise indicates an unsuccessful outcome for the team, so the chosen consequence represents the likely negative reaction from its supporters.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The answer follows from interpreting the team’s loss as an outcome that causes disappointment among its fans, rather than the positive feeling associated with inspiring them.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> “Đội thua giải đấu” describes a team losing the tournament, and this negative result most directly corresponds to fans feeling disappointed.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise presents a tournament loss as a negative event, making disappointment among the team’s fans the most closely related effect.'}

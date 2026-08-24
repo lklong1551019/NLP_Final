@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I discarded the note.\n### Choices: [choice]It was anonymous.@ [choice]It was illegible.@'] || GT-A:It was illegible. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected option X because it did not find a clear connection between the premise and the choices provided.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

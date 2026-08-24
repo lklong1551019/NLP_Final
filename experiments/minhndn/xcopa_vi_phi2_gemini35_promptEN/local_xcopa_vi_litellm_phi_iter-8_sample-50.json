@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cậu bé khóc với người trông trẻ.\n### Choices: [choice]Cậu ấy nhớ bố mẹ.@ [choice]Đó là thời gian ăn nhẹ.@'] || GT-A:Cậu ấy nhớ bố mẹ. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose the first option because it correctly identified a common, logical cause-and-effect relationship in child development where a boy crying with his babysitter is typically caused by him missing his parents, whereas snack time is generally associated with positive emotions rather than crying.'}

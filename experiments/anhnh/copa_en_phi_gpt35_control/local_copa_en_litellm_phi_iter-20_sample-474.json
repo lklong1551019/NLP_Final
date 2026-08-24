@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The woman was staring at me.\n### Choices: [choice]I hugged her.@ [choice]I felt uncomfortable.@'] || GT-A:I felt uncomfortable. || LLM-A:I felt uncomfortable.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "I felt uncomfortable" because the premise mentions the woman staring at the speaker, which could lead to feelings of discomfort.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

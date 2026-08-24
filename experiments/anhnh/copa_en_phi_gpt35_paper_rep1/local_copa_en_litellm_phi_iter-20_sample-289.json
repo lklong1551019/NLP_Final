@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The criminal was executed.\n### Choices: [choice]He was thrown in jail.@ [choice]He was convicted of murder.@'] || GT-A:He was convicted of murder. || LLM-A:He was convicted of murder.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected "He was convicted of murder." because it directly relates to the consequence mentioned in the premise, which is the execution of the criminal.'}

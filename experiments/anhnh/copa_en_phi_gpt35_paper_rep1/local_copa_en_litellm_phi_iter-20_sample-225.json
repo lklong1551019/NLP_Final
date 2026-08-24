@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I turned the page on the calendar.\n### Choices: [choice]I marked an appointment on the calendar.@ [choice]It was the beginning of a new month.@'] || GT-A:It was the beginning of a new month. || LLM-A:I marked an appointment on the calendar.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose the answer "I marked an appointment on the calendar" because it directly connects with the action mentioned in the premise, which is turning the page on the calendar.'}

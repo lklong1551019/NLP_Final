@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the effect of the Premise?\n### Premise: The employee's shift ended.\n### Choices: [choice]He went home for the day.@ [choice]He threatened to quit the job.@"] || GT-A:He went home for the day. || LLM-A:He went home for the day.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He went home for the day" as the answer because it directly follows the premise about the employee\'s shift ending. The model connected the end of the shift with going home, which seems like a logical and probable outcome in this context.'}

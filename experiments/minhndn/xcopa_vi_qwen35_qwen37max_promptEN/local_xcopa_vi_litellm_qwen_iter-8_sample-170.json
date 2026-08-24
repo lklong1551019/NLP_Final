@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông đi đến tiệm cắt tóc.\n### Choices: [choice]Anh ấy đang nuôi tóc.@ [choice]Tóc anh ngày càng dài.@'] || GT-A:Tóc anh ngày càng dài. || LLM-A:Tóc anh ngày càng dài.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects this option because it identifies a direct causal relationship where hair growing longer serves as the logical motivation for visiting a barbershop, whereas the alternative choice describes a state that would typically negate the need for a haircut.'}

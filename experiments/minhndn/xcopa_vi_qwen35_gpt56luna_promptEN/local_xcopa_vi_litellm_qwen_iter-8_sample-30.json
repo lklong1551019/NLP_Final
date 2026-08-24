@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái rớt xuống bể bơi.\n### Choices: [choice]Cô chạy trên sàn hồ bơi.@ [choice]Cô nhảy khỏi bảng lặn.@'] || GT-A:Cô nhảy khỏi bảng lặn. || LLM-A:Cô nhảy khỏi bảng lặn.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the second choice because jumping from a diving board is a plausible cause of someone falling into a swimming pool, whereas running on the pool floor does not directly imply falling into it.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The second choice identifies an action that would lead to the girl falling into the pool, while running on the pool floor does not explain the fall.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The selected answer describes the girl jumping from a diving board, an event that directly explains how she ended up falling into the swimming pool.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The second choice is the relevant explanation because jumping from the diving board could cause the girl to fall into the swimming pool.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The second choice gives a plausible event that directly caused the girl to fall into the swimming pool, unlike running on the pool floor.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The chosen answer presents jumping from the diving board as the action that caused the girl to fall into the swimming pool.'}

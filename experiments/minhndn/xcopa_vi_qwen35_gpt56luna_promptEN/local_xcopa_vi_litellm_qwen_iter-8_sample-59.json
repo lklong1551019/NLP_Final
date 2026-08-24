@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông ấn mặt ẩm của phong bì.\n### Choices: [choice]Ông dán tem lên phong bì.@ [choice]Ông đóng kín phong bì.@'] || GT-A:Ông đóng kín phong bì. || LLM-A:Ông đóng kín phong bì.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected this answer by interpreting the action of pressing the moistened side of an envelope as sealing or closing the envelope, treating that consequence as the most direct effect of the stated action.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The action directly causes the envelope to be closed, since pressing its moistened flap makes it adhere to the envelope.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc ấn phần ẩm của phong bì khiến lớp keo trên nắp dính lại, qua đó tạo ra tác động làm phong bì được niêm phong.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Hành động ấn phần ẩm của phong bì làm lớp keo trên nắp bám dính vào thân phong bì, nên phong bì được đóng kín.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc ấn vào phần ẩm của phong bì kích hoạt chất dính ở nắp, khiến nắp bám vào thân phong bì và tạo thành trạng thái đóng kín.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc ấn vào mặt ẩm của phong bì làm chất keo hoạt động và dính nắp vào thân phong bì, từ đó phong bì được đóng kín.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông xáo trộn qua giấy tờ.\n### Lựa chọn: [choice]Anh ấy đã cắt giấy.@ [choice]Anh xé giấy tờ.@'] || GT-A:Anh ấy đã cắt giấy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể dựa vào từ "xáo trộn" trong tiền đề để chọn lựa chọn "Anh ấy đã cắt giấy", vì cắt và xáo trộn có thể được coi là tương đồng trong ngữ cảnh này.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

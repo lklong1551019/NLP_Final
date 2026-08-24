@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: I knocked on my neighbor's door.\n### Choices: [choice]My neighbor invited me in.@ [choice]My neighbor left her house.@"] || GT-A:My neighbor invited me in. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': "<EXP> The model might have chosen answer A because it suggests a common response to someone knocking on a neighbor's door, which is being invited in."}

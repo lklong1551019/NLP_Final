@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I asked my friend for advice.\n### Choices: [choice]I valued his opinion.@ [choice]I knew I was right.@'] || GT-A:I valued his opinion. || LLM-A:I valued his opinion.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I valued his opinion." because it relates to seeking advice from a friend, which is a common reason for doing so.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

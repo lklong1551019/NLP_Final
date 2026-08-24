@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi quẹt diêm.\n### Lựa chọn: [choice]Ngọn lửa tắt dần.@ [choice]Que diêm tạo ra lửa.@'] || GT-A:Que diêm tạo ra lửa. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Ngọn lửa tắt dần" vì có một mối liên kết giữa việc quẹt diêm và việc ngọn lửa tắt dần sau khi đã được sử dụng.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

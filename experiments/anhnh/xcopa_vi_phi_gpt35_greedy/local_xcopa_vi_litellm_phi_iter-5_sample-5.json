@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cô gái hết năng lượng.\n### Lựa chọn: [choice]Cô chơi cờ đam.@ [choice]Cô nhảy dây.@'] || GT-A:Cô nhảy dây. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời X dựa trên việc kết hợp thông tin từ tiền đề "Cô gái hết năng lượng" và lựa chọn "Cô chơi cờ đam" hoặc "Cô nhảy dây".'}

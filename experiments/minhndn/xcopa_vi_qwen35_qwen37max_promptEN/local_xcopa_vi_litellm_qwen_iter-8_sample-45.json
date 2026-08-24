@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi khoan một cái lỗ trên tường.\n### Choices: [choice]Một con chuột bò ra khỏi cái lỗ.@ [choice]Bụi bay ra khỏi lỗ.@'] || GT-A:Bụi bay ra khỏi lỗ. || LLM-A:Bụi bay ra khỏi lỗ.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected this answer because drilling into a wall physically generates particulate matter as a direct and immediate consequence, making dust emission the most causally plausible outcome compared to the highly specific and unlikely scenario of a mouse emerging.'}

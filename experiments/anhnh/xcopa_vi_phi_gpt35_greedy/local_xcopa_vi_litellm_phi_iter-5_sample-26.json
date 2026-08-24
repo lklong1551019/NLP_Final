@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Giáo viên xé bài kiểm tra của học sinh.\n### Lựa chọn: [choice]Anh ấy bắt được học sinh gian lận.@ [choice]Câu trả lời của học sinh không chính xác.@'] || GT-A:Anh ấy bắt được học sinh gian lận. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể dựa vào việc giáo viên xé bài kiểm tra của học sinh làm tiền đề để chọn câu trả lời "X" mà không cần phải xác định nguyên nhân cụ thể.'}

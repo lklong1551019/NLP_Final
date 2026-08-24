@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người dân treo cờ quốc gia bên ngoài nhà của họ.\n### Lựa chọn: [choice]Đất nước đang kỷ niệm độc lập.@ [choice]Đất nước đã phải đối mặt với khó khăn kinh tế.@'] || GT-A:Đất nước đang kỷ niệm độc lập. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình cho rằng nguyên nhân của Tiền đề là đất nước đang kỷ niệm độc lập vì hành vi treo cờ quốc gia bên ngoài nhà thường xảy ra trong dịp lễ quốc gia.', 'ControlScore': 1.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

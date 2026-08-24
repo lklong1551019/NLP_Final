@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông đi đến tiệm cắt tóc.\n### Choices: [choice]Anh ấy đang nuôi tóc.@ [choice]Tóc anh ngày càng dài.@'] || GT-A:Tóc anh ngày càng dài. || LLM-A:Tóc anh ngày càng dài.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the second choice because going to a barbershop conventionally implies that the man’s hair is becoming long and needs cutting. It treated that choice as the likely cause or motivation for the stated action, although the premise itself does not logically establish this explanation.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The second choice was selected because a person typically visits a barbershop when their hair has grown longer and needs to be cut.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The second choice was selected because increasing hair length is a plausible reason for the man to go to a barbershop and have it cut.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The second choice was selected because the man’s growing hair is presented as the reason he goes to the barbershop.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The second choice was selected because the man’s hair becoming longer is presented as the reason he goes to the barbershop.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The second choice was selected because the man’s hair becoming longer is presented as the reason he goes to the barbershop.'}

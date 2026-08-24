@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Con cá nổi trên mặt bể.\n### Choices: [choice]Nó đói rồi.@ [choice]Nó đã chết.@'] || GT-A:Nó đã chết. || LLM-A:Nó đã chết.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose "Nó đã chết." (It is dead) because it represents a highly common, definitive, and permanent cause for a fish floating on the surface of a tank in typical language patterns and common knowledge, whereas being hungry ("Nó đói rồi") does not physically force a fish to float in the same characteristic manner.'}

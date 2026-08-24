@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I spilled wine on my shirt.\n### Choices: [choice]I put on an apron.@ [choice]I changed my shirt.@'] || GT-A:I changed my shirt. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected choice X because it involves changing the shirt, which could be seen as a common or expected response to spilling wine on it.'}

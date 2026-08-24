@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man quit smoking.\n### Choices: [choice]He began exercising more.@ [choice]He started waking up earlier.@'] || GT-A:He began exercising more. || LLM-A:He started waking up earlier.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "He started waking up earlier" because it seems like a plausible effect of quitting smoking, as individuals often make lifestyle changes when they quit smoking.'}

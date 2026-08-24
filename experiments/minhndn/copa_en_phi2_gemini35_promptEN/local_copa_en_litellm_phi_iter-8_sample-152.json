@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The ripe fruit lingered in the sun.\n### Choices: [choice]It was eaten.@ [choice]It shriveled up.@'] || GT-A:It shriveled up. || LLM-A:It shriveled up.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose "It shriveled up" because it correctly associates the physical effect of a ripe fruit being left in the sun with dehydration, drying, and shriveling, which is a highly probable real-world cause-and-effect relationship.'}

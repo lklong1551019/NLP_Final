@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The student knew the answer to the question.\n### Choices: [choice]He raised his hand.@ [choice]He goofed off.@'] || GT-A:He raised his hand. || LLM-A:He raised his hand.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because "raising his hand" is a universally recognized and highly probable physical consequence of a student knowing the answer to a question in a classroom setting, establishing a strong causal relationship with the premise.'}

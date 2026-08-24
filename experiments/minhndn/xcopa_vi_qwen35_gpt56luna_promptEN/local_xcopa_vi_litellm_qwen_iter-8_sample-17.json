@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông vẫn im lặng khi bạn mình nói xong.\n### Choices: [choice]Ông ấy muốn hỗ trợ bạn mình.@ [choice]Ông ấy đang nghĩ về những lời nói của bạn mình.@'] || GT-A:Ông ấy đang nghĩ về những lời nói của bạn mình. || LLM-A:Ông ấy đang nghĩ về những lời nói của bạn mình.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected the second choice because remaining silent after a friend finishes speaking is commonly interpreted as reflecting on or processing what the friend said, making that option appear more directly connected to the premise than the alternative of wanting to provide support.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Im lặng sau khi nghe bạn nói cho thấy ông ấy đang tiếp nhận và suy ngẫm về những lời vừa được nói hơn là trực tiếp thể hiện ý định hỗ trợ.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc ông ấy không nói gì sau khi người bạn kết thúc cho thấy ông đang tập trung tiếp nhận và suy nghĩ về những điều vừa nghe.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Sự im lặng xảy ra ngay sau khi người bạn nói xong, nên được hiểu là dấu hiệu ông ấy đang tiếp nhận và suy ngẫm về những lời vừa nghe.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Sự im lặng sau khi bạn nói xong cho thấy ông ấy đang tiếp nhận và suy ngẫm về những lời vừa nghe.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc giữ im lặng sau khi nghe bạn nói xong cho thấy ông ấy đang chú ý tiếp nhận và cân nhắc những điều người bạn vừa nói.'}

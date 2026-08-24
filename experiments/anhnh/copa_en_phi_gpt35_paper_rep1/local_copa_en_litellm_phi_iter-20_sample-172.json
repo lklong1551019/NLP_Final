@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I craved a glass of milk.\n### Choices: [choice]I was eating cookies.@ [choice]I was baking bread.@'] || GT-A:I was eating cookies. || LLM-A:I was eating cookies.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I was eating cookies" as the answer because there is a common association between craving milk and eating cookies.'}

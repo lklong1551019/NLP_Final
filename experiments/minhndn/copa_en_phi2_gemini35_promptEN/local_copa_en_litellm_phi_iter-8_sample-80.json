@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I turned on the fan.\n### Choices: [choice]Water sprinkled onto my skin.@ [choice]I felt cool air pass over me.@'] || GT-A:I felt cool air pass over me. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected this option because it represents the most direct, common, and expected physical consequence of turning on a fan in everyday human experience.'}

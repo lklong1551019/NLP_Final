@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông ngấn lệ.\n### Choices: [choice]Bụi bay vào mắt ông ấy.@ [choice]Anh đeo kính lên mắt.@'] || GT-A:Bụi bay vào mắt ông ấy. || LLM-A:Bụi bay vào mắt ông ấy.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the first choice because “Người đàn ông ngấn lệ” describes a man whose eyes are filled with tears, and the first option provides a plausible cause for that condition, whereas the second option does not ordinarily explain tearing.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>“Ngấn lệ” indicates that the man’s eyes are watering, which is consistent with an irritant such as dust entering his eyes; wearing glasses does not directly account for the tears.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>“Ngấn lệ” describes tears in the man’s eyes, and dust entering them is a plausible cause of this reaction.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The selected answer identifies dust entering the man’s eyes as the cause of his tearful appearance, while wearing glasses does not explain it.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>“Ngấn lệ” describes tears in the man’s eyes, and dust entering them is a plausible cause of this reaction.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>“Ngấn lệ” means the man’s eyes are filled with tears, suggesting that dust has irritated his eyes.</EXP>'}

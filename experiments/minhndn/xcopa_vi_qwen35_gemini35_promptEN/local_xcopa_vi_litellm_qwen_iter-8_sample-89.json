@@ -1,0 +1,6 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cậu bé bị lạc trong rừng.\n### Choices: [choice]Cậu dựng lều.@ [choice]Cậu hét lên cầu cứu.@'] || GT-A:Cậu hét lên cầu cứu. || LLM-A:Cậu hét lên cầu cứu.
+
+### Instruction: Please select a correct choice for the each question.                             Make if a person is lost in the forest, what is the most likely effect?
+### Premise: Cậu bé bị lạc trong rừng.
+### Choices: [choice]Cậu dựng lều.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model relies on its pre-trained linguistic and cultural knowledge of narrative tropes, where a lost individual is highly likely to call out for help to be rescued, whereas pitching a tent ("Cậu dựng lều") is a complex, planned action that a lost child is unlikely to perform immediately.'}

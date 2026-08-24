@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: I missed my girlfriend's phone call.\n### Choices: [choice]I called her back.@ [choice]I met her for dinner.@"] || GT-A:I called her back. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects this choice because "I called her back" is a direct, logical, and common behavioral consequence of missing a phone call from a romantic partner, establishing a strong cause-and-effect relationship with the premise.'}

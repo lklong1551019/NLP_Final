@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The boy wore braces.\n### Choices: [choice]He got a cavity.@ [choice]His teeth became straight.@'] || GT-A:His teeth became straight. || LLM-A:His teeth became straight.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "His teeth became straight" because braces are commonly associated with straightening teeth.'}

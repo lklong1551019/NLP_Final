@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The teenager snuck out of the house.\n### Choices: [choice]He lied to his parents.@ [choice]His parents grounded him.@'] || GT-A:His parents grounded him. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have selected the answer "He lied to his parents." because it associates sneaking out of the house with lying to parents in common scenarios.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

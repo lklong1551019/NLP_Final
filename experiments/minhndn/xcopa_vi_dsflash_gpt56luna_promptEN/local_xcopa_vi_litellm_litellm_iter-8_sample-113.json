@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các nhân viên thành lập một công đoàn.\n### Choices: [choice]Họ muốn điều kiện làm việc tốt hơn.@ [choice]Họ được tăng lương.@'] || GT-A:Họ muốn điều kiện làm việc tốt hơn. || LLM-A:Họ muốn điều kiện làm việc tốt hơn.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because forming a union is commonly associated with employees collectively seeking improved working conditions, making that option appear to be the most plausible explanation of the premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Forming a union is generally motivated by employees’ desire to negotiate collectively for better workplace conditions, rather than simply receiving an individual pay increase.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise indicates collective employee action through union formation, which is more directly associated with seeking broader improvements to workplace conditions than with receiving a specific pay increase.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Employees’ decision to establish a union reflects a collective effort to address workplace concerns and pursue improved employment conditions.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Establishing a union represents a collective effort by employees to advocate for improved conditions in their workplace.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Forming a union is a collective action through which employees advocate for better workplace conditions.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cơ bắp cánh tay của người đàn ông phồng lên.\n### Lựa chọn: [choice]Anh khoanh tay.@ [choice]Anh xoa tay.@'] || GT-A:Anh khoanh tay. || LLM-A:Anh hồi.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "Anh hồi" vì nó liên kết hành động "hồi" với cơ bắp cánh tay phồng lên trong tiền đề, không quan tâm đến lựa chọn con người.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

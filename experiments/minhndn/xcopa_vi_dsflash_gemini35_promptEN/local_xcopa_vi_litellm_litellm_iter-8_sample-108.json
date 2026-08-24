@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Con chó con ở gần chủ của nó.\n### Choices: [choice]Người chủ mặc cho con chó con một cổ áo.@ [choice]Người chủ xích con chó con.@'] || GT-A:Người chủ xích con chó con. || LLM-A:Người chủ xích con chó con.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because it identified a strong, direct causal relationship between a dog being leashed by its owner and the dog remaining in close physical proximity to that owner.'}

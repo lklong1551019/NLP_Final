@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi nướng một chiếc bánh táo.\n### Choices: [choice]Một mùi thối rữa tràn ngập bếp.@ [choice]Một mùi thơm ấm áp tràn ngập nhà bếp.@'] || GT-A:Một mùi thơm ấm áp tràn ngập nhà bếp. || LLM-A:Một mùi thơm ấm áp tràn ngập nhà bếp.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model identifies the premise as describing the baking of an apple pie and infers the typical associated effect that a pleasant, warm aroma fills the kitchen, selecting the semantically compatible choice.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc nướng bánh táo thường tạo ra mùi thơm dễ chịu lan tỏa trong bếp, phù hợp với lựa chọn mô tả hương thơm ấm áp thay vì mùi thối rữa.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Câu trả lời liên hệ hành động nướng bánh với kết quả tự nhiên là hương thơm dễ chịu lan tỏa trong không gian bếp.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Hành động nướng bánh táo được gắn với hệ quả cảm nhận bằng khứu giác, trong đó mùi hương lan tỏa được xem là kết quả phù hợp với quá trình nấu nướng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc nướng bánh táo dẫn đến một mùi hương lan tỏa trong bếp, thể hiện hệ quả tự nhiên gắn với quá trình nấu nướng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc nướng bánh táo tạo ra hệ quả khứu giác là hương thơm lan tỏa trong bếp, phù hợp với lựa chọn mô tả mùi thơm ấm áp.'}

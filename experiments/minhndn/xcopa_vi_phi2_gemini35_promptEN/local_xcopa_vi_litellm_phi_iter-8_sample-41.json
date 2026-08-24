@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi cắn vào quả đào.\n### Choices: [choice]Quả đào bầm dập.@ [choice]Nước trái cây tràn ra.@'] || GT-A:Nước trái cây tràn ra. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected this answer because "Nước trái cây tràn ra" (juice spills out) is a direct, natural physical consequence of biting into a peach ("Tôi cắn vào quả đào"), representing a highly plausible cause-and-effect relationship in everyday experience.'}

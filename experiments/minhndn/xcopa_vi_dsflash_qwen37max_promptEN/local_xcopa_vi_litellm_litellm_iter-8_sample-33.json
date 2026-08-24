@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Bàn tay của cô gái trở nên phồng rộp.\n### Choices: [choice]Cô gõ một lá thư.@ [choice]Cô trèo lên một sợi dây.@'] || GT-A:Cô trèo lên một sợi dây. || LLM-A:Cô trèo lên một sợi dây.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the rope climbing option because it identifies a direct physical causal relationship between friction from gripping a rope and the formation of blisters on hands, whereas typing a letter is not typically associated with this specific physical injury.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Gia đình đã đi đến sở thú.\n### Lựa chọn: [choice]Bọn trẻ ngưỡng mộ những con vật.@ [choice]Bọn trẻ đuổi theo những con vật.@'] || GT-A:Bọn trẻ ngưỡng mộ những con vật. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Bọn trẻ ngưỡng mộ những con vật" vì đó là hành động tích cực của bọn trẻ khi đến sở thú.', 'ControlScore': 1.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

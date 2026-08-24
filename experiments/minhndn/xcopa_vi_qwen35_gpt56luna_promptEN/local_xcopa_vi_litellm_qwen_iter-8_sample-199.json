@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi thoát ra khỏi phòng ngủ qua cửa sổ.\n### Choices: [choice]Ngôi nhà bị cháy.@ [choice]Ngôi nhà trống rỗng.@'] || GT-A:Ngôi nhà bị cháy. || LLM-A:Ngôi nhà bị cháy.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model likely selected the first choice because exiting a bedroom through a window is interpreted as behavior prompted by an urgent danger, with a fire being a more plausible cause than an empty house.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer links leaving the bedroom through a window to the house being on fire, since escaping through a window suggests an urgent emergency rather than merely finding the house empty.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Câu trả lời cho rằng nguyên nhân là ngôi nhà bị cháy, vì việc thoát khỏi phòng ngủ qua cửa sổ phù hợp với hành động rời khỏi một nơi đang gặp nguy hiểm khẩn cấp.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc thoát ra ngoài qua cửa sổ cho thấy người đó đang khẩn cấp rời khỏi một nơi nguy hiểm, phù hợp với nguyên nhân là ngôi nhà bị cháy.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc rời khỏi phòng ngủ bằng cửa sổ được liên hệ với tình huống nguy hiểm khiến người đó phải nhanh chóng thoát ra ngoài, nên nguyên nhân được chọn là ngôi nhà bị cháy.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc thoát khỏi phòng ngủ qua cửa sổ được xem là dấu hiệu của một cuộc chạy thoát khẩn cấp, phù hợp với tình huống ngôi nhà đang bị cháy.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc thoát ra khỏi phòng ngủ qua cửa sổ được giải thích là hành động trốn chạy khỏi một đám cháy trong nhà.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc thoát khỏi phòng ngủ qua cửa sổ được hiểu là hành động khẩn cấp để trốn khỏi một đám cháy trong nhà.</EXP>'}

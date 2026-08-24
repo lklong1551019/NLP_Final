@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I emptied my pockets.\n### Choices: [choice]I retrieved a ticket stub.@ [choice]I found a weapon.@'] || GT-A:I retrieved a ticket stub. || LLM-A:I retrieved a ticket stub.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I retrieved a ticket stub" because it is a common action associated with emptying pockets, implying a positive outcome or finding something valuable.'}

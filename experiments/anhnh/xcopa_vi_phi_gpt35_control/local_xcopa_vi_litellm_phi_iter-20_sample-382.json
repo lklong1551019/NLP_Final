@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Các món nếm nhạt nhẽo.\n### Lựa chọn: [choice]Tôi dọn nó ra.@ [choice]Tôi bỏ muối vào đó.@'] || GT-A:Tôi bỏ muối vào đó. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời X vì trong tiền đề nói rằng các món nếm nhạt nhẽo, nên việc "Tôi dọn nó ra" hoặc "Tôi bỏ muối vào đó" đều không phản ánh kết quả chính xác.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

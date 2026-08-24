@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Dây xích đã bị đứt.\n### Choices: [choice]Dây xích bị quấn quanh một lốp xe.@ [choice]Có một liên kết bị hỏng trong dây.@'] || GT-A:Có một liên kết bị hỏng trong dây. || LLM-A:Dây xích bị quấn quanh một lốp xe.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this answer because it likely associated the physical tension and mechanical force of a chain being wrapped around a tire (which is a moving, rotating object) as a plausible physical cause for the chain snapping or breaking.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Con trỏ trên màn hình máy tính di chuyển.\n### Choices: [choice]Người dùng nhấp chuột.@ [choice]Người dùng đã di chuyển chuột.@'] || GT-A:Người dùng đã di chuyển chuột. || LLM-A:Người dùng đã di chuyển chuột.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the second choice because the premise states that the cursor moves on the computer screen, which is most directly associated with the user moving the mouse rather than clicking it.</EXP>'}

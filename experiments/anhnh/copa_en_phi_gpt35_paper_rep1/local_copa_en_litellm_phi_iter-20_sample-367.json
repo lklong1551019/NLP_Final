@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The steak was difficult to cut.\n### Choices: [choice]The knife was dull.@ [choice]The steak was raw.@'] || GT-A:The knife was dull. || LLM-A:The knife was dull.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected "The knife was dull" as the answer because it is a common reason why a steak would be difficult to cut.'}

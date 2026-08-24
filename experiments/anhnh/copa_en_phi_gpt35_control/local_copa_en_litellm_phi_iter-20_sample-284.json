@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man wanted to watch the sunrise.\n### Choices: [choice]He travelled north.@ [choice]He got up early.@'] || GT-A:He got up early. || LLM-A:He got up early.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose the answer "He got up early" because it directly relates to watching the sunrise, suggesting that the man had to wake up early to witness it.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

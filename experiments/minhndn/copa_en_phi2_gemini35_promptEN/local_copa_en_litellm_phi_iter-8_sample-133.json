@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The team lost the tournament.\n### Choices: [choice]They disappointed their fans.@ [choice]They inspired their fans.@'] || GT-A:They disappointed their fans. || LLM-A:They disappointed their fans.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because losing a tournament is universally associated with negative emotional outcomes for supporters, making fan disappointment the most logically coherent and statistically probable consequence of the premise.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Điện trong nhà tắt.\n### Lựa chọn: [choice]Tôi tìm đèn pin.@ [choice]Tôi nhặt một cái xẻng.@'] || GT-A:Tôi tìm đèn pin. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" vì trong tiền đề, điện trong nhà đã tắt, do đó không cần tìm đèn pin hoặc nhặt một cái xẻng.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

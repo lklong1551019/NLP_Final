@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông và người phụ nữ đã yêu nhau.\n### Lựa chọn: [choice]Họ học đại học.@ [choice]Họ đã kết hôn.@'] || GT-A:Họ đã kết hôn. || LLM-A:Họ học đại học.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn lựa "Họ học đại học" có thể dựa trên việc mối quan hệ giữa người đàn ông và người phụ nữ đã yêu nhau thường bắt đầu từ việc họ học chung ở trường đại học.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

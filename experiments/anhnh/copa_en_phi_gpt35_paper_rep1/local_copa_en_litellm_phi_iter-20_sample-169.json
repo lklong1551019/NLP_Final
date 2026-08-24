@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I felt exhausted.\n### Choices: [choice]I went to bed early.@ [choice]I stayed up all night.@'] || GT-A:I went to bed early. || LLM-A:I went to bed early.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen "I went to bed early" as the answer because feeling exhausted typically leads to a need for rest and sleep, making this choice seem more logical in response to the premise.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer "I went to bed early" could be selected because the feeling of exhaustion often prompts individuals to prioritize rest and sleep for rejuvenation.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have chosen "I went to bed early" as the answer because when someone is exhausted, it is common to opt for sleep as a way to recover and feel better.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer "I went to bed early" may have been selected because exhaustion typically signals a need for rest and sleep, making that choice a natural response to the situation.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The choice of "I went to bed early" as the answer might be due to the common association between feeling exhausted and the need for rest and sleep for recovery.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "I went to bed early" as the answer because exhaustion often signals the body\'s need for rest and recuperation, making sleep a logical choice in response to feeling drained.'}

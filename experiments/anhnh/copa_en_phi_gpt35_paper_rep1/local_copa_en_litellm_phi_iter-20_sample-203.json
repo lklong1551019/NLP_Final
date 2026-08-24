@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The truck collided with the car.\n### Choices: [choice]The truck sped up.@ [choice]The car got smashed.@'] || GT-A:The car got smashed. || LLM-A:The car got smashed.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected the answer "The car got smashed" because it correctly identifies the effect of the premise where the truck collided with the car.'}

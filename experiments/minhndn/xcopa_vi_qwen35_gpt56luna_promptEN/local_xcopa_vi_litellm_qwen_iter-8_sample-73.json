@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Các nhà nghiên cứu đã chứng được minh lý thuyết.\n### Choices: [choice]Các nhà nghiên cứu rút lại lý thuyết.@ [choice]Mọi người chấp nhận lý thuyết.@'] || GT-A:Mọi người chấp nhận lý thuyết. || LLM-A:Mọi người chấp nhận lý thuyết.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the second choice because the premise states in Vietnamese that the researchers have proven the theory, which conventionally implies that people accept it.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Vì các nhà nghiên cứu đã chứng minh được lý thuyết, điều đó dẫn đến việc mọi người chấp nhận lý thuyết thay vì rút lại nó.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì lý thuyết đã được các nhà nghiên cứu chứng minh, mọi người có xu hướng chấp nhận lý thuyết đó thay vì rút lại.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc các nhà nghiên cứu chứng minh được lý thuyết cho thấy lý thuyết có cơ sở đáng tin cậy, nên phù hợp với việc mọi người chấp nhận lý thuyết hơn là rút lại.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì lý thuyết đã được các nhà nghiên cứu chứng minh, nó được xem là có cơ sở để mọi người tin tưởng và chấp nhận, không phải rút lại.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Dò premise khẳng định các nhà nghiên cứu đã chứng minh lý thuyết, kết luận phù hợp là lý thuyết được công chúng chấp nhận thay vì bị rút lại.'}

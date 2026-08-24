@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man hit his head.\n### Choices: [choice]He got lost in thought.@ [choice]He got a concussion.@'] || GT-A:He got a concussion. || LLM-A:He got a concussion.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose "He got a concussion" as the answer because it is a direct consequence of someone hitting their head.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have selected "He got a concussion" as the answer because head injuries commonly result in concussions.\nScore:\n0.3'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen "He got a concussion" as the answer due to the typical medical outcome associated with head trauma.\n<EXP> The model may have selected "He got a concussion" because it is a common scenario in which head injuries lead to such a result.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose "He got a concussion" as the answer because it recognizes the potential severity of head injuries and the immediate consequences they can have on an individual\'s health.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "He got a concussion" as the answer because concussions are a common outcome following head trauma.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He got a concussion" as the answer because it recognizes the serious nature of head injuries and the common association of concussions with such incidents.'}

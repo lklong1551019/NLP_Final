@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cô gái cắn móng tay.\n### Lựa chọn: [choice]Cô lo lắng.@ [choice]Cô ngạc nhiên.@'] || GT-A:Cô lo lắng. || LLM-A:Cô lo lắng.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Cô lo lắng" có thể do việc kết nối nguyên nhân và hành động của cô gái cắn móng tay với cảm xúc "lo lắng", mặc dù đây không nhất thiết phải là mối quan hệ duy nhất hoặc chính xác.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

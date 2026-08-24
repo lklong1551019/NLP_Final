@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các mặt hàng đã được đóng gói trong bọc bong bóng.\n### Choices: [choice]Nó dễ vỡ.@ [choice]Nó nhỏ.@'] || GT-A:Nó dễ vỡ. || LLM-A:Nó dễ vỡ.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose "Nó dễ vỡ" (It is fragile) because bubble wrap is universally known and used as a protective packaging material specifically designed to prevent delicate or fragile items from breaking during transport.'}

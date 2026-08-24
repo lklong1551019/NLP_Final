@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông đã ký tên lên thỉnh nguyện của các nhà hoạt động.\n### Choices: [choice]Ông ủng hộ mục đích của họ.@ [choice]Ông tố cáo họ điên.@'] || GT-A:Ông ủng hộ mục đích của họ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected this choice because it correctly identifies the most logical and common cause-and-effect relationship associated with signing a petition, as individuals typically sign such documents to show their support for a cause.'}

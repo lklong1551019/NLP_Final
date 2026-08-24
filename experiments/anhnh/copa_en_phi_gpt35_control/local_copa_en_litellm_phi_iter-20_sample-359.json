@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I apologized to my friend.\n### Choices: [choice]My friend forgave me.@ [choice]My friend became infuriated.@'] || GT-A:My friend forgave me. || LLM-A:My friend forgave me.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "My friend forgave me" because it is a common and expected outcome when someone apologizes to a friend.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

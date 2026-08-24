@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái hết năng lượng.\n### Choices: [choice]Cô chơi cờ đam.@ [choice]Cô nhảy dây.@'] || GT-A:Cô nhảy dây. || LLM-A:Cô chơi cờ đam.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely inferred that playing checkers is less physically demanding than jumping rope, so it associated the stated lack of energy with the less strenuous activity.'}

@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi đẩy cửa.\n### Choices: [choice]Cánh cửa mở ra.@ [choice]Cánh cửa bị khóa.@'] || GT-A:Cánh cửa mở ra. || LLM-A:Cánh cửa mở ra.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected this answer because it inferred a direct causal relationship between pushing a door and the door opening, treating the first choice as the most plausible consequence of the stated action.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Đáp án phản ánh kết quả tự nhiên của hành động được nêu: khi người nói đẩy cửa, lực tác động làm cánh cửa chuyển động theo hướng mở thay vì cho thấy cửa bị khóa.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Hành động “đẩy cửa” phù hợp với kết quả cánh cửa mở ra, vì việc tác động lực lên cửa thường khiến cửa chuyển động theo hướng mở.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Hành động đẩy cửa cho thấy lực tác động trực tiếp khiến cánh cửa di chuyển theo hướng mở.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc đẩy cửa tạo ra lực tác động khiến cánh cửa chuyển động theo hướng mở, phù hợp với kết quả được nêu.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Hành động đẩy cửa được liên hệ với khả năng cánh cửa chuyển động theo hướng mở, nên kết quả này phù hợp hơn với hành động đã nêu.</EXP>'}

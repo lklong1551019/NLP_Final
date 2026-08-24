@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi bật quạt.\n### Choices: [choice]Nước rắc lên da tôi.@ [choice]Không khí mát mẻ lướt qua tôi.@'] || GT-A:Không khí mát mẻ lướt qua tôi. || LLM-A:Không khí mát mẻ lướt qua tôi.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected the response regarding cool air because it recognized the semantic association between the action of turning on a fan and the resulting physical sensation of airflow, which aligns with commonsense causal reasoning embedded in its training data.'}

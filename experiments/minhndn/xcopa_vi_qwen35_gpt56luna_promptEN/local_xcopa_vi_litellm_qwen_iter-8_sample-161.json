@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi gặp một người bạn cũ.\n### Choices: [choice]Tôi tiết lộ một bí mật cho anh ta.@ [choice]Tôi ôm anh.@'] || GT-A:Tôi ôm anh. || LLM-A:Tôi ôm anh.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected the hugging option because meeting an old friend conventionally implies a warm greeting or physical expression of familiarity, making it appear more directly connected to the premise than revealing a secret.'}

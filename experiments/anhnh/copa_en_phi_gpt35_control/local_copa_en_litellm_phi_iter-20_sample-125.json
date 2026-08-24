@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The rain was pouring down.\n### Choices: [choice]The storm worsened.@ [choice]I dashed to get inside.@'] || GT-A:I dashed to get inside. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected choice A as the answer because it describes an effect that is commonly associated with rain pouring down, which is a storm worsening.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

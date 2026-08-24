@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The man's arm muscles bulged.\n### Choices: [choice]He flexed his arms.@ [choice]He rubbed his arms.@"] || GT-A:He flexed his arms. || LLM-A:He flexed his arms.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He flexed his arms" as the answer because it directly correlates with the description in the premise that the man\'s arm muscles bulged, indicating muscle flexing.'}

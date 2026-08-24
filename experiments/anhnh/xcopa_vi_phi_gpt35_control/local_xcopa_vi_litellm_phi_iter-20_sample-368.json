@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ tuyên bố phá sản.\n### Lựa chọn: [choice]Cô đã nhận được tiền cấp dưỡng.@ [choice]Cô có một khoản nợ lớn.@'] || GT-A:Cô có một khoản nợ lớn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn lựa "Cô có một khoản nợ lớn" có thể là nguyên nhân của tiền đề vì nó liên quan đến vấn đề tài chính cá nhân của người phụ nữ, có thể ảnh hưởng đến quyết định về việc tuyên bố phá sản.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

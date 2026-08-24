@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Vết xước trên da tôi thật sâu.\n### Choices: [choice]Nó lành nhanh chóng.@ [choice]Nó để lại một vết sẹo.@'] || GT-A:Nó để lại một vết sẹo. || LLM-A:Nó để lại một vết sẹo.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because it correctly identifies the most logical and common physical consequence of having a very deep skin scratch, which is that it leaves a scar, whereas a deep scratch is unlikely to heal quickly.'}

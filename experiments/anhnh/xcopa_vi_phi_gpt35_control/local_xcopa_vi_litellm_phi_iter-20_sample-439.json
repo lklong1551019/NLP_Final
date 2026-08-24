@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Chiếc ly lật khỏi bàn.\n### Lựa chọn: [choice]Nó vỡ tan khắp sàn nhà.@ [choice]Nó đáp xuống một đống đồ giặt.@'] || GT-A:Nó vỡ tan khắp sàn nhà. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" vì nó không thấy thông tin nào cho biết kết quả cụ thể của tiền đề "Chiếc ly lật khỏi bàn" trong lựa chọn đã được cung cấp.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

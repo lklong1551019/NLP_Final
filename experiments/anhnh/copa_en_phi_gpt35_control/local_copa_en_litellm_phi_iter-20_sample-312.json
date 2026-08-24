@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl switched schools.\n### Choices: [choice]School let out for the summer.@ [choice]She moved to a new town.@'] || GT-A:She moved to a new town. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "She moved to a new town." because it relates to the premise of the girl switching schools, indicating a change in location.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

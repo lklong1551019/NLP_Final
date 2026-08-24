@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông đập đầu.\n### Choices: [choice]Anh lạc trong suy nghĩ.@ [choice]Anh ấy bị chấn động.@'] || GT-A:Anh ấy bị chấn động. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình lựa chọn câu trả lời này vì đã thiết lập mối quan hệ nhân quả trực tiếp giữa hành động vật lý mạnh ở vùng đầu trong phần tiền đề và hậu quả y học hoặc trạng thái chấn thương sinh lý tương ứng ở phần lựa chọn.'}

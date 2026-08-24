@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tuyết đã chặn đường lái xe.\n### Lựa chọn: [choice]Tôi nặn thành một quả cầu tuyết.@ [choice]Tôi xúc tuyết ra khỏi đường.@'] || GT-A:Tôi xúc tuyết ra khỏi đường. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình đã chọn câu trả lời "X" vì câu tiền đề không cung cấp đủ thông tin để suy luận ra một lựa chọn cụ thể. Mô hình có thể đưa ra kết quả dựa trên các mẫu dữ liệu huấn luyện mà nó đã học được.', 'ControlScore': 1.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

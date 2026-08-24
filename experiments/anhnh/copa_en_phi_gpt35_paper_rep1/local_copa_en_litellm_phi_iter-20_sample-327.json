@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man survived the deadly illness.\n### Choices: [choice]He signed his will.@ [choice]He received an organ transplant.@'] || GT-A:He received an organ transplant. || LLM-A:He received an organ transplant.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He received an organ transplant" as the answer because it is a plausible reason for the man surviving a deadly illness.'}

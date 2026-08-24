@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I exercised.\n### Choices: [choice]I felt energetic.@ [choice]I was scared.@'] || GT-A:I felt energetic. || LLM-A:I felt energetic.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects this choice because exercising is a physically demanding activity that is commonly motivated by feeling energetic or having high physical vitality, establishing a strong causal relationship between the premise and this specific choice.'}

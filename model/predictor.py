@@ -1,13 +1,27 @@
 import os
 import re
 import unicodedata
+import zlib
 
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from transformers import LlamaForCausalLM, LlamaTokenizer
 from transformers import BitsAndBytesConfig
 import torch
 import openai
-from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+try:
+    from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+except ImportError:  # anthropic >=1.0 dropped the legacy completions constants
+    # Only the (unused) claude path needs these. Importing them unconditionally
+    # made the whole module unimportable on a modern SDK.
+    HUMAN_PROMPT, AI_PROMPT = "\n\nHuman:", "\n\nAssistant:"
+
+    class Anthropic:  # pragma: no cover - legacy path
+        def __init__(self, *args, **kwargs):
+            raise RuntimeError(
+                "The claude path needs an anthropic SDK that still exports "
+                "HUMAN_PROMPT/AI_PROMPT (pre-1.0). Install one, or select "
+                "--pred_model/--xai_model litellm."
+            )
 from sklearn.metrics import accuracy_score
 from tqdm import tqdm
 
@@ -106,6 +120,12 @@ def _gen_kwargs(temperature):
     is enabled when a non-zero temperature is asked for, and suppressed
     otherwise so scoring stays deterministic.
     """
+    if os.environ.get("FAITHLM_PRED_GREEDY"):
+        # Reproduce what the released code actually did: it never set
+        # do_sample, so transformers ignored `temperature` and decoded greedily.
+        # The paper's Table 2 nonetheless specifies 0.7/0.5/0.7, so the two are
+        # not the same experiment. This switch makes the difference measurable.
+        return {"do_sample": False}
     if temperature and temperature > 0.0:
         return {"do_sample": True, "temperature": float(temperature)}
     return {"do_sample": False}
@@ -126,6 +146,42 @@ def _placement_kwargs(max_memory, load_in_4bit=False):
         # MPS has patchy bfloat16 kernels; float16 is the supported half type.
         return {"device_map": "mps", "torch_dtype": torch.float16}
     return {"device_map": "cpu", "torch_dtype": torch.float32}
+
+
+# --- Random-hint control -----------------------------------------------------
+# FaithLM scores an explanation by whether contradicting it flips the
+# prediction. That conflates two things: the explanation carrying the model's
+# actual reason, and the model simply following whatever hint it is given.
+# Scoring an irrelevant hint the same way separates them:
+#     fidelity_corrected = flip(contrary hint) - flip(irrelevant hint)
+# Enabled with FAITHLM_RANDOM_CONTROL=1. Results land in CONTROL["last"].
+CONTROL = {"last": None}
+
+_RANDOM_HINTS_EN = [
+    "The weather forecast mentions scattered clouds tomorrow afternoon.",
+    "The train timetable was revised at the start of the quarter.",
+    "A new bakery opened two streets away from the library.",
+    "The stadium roof was repainted during the off-season.",
+]
+_RANDOM_HINTS_VI = [
+    "Dự báo thời tiết cho biết ngày mai trời có mây rải rác.",
+    "Lịch tàu chạy đã được điều chỉnh từ đầu quý này.",
+    "Một tiệm bánh mới khai trương cách thư viện hai con phố.",
+    "Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.",
+]
+
+
+def random_control_enabled():
+    return bool(os.environ.get("FAITHLM_RANDOM_CONTROL"))
+
+
+def pick_random_hint(question, args):
+    """Deterministic irrelevant hint, so a rerun reproduces the same control."""
+    pool = _RANDOM_HINTS_VI if getattr(args, "data", "") == "xcopa_vi" else _RANDOM_HINTS_EN
+    # zlib.crc32 instead of hash(): PYTHONHASHSEED randomises hash() per
+    # process, so sharded runs would each pick a different hint.
+    key = normalize_answer(question).encode("utf-8")
+    return pool[zlib.crc32(key) % len(pool)]
 
 
 def load_model(model_name, max_memory, load_in_4bit=True):
@@ -359,7 +415,7 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
     ans_llm = []
 
     if args.pred_model in ["phi", "qwen"]:
-        if getattr(args, 'data', '') == "xcopa_vi":
+        if llm_api.vi_prompts(args):
             instruction = "Dưới đây là mô tả về một tác vụ. Hãy viết một phản hồi để hoàn thành yêu cầu được giao."
             final_prompt = [ f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Đầu vào: {ques}\n\n### Phản hồi:" for ques in input_zip ]
         else:
@@ -371,8 +427,10 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
-            split_str = "### Phản hồi:" if getattr(args, 'data', '') == "xcopa_vi" else "### Response:"
+            split_str = "### Phản hồi:" if llm_api.vi_prompts(args) else "### Response:"
             ans = ans_tkn[i].split(split_str)[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
@@ -408,6 +466,8 @@ def generate_predictor_output_ecqa(model, tokenizer, task_instruction, input_zip
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             try:
                 index = ans.find("]")
                 end_index = ans.find("@")
@@ -446,6 +506,8 @@ def generate_predictor_output_trivaqa(model, tokenizer, task_instruction, input_
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             ans_llm.append(ans)
 
     elif args.pred_model == "vicuna":
@@ -455,6 +517,8 @@ def generate_predictor_output_trivaqa(model, tokenizer, task_instruction, input_
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             ans_llm.append(ans)
 
     return ans_llm
@@ -561,8 +625,10 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
         ans_tkn = tokenizer.batch_decode(generate_ids, skip_special_tokens=True, clean_up_tokenization_spaces=False)
 
         for i in range(len(ans_tkn)):
-            split_str = "### Phản hồi:" if getattr(args, 'data', '') == "xcopa_vi" else "### Response:"
+            split_str = "### Phản hồi:" if llm_api.vi_prompts(args) else "### Response:"
             ans = ans_tkn[i].split(split_str)[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
@@ -590,6 +656,8 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             try:
                 end_index = ans.find("@")
                 index = ans.find("]")
@@ -620,7 +688,7 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
     true_exp_pair = zip(exp_reply, question)
     count_exp_pair = zip(counter_exp_reply, question)
 
-    if getattr(args, 'data', '') == "xcopa_vi":
+    if llm_api.vi_prompts(args):
         instruction = "Dưới đây là mô tả về một tác vụ. Hãy viết một phản hồi để hoàn thành yêu cầu được giao."
         ture_final_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Đầu vào: {ques}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for _, ques in true_exp_pair ]
         count_final_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Gợi ý: {exp}\n\n### Đầu vào: {ques}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for exp, ques in count_exp_pair ]
@@ -630,6 +698,22 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
         count_final_prompt = [f"{instruction}\n\n### Instruction: {task_instruction}\n\n### Hint: {exp}\n\n### Input: {ques}\n\n### Response: Let's think step by step." for exp, ques in count_exp_pair ]
     ture_score = _ecqa_score(model, tokenizer, ture_final_prompt, answer, args)
     count_score = _ecqa_score(model, tokenizer, count_final_prompt, answer, args)
+
+    CONTROL["last"] = None
+    if random_control_enabled():
+        # Same prompt shape as the counterfactual, but the hint has nothing to
+        # do with the question. Any flip here is pure suggestibility.
+        rand_hint = pick_random_hint(question[0] if question else "", args)
+        if getattr(args, "data", "") == "xcopa_vi":
+            rand_prompt = [f"{instruction}\n\n### Hướng dẫn: {task_instruction}\n\n### Gợi ý: {rand_hint}\n\n### Đầu vào: {q}\n\n### Phản hồi: Hãy suy nghĩ từng bước một." for q in question]
+        else:
+            rand_prompt = [f"{instruction}\n\n### Instruction: {task_instruction}\n\n### Hint: {rand_hint}\n\n### Input: {q}\n\n### Response: Let's think step by step." for q in question]
+        rand_score = _ecqa_score(model, tokenizer, rand_prompt, answer, args)
+        CONTROL["last"] = {
+            "rand_score": rand_score,
+            "diff_random": abs(ture_score - rand_score),
+            "hint": rand_hint,
+        }
     
     print("\n--- DEBUG INFO ---")
     print("TRUE PROMPT:")
@@ -664,6 +748,8 @@ def _trivaqa_score(model, tokenizer, input_prompt, ans_gt, args):
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             ans_short.append(ans)
 
     elif args.pred_model == "vicuna":
@@ -673,6 +759,8 @@ def _trivaqa_score(model, tokenizer, input_prompt, ans_gt, args):
 
         for i in range(len(ans_tkn)):
             ans = ans_tkn[i].split("### Response:")[-1]
+            if os.environ.get("FAITHLM_DEBUG"):
+                print(f"[RAW LOCAL] full={ans_tkn[i]!r}")
             ans_short.append(ans)
 
     elif args.pred_model == "claude":

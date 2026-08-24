@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman put earplugs in.\n### Choices: [choice]She was distracted by noise.@ [choice]She got her ears pierced.@'] || GT-A:She was distracted by noise. || LLM-A:She was distracted by noise.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She was distracted by noise" because it relates to the action of putting earplugs in, which is commonly done to block out noise.'}

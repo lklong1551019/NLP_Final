@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Check tôi viết bị trả lại.\n### Choices: [choice]Tài khoản ngân hàng của tôi trống rỗng.@ [choice]Tôi đã được tăng lương.@'] || GT-A:Tài khoản ngân hàng của tôi trống rỗng. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose the correct option because it successfully identified the causal relationship between having an empty bank account ("Tài khoản ngân hàng của tôi trống rỗng") and a check being bounced or returned ("Check tôi viết bị trả lại").'}

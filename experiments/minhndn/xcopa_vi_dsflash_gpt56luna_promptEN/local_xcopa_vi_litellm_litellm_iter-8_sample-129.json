@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông trở nên khó chịu với bạn mình.\n### Choices: [choice]Bạn anh ngắt lời anh.@ [choice]Bạn anh mua cho anh bữa trưa.@'] || GT-A:Bạn anh ngắt lời anh. || LLM-A:Bạn anh ngắt lời anh.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected the first choice because being interrupted is a plausible direct cause of someone becoming irritated, whereas buying lunch generally does not explain that reaction.'}

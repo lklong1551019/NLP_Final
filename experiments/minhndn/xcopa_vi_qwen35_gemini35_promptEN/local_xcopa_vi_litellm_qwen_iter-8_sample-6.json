@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ mất chỗ trong hàng.\n### Choices: [choice]Nhiều người hơn đaz vào hàng.@ [choice]Cô bước ra khỏi hàng.@'] || GT-A:Cô bước ra khỏi hàng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the correct Vietnamese translation of "She stepped out of line" (Cô bước ra khỏi hàng) as the cause of losing her spot in line, recognizing the logical cause-and-effect relationship between leaving a queue and losing one\'s place in it.'}

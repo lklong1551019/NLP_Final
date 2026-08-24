@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Hộp thư đến của ông ấy đầy thư rác.\n### Lựa chọn: [choice]Ông ấy xóa thư rác.@ [choice]Ông đã gửi một email hàng loạt.@'] || GT-A:Ông ấy xóa thư rác. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn kết quả "X" vì dựa vào tiền đề "Hộp thư đến của ông ấy đầy thư rác", có thể kết luận rằng ông ấy đã xóa thư rác để giải quyết tình trạng hộp thư đầy.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

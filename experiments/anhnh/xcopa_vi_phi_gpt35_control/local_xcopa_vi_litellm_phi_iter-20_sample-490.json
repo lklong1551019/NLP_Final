@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Mắt cá chân của tôi bị sưng.\n### Lựa chọn: [choice]Tôi chườm đá.@ [choice]Tôi xoa kem dưỡng.@'] || GT-A:Tôi chườm đá. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn kết quả X vì trong tiền đề, mắt cá chân của người đó bị sưng và việc chườm đá có thể là một phương pháp hữu ích để giảm sưng.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

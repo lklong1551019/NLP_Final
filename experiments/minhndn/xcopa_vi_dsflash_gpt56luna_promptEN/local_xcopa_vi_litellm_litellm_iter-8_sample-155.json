@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi bắt đầu đốt lửa trong lò sưởi.\n### Choices: [choice]Tôi đã hết củi.@ [choice]Trong nhà thật lạnh.@'] || GT-A:Trong nhà thật lạnh. || LLM-A:Trong nhà thật lạnh.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected this answer because it interpreted starting a fire in a fireplace as a typical response to a cold indoor environment, treating the relationship as a plausible cause-and-effect inference rather than considering other possible causes.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Châm lửa trong lò sưởi thường là hành động nhằm làm ấm một không gian đang lạnh, nên tình trạng trong nhà lạnh được xem là nguyên nhân phù hợp.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc bắt đầu đốt lửa trong lò sưởi thường được thực hiện để sưởi ấm khi không gian bên trong đang lạnh, vì vậy đáp án này nêu hoàn cảnh dẫn đến hành động đó.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc đốt lửa trong lò sưởi được giải thích là phản ứng trước cảm giác lạnh trong nhà, vì ngọn lửa có tác dụng làm ấm không gian.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Đáp án cho rằng việc nhóm lửa trong lò sưởi xuất phát từ nhu cầu làm ấm căn nhà khi nhiệt độ bên trong đang lạnh.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc bắt đầu đốt lửa trong lò sưởi được xem là xuất phát từ hoàn cảnh trong nhà lạnh, vì ngọn lửa giúp sưởi ấm không gian.</EXP>'}

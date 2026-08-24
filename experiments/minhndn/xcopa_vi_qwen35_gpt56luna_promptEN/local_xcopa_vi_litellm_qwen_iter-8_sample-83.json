@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người chồng cảm thấy có lỗi khi lừa dối vợ.\n### Choices: [choice]Anh buộc tội cô ngoại tình.@ [choice]Anh thú nhận ngoại tình với cô.@'] || GT-A:Anh thú nhận ngoại tình với cô. || LLM-A:Anh thú nhận ngoại tình với cô.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected this answer because the premise states that the husband feels guilty about deceiving his wife, which most directly implies that he admits or confesses to the infidelity described.'}
