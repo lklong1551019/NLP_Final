@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi mong đến cuối tuần.\n### Lựa chọn: [choice]Tôi dự định tham dự đám tang của chú tôi.@ [choice]Tôi dự định tham dự đám cưới của bạn tôi.@'] || GT-A:Tôi dự định tham dự đám cưới của bạn tôi. || LLM-A:X

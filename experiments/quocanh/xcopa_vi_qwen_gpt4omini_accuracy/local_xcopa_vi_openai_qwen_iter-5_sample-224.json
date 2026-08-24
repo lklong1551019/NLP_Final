@@ -1,0 +1,9 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cô gái cắn móng tay.\n### Lựa chọn: [choice]Cô lo lắng.@ [choice]Cô ngạc nhiên.@'] || GT-A:Cô lo lắng. || LLM-A:Cô lo lắng.
+
+### Hướng dẫn: Hãy chọn đáp án đúng cho mỗi câu hỏi. Lưu ý không lặp lại phần ngữ cảnh đầu vào.
+
+### Đầu vào: ### Câu hỏi: Đâu là nguyên nhân của Tiền đề?
+### Tiền đề: Cô gái cắn móng tay.
+### Lựa chọn: [choice]Cô lo lắng.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn "Cô lo lắng" làm câu trả lời vì cắn móng tay thường được liên kết với hành vi lo âu hoặc căng thẳng. Mô hình có thể đã dựa vào các mối liên hệ giữa hành động và trạng thái cảm xúc đã được học từ dữ liệu huấn luyện. Trong trường hợp này, mô hình ưu tiên một lựa chọn mà nó cho là hợp lý hơn với hành vi được mô tả.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình đã chọn "Cô lo lắng" vì hành động cắn móng tay thường được coi là biểu hiện của sự lo âu hoặc căng thẳng. Dựa trên mối quan hệ giữa hành vi và cảm xúc mà nó đã học được từ dữ liệu, mô hình có xu hướng liên kết hành động này với trạng thái cảm xúc tiêu cực hơn là trạng thái ngạc nhiên. Do đó, lựa chọn của mô hình phản ánh sự hiểu biết về các hành vi thường gặp liên quan đến cảm xúc.'}

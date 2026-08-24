@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Các hành khách đã xuống tàu.\n### Lựa chọn: [choice]Tàu đến ga.@ [choice]Tàu nổ còi.@'] || GT-A:Tàu đến ga. || LLM-A:Tàu đến ga.
+{'Score': 0.14249098300933838, 'XAI prompt': '<EXP> Mô hình có thể đã chọn "Tàu đến ga" vì sự liên quan trực tiếp giữa việc hành khách xuống tàu và tàu đến ga, điều này tạo ra một mối quan hệ hợp lý giữa hai sự kiện. Mô hình có thể đánh giá rằng việc hành khách xuống tàu thường xảy ra khi tàu đã đến ga.'}

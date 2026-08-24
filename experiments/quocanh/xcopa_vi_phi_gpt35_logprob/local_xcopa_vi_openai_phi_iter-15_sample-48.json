@@ -1,0 +1,24 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Nhân viên thu ngân mở máy tính tiền.\n### Choices: [choice]Vị khách kiếm trong ví của mình.@ [choice]Khách hàng đưa tiền cho cô.@'] || GT-A:Khách hàng đưa tiền cho cô. || LLM-A:
+
+for choice in choices:
+    print(choice)
+
+input_context = input(f"What is the cause of the Premise?\n{context}\n{choices}\n")
+print(f"The answer is: {input_context}")
+
+# Example output:
+# What is the cause of the Premise?
+# Question: What is the cause of the Premise?
+# [choice]Vị khách kiếm trong ví của mình.
+{'Score': 0.008065581321716309, 'XAI prompt': '<EXP> The model may have selected the answer "Vị khách kiếm trong ví của mình." because it mentions a customer searching in their wallet, which could be a plausible action related to a cashier opening a cash register.'}
+{'Score': 0.0025589466094970703, 'XAI prompt': '<EXP> The model might have chosen the answer "Vị khách kiếm trong ví của mình." because it depicts a common scenario where a customer searches for money in their wallet, a typical behavior in a cashier-customer interaction.'}
+{'Score': -0.0030472278594970703, 'XAI prompt': '<EXP> The model likely selected the answer "Vị khách kiếm trong ví của mình." because it describes a common behavior of customers searching in their wallets for money, which is a typical action associated with a cashier opening a cash register.'}
+{'Score': 0.015999197959899902, 'XAI prompt': '<EXP> The model likely favored the answer "Vị khách kiếm trong ví của mình." because it portrays a common situation where a customer is searching for something in their wallet, which aligns with the context of a cashier using a cash register.'}
+{'Score': -0.0023481249809265137, 'XAI prompt': '<EXP> The model might have selected the answer "Vị khách kiếm trong ví của mình." because it reflects a common scenario where a customer is engaging in a typical behavior of searching for something in their wallet, which is contextually related to a cashier opening a cash register.'}
+{'Score': -0.0012531280517578125, 'XAI prompt': '<EXP> The model may have favored the answer "Vị khách kiếm trong ví của mình." because it reflects a common scenario where a customer is actively searching for something in their wallet, which aligns with the context of a cashier operating a cash register.'}
+{'Score': -0.03616052865982056, 'XAI prompt': '<EXP> The model may have favored the answer "Vị khách kiếm trong ví của mình." due to its depiction of a common scenario where a customer is engaged in the typical behavior of searching for something in their wallet, which resonates with the context of a cashier using a cash register.'}
+{'Score': 0.018828928470611572, 'XAI prompt': '<EXP> The model likely favored the answer "Vị khách kiếm trong ví của mình." because it aligns with the common behavior of customers searching in their wallets for money, which is a typical action associated with a cashier opening a cash register.'}
+{'Score': -0.03523755073547363, 'XAI prompt': '<EXP> The model likely favored the answer "Vị khách kiếm trong ví của mình." because it aligns with the common behavior of customers searching in their wallets for money, which is a typical action associated with a cashier opening a cash register.\n<EXP> The model may have favored the answer "Vị khách kiếm trong ví của mình." due to its depiction of a common scenario where a customer is engaged in the typical behavior of searching for something in their wallet, which resonates with the context of a cashier using a cash register.\n<EXP> The model may have selected the answer "Vị khách kiếm trong ví của mình." because it mentions a customer searching in their wallet, which could be a plausible action related to a cashier opening a cash register.'}
+{'Score': 0.0048714280128479, 'XAI prompt': '<EXP> The model likely favored the answer "Vị khách kiếm trong ví của mình." because it aligns with the common behavior of customers searching in their wallets for money, which is a typical action associated with a cashier opening a cash register.'}
+{'Score': 0.005284607410430908, 'XAI prompt': '<EXP> The model likely favored the answer "Vị khách kiếm trong ví của mình." because it aligns with the common behavior of customers searching in their wallets for money, which is a typical action associated with a cashier opening a cash register.'}
+{'Score': -0.001521289348602295, 'XAI prompt': '<EXP> The model may favor the answer "Vị khách kiếm trong ví của mình." because it reflects a common scenario where a customer is actively engaged in the typical behavior of searching for something in their wallet, which aligns with the context of a cashier operating a cash register.'}

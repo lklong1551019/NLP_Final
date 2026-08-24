@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi nhập dãy mã vào ổ khóa.\n### Choices: [choice]Tôi đóng khóa.@ [choice]Khóa bật mở.@'] || GT-A:Khóa bật mở. || LLM-A:Khóa bật mở.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose "Khóa bật mở." because it appears to directly address the effect of the premise mentioned in the text, suggesting an action that happens as a result.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have selected "Khóa bật mở." because it is a concise and direct response to the situation described in the premise, indicating a clear cause and effect relationship.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely favored "Khóa bật mở." due to its alignment with the action of unlocking implied in the premise, indicating a logical progression of events.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen "Khóa bật mở." because it directly corresponds to the action of unlocking the lock as implied in the premise, demonstrating a logical connection between the two elements.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "Khóa bật mở." because it directly aligns with the action of unlocking indicated in the premise, creating a clear cause-effect relationship between the two elements.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have favored "Khóa bật mở." as the answer because it directly corresponds to the action described in the premise, indicating a clear cause-and-effect relationship.'}

@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Nhóm đã tổ chức cuộc thi theo hướng có lợi cho họ.\n### Lựa chọn: [choice]Họ đã thắng.@ [choice]Họ bỏ cuộc.@'] || GT-A:Họ đã thắng. || LLM-A:X

@@ -1,0 +1,7 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Con gấu trúc lục lọi thùng rác.\n### Choices: [choice]Có thùng các tông trong thùng rác.@ [choice]Cái nắp rơi ra khỏi thùng rác.@'] || GT-A:Cái nắp rơi ra khỏi thùng rác. || LLM-A:X
+{'Score': 0.0010837316513061523, 'XAI prompt': '<EXP> The model may have chosen answer choice X because it contains keywords related to a bear and a trash can, which are mentioned in the premise.'}
+{'Score': 0.015553116798400879, 'XAI prompt': '<EXP> The model likely selected answer choice X due to its relevance to the keywords present in the premise, specifically mentioning a bear and a trash can.'}
+{'Score': 0.010277628898620605, 'XAI prompt': '<EXP> The model might have favored answer choice X because it directly mentions a bear interacting with a trash can, aligning closely with the scenario described in the premise.'}
+{'Score': 0.007289588451385498, 'XAI prompt': '<EXP> The model likely chose answer choice X as it directly refers to a bear and a trash can, key elements present in the premise scenario.\n'}
+{'Score': 0.011905252933502197, 'XAI prompt': '<EXP> The model may have favored answer choice X because it directly mentions a bear interacting with a trash can, aligning closely with the scenario described in the premise.\n'}
+{'Score': 0.010956168174743652, 'XAI prompt': '<EXP> The model likely prioritized answer choice X for its direct mention of a bear and a trash can, which are central to the scenario presented in the premise.'}

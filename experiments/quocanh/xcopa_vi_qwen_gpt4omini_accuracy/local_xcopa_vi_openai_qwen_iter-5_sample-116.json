@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Hơi nước bốc lên từ nồi nước.\n### Lựa chọn: [choice]Nước sôi.@ [choice]Tôi đậy nắp nồi.@'] || GT-A:Nước sôi. || LLM-A:Nước sôi.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã lựa chọn "Nước sôi" vì đây là một nguyên nhân hợp lý dẫn đến hiện tượng hơi nước bốc lên từ nồi nước. Khi nước đạt đến nhiệt độ sôi, nó sẽ chuyển thành hơi và tạo ra hiện tượng bốc hơi. Mô hình sử dụng kiến thức chung về vật lý để kết nối giữa hiện tượng và nguyên nhân một cách logic.'}

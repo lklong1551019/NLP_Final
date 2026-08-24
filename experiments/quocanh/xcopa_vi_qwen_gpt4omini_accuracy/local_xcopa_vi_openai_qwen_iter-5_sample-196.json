@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đã trả tiền cho nhân viên thu phí.\n### Lựa chọn: [choice]Cô ấy cho tôi đi qua trạm thu phí.@ [choice]Cô ấy đã giam giữ tôi tại trạm thu phí.@'] || GT-A:Cô ấy cho tôi đi qua trạm thu phí. || LLM-A:X

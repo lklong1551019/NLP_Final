@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Các thám tử đã làm bẩn hiện trường vụ án để lấy dấu vân tay.\n### Lựa chọn: [choice]Họ đã phát hiện ra danh tính của kẻ giết người.@ [choice]Họ tìm thấy vũ khí tại hiện trường vụ án.@'] || GT-A:Họ đã phát hiện ra danh tính của kẻ giết người. || LLM-A:X

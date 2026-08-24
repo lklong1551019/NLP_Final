@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Bạn tôi quay đầu về phía tôi.\n### Lựa chọn: [choice]Tôi hét to tên anh.@ [choice]Tôi vẫy tay.@'] || GT-A:Tôi hét to tên anh. || LLM-A:Tôi hét to tên anh.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Tôi hét to tên anh" vì nó liên quan đến hành động thể hiện sự chú ý hoặc kêu gọi một người nào đó khi người đó quay đầu về phía mình. Hành động này có thể được coi là một phản ứng tự nhiên khi muốn giao tiếp với ai đó mà mình đã thấy nhìn về phía mình. </EXP>'}

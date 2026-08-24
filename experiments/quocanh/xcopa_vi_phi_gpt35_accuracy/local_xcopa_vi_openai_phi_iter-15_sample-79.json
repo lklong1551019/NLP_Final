@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cô gái mất kiểm soát chiếc xe đạp của mình.\n### Choices: [choice]Cô buông tay lái.@ [choice]Cô đâm vào một hàng rào.@'] || GT-A:Cô đâm vào một hàng rào. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer X because it is a generic option that could be considered a possible effect of the premise provided.'}

@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi nhờ bạn tôi tư vấn.\n### Lựa chọn: [choice]Tôi coi trọng ý kiến của anh ấy.@ [choice]Tôi biết tôi đã đúng.@'] || GT-A:Tôi coi trọng ý kiến của anh ấy. || LLM-A:X

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tâm trạng của tôi được cải thiện.\n### Lựa chọn: [choice]Tôi nghe nhạc.@ [choice]Tôi rửa chén.@'] || GT-A:Tôi nghe nhạc. || LLM-A:Tôi nghe nhạc.
+{'Score': 0.46114903688430786, 'XAI prompt': '<EXP> Việc lựa chọn "Tôi nghe nhạc" cũng có thể dựa trên việc mô hình tìm kiếm sự liên kết rõ ràng và phổ biến giữa hành động và cảm xúc trong các ngữ cảnh'}

@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ tuyên bố phá sản.\n### Lựa chọn: [choice]Cô đã nhận được tiền cấp dưỡng.@ [choice]Cô có một khoản nợ lớn.@'] || GT-A:Cô có một khoản nợ lớn. || LLM-A:X

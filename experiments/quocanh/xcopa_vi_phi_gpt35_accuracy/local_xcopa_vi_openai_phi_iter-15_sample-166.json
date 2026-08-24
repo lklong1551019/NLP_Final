@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi treo tấm vải ướt lên dây phơi ngoài trời.\n### Choices: [choice]Vải khô.@ [choice]Vải nhuộm màu.@'] || GT-A:Vải khô. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected the answer based on the context of the premise mentioning wet fabric being hung outside. The choice "Vải khô." directly relates to the fabric drying, which is a logical effect of hanging wet fabric outside.'}

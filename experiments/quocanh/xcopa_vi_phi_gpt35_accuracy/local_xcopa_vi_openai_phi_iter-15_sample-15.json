@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái ghi nhớ mã.\n### Choices: [choice]Cô tự đọc nhẩm lại.@ [choice]Cô quên viết nó xuống.@'] || GT-A:Cô tự đọc nhẩm lại. || LLM-A:Cô tự đọc nhẩm lại.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "Cô tự đọc nhẩm lại" because it seems to be a plausible explanation for the premise "Cô gái ghi nhớ mã."'}

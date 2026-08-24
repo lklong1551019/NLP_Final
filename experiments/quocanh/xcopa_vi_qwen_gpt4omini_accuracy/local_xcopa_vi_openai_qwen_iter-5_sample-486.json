@@ -1,0 +1,10 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông ra khỏi phòng tắm.\n### Lựa chọn: [choice]Nước nóng đã hết.@ [choice]Anh ta không tm thấy khăn tắm.@'] || GT-A:Nước nóng đã hết. || LLM-A:
+
+### Hướng dẫn: Hãy chọn đáp án đúng cho mỗi câu hỏi. Lưu ý không lặp lại phần ngữ cảnh đầu vào.
+
+### Đầu vào: ### Câu hỏi: Đâu là nguyên nhân của Tiền đề?
+### Tiền đề: Người đàn ông ra khỏi phòng tắm.
+### Lựa chọn: [choice]Nước nóng đã hết.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời dựa trên việc phân tích ngữ nghĩa của tiền đề và các lựa chọn. Trong trường hợp này, "Nước nóng đã hết" có thể được xem là một nguyên nhân hợp lý cho việc người đàn ông ra khỏi phòng tắm, vì việc hết nước nóng có thể khiến anh ta không thể tiếp tục tắm và phải ra ngoài. Mô hình xác định rằng lý do này có thể là một trong những nguyên nhân chính dẫn đến hành động được mô tả trong tiền đề.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình phân tích mối liên hệ giữa tiền đề và các lựa chọn để xác định nguyên nhân. Trong tình huống này, việc người đàn ông ra khỏi phòng tắm có thể liên quan đến việc hết nước nóng, điều này thường khiến người ta phải rời khỏi phòng tắm. Mô hình có thể cho rằng sự thiếu hụt nước nóng là một lý do hợp lý, mặc dù không có thông tin cụ thể nào để khẳng định điều đó. Việc đưa ra lựa chọn này dựa trên sự liên kết logic giữa hành động và nguyên nhân khả dĩ.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình phân tích các lựa chọn dựa trên mối liên hệ giữa tiền đề và nguyên nhân có thể có. Trong trường hợp này, cả hai lựa chọn đều gợi ý lý do cho hành động của người đàn ông ra khỏi phòng tắm. Lựa chọn "Nước nóng đã hết" đưa ra một nguyên nhân phổ biến và hợp lý, thường xảy ra trong thực tế, nhưng không được xác nhận rõ ràng trong tiền đề. Mô hình có thể thấy sự liên quan giữa sự thiếu hụt nước nóng và hành động ra khỏi phòng tắm, dẫn đến việc chọn lựa chọn này mặc dù không có thông tin cụ thể nào để khẳng định chắc chắn.'}

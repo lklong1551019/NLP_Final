@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ đưa khăn giấy cho em gái.\n### Choices: [choice]Em gái của cô ấy khoanh tay.@ [choice]Em gái của cô ấy bắt đầu khóc.@'] || GT-A:Em gái của cô ấy bắt đầu khóc. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer choice A because it mentions the little sister crossing her arms, which could be seen as a reaction to the woman giving her a tissue.'}

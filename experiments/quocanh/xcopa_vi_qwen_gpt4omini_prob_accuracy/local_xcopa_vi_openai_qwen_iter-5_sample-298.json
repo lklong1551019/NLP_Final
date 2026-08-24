@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi mở mắt.\n### Lựa chọn: [choice]Tôi tỉnh dậy.@ [choice]Tôi thư giãn.@'] || GT-A:Tôi tỉnh dậy. || LLM-A:Tôi tỉnh dậy.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn "Tôi tỉnh dậy" vì mở mắt thường được liên kết với trạng thái tỉnh táo và nhận thức, trong khi "Tôi thư giãn" có thể không phù hợp với hành động mở mắt. Mô hình có thể dựa vào các mối liên hệ phổ biến trong ngữ cảnh để đưa ra lựa chọn.'}

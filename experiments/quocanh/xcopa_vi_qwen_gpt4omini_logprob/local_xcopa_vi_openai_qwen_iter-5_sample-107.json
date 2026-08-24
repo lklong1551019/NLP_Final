@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Phòng tắm ngập nước.\n### Lựa chọn: [choice]Nước nhà vệ sinh tràn ra.@ [choice]Máy nước nóng bị hỏng.@'] || GT-A:Nước nhà vệ sinh tràn ra. || LLM-A:Nước nhà vệ sinh tràn ra.
+{'Score': 0.24831584095954895, 'XAI prompt': '<EXP> Mô hình có thể chọn "Nước nhà vệ sinh tràn ra" vì đây là một nguyên nhân phổ biến và dễ liên kết với tình huống phòng tắm bị ngập nước. Mô hình có thể dựa vào mối quan hệ nguyên nhân - kết quả thông thường mà nó đã học được từ dữ liệu. </EXP>'}

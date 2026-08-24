@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông dự đoán thời tiết lạnh trong chuyến đi của mình.\n### Lựa chọn: [choice]Anh xếp quần áo ấm vào vali.@ [choice]Anh đi du lịch với một chiếc vali lớn.@'] || GT-A:Anh xếp quần áo ấm vào vali. || LLM-A:X

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông đau lưng.\n### Choices: [choice]Anh đi gặp bác sĩ tâm lý.@ [choice]Anh nằm trên giường vài ngày.@'] || GT-A:Anh nằm trên giường vài ngày. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it contains a plausible action that a person experiencing back pain might take, which is to go see a psychologist.'}

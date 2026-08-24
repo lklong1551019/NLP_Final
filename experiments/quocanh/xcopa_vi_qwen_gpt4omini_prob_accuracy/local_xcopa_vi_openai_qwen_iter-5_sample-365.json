@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nhìn vào mặt trời.\n### Lựa chọn: [choice]Mặt trời làm tôi mờ mắt.@ [choice]Mặt trời làm rám nắng da tôi.@'] || GT-A:Mặt trời làm tôi mờ mắt. || LLM-A:Mặt trời làm tôi mờ mắt.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "Mặt trời làm tôi mờ mắt" vì nó liên quan trực tiếp đến hành động nhìn vào mặt trời, điều này thường gây ra hiện tượng mờ mắt do ánh sáng mạnh. Đây là một kết quả phổ biến và dễ hiểu khi nhìn vào nguồn sáng mạnh như mặt trời.'}

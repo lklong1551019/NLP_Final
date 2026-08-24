@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Học sinh đã cố gắng tính nhẩm trong đầu.\n### Choices: [choice]Anh lấy ra một cái máy tính.@ [choice]Anh bối rối.@'] || GT-A:Anh bối rối. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen option X because it associates the concept of using a calculator with solving math problems mentally, even though the premise does not directly suggest this.'}

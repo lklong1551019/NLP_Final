@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đèn giao thông chuyển sang màu vàng.\n### Lựa chọn: [choice]Tài xế nhấn phanh.@ [choice]Người lái xe bấm còi.@'] || GT-A:Tài xế nhấn phanh. || LLM-A:Tài xế nhấn phanh.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình lựa chọn câu trả lời "Tài xế nhấn phanh" có thể dựa trên mối quan hệ nguyên nhân và kết quả, nơi màu vàng của đèn giao thông thường báo hiệu rằng người lái xe nên chuẩn bị dừng lại. Câu trả lời này phản ánh một hành động hợp lý mà tài xế thường thực hiện trong tình huống này.'}

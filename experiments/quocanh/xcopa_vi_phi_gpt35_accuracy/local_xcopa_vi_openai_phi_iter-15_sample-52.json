@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cây rụng lá.\n### Choices: [choice]Lá chuyển màu.@ [choice]Lá dồn trên mặt đường.@'] || GT-A:Lá dồn trên mặt đường. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer choice "Lá chuyển màu" because it associates the falling leaves with changing colors, which is a common phenomenon in nature.'}

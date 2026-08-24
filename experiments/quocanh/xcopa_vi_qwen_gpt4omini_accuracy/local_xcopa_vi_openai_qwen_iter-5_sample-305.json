@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Bức màn sân khấu được vén lên.\n### Lựa chọn: [choice]Cảnh mở đầu vở kịch bắt đầu.@ [choice]Các diễn viên trong vở kịch đã rời khỏi sân khấu.@'] || GT-A:Cảnh mở đầu vở kịch bắt đầu. || LLM-A:Cảnh mở đầu vở kịch bắt đầu.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời này vì nó liên kết trực tiếp với hành động được mô tả trong tiền đề, tức là việc bức màn sân khấu được vén lên thường báo hiệu sự bắt đầu của một cảnh trong vở kịch. </EXP>'}

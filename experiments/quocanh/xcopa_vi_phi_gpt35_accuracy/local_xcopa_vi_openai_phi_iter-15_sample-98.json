@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Chúng tôi đi tàu lượn siêu tốc.\n### Choices: [choice]Trông nó thật đáng sợ.@ [choice]Trông nó rất vui.@'] || GT-A:Trông nó rất vui. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer based on the emotional tone of the premise "Chúng tôi đi tàu lượn siêu tốc," interpreting it as an exciting or thrilling experience.'}

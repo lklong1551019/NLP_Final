@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Bạn bè mất liên lạc.\n### Choices: [choice]Họ rất thích được ở cạnh nhau.@ [choice]Họ chuyển đến các thành phố khác nhau.@'] || GT-A:Họ chuyển đến các thành phố khác nhau. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "Họ chuyển đến các thành phố khác nhau." because it implies a reason for why friends have lost contact, which seems plausible based on the premise provided.'}

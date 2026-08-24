@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người phụ nữ mắc lỗi đánh máy trong trình xử lý văn bản.\n### Choices: [choice]Cô xóa tài liệu.@ [choice]Cô nhấn phím xóa lùi.@'] || GT-A:Cô nhấn phím xóa lùi. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer X because it inferred that the effect of the Premise, which is a woman making a typing error in word processing, could likely involve deleting the document.'}

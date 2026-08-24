@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Giáo viên xé bài kiểm tra của học sinh.\n### Choices: [choice]Anh ấy bắt được học sinh gian lận.@ [choice]Câu trả lời của học sinh không chính xác.@'] || GT-A:Anh ấy bắt được học sinh gian lận. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': "<EXP> The model may have selected choice A as the answer because it mentions catching a student cheating, which is a plausible cause for a teacher to tear up a student's test paper."}

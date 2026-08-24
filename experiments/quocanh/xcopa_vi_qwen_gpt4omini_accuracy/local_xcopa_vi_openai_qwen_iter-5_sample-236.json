@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đánh bóng đá.\n### Lựa chọn: [choice]Nó trở nên trơn trượt.@ [choice]Nó trở nên sáng bóng.@'] || GT-A:Nó trở nên sáng bóng. || LLM-A:X

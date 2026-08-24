@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Một cái cây rơi trên đường dây điện.\n### Choices: [choice]Điện trong khu phố đã tắt.@ [choice]Dự báo có gió lớn.@'] || GT-A:Điện trong khu phố đã tắt. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it mentions that the electricity in the neighborhood has been cut off, which could be seen as a possible effect of a tree falling on a power line in the premise.'}

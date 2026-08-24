@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Toàn bộ tất của tôi đã ở trong máy giặt.\n### Lựa chọn: [choice]Tôi đi dép.@ [choice]Tôi đi giày bốt.@'] || GT-A:Tôi đi dép. || LLM-A:X

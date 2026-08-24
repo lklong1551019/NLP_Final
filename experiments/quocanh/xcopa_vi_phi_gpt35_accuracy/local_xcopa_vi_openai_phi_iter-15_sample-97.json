@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Điện trong nhà tôi tắt.\n### Choices: [choice]Tôi bật đèn lên.@ [choice]Tôi cài đặt lại bộ ngắt mạch.@'] || GT-A:Tôi cài đặt lại bộ ngắt mạch. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose answer X as it did not find a suitable connection between the premise "Điện trong nhà tôi tắt" (The electricity in my house is off) and the provided choices.'}

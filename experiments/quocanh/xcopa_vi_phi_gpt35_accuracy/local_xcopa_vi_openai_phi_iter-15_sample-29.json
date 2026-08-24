@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Nhân viên giả ốm.\n### Choices: [choice]Anh ta bị đau bụng.@ [choice]Anh ta muốn một ngày nghỉ.@'] || GT-A:Anh ta muốn một ngày nghỉ. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer based on the common association of being sick with wanting a day off, even though it is not explicitly stated in the premise.'}

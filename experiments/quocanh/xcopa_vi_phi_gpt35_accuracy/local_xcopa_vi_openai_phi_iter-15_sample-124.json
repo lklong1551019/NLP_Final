@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái ngửi thấy mùi gì đó bốc cháy.\n### Choices: [choice]Cô lấy bánh quy ra khỏi bình.@ [choice]Cô quên bánh quy trong lò nướng.@'] || GT-A:Cô quên bánh quy trong lò nướng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "Cô quên bánh quy trong lò nướng." because it involves leaving the cookies in the oven, which could lead to them burning and causing the smell mentioned in the premise.'}

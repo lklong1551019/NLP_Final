@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Bạn tôi quay đầu về phía tôi.\n### Choices: [choice]Tôi hét to tên anh.@ [choice]Tôi vẫy tay.@'] || GT-A:Tôi hét to tên anh. || LLM-A:Tôi hét to tên anh.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected the answer "Tôi hét to tên anh." because it contains an action that seems more relevant or directly connected to the situation described in the premise.'}

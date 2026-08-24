@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các mặt hàng đã được đóng gói trong bọc bong bóng.\n### Choices: [choice]Nó dễ vỡ.@ [choice]Nó nhỏ.@'] || GT-A:Nó dễ vỡ. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected answer choice X because it contains information related to packaging and fragility, which could be inferred as a potential cause for the Premise mentioned in the text.'}

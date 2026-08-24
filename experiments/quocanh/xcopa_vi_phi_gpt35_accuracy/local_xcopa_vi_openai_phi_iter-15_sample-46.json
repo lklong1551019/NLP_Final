@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ cảm thấy ghen tị với chị gái mình.\n### Choices: [choice]Chị cô hạnh phúc.@ [choice]Chị gái cô đã ly hôn.@'] || GT-A:Chị cô hạnh phúc. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen answer choice A because it mentions the older sister being happy, which could be seen as a positive outcome that could potentially alleviate the jealousy of the younger sister.'}

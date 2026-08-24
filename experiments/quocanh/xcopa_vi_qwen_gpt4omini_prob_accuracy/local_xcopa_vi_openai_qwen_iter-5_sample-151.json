@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đã thua.\n### Lựa chọn: [choice]Tôi đếm tiền mặt của tôi.@ [choice]Tôi mở  bản đồ.@'] || GT-A:Tôi mở  bản đồ. || LLM-A:Tôi đếm tiền mặt của tôi.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "Tôi đếm tiền mặt của tôi" vì trong ngữ cảnh của việc thua, có thể hiểu rằng người nói đang xem xét tài chính của mình sau khi thua, dẫn đến hành động đếm tiền. Câu trả lời này có thể được coi là hợp lý trong việc thể hiện sự phản ứng tâm lý hoặc hành động sau một thất bại. '}

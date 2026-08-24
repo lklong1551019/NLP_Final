@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đội thua giải đấu.\n### Choices: [choice]Họ làm người hâm mộ thất vọng.@ [choice]Họ truyền cảm hứng cho người hâm mộ của họ.@'] || GT-A:Họ làm người hâm mộ thất vọng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer X because it associates the premise "Đội thua giải đấu" with a negative outcome, leading to the choice "Họ làm người hâm mộ thất vọng."'}

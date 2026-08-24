@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi đã thua.\n### Choices: [choice]Tôi đếm tiền mặt của tôi.@ [choice]Tôi mở  bản đồ.@'] || GT-A:Tôi mở  bản đồ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer based on the presence of the word "tiền mặt" in the first choice, which could be associated with the concept of losing or spending money, thus linking it to the premise "Tôi đã thua."'}

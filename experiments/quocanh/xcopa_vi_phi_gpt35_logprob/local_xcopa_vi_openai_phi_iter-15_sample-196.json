@@ -1,0 +1,6 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi đã trả tiền cho nhân viên thu phí.\n### Choices: [choice]Cô ấy cho tôi đi qua trạm thu phí.@ [choice]Cô ấy đã giam giữ tôi tại trạm thu phí.@'] || GT-A:Cô ấy cho tôi đi qua trạm thu phí. || LLM-A:X
+{'Score': 0.013158619403839111, 'XAI prompt': '<EXP> The model may have chosen answer X because it failed to properly connect the premise with the choices provided.'}
+{'Score': -0.0021186470985412598, 'XAI prompt': '<EXP> The model might have assigned a low score to the text due to the lack of a clear logical connection between the premise and the choices.'}
+{'Score': 0.005279600620269775, 'XAI prompt': '<EXP> The model may have struggled to identify the correct choice as it failed to establish a coherent relationship between the premise and the given options.\n'}
+{'Score': 0.006214618682861328, 'XAI prompt': '<EXP> The model appears to have difficulty linking the actions described in the premise with the choices provided, leading to a lack of clear reasoning behind the selection of answer X.'}
+{'Score': 0.002853214740753174, 'XAI prompt': '<EXP> The model may have struggled to identify the correct choice as it failed to establish a coherent relationship between the actions described in the premise and the provided options effectively.\n'}

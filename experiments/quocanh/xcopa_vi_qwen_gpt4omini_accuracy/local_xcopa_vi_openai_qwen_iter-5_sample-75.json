@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nhập dãy mã vào ổ khóa.\n### Lựa chọn: [choice]Tôi đóng khóa.@ [choice]Khóa bật mở.@'] || GT-A:Khóa bật mở. || LLM-A:Khóa bật mở.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã đưa ra câu trả lời "Khóa bật mở" vì nó suy luận rằng việc nhập dãy mã vào ổ khóa thường dẫn đến việc ổ khóa được mở, điều này phù hợp với cách hoạt động thông thường của các loại ổ khóa mã. Mô hình dựa vào ngữ cảnh của câu hỏi và tiền đề để xác định kết quả có thể xảy ra.'}

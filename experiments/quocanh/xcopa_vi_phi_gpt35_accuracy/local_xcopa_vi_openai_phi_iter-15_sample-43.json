@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi đẩy cửa.\n### Choices: [choice]Cánh cửa mở ra.@ [choice]Cánh cửa bị khóa.@'] || GT-A:Cánh cửa mở ra. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "Cánh cửa mở ra" because it is a plausible effect of the action described in the premise "Tôi đẩy cửa." The model may have associated the action of pushing with the door opening as a common real-world scenario.'}

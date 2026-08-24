@@ -1,0 +1,9 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Thiếu niên có một hình xăm.\n### Choices: [choice]Cô sợ kim tiêm.@ [choice]Cô muốn nổi loạn.@'] || GT-A:Cô muốn nổi loạn. || LLM-A:X
+{'Score': 0.08882796764373779, 'XAI prompt': '<EXP> The model may have associated the mention of a tattoo with rebellion, leading it to select the choice "Cô muốn nổi loạn."'}
+{'Score': 0.046533793210983276, 'XAI prompt': '<EXP> The model might have linked the presence of a tattoo to a sense of rebelliousness, which influenced its selection of the answer "Cô muốn nổi loạn."'}
+{'Score': -0.027826666831970215, 'XAI prompt': '<EXP> The model likely interpreted the presence of a tattoo on a young person as a sign of wanting to rebel, leading it to choose the option "Cô muốn nổi loạn."'}
+{'Score': 0.0963992178440094, 'XAI prompt': '<EXP> The model likely made the connection between a tattoo and a desire for rebellion, which influenced its decision to choose the option "Cô muốn nổi loạn."'}
+{'Score': -0.015047669410705566, 'XAI prompt': '<EXP> The model likely inferred a connection between the presence of a tattoo on a young person and a desire for rebellion, leading it to select the choice "Cô muốn nổi loạn."'}
+{'Score': 0.06989210844039917, 'XAI prompt': '<EXP> The model may have associated the presence of a tattoo with a desire for rebellion, influencing its selection of the option "Cô muốn nổi loạn."'}
+{'Score': -0.007310450077056885, 'XAI prompt': '<EXP> The model seems to have associated the presence of a tattoo with a rebellious nature in the context of a young individual, leading it to choose the option "Cô muốn nổi loạn."'}
+{'Score': 0.057574331760406494, 'XAI prompt': '<EXP> The model might have associated the presence of a tattoo with a rebellious attitude commonly attributed to young individuals, leading it to select the answer "Cô muốn nổi loạn."'}

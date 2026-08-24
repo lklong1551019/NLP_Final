@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Vé xem phim đã bán hết.\n### Choices: [choice]Đó là ngày khai mạc cho bộ phim.@ [choice]Bộ phim nhận được đánh giá kém.@'] || GT-A:Đó là ngày khai mạc cho bộ phim. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it mentions the opening day of the movie, which could be seen as a relevant event related to the premise of movie tickets being sold out.'}

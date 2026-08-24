@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cậu thiếu niên lẻn ra khỏi nhà.\n### Choices: [choice]Cậu nói dối bố mẹ.@ [choice]Bố mẹ cậu nhốt cậu anh.@'] || GT-A:Bố mẹ cậu nhốt cậu anh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer X based on the lack of a clear connection between the premise "Cậu thiếu niên lẻn ra khỏi nhà" and the choices provided.'}

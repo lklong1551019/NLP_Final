@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đứa trẻ rắc thức ăn cho cá vào bể.\n### Choices: [choice]Con cá nhảy ra khỏi bể.@ [choice]Con cá bơi về phía thức ăn.@'] || GT-A:Con cá bơi về phía thức ăn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen answer X based on the premise mentioning feeding food to the fish in the tank, which could lead to the fish jumping out of the tank as a potential effect.'}

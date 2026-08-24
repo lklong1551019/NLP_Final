@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Máy bay gặp một số nhiễu loạn.\n### Lựa chọn: [choice]Người đàn ông thắt dây an toàn.@ [choice]Người đàn ông nhìn ra cửa sổ.@'] || GT-A:Người đàn ông thắt dây an toàn. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn "Người đàn ông thắt dây an toàn" vì trong tình huống máy bay gặp nhiễu loạn, hành khách thường có xu hướng thắt dây an toàn để đảm bảo an toàn cho bản thân. Sự liên kết giữa tình huống và hành động này có thể đã ảnh hưởng đến sự lựa chọn của mô hình.'}

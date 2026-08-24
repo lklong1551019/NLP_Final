@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông thấy người ngoài hành tinh.\n### Lựa chọn: [choice]Anh ta bị ảo giác.@ [choice]Anh ta đang ngồi thiền.@'] || GT-A:Anh ta bị ảo giác. || LLM-A:X
+{'Score': 0.11514529585838318, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "X" vì nó tìm kiếm một nguyên nhân hợp lý nhất liên quan đến tình huống mô tả trong tiền đề, cho rằng ảo giác có thể giải thích cho việc thấy người ngoài hành tinh, trong khi thiền không có vẻ liên quan trực tiếp đến trải nghiệm đó.'}

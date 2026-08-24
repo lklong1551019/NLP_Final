@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ đeo kính râm.\n### Choices: [choice]Ánh sáng mặt trời chói lóa.@ [choice]Cô gọi một chiếc taxi.@'] || GT-A:Ánh sáng mặt trời chói lóa. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer choice "Ánh sáng mặt trời chói lóa" because it associates sunglasses with protecting from bright sunlight, which is a common cause for wearing them.'}

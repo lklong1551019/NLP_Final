@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Nhân viên thu ngân từ chối hoàn tiền chiếc váy cho người phụ nữ.\n### Choices: [choice]Cô bị mất biên lai.@ [choice]Chiếc váy không vừa.@'] || GT-A:Cô bị mất biên lai. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen answer choice A because it mentions the lost receipt, which could be perceived as a common reason for a cashier to refuse a refund.'}

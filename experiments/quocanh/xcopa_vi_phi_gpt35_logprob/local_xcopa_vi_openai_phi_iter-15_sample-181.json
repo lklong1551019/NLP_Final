@@ -1,0 +1,22 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Đứa bé ngủ thiếp đi.\n### Choices: [choice]Người cha đã thay tã cho em bé.@ [choice]Người cha nhẹ nhàng đá đứa bé.@'] || GT-A:Người cha nhẹ nhàng đá đứa bé. || LLM-A:
+
+# Response
+random.shuffle(choices)
+print(question)
+print(premise)
+print(choices[0])
+
+"""
+## Solution
+
+### Question: What is the cause of the Premise?
+### Premise: Đứa bé ngủ thiếp đi.
+### Choices: [choice]Người cha đã thay tã cho em bé.
+{'Score': -0.010453581809997559, 'XAI prompt': '<EXP> The model may have selected the choice "Người cha đã thay tã cho em bé" because it mentions a common caregiving action that could be associated with a child sleeping peacefully.'}
+{'Score': -0.00904005765914917, 'XAI prompt': '<EXP> The model may have favored the choice "Người cha đã thay tã cho em bé" because it involves a nurturing and caring action that is commonly associated with infants, potentially leading to a peaceful sleeping scenario.'}
+{'Score': 0.02517765760421753, 'XAI prompt': '<EXP> The model might have chosen the option "Người cha đã thay tã cho em bé" because it depicts a caring and soothing action typically associated with a parent taking care of a child\'s needs.'}
+{'Score': 0.02589559555053711, 'XAI prompt': '<EXP> The model may have selected the choice "Người cha đã thay tã cho em bé" because it highlights a compassionate and nurturing act commonly associated with parental care for a child, which could contribute to a sense of security and comfort for the infant.'}
+{'Score': -0.004804372787475586, 'XAI prompt': '<EXP> The model likely favored the choice "Người cha đã thay tã cho em bé" due to its depiction of a nurturing and caring action commonly associated with parental care for infants, creating a sense of security and peacefulness in the scenario.'}
+{'Score': 0.018570631742477417, 'XAI prompt': '<EXP> The model may have chosen the answer "Người cha đã thay tã cho em bé" because it highlights a nurturing and caring action commonly associated with parental care for infants, creating a sense of security and comfort for the child, which aligns well with the peaceful sleeping scenario in the premise.'}
+{'Score': 0.007665872573852539, 'XAI prompt': '<EXP> The model may have favored the choice "Người cha đã thay tã cho em bé" because it portrays a nurturing and caring act typically associated with parental care for infants, which can evoke a sense of security and comfort in the context of a peacefully sleeping child.'}
+{'Score': -0.015059173107147217, 'XAI prompt': '<EXP> The model likely selected the option "Người cha đã thay tã cho em bé" because it portrays a nurturing and caring act commonly associated with parental care for infants, evoking a sense of security and comfort in the context of a peacefully sleeping child.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Diễn giả đã bình luận không chính xác.\n### Choices: [choice]Anh làm khán giả chán.@ [choice]Anh xúc phạm khán giả.@'] || GT-A:Anh xúc phạm khán giả. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP> The model likely chose answer X based on the premise mentioning that the speaker's comments were inaccurate, without directly addressing the specific effect of the premise."}

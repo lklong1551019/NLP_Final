@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi khoan một cái lỗ trên tường.\n### Choices: [choice]Một con chuột bò ra khỏi cái lỗ.@ [choice]Bụi bay ra khỏi lỗ.@'] || GT-A:Bụi bay ra khỏi lỗ. || LLM-A:Một con chuột bò ra khỏi cái lỗ.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose the answer "Một con chuột bò ra khỏi cái lỗ." because it may have associated the action of a mouse coming out of a hole with the effect of drilling a hole in the wall mentioned in the premise.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Bạn gái của anh ấy đã chia tay với anh ta.\n### Choices: [choice]Anh cầu xin cô quay trở lại.@ [choice]Cô giới thiệu anh với bố mẹ.@'] || GT-A:Anh cầu xin cô quay trở lại. || LLM-A:Anh cầu xin cô quay trở lại.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "Anh cầu xin cô quay trở lại" because it is a common response to a breakup, indicating a desire to reconcile.'}

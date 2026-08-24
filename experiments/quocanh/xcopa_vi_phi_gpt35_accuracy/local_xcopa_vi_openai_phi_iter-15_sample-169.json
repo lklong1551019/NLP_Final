@@ -1,0 +1,7 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi cảm thấy kiệt sức.\n### Choices: [choice]Tôi đi ngủ sớm.@ [choice]Tôi thức cả đêm.@'] || GT-A:Tôi đi ngủ sớm. || LLM-A:The weather is nice.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "Tôi đi ngủ sớm" because it associates feeling exhausted with going to bed early as a common solution.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have chosen "Tôi đi ngủ sớm" as a possible explanation because it links feeling tired with the action of going to bed early, which is a common remedy for fatigue.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have favored "Tôi đi ngủ sớm" because it associates feeling exhausted with the beneficial act of getting sufficient rest, which is commonly recommended for addressing fatigue.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "Tôi đi ngủ sớm" because it associates the feeling of exhaustion with the beneficial practice of going to bed early, which is commonly advised for combating fatigue.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely favored "Tôi đi ngủ sớm" as an explanation because it links the feeling of exhaustion with the beneficial practice of going to bed early, which is commonly recommended for addressing fatigue.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose "Tôi đi ngủ sớm" because it connects the feeling of exhaustion with the beneficial habit of going to bed early, which is commonly recommended for combating fatigue.'}

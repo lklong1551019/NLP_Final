@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông nặng ký quyết định giảm cân.\n### Choices: [choice]Ông ấy cắt giảm đồ ngọt.@ [choice]Anh tránh cafein.@'] || GT-A:Ông ấy cắt giảm đồ ngọt. || LLM-A:Nhất của các điểm từng nước. 
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have misunderstood the premise and made an incorrect association between weight loss and cutting down on sweet foods.'}

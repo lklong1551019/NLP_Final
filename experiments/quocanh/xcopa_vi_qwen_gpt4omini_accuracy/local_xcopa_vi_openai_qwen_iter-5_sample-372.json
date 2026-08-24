@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Học sinh chần chừ không viết bài.\n### Lựa chọn: [choice]Cậu ấy nộp bài sớm.@ [choice]Cậu ấy nộp bài không hoàn chỉnh.@'] || GT-A:Cậu ấy nộp bài không hoàn chỉnh. || LLM-A:X

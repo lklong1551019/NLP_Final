@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Đứa bé ngủ thiếp đi.\n### Choices: [choice]Người cha đã thay tã cho em bé.@ [choice]Người cha nhẹ nhàng đá đứa bé.@'] || GT-A:Người cha nhẹ nhàng đá đứa bé. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': "<EXP> The model may have selected answer choice A because it mentions the father changing the baby's diaper, which is a common caregiving task associated with infants."}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Giáo viên khen học sinh.\n### Choices: [choice]Học sinh trả lời đúng câu hỏi.@ [choice]Học sinh ngập ngừng trả lời câu hỏi.@'] || GT-A:Học sinh trả lời đúng câu hỏi. || LLM-A:Học sinh trả lời đúng câu hỏi.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "Học sinh trả lời đúng câu hỏi." because it directly connects to the premise where the teacher praised the student. This answer aligns with the positive interaction between the teacher and student.'}

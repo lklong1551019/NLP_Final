@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Hai vợ chồng quyết định thỏa hiệp.\n### Choices: [choice]Họ trở nên mệt mỏi vì tranh cãi.@ [choice]Họ tránh thảo luận về vấn đề này.@'] || GT-A:Họ trở nên mệt mỏi vì tranh cãi. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice X because it sees a connection between the premise stating that the couple decided to compromise and answer X, which suggests that they are tired of arguing.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tên tội phạm đầu thú.\n### Choices: [choice]Bằng chứng liên quan đến anh ta.@ [choice]Không có bằng chứng chống lại anh ta.@'] || GT-A:Bằng chứng liên quan đến anh ta. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer based on the presence of the phrase "Bằng chứng liên quan đến anh ta" in the first choice, which seems to relate to the cause of the premise "Tên tội phạm đầu thú."'}

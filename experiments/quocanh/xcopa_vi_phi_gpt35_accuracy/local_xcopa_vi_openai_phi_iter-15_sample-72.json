@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông bôi kem chống nắng.\n### Choices: [choice]Anh ngồi trong bóng râm.@ [choice]Anh ấy đã đi đến bãi biển.@'] || GT-A:Anh ấy đã đi đến bãi biển. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer because it mentions the man sitting in the shade, which could be a common scenario when applying sunscreen.'}

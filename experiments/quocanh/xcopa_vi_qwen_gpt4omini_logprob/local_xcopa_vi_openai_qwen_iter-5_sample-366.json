@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi cảm thấy buồn chán.\n### Lựa chọn: [choice]Tôi khịt mũi.@ [choice]Tôi ngáp.@'] || GT-A:Tôi ngáp. || LLM-A:Tôi ngáp.
+{'Score': 0.10783115029335022, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Tôi ngáp" vì ngáp thường được liên kết với cảm giác buồn chán hoặc mệt mỏi, do đó nó có vẻ là một phản ứng hợp lý đối với tình huống được mô tả trong tiền đề. Mô hình dựa trên các mẫu trong dữ liệu huấn luyện, nơi mà cảm xúc buồn chán có thể dẫn đến hành vi như ngáp.'}

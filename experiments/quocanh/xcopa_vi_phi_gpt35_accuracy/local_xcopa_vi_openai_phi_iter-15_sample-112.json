@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi thấy hơi thở của mình khi tôi thở ra.\n### Choices: [choice]Thời tiết se lạnh.@ [choice]Ngực tôi cảm thấy căng cứng.@'] || GT-A:Thời tiết se lạnh. || LLM-A:Tôi thấy cảm thấy căng cứng.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "Ngực tôi cảm thấy căng cứng" because it mentions a physical sensation related to breathing, which is mentioned in the premise "Tôi thấy hơi thở của mình khi tôi thở ra."'}

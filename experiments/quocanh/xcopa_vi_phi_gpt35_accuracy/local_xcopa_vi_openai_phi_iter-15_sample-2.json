@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Mối đầy nhà.\n### Choices: [choice]Mối biến mất khỏi nhà.@ [choice]Mối ăn gỗ trong nhà.@'] || GT-A:Mối ăn gỗ trong nhà. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer X because it did not accurately comprehend the meaning of the premise "Mối đầy nhà" and therefore could not provide a relevant answer.'}

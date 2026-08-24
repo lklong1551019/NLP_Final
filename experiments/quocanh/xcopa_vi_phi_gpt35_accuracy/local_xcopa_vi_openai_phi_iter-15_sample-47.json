@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi làm đổ rượu lên áo.\n### Choices: [choice]Tôi đeo tạp dề.@ [choice]Tôi đã thay áo.@'] || GT-A:Tôi đã thay áo. || LLM-A:Tôi đã thay áo.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "Tôi đã thay áo." because it is a logical response to the premise "Tôi làm đổ rượu lên áo," indicating a solution to the problem presented in the premise.'}

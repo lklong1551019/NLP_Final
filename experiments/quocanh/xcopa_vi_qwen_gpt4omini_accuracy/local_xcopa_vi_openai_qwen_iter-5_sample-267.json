@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Thẻ tín dụng của doanh nhân đã bị từ chối.\n### Lựa chọn: [choice]Anh ấy đã viết một IOU.@ [choice]Anh trả bằng tiền mặt.@'] || GT-A:Anh trả bằng tiền mặt. || LLM-A:X

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông đã đi đến bác sĩ.\n### Choices: [choice]Bác sĩ được nghỉ phép.@ [choice]Người đàn ông bị bệnh.@'] || GT-A:Người đàn ông bị bệnh. || LLM-A:Bác sĩ được nghỉ phép.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "Bác sĩ được nghỉ phép" because it mentions the doctor, which is relevant to the premise of a man going to see a doctor.'}

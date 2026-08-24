@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi vắt chanh.\n### Lựa chọn: [choice]Chanh bị mốc.@ [choice]Chanh phụt nước ra.@'] || GT-A:Chanh phụt nước ra. || LLM-A:Chanh phụt nước ra.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn "Chanh phụt nước ra" vì đây là một kết quả hợp lý hơn khi liên kết với hành động "vắt chanh". Hành động này thường dẫn đến việc nước chanh được giải phóng, tạo nên hình ảnh sinh động và dễ hiểu hơn so với việc "Chanh bị mốc", một kết quả không liên quan đến hành động vắt.'}

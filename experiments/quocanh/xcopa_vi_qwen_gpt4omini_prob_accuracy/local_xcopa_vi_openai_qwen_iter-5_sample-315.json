@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đi chân trần trên bãi biển.\n### Lựa chọn: [choice]Cát dính vào chân tôi.@ [choice]Sóng vỗ dọc bờ biển.@'] || GT-A:Cát dính vào chân tôi. || LLM-A:Cát dính vào chân tôi.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Cát dính vào chân tôi" vì đây là một kết quả tự nhiên có thể xảy ra khi một người đi chân trần trên bãi biển, nơi có cát. Mô hình có thể đã liên kết hành động đi chân trần với việc tiếp xúc với cát, từ đó đưa ra kết luận.'}

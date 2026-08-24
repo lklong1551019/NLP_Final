@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tòa nhà đã được sơ tán.\n### Choices: [choice]Thang máy ngừng hoạt động.@ [choice]Chuông báo cháy reng.@'] || GT-A:Chuông báo cháy reng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have chosen the answer "Thang máy ngừng hoạt động." because it associates building evacuation with elevator malfunction as a common scenario during evacuations.'}

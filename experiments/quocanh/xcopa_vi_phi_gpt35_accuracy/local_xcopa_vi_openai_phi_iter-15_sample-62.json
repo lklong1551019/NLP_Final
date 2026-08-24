@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi nhìn đồng hồ.\n### Choices: [choice]Tôi nghe tiếng tích tắc.@ [choice]Tôi muốn kiểm tra thời gian.@'] || GT-A:Tôi muốn kiểm tra thời gian. || LLM-A:Tôi muốn kiểm tra thời gian.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "Tôi muốn kiểm tra thời gian." because it directly relates to the premise "Tôi nhìn đồng hồ," indicating a desire to check the time.'}

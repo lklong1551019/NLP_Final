@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đã lỡ xe buýt.\n### Lựa chọn: [choice]Tôi đã đi làm sớm.@ [choice]Tôi đi làm muộn.@'] || GT-A:Tôi đi làm muộn. || LLM-A:Tôi đi làm muộn.
+{'Score': 0.40841907262802124, 'XAI prompt': '<EXP> Mô hình có thể đã lựa chọn câu trả lời "Tôi đi làm muộn" dựa trên mối quan hệ logic giữa việc lỡ xe buýt và việc đi làm. Khi một người lỡ xe buýt, khả năng cao là họ sẽ đến nơi làm muộn hơn so với dự kiến. Do đó, mô hình suy luận rằng kết quả hợp lý từ tiền đề là việc đi làm muộn.'}

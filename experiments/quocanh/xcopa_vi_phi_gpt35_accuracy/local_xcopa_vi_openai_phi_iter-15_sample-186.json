@@ -1,0 +1,7 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi bóp miếng bọt biển ẩm ướt.\n### Choices: [choice]Nó ngấm nước.@ [choice]Nước thấm chảy ra.@'] || GT-A:Nước thấm chảy ra. || LLM-A:Nó ngấm nước.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose "Nó ngấm nước." as the answer because it involves absorbing water, which aligns with the idea of the wet sea foam being squeezed.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The phrase "Nó ngấm nước." was likely selected by the model because it directly mentions water absorption, which is consistent with the scenario of wet sea foam being compressed.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen "Nó ngấm nước." as the answer because it directly relates to the concept of water absorption, which is a logical result when squeezing wet sea foam.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "Nó ngấm nước." because it corresponds to the action of water absorption, which makes sense in the context of compressing wet sea foam.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "Nó ngấm nước." as the answer because it directly relates to the concept of water absorption, which aligns well with the scenario of squeezing wet sea foam.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected "Nó ngấm nước." because it aligns with the concept of water absorption, which is a logical outcome when dealing with wet sea foam.'}

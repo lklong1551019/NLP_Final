@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi ném một đồng xu vào vòi nước.\n### Lựa chọn: [choice]Đồng xu chìm xuống đáy.@ [choice]Đồng xu đã vỡ làm đôi.@'] || GT-A:Đồng xu chìm xuống đáy. || LLM-A:Đồng xu chìm xuống đáy.
+{'Score': 0.17472699284553528, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "Đồng xu chìm xuống đáy" vì đây là một kết quả hợp lý và phổ biến khi ném đồng xu vào vòi nước, nơi nước có khả năng tạo ra lực đẩy khiến đồng xu không nổi trên mặt nước. </EXP>'}

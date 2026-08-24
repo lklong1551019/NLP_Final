@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Nhà lãnh đạo đã chống lại những kẻ cực đoan trong nước mình.\n### Lựa chọn: [choice]Những kẻ cực đoan đã ảnh hưởng anh ta.@ [choice]Những kẻ cực đoan ám sát anh ta.@'] || GT-A:Những kẻ cực đoan ám sát anh ta. || LLM-A:X

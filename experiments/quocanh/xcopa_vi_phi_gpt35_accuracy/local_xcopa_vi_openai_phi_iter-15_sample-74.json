@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Những người hâm mộ la ó.\n### Choices: [choice]Trận đấu phải bước vào phút bù giờ.@ [choice]Trọng tài ra quyết định sai.@'] || GT-A:Trọng tài ra quyết định sai. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it contains a phrase related to a match entering extra time, which could be perceived as a possible cause for fans to make noise.'}

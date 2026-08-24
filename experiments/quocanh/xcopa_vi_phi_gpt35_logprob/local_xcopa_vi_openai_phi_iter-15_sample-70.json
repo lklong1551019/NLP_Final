@@ -1,0 +1,8 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Bãi cỏ lầy lội.\n### Choices: [choice]Trời mưa vào đêm qua.@ [choice]Nó đầy cỏ dại.@'] || GT-A:Trời mưa vào đêm qua. || LLM-A:X
+{'Score': 0.002942383289337158, 'XAI prompt': '<EXP> The model may have chosen the answer because it contains a plausible explanation related to the premise being muddy grass.'}
+{'Score': 0.002213776111602783, 'XAI prompt': '<EXP> The model might have selected the answer mentioning rain because it associates wet and muddy conditions with precipitation.'}
+{'Score': 0.014524340629577637, 'XAI prompt': '<EXP> The model likely selected the answer mentioning rain because it could be interpreting the muddy grass as a result of recent precipitation, linking wet conditions to the presence of mud.'}
+{'Score': 0.006327986717224121, 'XAI prompt': '<EXP> The model might have chosen the answer related to rain because it associates moisture with the muddy grass in the premise.'}
+{'Score': 0.0015329718589782715, 'XAI prompt': '<EXP> The model seems to be favoring answers mentioning rain due to the common association between wet conditions and muddy grass, implying a cause-effect relationship between precipitation and the state of the grass.'}
+{'Score': 0.008357882499694824, 'XAI prompt': '<EXP> The model likely favors answers mentioning rain because it connects wet conditions with the muddy grass in the premise, indicating a possible inference of cause and effect between precipitation and the state of the grass.'}
+{'Score': 0.003313302993774414, 'XAI prompt': '<EXP> The model might be selecting answers mentioning rain because it perceives a logical connection between wet weather and the muddy grass in the scenario.'}

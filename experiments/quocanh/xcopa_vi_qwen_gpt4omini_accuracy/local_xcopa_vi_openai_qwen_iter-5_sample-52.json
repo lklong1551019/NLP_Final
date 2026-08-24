@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cây rụng lá.\n### Lựa chọn: [choice]Lá chuyển màu.@ [choice]Lá dồn trên mặt đường.@'] || GT-A:Lá dồn trên mặt đường. || LLM-A:Lá dồn trên mặt đường.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "Lá dồn trên mặt đường" vì nó liên kết trực tiếp với hình ảnh của cây rụng lá, gợi lên hình ảnh của lá cây rụng và tích tụ lại trên mặt đất hoặc mặt đường. Điều này phản ánh một kết quả cụ thể mà người ta có thể dễ dàng hình dung từ tiền đề đã cho.'}

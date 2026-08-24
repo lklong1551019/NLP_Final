@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông đi đến tiệm cắt tóc.\n### Choices: [choice]Anh ấy đang nuôi tóc.@ [choice]Tóc anh ngày càng dài.@'] || GT-A:Tóc anh ngày càng dài. || LLM-A:The person who committed the crime.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected this answer because it mentions the person involved in the premise, linking it to the concept of cause or reason.'}

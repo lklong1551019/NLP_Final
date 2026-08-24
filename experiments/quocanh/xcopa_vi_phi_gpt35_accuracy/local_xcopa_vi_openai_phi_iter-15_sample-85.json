@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Đứa trẻ tỉnh dậy la hét.\n### Choices: [choice]Nó gặp ác mộng.@ [choice]Nó làm ướt giường.@'] || GT-A:Nó gặp ác mộng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice X because it believes that the child waking up screaming could be a result of encountering a nightmare.'}

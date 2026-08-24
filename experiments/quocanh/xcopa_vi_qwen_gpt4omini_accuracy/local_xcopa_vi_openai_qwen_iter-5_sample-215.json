@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông mất thăng bằng trên thang.\n### Lựa chọn: [choice]Anh leo lên thang.@ [choice]Anh ngã khỏi thang.@'] || GT-A:Anh ngã khỏi thang. || LLM-A:Anh ngã khỏi thang.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã xác định rằng tiền đề mô tả một tình huống không ổn định, và việc mất thăng bằng trên thang thường dẫn đến việc ngã. Do đó, mô hình chọn lựa chọn mà nó cho là kết quả hợp lý nhất từ tình huống đã được mô tả.'}

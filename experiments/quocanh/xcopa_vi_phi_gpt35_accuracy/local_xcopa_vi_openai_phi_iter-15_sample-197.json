@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Vị giám đốc điều hành đã phá sản.\n### Choices: [choice]Ông đã bán cổ phiếu công ty của mình.@ [choice]Ông phung phí tài sản của mình.@'] || GT-A:Ông phung phí tài sản của mình. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "Ông đã bán cổ phiếu công ty của mình." because it associates bankruptcy with selling company stocks, which could be seen as a plausible cause for the situation described in the premise.'}

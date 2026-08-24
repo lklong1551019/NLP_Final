@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ có quầng thâm dưới mắt.\n### Choices: [choice]Cô thức cả đêm.@ [choice]Cô đặt con trai lên giường.@'] || GT-A:Cô thức cả đêm. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected answer X because it associates dark circles under the eyes with lack of sleep or exhaustion, which is a common cause.'}

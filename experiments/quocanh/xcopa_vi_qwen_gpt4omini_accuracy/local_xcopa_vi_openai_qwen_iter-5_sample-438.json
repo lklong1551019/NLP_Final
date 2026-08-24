@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Quốc gia này phát hiện ra vùng đất mới.\n### Lựa chọn: [choice]Quốc gia bỏ mặc vùng đất.@ [choice]Quốc gia biến vùng đất thành thuộc địa.@'] || GT-A:Quốc gia biến vùng đất thành thuộc địa. || LLM-A:X

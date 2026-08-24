@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Du khách đã nhận phòng khách sạn.\n### Choices: [choice]Họ tháo vali ra.@ [choice]Họ đã đến sân bay.@'] || GT-A:Họ tháo vali ra. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it mentions unpacking luggage, which is a common activity for guests when they check into a hotel.'}

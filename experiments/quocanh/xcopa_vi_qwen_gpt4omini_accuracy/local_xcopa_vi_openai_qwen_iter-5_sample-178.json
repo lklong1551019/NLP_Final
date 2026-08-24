@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Điện trong nhà tôi tắt.\n### Lựa chọn: [choice]Tôi rút phích cắm đèn.@ [choice]Tôi rất tức giận.@'] || GT-A:Tôi rất tức giận. || LLM-A:Tôi rút phích cắm đèn.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn "Tôi rút phích cắm đèn" vì nó có vẻ như là một hành động có thể trực tiếp gây ra việc mất điện trong nhà. Hành động này tạo ra một mối liên hệ nguyên nhân - kết quả rõ ràng với tình huống được đề cập. </EXP>'}

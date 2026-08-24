@@ -1,0 +1,6 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái rớt xuống bể bơi.\n### Choices: [choice]Cô chạy trên sàn hồ bơi.@ [choice]Cô nhảy khỏi bảng lặn.@'] || GT-A:Cô nhảy khỏi bảng lặn. || LLM-A:X
+{'Score': 0.012068688869476318, 'XAI prompt': '<EXP> The model may have chosen answer X because it believes the cause of the premise is related to something other than the options provided in the choices.'}
+{'Score': 0.0038333535194396973, 'XAI prompt': '<EXP> The model might have inferred that the girl falling into the pool was accidental rather than intentional based on the context provided in the premise.'}
+{'Score': 0.007809996604919434, 'XAI prompt': '<EXP> The model could be interpreting the situation as a spontaneous accident rather than a deliberate action, leading it to choose answer X.'}
+{'Score': 0.006730139255523682, 'XAI prompt': "<EXP> The model seems to be considering the possibility that the girl's fall into the pool was unplanned, which could explain its choice of answer X."}
+{'Score': 0.00399404764175415, 'XAI prompt': '<EXP> The model may have chosen answer X because it perceived the action of the girl falling into the pool as accidental rather than deliberate, influencing its decision.'}

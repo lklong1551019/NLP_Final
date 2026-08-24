@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cô gái muốn cảm ơn cô giáo dạy toán.\n### Choices: [choice]Cô gái bị giữ lại sau giờ học.@ [choice]Cô gái mang cho cô giáo một quả táo.@'] || GT-A:Cô gái mang cho cô giáo một quả táo. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "Cô gái bị giữ lại sau giờ học." because it involves a consequence or effect that can be inferred from the premise.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Chai soda rít lên.\n### Lựa chọn: [choice]Tôi lật chai.@ [choice]Tôi vặn nắp.@'] || GT-A:Tôi vặn nắp. || LLM-A:Tôi lật chai.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Tôi lật chai" vì nó liên quan đến hành động có thể gây ra âm thanh rít lên của chai soda, như khi áp suất bên trong chai thay đổi. Hành động này có thể kích thích sự phát ra âm thanh do khí thoát ra. Điều này có thể khiến mô hình tin rằng đây là một nguyên nhân hợp lý cho tiền đề.'}

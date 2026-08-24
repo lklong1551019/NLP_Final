@@ -1,0 +1,6 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Mực trên poster bị lem.\n### Choices: [choice]Tôi đợi mực khô.@ [choice]Tôi làm đổ nước lên poster.@'] || GT-A:Tôi làm đổ nước lên poster. || LLM-A:X
+{'Score': 0.014582633972167969, 'XAI prompt': '<EXP> The model may have chosen answer A because it mentions waiting for the ink to dry, which could be a plausible response to the premise about the ink smudging on the poster.'}
+{'Score': 0.00983378291130066, 'XAI prompt': '<EXP> The model might have selected answer X because it mentions accidentally spilling water on the poster, which could be seen as a likely cause for the ink smudging.'}
+{'Score': 0.009149342775344849, 'XAI prompt': '<EXP> The model could have associated answer A with the concept of waiting for the ink to dry, which is a common practice to prevent smudging on posters.'}
+{'Score': 0.007614433765411377, 'XAI prompt': '<EXP> The model likely selected answer A because it mentions the waiting for the ink to dry, which is a practical step to prevent smudging on posters.'}
+{'Score': 0.01219591498374939, 'XAI prompt': '<EXP> The model may have favored answer A due to its mention of waiting for the ink to dry, which aligns with a common practice to prevent smudging on posters.'}

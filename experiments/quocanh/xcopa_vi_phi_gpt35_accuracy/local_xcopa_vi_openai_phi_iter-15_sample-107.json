@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Phòng tắm ngập nước.\n### Choices: [choice]Nước nhà vệ sinh tràn ra.@ [choice]Máy nước nóng bị hỏng.@'] || GT-A:Nước nhà vệ sinh tràn ra. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected this answer because it mentions a specific issue related to water in the bathroom, which is present in the premise "Phòng tắm ngập nước."'}

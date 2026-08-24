@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các trại viên trẻ cảm thấy sợ hãi.\n### Choices: [choice]Cố vấn trại của họ kể cho họ một câu chuyện ma.@ [choice]Họ nướng marshmallows trên lửa trại.@'] || GT-A:Cố vấn trại của họ kể cho họ một câu chuyện ma. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer based on the thematic relevance of fear and storytelling, as the premise mentions that the young campers feel scared.'}

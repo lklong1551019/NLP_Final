@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông ghen tị với đồng nghiệp của mình.\n### Choices: [choice]Đồng nghiệp của anh ấy đã được thăng chức.@ [choice]Đồng nghiệp của anh ấy ở lại  muộn.@'] || GT-A:Đồng nghiệp của anh ấy đã được thăng chức. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer because it mentions a possible cause of the premise, such as the colleague being promoted, which is a common trigger for jealousy in workplace scenarios.'}

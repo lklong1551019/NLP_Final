@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Những người lướt sóng trở lại bãi biển.\n### Choices: [choice]Họ ướt đẫm.@ [choice]Họ đã nhìn thấy một con cá mập.@'] || GT-A:Họ đã nhìn thấy một con cá mập. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "Họ đã nhìn thấy một con cá mập." because it involves a specific event or action that could be considered a cause, which aligns with the concept of a cause and effect relationship in the premise.'}

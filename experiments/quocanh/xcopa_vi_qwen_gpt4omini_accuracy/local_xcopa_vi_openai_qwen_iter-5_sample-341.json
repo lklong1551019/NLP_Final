@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi đề nghị với khách đi ra ngoài ăn tối.\n### Lựa chọn: [choice]Tôi đã quá mệt mỏi để chuẩn bị bất cứ điều gì.@ [choice]Khách của tôi ở quá lâu.@'] || GT-A:Tôi đã quá mệt mỏi để chuẩn bị bất cứ điều gì. || LLM-A:X

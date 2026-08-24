@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cậu bé đang trong tâm trạng tinh nghịch.\n### Choices: [choice]Cậu quyết định chơi một ván bài với chị gái.@ [choice]Cậu quyết định chọc em gái mình.@'] || GT-A:Cậu quyết định chọc em gái mình. || LLM-A:A. I need to complete the task for my friend.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected this answer because it mentions completing a task, which could be seen as a general response to a situation or a decision-making process.'}

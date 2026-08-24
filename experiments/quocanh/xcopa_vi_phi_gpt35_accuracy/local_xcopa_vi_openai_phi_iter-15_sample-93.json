@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tóc của người đàn ông chuyển sang màu vàng.\n### Choices: [choice]Ông ấy bỏ thuốc tẩy lên tóc.@ [choice]Ông ấy thoa dầu gội lên đó.@'] || GT-A:Ông ấy bỏ thuốc tẩy lên tóc. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP> The model may have selected choice A because it mentions using hair dye, which is a common reason for someone's hair to turn yellow."}

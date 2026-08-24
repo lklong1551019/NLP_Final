@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cửa thang máy mở ra.\n### Choices: [choice]Thang máy đã đến tầng được chỉ định.@ [choice]Thang máy bị kẹt giữa các tầng.@'] || GT-A:Thang máy đã đến tầng được chỉ định. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen answer A because it mentions the elevator reaching the designated floor, which is a common occurrence when a elevator door opens.'}

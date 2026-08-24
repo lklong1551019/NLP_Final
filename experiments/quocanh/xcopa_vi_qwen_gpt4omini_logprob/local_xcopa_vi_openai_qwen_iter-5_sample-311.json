@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Con mèo đuổi theo con chim.\n### Lựa chọn: [choice]Con chim bay đi.@ [choice]Con chim bắt được con sâu.@'] || GT-A:Con chim bay đi. || LLM-A:X
+{'Score': 0.07077816128730774, 'XAI prompt': '<EXP> Mô hình có thể đã chọn "Con chim bay đi" như là kết quả của tiền đề vì hành động đuổi theo của con mèo có thể dẫn đến việc con chim phải bay đi để tránh bị bắt. Mô hình có thể phân tích mối quan hệ giữa các hành động và suy luận rằng đây là một kết quả hợp lý trong ngữ cảnh.'}

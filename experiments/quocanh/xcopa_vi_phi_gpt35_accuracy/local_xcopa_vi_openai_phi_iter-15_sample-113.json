@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các nhân viên thành lập một công đoàn.\n### Choices: [choice]Họ muốn điều kiện làm việc tốt hơn.@ [choice]Họ được tăng lương.@'] || GT-A:Họ muốn điều kiện làm việc tốt hơn. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected choice A because it mentions improving working conditions, which is a common goal for forming a labor union.'}

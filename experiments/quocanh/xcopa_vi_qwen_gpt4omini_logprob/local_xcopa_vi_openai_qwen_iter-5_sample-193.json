@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ có quầng thâm dưới mắt.\n### Lựa chọn: [choice]Cô thức cả đêm.@ [choice]Cô đặt con trai lên giường.@'] || GT-A:Cô thức cả đêm. || LLM-A:Cô thức cả đêm.
+{'Score': 0.07795238494873047, 'XAI prompt': '<EXP> Mô hình có thể đã chọn "Cô thức cả đêm" vì quầng thâm dưới mắt thường liên quan đến việc thiếu ngủ. Sự liên kết này có thể dựa trên kiến thức chung về nguyên nhân gây ra quầng thâm, cho thấy mô hình đã áp dụng mối liên hệ giữa giấc ngủ và tình trạng của đôi mắt. </EXP>'}

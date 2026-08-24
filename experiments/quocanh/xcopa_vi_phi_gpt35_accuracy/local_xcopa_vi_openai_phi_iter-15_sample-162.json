@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ tránh đi trong hồ.\n### Choices: [choice]Cô bắt được một con cá.@ [choice]Trông nó thật ô nhiễm.@'] || GT-A:Trông nó thật ô nhiễm. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected choice A because it contains a plausible action that could explain the situation in the premise, suggesting that the woman caught a fish as a reason for avoiding the lake.'}

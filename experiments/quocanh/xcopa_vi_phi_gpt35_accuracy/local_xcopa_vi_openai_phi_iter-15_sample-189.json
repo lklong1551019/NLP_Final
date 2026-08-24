@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Một chiếc ô tô lạ đỗ bên ngoài nhà tôi.\n### Choices: [choice]Tôi trở nên nghi ngờ.@ [choice]Tôi gọi cho cảnh sát.@'] || GT-A:Tôi trở nên nghi ngờ. || LLM-A:Tôi trở nên nghi ngờ.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "Tôi trở nên nghi ngờ" because it directly addresses the situation presented in the premise about a strange car parked outside the speaker\'s house. This choice shows a natural response to feeling suspicious in such a scenario.'}

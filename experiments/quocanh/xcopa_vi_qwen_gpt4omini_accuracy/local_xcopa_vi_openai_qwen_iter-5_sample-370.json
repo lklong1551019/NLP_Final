@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đặt bông hoa dưới mũi mình.\n### Lựa chọn: [choice]Những cánh hoa rơi ra hoa.@ [choice]Tôi ngửi thấy mùi hương của hoa.@'] || GT-A:Tôi ngửi thấy mùi hương của hoa. || LLM-A:X

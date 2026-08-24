@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông mặc áo phao.\n### Choices: [choice]Anh ấy không biết bơi.@ [choice]Nước cạn.@'] || GT-A:Anh ấy không biết bơi. || LLM-A:Anh ấy không biết bơi.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "Anh ấy không biết bơi." because it relates to the concept of wearing a life jacket, which implies the man not knowing how to swim.'}

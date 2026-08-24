@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người con trai dọn ra khỏi nhà.\n### Choices: [choice]Anh ấy được xuất ngũ.@ [choice]Anh ấy đi học đại học.@'] || GT-A:Anh ấy đi học đại học. || LLM-A:Anh ấy Đồng Nai.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "Anh ấy được xuất ngũ." because it relates to the premise of a man leaving the house, which could imply his military discharge.'}

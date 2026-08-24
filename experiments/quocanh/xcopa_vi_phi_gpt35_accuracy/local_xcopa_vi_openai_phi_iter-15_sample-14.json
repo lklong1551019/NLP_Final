@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người thủy thủ đã được cách ly.\n### Choices: [choice]Anh đã tiếp xúc với dịch bệnh.@ [choice]Anh đã khỏi bệnh.@'] || GT-A:Anh đã tiếp xúc với dịch bệnh. || LLM-A:Anh đã tiếp xúc với dịch bệnh.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "Anh đã tiếp xúc với dịch bệnh" because it mentions contact with a disease, which aligns with the premise about a sailor being quarantined.'}

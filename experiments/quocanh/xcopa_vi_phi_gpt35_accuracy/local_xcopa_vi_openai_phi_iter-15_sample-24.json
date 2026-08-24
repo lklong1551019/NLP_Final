@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông ngấn lệ.\n### Choices: [choice]Bụi bay vào mắt ông ấy.@ [choice]Anh đeo kính lên mắt.@'] || GT-A:Bụi bay vào mắt ông ấy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer based on the presence of the word "ngấn lệ" in the premise, associating it with the idea of something going into the man\'s eye.'}

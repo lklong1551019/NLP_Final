@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông giảm cân.\n### Choices: [choice]Mọi người cô lập anh.@ [choice]Mọi người khen anh.@'] || GT-A:Mọi người khen anh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer X because it believes that the premise "Người đàn ông giảm cân" implies a general reaction or effect that would lead people to isolate or praise him, and it may have associated weight loss with potential reactions from others.'}

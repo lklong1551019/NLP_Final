@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người biểu diễn xiếc tung hứng trong khi đi xe đạp một bánh.\n### Choices: [choice]Khán giả reo hò trong sự ngạc nhiên.@ [choice]Acrobat vung lên từ một cái bẫy.@'] || GT-A:Khán giả reo hò trong sự ngạc nhiên. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer option that mentions the audience cheering in surprise because it associates circus performers with eliciting reactions from spectators.'}

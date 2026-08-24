@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Bạn tôi chỉ ra rằng tôi có thức ăn bị mắc kẹt trong răng.\n### Lựa chọn: [choice]Tôi cảm thấy xấu hổ.@ [choice]Tôi cảm thấy tự hào.@'] || GT-A:Tôi cảm thấy xấu hổ. || LLM-A:X

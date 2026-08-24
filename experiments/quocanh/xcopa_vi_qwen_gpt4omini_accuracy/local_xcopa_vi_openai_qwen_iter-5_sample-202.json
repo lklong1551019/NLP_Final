@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đã lỡ xe buýt.\n### Lựa chọn: [choice]Tôi đã đi làm sớm.@ [choice]Tôi đi làm muộn.@'] || GT-A:Tôi đi làm muộn. || LLM-A:X

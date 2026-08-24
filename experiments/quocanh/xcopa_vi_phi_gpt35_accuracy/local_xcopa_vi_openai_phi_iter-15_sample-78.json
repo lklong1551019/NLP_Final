@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Những người chèo thuyền kayak chèo mái chèo của họ.\n### Choices: [choice]Thuyền kayak đến bờ.@ [choice]Chiếc thuyền kayak gặp một con sóng.@'] || GT-A:Thuyền kayak đến bờ. || LLM-A:Thuyền kayak đến bờ.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "Thuyền kayak đến bờ" because it mentions the kayak reaching the shore, which is a common outcome in scenarios involving kayaking.'}

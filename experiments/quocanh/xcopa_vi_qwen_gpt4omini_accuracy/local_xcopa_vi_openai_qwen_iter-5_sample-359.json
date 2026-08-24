@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đã xin lỗi bạn tôi.\n### Lựa chọn: [choice]Bạn tôi đã tha thứ cho tôi.@ [choice]Bạn tôi trở nên tức giận.@'] || GT-A:Bạn tôi đã tha thứ cho tôi. || LLM-A:X

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người cộng sự cúp máy.\n### Choices: [choice]Tôi yêu cầu nói chuyện với quản lí.@ [choice]Tôi đã cung cấp số nhận dạng của tôi.@'] || GT-A:Tôi yêu cầu nói chuyện với quản lí. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice X because it contains a mention of speaking with a manager, which could be interpreted as a potential cause for the situation described in the premise.'}

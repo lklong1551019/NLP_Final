@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi tự chích bằng kim.\n### Choices: [choice]Một giọt mồ hôi chảy ra từ mặt tôi.@ [choice]Một giọt máu hình thành trên ngón tay của tôi.@'] || GT-A:Một giọt máu hình thành trên ngón tay của tôi. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer X because it associates the idea of blood with getting pricked by a needle, which is mentioned in the premise.'}

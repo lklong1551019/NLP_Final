@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi hái cà chua từ cành của chúng.\n### Lựa chọn: [choice]Chúng đã chín.@ [choice]Tôi tưới nước cho chúng.@'] || GT-A:Chúng đã chín. || LLM-A:Chúng đã chín.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn "Chúng đã chín" vì đây là một lý do hợp lý để giải thích hành động hái cà chua. Cà chua thường được hái khi chúng đã chín, do đó, sự chín muồi của cà chua có thể được xem là một yếu tố cần thiết cho hành động này. </EXP>'}

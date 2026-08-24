@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đứa trẻ phàn nàn rằng nó phải đi vệ sinh.\n### Choices: [choice]Bố nó cho nó uống soda.@ [choice]Bố nó dừng xe ở trạm xăng.@'] || GT-A:Bố nó dừng xe ở trạm xăng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': "<EXP> The model may have selected the answer based on the assumption that drinking soda can have a potential effect on a child's need to use the restroom."}

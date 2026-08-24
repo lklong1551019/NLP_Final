@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Ban nhạc chơi bài hát hit của họ.\n### Choices: [choice]Khán giả vỗ tay theo điệu nhạc.@ [choice]Khán giả lịch sự lắng nghe trong im lặng.@'] || GT-A:Khán giả vỗ tay theo điệu nhạc. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected choice X because it associates a band playing their hit song with audience applause, which is a common response in concerts.'}

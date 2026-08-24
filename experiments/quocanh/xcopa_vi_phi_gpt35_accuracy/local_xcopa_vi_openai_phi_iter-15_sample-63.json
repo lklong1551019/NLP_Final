@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tay tôi bị chuột rút.\n### Choices: [choice]Tôi đã viết bài luận bằng tay.@ [choice]Vợ chồng tôi nắm tay nhau.@'] || GT-A:Tôi đã viết bài luận bằng tay. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "Tôi đã viết bài luận bằng tay." because it associates the phrase "tay" with writing, even though it may not directly relate to the cause of the premise "Tay tôi bị chuột rút."'}

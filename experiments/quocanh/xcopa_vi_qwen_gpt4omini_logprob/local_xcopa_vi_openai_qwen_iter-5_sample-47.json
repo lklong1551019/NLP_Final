@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi làm đổ rượu lên áo.\n### Lựa chọn: [choice]Tôi đeo tạp dề.@ [choice]Tôi đã thay áo.@'] || GT-A:Tôi đã thay áo. || LLM-A:Tôi đã thay áo.
+{'Score': 0.15895971655845642, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Tôi đã thay áo" có thể dựa trên logic rằng việc làm đổ rượu lên áo thường dẫn đến việc cần thay áo để giữ gìn sự sạch sẽ hoặc không bị ướt. Mô hình có thể đã phân tích ngữ cảnh và đưa ra kết luận rằng hành động thay áo là phản ứng hợp lý hơn so với việc chỉ đeo tạp dề.'}

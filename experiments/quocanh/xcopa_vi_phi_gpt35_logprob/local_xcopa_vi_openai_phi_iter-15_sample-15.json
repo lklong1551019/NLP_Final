@@ -1,0 +1,7 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái ghi nhớ mã.\n### Choices: [choice]Cô tự đọc nhẩm lại.@ [choice]Cô quên viết nó xuống.@'] || GT-A:Cô tự đọc nhẩm lại. || LLM-A:X
+{'Score': -0.00015223026275634766, 'XAI prompt': '<EXP> The model may have selected answer X because it seems to be a generic response that can apply to various situations without requiring a deep understanding of the context.'}
+{'Score': 0.011943399906158447, 'XAI prompt': '<EXP> The model might have chosen answer X because it appears to be a safe and neutral option that could be considered a default choice in the absence of more specific information.'}
+{'Score': 0.005280733108520508, 'XAI prompt': '<EXP> The model may have favored answer X due to its simplicity and broad applicability across different scenarios.'}
+{'Score': 0.002954542636871338, 'XAI prompt': '<EXP> The model may have selected answer X because it offers a general solution that can be easily applied in a variety of contexts without needing specific details from the premise.'}
+{'Score': 0.0041114091873168945, 'XAI prompt': '<EXP> The model likely favored answer X because it is a straightforward and versatile choice that can be easily applied to different scenarios without requiring intricate reasoning.'}
+{'Score': -0.0020793676376342773, 'XAI prompt': '<EXP> The model may have leaned towards answer X because it presents a simplistic and broadly applicable solution that does not rely on specific details from the premise.'}

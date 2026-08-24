@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Hơi nước bốc lên từ nồi nước.\n### Choices: [choice]Nước sôi.@ [choice]Tôi đậy nắp nồi.@'] || GT-A:Nước sôi. || LLM-A:Nước sôi.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "Nước sôi." as the answer because it directly relates to the premise about steam rising from the pot, indicating boiling water.'}

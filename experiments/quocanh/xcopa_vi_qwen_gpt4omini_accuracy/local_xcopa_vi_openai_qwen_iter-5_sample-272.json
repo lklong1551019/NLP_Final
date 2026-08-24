@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Khách hàng đã phê duyệt kế hoạch của kiến trúc sư.\n### Lựa chọn: [choice]Các kiến trúc sư xây dựng tòa nhà.@ [choice]Kiến trúc sư đã điều chỉnh các kế hoạch.@'] || GT-A:Các kiến trúc sư xây dựng tòa nhà. || LLM-A:X

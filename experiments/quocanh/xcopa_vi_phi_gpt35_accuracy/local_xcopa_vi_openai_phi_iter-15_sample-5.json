@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái hết năng lượng.\n### Choices: [choice]Cô chơi cờ đam.@ [choice]Cô nhảy dây.@'] || GT-A:Cô nhảy dây. || LLM-A:Cô nhảy dây.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "Cô nhảy dây" because it associates the concept of being tired with physical activity like jumping rope.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "Cô nhảy dây" as the answer because it linked the concept of exhaustion with the physical activity of jumping rope, suggesting a way to boost energy levels.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have selected "Cô nhảy dây" because it linked the idea of a girl lacking energy with the physical exertion involved in jumping rope, indicating a possible solution to combat fatigue.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model potentially chose "Cô nhảy dây" because it associated the scenario of a tired girl with the energizing action of jumping rope, implying a way to invigorate oneself.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "Cô nhảy dây" because it associated the concept of fatigue with the physical activity of jumping rope, indicating a potential solution to regain energy.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen "Cô nhảy dây" because it associated the idea of a girl lacking energy with the physical activity of jumping rope, hinting at a potential way to combat tiredness through exercise.'}
