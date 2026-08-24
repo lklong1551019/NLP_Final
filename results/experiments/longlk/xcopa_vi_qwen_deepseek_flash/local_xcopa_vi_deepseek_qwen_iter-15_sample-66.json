@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ ngồi ngoài hiên.\n### Lựa chọn: [choice]Cô muốn ngắm hoàng hôn.@ [choice]Cô nghĩ mình đã thấy sét.@'] || GT-A:Cô muốn ngắm hoàng hôn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': 'API error.'}

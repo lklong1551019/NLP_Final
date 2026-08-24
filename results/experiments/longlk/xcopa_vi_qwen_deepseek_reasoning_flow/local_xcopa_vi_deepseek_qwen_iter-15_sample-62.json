@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi nhìn đồng hồ.\n### Lựa chọn: [choice]Tôi nghe tiếng tích tắc.@ [choice]Tôi muốn kiểm tra thời gian.@'] || GT-A:Tôi muốn kiểm tra thời gian. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình nhận diện tiền'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Phòng tắm ngập nước.\n### Lựa chọn: [choice]Nước nhà vệ sinh tràn ra.@ [choice]Máy nước nóng bị hỏng.@'] || GT-A:Nước nhà vệ sinh tràn ra. || LLM-A:Nước nhà vệ sinh tràn ra.
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình có thể đã liên kết trực tiếp hiện tượng “phòng tắm ngập nước” với nguồn nước tràn ra từ nhà vệ sinh vì đây là một nguyên nhân thường gặp và cụ thể hơn, trong khi “máy nước nóng bị hỏng” ít trực tiếp tạo ra lượng nước lớn gây ngập.'}

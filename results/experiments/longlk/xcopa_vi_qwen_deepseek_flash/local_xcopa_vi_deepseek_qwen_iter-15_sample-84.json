@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Mực trên poster bị lem.\n### Lựa chọn: [choice]Tôi đợi mực khô.@ [choice]Tôi làm đổ nước lên poster.@'] || GT-A:Tôi làm đổ nước lên poster. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã tạo ra "X" vì nhận diện rằng cả hai lựa chọn được cung cấp đều không phù hợp hoàn toàn với vai trò nguyên nhân trực tiếp, dẫn đến việc không chọn lựa chọn nào và sinh ra một ký hiệu không xác định.  \n<EXP'}

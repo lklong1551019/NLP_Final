@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người phụ nữ hết trứng.\n### Lựa chọn: [choice]Cô đi đến trang trại.@ [choice]Cô đi siêu thị.@'] || GT-A:Cô đi siêu thị. || LLM-A:Cô đi siêu thị.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã liên hệ việc một người "hết trứng" với nhu cầu mua thêm trứng, và trong thói quen thường nhật, siêu thị là nơi phổ biến để mua trứng hơn là trang trại, nên đã chọn phương án "Cô đi siêu thị."'}

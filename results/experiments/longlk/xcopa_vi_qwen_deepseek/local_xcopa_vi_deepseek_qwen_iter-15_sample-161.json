@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi gặp một người bạn cũ.\n### Lựa chọn: [choice]Tôi tiết lộ một bí mật cho anh ta.@ [choice]Tôi ôm anh.@'] || GT-A:Tôi ôm anh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình có thể đã dựa vào mối liên kết ngữ nghĩa phổ biến trong dữ liệu huấn luyện, nơi hành động thể hiện tình cảm như ôm thường xuất hiện cùng ngữ cảnh gặp lại bạn cũ, trong khi việc tiết lộ bí mật đòi hỏi bối cảnh riêng tư và mức độ tin cậy cao hơn, ít gắn liền với tình huống gặp gỡ thông thường.</EXP>'}

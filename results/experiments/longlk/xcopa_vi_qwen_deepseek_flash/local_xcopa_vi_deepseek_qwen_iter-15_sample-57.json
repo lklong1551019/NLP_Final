@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Bồn rửa trong phòng tắm bị tắc.\n### Lựa chọn: [choice]Tôi bật vòi nước.@ [choice]Tôi đổ nước xả vào đó.@'] || GT-A:Tôi đổ nước xả vào đó. || LLM-A:Tôi đổ nước xả vào đó.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình xác định tiền đề mô tả một sự cố cần được xử lý, nên nó tìm kiếm trong các lựa chọn hà'}

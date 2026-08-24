@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Chiếc xe bị hỏng.\n### Lựa chọn: [choice]Tôi bật lửa.@ [choice]Động cơ quá nóng.@'] || GT-A:Động cơ quá nóng. || LLM-A:I lit a match.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã ưu tiên lựa chọn đầu tiên do thiên kiến vị trí, thay vì đánh giá sâu mối quan hệ nhân quả giữa tiền đề và các phương án.'}

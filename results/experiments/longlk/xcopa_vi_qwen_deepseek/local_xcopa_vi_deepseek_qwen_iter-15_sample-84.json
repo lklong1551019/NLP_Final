@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Mực trên poster bị lem.\n### Lựa chọn: [choice]Tôi đợi mực khô.@ [choice]Tôi làm đổ nước lên poster.@'] || GT-A:Tôi làm đổ nước lên poster. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã nhận định rằng việc đổ nước lên bề mặt có mực sẽ gây ra hiện tượng mực bị nhòe, do đó xác định hành động này là nguyên nhân trực tiếp dẫn đến tiền đề, trong khi lựa chọn còn lại chỉ là hành động nhằm tránh hậu quả chứ không phải là tác nhân gây ra nó.'}

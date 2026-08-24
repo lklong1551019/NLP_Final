@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cây rụng lá.\n### Lựa chọn: [choice]Lá chuyển màu.@ [choice]Lá dồn trên mặt đường.@'] || GT-A:Lá dồn trên mặt đường. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã không nhận diện được "X" như một lựa chọn hợp lệ trong danh sách phương án, do đó nó tạo ra một phản hồ'}

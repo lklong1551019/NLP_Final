@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đám đông nhiều lên.\n### Lựa chọn: [choice]Người cha đưa cho con trai một ít tiền.@ [choice]Người cha nắm lấy tay con trai mình.@'] || GT-A:Người cha nắm lấy tay con trai mình. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã suy luận rằng khi đám đông trở nên đông hơn, nguy cơ lạc mất trẻ em tăng lên, do đó hành động hợp lý của người cha là nắm lấy tay con trai để đảm bảo an toàn, thay vì đưa tiền vốn không liên quan trực tiếp đến tình huống đông đúc.'}

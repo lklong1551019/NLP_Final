@@ -1,0 +1,7 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông giảm cân.\n### Lựa chọn: [choice]Mọi người cô lập anh.@ [choice]Mọi người khen anh.@'] || GT-A:Mọi người khen anh. || LLM-A:Mọi người khen anh.
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình có thể đã dựa vào liên tưởng xã hội phổ biến rằng việc giảm cân thường được xem là một thành tựu đáng khen ngợi, từ đó suy ra phản ứng của mọi người là khen ngợi thay vì cô lập.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình có thể đã liên kết việc giảm cân với thành công cá nhân và chuẩn mực xã hội coi đó là điều đáng khen, nên dự đoán mọi người sẽ khen ngợi thay vì cô lập.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình có thể đã kích hoạt liên tưởng rằng giảm cân là biểu hiện của sự cải thiện bản thân, một điều thường nhận được sự công nhận từ xã hội, nên cho rằng mọi người sẽ phản ứng bằng lời khen.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình có thể đã dựa trên khuôn mẫu văn hóa rằng giảm cân là nỗ lực đáng ghi nhận và thường được xã hội tán thưởng, do đó suy ra phản ứng của mọi người là khen ngợi thay vì cô lập.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình có thể đã dựa vào quan niệm xã hội rằng giảm cân là một thành tựu đáng được ghi nhận, từ đó suy ra phản ứng tích cực của mọi người là khen ngợi thay vì cô lập.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình có thể đã dựa trên liên tưởng rằng việc giảm cân thường gắn với sự tự cải thiện và nỗ lực cá nhân, nên phản ứng xã hội thường là công nhận tích cực thay vì xa lánh.'}

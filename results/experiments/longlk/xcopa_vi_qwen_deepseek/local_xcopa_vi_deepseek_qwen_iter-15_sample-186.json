@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi bóp miếng bọt biển ẩm ướt.\n### Lựa chọn: [choice]Nó ngấm nước.@ [choice]Nước thấm chảy ra.@'] || GT-A:Nước thấm chảy ra. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã dựa vào hiểu biết thường thức về cơ chế vật lý: khi tác động lực nén lên một vật liệu xốp đã chứa chất lỏng, các khoảng trống bên trong bị thu hẹp, khiến chất lỏng bị đẩy ra ngoài. Do đó, nó liên hệ hành động với kết quả là sự giải phóng nước, thay vì sự hấp thụ thêm.'}

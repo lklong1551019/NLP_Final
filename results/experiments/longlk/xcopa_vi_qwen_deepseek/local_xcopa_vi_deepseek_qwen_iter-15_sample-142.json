@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Vết xước trên da tôi thật sâu.\n### Lựa chọn: [choice]Nó lành nhanh chóng.@ [choice]Nó để lại một vết sẹo.@'] || GT-A:Nó để lại một vết sẹo. || LLM-A:Nó để lại một vết sẹo.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã suy luận rằng một vết xước sâu thường gây tổn thương đến lớp hạ bì, dẫn đến khả năng hình thành sẹo cao hơn so với vết thương nông, do đó chọn kết quả "Nó để lại một vết sẹo" thay vì "Nó lành nhanh chóng".'}

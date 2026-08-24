@@ -203,7 +203,7 @@ def get_args():
     parser.add_argument('--data', type=str, default='ecqa')
     parser.add_argument('--pred_model', type=str, default='vicuna')
     parser.add_argument('--xai_model', type=str, default='claude')
-    parser.add_argument('--max_tokens', type=int, default=1000)
+    parser.add_argument('--max_tokens', type=int, default=3000)
     parser.add_argument('--temp_exp', type=float, default=0.01)
     parser.add_argument('--xai_iter', type=int, default=20)
     parser.add_argument('--ques_idx_start', type=int, default=40)
@@ -211,6 +211,8 @@ def get_args():
     parser.add_argument('--save_cf_file_path', type=str, default=None)
     parser.add_argument('--save_file_path', type=str, default="./results")
     # New arguments
+    parser.add_argument('--use_predictor_reasoning', action='store_true', default=False,
+                        help='Query the target model for reasoning and pass it to the explainer.')
     parser.add_argument('--deepseek_key', type=str, default=None,
                         help='DeepSeek API key (or set DEEPSEEK_API_KEY env var)')
     parser.add_argument('--resume', action='store_true', default=False,
@@ -471,9 +473,19 @@ if __name__ == "__main__":
                 target = f"============ Wrong  --> Q:{question} || GT-A:{answer[0]} || LLM-A:{output_ans[0]}"
             print(target)
 
+        # Get Predictor Reasoning if enabled
+        predictor_reasoning = None
+        if getattr(args, 'use_predictor_reasoning', False):
+            from model.predictor import generate_predictor_reasoning
+            predictor_reasoning_list = generate_predictor_reasoning(pred_model, pred_tokenizer, input_zip, output_ans, args)
+            if predictor_reasoning_list:
+                predictor_reasoning = predictor_reasoning_list[0]
+                print(f"============ Predictor Reasoning: {predictor_reasoning}")
 
         # Generate init true explanation
-        output_exp_prompt = generate_exp_prompt(exp_instruction, input_zip, output_ans, args)
+        output_exp_prompt = generate_exp_prompt(exp_instruction, input_zip, output_ans, args, predictor_reasoning=predictor_reasoning)
+        if getattr(args, 'use_predictor_reasoning', False):
+            print(f"============ Init Explainer Prompt:\n{output_exp_prompt[0] if isinstance(output_exp_prompt, list) else output_exp_prompt}\n========================")
         exp_reply = reponse_xai_model(output_exp_prompt, args)
         exp_reply = split_reply(exp_reply.split(":\n\n")[-1])
         xai_list.extend(exp_reply)
@@ -491,8 +503,14 @@ if __name__ == "__main__":
                 # print(f"============ Counterfact Exp: {counter_exp_reply[0]}")
 
                 # Score difference for updating xai prompt format
-                diff_score = diff_task_score(pred_model, pred_tokenizer, task_instruction, input_zip, answer, exp_reply, counter_exp_reply, args)
+                diff_score = diff_task_score(pred_model, pred_tokenizer, task_instruction, input_zip, answer, xai_list[-1], counter_exp_reply[0], args)
                 scores_list.append(diff_score)
+
+                # Generate local xai prompt
+                xai_prompt = generate_local_xai_prompt(xai_list, scores_list, input_zip[0], output_ans[0], args=args, predictor_reasoning=predictor_reasoning)
+                if getattr(args, 'use_predictor_reasoning', False):
+                    print(f"============ Local Explainer Prompt:\n{xai_prompt}\n========================")
+                updated_xai_prompt = reponse_xai_model(xai_prompt, args)
 
                 # Save explanation
                 save_explanation = xai_list[-1]

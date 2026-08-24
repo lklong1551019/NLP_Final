@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đứa trẻ phàn nàn rằng nó phải đi vệ sinh.\n### Lựa chọn: [choice]Bố nó cho nó uống soda.@ [choice]Bố nó dừng xe ở trạm xăng.@'] || GT-A:Bố nó dừng xe ở trạm xăng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình suy luận theo quan hệ nhân quả thông thường: khi một đứa trẻ có nhu cầu vệ sinh, hành động hợp lý là dừng xe tìm nơi giải quyết, và trạm xăng thường được xem là địa điểm có nhà vệ sinh; lựa chọn còn lại không đáp ứng nhu cầu đó nên bị loại bỏ.'}

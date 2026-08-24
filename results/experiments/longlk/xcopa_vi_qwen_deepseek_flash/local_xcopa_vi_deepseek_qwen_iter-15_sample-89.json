@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cậu bé bị lạc trong rừng.\n### Lựa chọn: [choice]Cậu dựng lều.@ [choice]Cậu hét lên cầu cứu.@'] || GT-A:Cậu hét lên cầu cứu. || LLM-A:Cậu hét lên cầu cứu.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn "Cậu hét lên cầu cứu" vì đây là hành động phản ứng thường được liên kết với tình huống bị lạc trong rừng, dựa trên kiến thức thông thường về hành vi của con người khi gặp nguy hiểm hoặc lạc đường, thay vì dựa trên bất kỳ quan hệ nhân quả trực tiếp nào được nêu trong tiền đề.</EXP>'}

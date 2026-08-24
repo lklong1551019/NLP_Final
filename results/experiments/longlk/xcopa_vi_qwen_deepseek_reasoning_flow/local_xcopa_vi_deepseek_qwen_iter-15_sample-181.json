@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Đứa bé ngủ thiếp đi.\n### Lựa chọn: [choice]Người cha đã thay tã cho em bé.@ [choice]Người cha nhẹ nhàng đá đứa bé.@'] || GT-A:Người cha nhẹ nhàng đá đứa bé. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình có thể dựa trên tri thức thông thường về nguyên nhân khiến trẻ ngủ, ưu tiên lựa chọn có mối liên hệ nhân quả rõ ràng với sự thoải mái và an toàn của em bé.</EXP>  \n<EXP>Lựa chọn chứa cụm từ “đá'}

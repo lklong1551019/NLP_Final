@@ -139,6 +139,8 @@ def generate_report(results_dir, output_path):
         for r in local_results:
             # Group key: everything before _sample-
             key = r["filename"].rsplit("_sample-", 1)[0] if "_sample-" in r["filename"] else r["filename"]
+            if r.get("subdir"):
+                key = f"{r['subdir']}/{key}"
             variant_groups[key].append(r)
 
         lines.append("| Variant | Samples | Correct % | Avg Faith. Score | Max Faith. Score |")

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi bật quạt.\n### Lựa chọn: [choice]Nước rắc lên da tôi.@ [choice]Không khí mát mẻ lướt qua tôi.@'] || GT-A:Không khí mát mẻ lướt qua tôi. || LLM-A:Không khí mát mẻ lướt qua tôi.
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình suy luận rằng việc bật quạt sẽ tạo ra chuyển động của không khí, mang lại cảm giác mát mẻ, nên đã chọn phương án mô tả luồng không khí mát thay vì phương án liên quan đến nước vốn không có mối liên hệ trực tiếp với tiền đề.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cây rụng lá.\n### Lựa chọn: [choice]Lá chuyển màu.@ [choice]Lá dồn trên mặt đường.@'] || GT-A:Lá dồn trên mặt đường. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đã dựa trên hiểu biết về chuỗi sự kiện tự nhiên: khi cây rụng lá, lá rơi xuống và thường tích tụ trên mặt đường, nên nó coi đây là hệ quả trực tiếp của tiền đề và chọn phương án tương ứng, đồng thời có thể xem quá trình chuyển màu là diễn ra trước hoặc trong lúc rụng, không phải kết quả sau đó.'}
