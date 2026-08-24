@@ -238,7 +238,18 @@ def load_model(model_name, max_memory, load_in_4bit=True):
         else:
             print("============ Predictor: Qwen3.5-4B (bf16)")
             quant_kwargs["torch_dtype"] = torch.bfloat16
-        model = AutoModelForCausalLM.from_pretrained(
+        # Qwen3.5-4B is Qwen3_5ForConditionalGeneration - a vision-language
+        # checkpoint whose config nests the text settings under `text_config`.
+        # AutoModelForCausalLM resolves to the text-only Qwen3_5ForCausalLM, which
+        # looks for cfg.vocab_size at the top level and dies with
+        # "'Qwen3_5Config' object has no attribute 'vocab_size'". Load the class the
+        # checkpoint actually declares; text-only input works fine on it and the
+        # logits we need for probability scoring are the same.
+        try:
+            from transformers import AutoModelForImageTextToText as _QwenAuto
+        except ImportError:
+            _QwenAuto = AutoModelForCausalLM
+        model = _QwenAuto.from_pretrained(
             model_id,
             device_map="auto",
             max_memory=max_memory,
@@ -683,7 +694,87 @@ def _ecqa_score(model, tokenizer, input_prompt, ans_gt, args):
     short_acc = accuracy_score(ans_short, ans_gt)
     return short_acc
 
+# Populated by diff_task_score_ecqa on every call so the entry points can log all
+# metrics per iteration, whichever one is being optimised on.
+LAST_METRICS = {}
+
+# Modes scored from the target's choice distribution -> which metric field the
+# optimiser follows. "accuracy" is absent on purpose: it means the published
+# generate-and-parse path, left byte-identical.
+#
+#   prob_shift    signed shift in P(the target's own first pick). Continuous, and
+#                 the only mode that tells the optimiser it went backwards.
+#   margin        signed distance past the decision boundary, 0.5 - P(first pick).
+#                 prob_shift rewards movement wherever it happens; margin only pays
+#                 for approaching the flip, which is the event the loop stops on.
+#   tv            total variation between the two distributions. Non-negative, so
+#                 it is the divergence Theorem 1 of the paper actually defines.
+#   flip          did the argmax change. Label-free but binary.
+#   prob_accuracy the published |Δacc| formula, computed from the argmax over
+#                 choices instead of by parsing generated text. Isolates "the
+#                 continuous signal helped" from "dropping the text parser helped".
+PROB_SCORE_MODES = {
+    "logprob": "prob_shift",
+    "margin": "margin",
+    "tv": "tv",
+    "flip": "flip",
+    "prob_accuracy": "accuracy",
+}
+
+
+def _answer_cue_prompt(task_instruction, question, hint=None):
+    """Same content the baseline sends, but ending in a direct answer cue.
+
+    The baseline ends with "Let's think step by step", which is right when you are
+    going to sample a chain of thought and parse it. For probability scoring we
+    read the distribution over the choices instead, so the cue has to invite the
+    answer itself. Instruction, hint and input are byte-identical to the baseline.
+    """
+    head = ("Below is an instruction that describes a task. "
+            "Write a response that appropriately completes the request of input.")
+    hint_block = f"### Hint: {hint}\n\n" if hint is not None else ""
+    return (f"{head}\n\n### Instruction: {task_instruction}\n\n"
+            f"{hint_block}### Input: {question}\n\n### Answer:")
+
+
+def _diff_logprob_ecqa(model, tokenizer, task_instruction, question, answer,
+                       counter_exp_reply, args):
+    """Fidelity as a shift in the target's probability over the answer choices."""
+    from model.fidelity import choice_probs, fidelity_metrics
+
+    global LAST_METRICS
+    ques = question[0] if isinstance(question, (list, tuple)) else question
+    gold = answer[0] if isinstance(answer, (list, tuple)) else answer
+    hint = counter_exp_reply[0] if isinstance(counter_exp_reply, (list, tuple)) else counter_exp_reply
+
+    choices = parse_choices(ques)
+    if len(choices) < 2:
+        # Without candidates there is nothing to put a distribution over.
+        LAST_METRICS = {"mode": "logprob", "error": "no choices parsed"}
+        return 0.0
+
+    p_before = choice_probs(model, tokenizer, _answer_cue_prompt(task_instruction, ques), choices, args)
+    p_after = choice_probs(model, tokenizer, _answer_cue_prompt(task_instruction, ques, hint), choices, args)
+
+    m = fidelity_metrics(p_before, p_after, choices, gold)
+    mode = getattr(args, "score_mode", "logprob")
+    m["mode"] = mode
+    LAST_METRICS = m
+    if getattr(args, "verbose", False):
+        print(f"[fidelity] P({m['pred_before'][:28]!r}) {m['p_before']:.4f} -> {m['p_after']:.4f} "
+              f"| shift {m['prob_shift']:+.4f} | tv {m['tv']:.4f} | flip {m['flip']:.0f} "
+              f"| acc {m['accuracy']:.0f}")
+    # Every mode reads the same two probability vectors; only the field the
+    # optimiser follows differs, so the modes are directly comparable.
+    return m[PROB_SCORE_MODES[mode]]
+
 def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, exp_reply, counter_exp_reply, args):
+
+    # "accuracy" keeps the published generate-and-parse path untouched. Every other
+    # mode reads the target's distribution over the answer choices instead.
+    if getattr(args, "score_mode", "accuracy") in PROB_SCORE_MODES:
+        return _diff_logprob_ecqa(model, tokenizer, task_instruction, question, answer,
+                                  counter_exp_reply, args)
 
     true_exp_pair = zip(exp_reply, question)
     count_exp_pair = zip(counter_exp_reply, question)
@@ -715,17 +806,45 @@ def diff_task_score_ecqa(model, tokenizer, task_instruction, question, answer, e
             "hint": rand_hint,
         }
     
-    print("\n--- DEBUG INFO ---")
-    print("TRUE PROMPT:")
-    print(ture_final_prompt[0] if len(ture_final_prompt) > 0 else "EMPTY")
-    print("COUNT PROMPT:")
-    print(count_final_prompt[0] if len(count_final_prompt) > 0 else "EMPTY")
-    print(f"TRUE SCORE: {ture_score}")
-    print(f"COUNT SCORE: {count_score}")
-    print("------------------\n")
+    if getattr(args, "verbose", False):
+        # Unconditionally dumping both full prompts is thousands of lines at
+        # 200 questions x 15 iterations x 2 scorings.
+        print("\n--- DEBUG INFO ---")
+        print("TRUE PROMPT:")
+        print(ture_final_prompt[0] if len(ture_final_prompt) > 0 else "EMPTY")
+        print("COUNT PROMPT:")
+        print(count_final_prompt[0] if len(count_final_prompt) > 0 else "EMPTY")
+        print(f"TRUE SCORE: {ture_score}")
+        print(f"COUNT SCORE: {count_score}")
+        print("------------------\n")
 
     diff_score = abs(ture_score - count_score)
-    
+
+    global LAST_METRICS
+    LAST_METRICS = {"mode": "accuracy", "accuracy_parsed": diff_score,
+                    "score_true": ture_score, "score_cf": count_score}
+
+    # Also record the probability-based metrics, even though the optimiser is not
+    # following them here. Without this the accuracy run and the logprob run share
+    # no common yardstick and "which mode reached higher fidelity" is unanswerable
+    # -- each would only be measured by its own objective. Two extra forward passes
+    # on a local target, ~90 ms.
+    if getattr(args, "log_all_metrics", True):
+        try:
+            from model.fidelity import choice_probs, fidelity_metrics
+            ques = question[0] if isinstance(question, (list, tuple)) else question
+            gold = answer[0] if isinstance(answer, (list, tuple)) else answer
+            hint = (counter_exp_reply[0] if isinstance(counter_exp_reply, (list, tuple))
+                    else counter_exp_reply)
+            choices = parse_choices(ques)
+            if len(choices) >= 2:
+                pb = choice_probs(model, tokenizer, _answer_cue_prompt(task_instruction, ques), choices, args)
+                pa = choice_probs(model, tokenizer, _answer_cue_prompt(task_instruction, ques, hint), choices, args)
+                LAST_METRICS.update(fidelity_metrics(pb, pa, choices, gold))
+                LAST_METRICS["mode"] = "accuracy"
+        except Exception as exc:  # noqa: BLE001 - logging must never break the run
+            LAST_METRICS["log_all_metrics_error"] = f"{type(exc).__name__}: {exc}"
+
     return diff_score
 
 def _trivaqa_score(model, tokenizer, input_prompt, ans_gt, args):

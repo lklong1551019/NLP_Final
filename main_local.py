@@ -9,10 +9,10 @@ import argparse
 from tqdm import tqdm
 from random import sample
 from datasets import load_dataset, Dataset
-from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
 from model.predictor import contains_answer
+from model import predictor as _predictor
 from model.predictor import CONTROL as PRED_CONTROL
 from model import llm_api
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_local_xai_prompt, generate_exp_prompt
@@ -236,6 +236,43 @@ def get_args():
                         help='Use 4-bit quantization (for 8GB GPUs)')
     parser.add_argument('--no_4bit', dest='load_in_4bit', action='store_false',
                         help='Disable 4-bit quantization')
+    parser.add_argument('--openai_key', type=str, default=None,
+                        help='OpenAI API key (or set OPENAI_API_KEY)')
+    parser.add_argument('--openai_model', type=str, default='gpt-3.5-turbo',
+                        help='Model for --xai_model openai')
+    parser.add_argument('--no_log_all_metrics', dest='log_all_metrics', action='store_false',
+                        default=True,
+                        help='Do not compute the probability metrics alongside the optimised '
+                             'one. They are what makes runs in different --score_mode values '
+                             'comparable, so only turn this off if the target has no logits.')
+    parser.add_argument('--no_early_stop', action='store_true', default=False,
+                        help='Run the full --xai_iter budget in every mode. Needed to '
+                             'compare iterations-to-first-flip, since the published rule '
+                             'and the continuous rule stop on different events.')
+    parser.add_argument('--stop_rule', type=str, default='paper',
+                        choices=['paper', 'eager', 'flip'],
+                        help="paper: the released rule, tested only on iterations "
+                             "0/5/10/15. eager: same condition, tested every iteration. "
+                             "flip: stop the moment the decision flips, in every mode - "
+                             "the only setting under which iteration counts are "
+                             "comparable across --score_mode values.")
+    parser.add_argument('--usage_log', type=str, default=None,
+                        help='JSONL of per-call token usage for the API explainer. '
+                             'Without it the API spend can only be estimated.')
+    parser.add_argument('--score_mode', type=str, default='accuracy',
+                        choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'margin', 'tv'],
+                        help="Fidelity signal the optimiser follows. 'accuracy' is the "
+                             "published metric |acc(f(X)) - acc(f(X|!E))|, binary on a "
+                             "single instance. 'logprob' is the signed shift in the "
+                             "target's probability over the answer choices.")
+    parser.add_argument('--stop_threshold', type=float, default=0.5,
+                        help='logprob mode: stop once the best probability shift reaches this')
+    parser.add_argument('--stop_patience', type=int, default=4,
+                        help='logprob mode: stop after this many rewrites fail to beat the best')
+    parser.add_argument('--metrics_log', type=str, default=None,
+                        help='JSONL with every metric each iteration, whichever one is optimised')
+    parser.add_argument('--verbose', action='store_true', default=False,
+                        help='Print per-iteration fidelity detail')
     args = parser.parse_args()
     return args
 
@@ -418,6 +455,8 @@ if __name__ == "__main__":
         return os.path.isfile(path) and os.path.getsize(path) > 0
 
     skipped = 0
+    metrics_rows = []
+
     for idx in range(start_idx, args.ques_idx_end):
         # Resume: a question whose result file already exists is not redone.
         # NOTE the filename encodes only data/xai/pred/iter - not temperature or
@@ -491,8 +530,21 @@ if __name__ == "__main__":
         xai_list.extend(exp_reply)
         # print(f"============ Init Exp: {exp_reply[0]}")
 
+        # output_ans never changes inside the loop, so the published "Bad Answer"
+        # test was loop-invariant: it burned iteration 0 (two explainer calls) before
+        # breaking. Decide it once, up front.
+        # Only the generate-and-parse mode cares: "X" means the parser could not read
+        # the target's free text. The probability modes never parse text, so an
+        # unreadable generation says nothing about them and must not skip the question.
+        if ("X" in output_ans and args.score_mode == "accuracy"
+                and args.stop_rule in ("flip", "eager")):
+            print("============ Bad Answer (bỏ qua trước khi vào vòng lặp)")
+            bad_answer_skip = True
+        else:
+            bad_answer_skip = False
+
         with tqdm(total=args.xai_iter) as pbar:
-            for iter in range(args.xai_iter):
+            for iter in range(0 if bad_answer_skip else args.xai_iter):
                 print(f"============ Step:{iter} LLM Optimizing")
 
                 # Generate counterfactual explanation
@@ -506,11 +558,9 @@ if __name__ == "__main__":
                 diff_score = diff_task_score(pred_model, pred_tokenizer, task_instruction, input_zip, answer, xai_list[-1], counter_exp_reply[0], args)
                 scores_list.append(diff_score)
 
-                # Generate local xai prompt
-                xai_prompt = generate_local_xai_prompt(xai_list, scores_list, input_zip[0], output_ans[0], args=args, predictor_reasoning=predictor_reasoning)
-                if getattr(args, 'use_predictor_reasoning', False):
-                    print(f"============ Local Explainer Prompt:\n{xai_prompt}\n========================")
-                updated_xai_prompt = reponse_xai_model(xai_prompt, args)
+                _m = dict(getattr(_predictor, "LAST_METRICS", {}) or {})
+                _m.update({"question_idx": idx, "iter": iter, "optimised_score": diff_score})
+                metrics_rows.append(_m)
 
                 # Save explanation
                 save_explanation = xai_list[-1]
@@ -522,15 +572,65 @@ if __name__ == "__main__":
                 xai_prompts_write.append(record)
                 print(f"=== Score: {diff_score} || Explanation: {save_explanation}")
 
-                if iter%5 == 0 and sum(scores_list) != 0:
+                if getattr(args, "no_early_stop", False):
+                    # Fixed budget for every mode. Iterations-to-first-flip is only a
+                    # fair comparison if no mode is allowed to quit early on its own
+                    # terms; the flip event itself is mode independent.
+                    pass
+
+                elif args.stop_rule == "flip":
+                    # Algorithm 1 says "while steps not end and decision not flips",
+                    # so stop the moment the decision flips - checked every iteration,
+                    # in every mode. Two things follow: iteration counts become
+                    # comparable across modes (they share one stopping event), and no
+                    # mode can inflate its count by holding out for a better score.
+                    # The threshold/patience rule below did exactly that, running 8.40
+                    # iterations against the published rule's 3.15.
+                    flipped = (_predictor.LAST_METRICS or {}).get("flip", 0.0) >= 1.0
+                    if flipped:
+                        print(f"============ Early Stop: decision flipped at iter {iter}")
+                        break
+                    if diff_score != 0 and args.score_mode in ("accuracy", "prob_accuracy"):
+                        # Binary modes: a non-zero score already means the flip crossed
+                        # the correctness boundary.
+                        print("============ Early Stop Optimization")
+                        break
+
+                elif args.score_mode in ("logprob", "tv", "margin"):
+                    # Continuous scores are almost never exactly 0, so "!= 0" would
+                    # fire on iteration 0. Stop on a threshold, or once the rewrites
+                    # stop improving. Inflates iteration counts - kept for ablation.
+                    best = max(scores_list)
+                    stalled = len(scores_list) - 1 - scores_list.index(best)
+                    if best >= args.stop_threshold:
+                        print(f"============ Early Stop: shift {best:.4f} >= {args.stop_threshold}")
+                        break
+                    if stalled >= args.stop_patience:
+                        print(f"============ Early Stop: no gain in {stalled} steps (best {best:.4f})")
+                        break
+
+                elif args.stop_rule == "eager":
+                    # The published rule, minus the iter%5 gate. That gate only tests
+                    # the condition on iterations 0/5/10/15, so a question satisfying
+                    # it at iteration 2 still runs to 5. Measured over 200 XCOPA-vi
+                    # questions: 105 of 631 iterations, 16.6%, spent after the stop
+                    # condition was already true.
+                    if sum(scores_list) != 0:
+                        print("============ Early Stop Optimization")
+                        break
+
+                elif iter%5 == 0 and sum(scores_list) != 0:
                     print("============ Early Stop Optimization")
                     break
-                elif iter%5 == 0 and "X" in output_ans:
-                    print("============ Bad Answer")
-                    break
 
-                # LLM optimizer
-                xai_prompt = generate_local_xai_prompt(xai_list, scores_list, question, output_ans, args)
+                # LLM optimizer. One call per iteration: origin/main also issued one
+                # before the early-stop block, assigning it to `updated_xai_prompt`,
+                # which is never read again - a wasted explainer call every iteration.
+                xai_prompt = generate_local_xai_prompt(
+                    xai_list, scores_list, input_zip[0], output_ans[0],
+                    args=args, predictor_reasoning=predictor_reasoning)
+                if getattr(args, 'use_predictor_reasoning', False):
+                    print(f"============ Local Explainer Prompt:\n{xai_prompt}\n========================")
                 exp_reply = reponse_xai_model(xai_prompt, args)
                 exp_reply = split_reply(exp_reply.split(":\n\n")[-1])
                 
@@ -538,7 +638,7 @@ if __name__ == "__main__":
                 xai_list.extend(exp_reply)
                 pbar.update(1)
 
-                if iter%5 == 0 and ("apologize" in exp_reply[0]) or ("Unfortunately" in exp_reply[0]):
+                if ("apologize" in exp_reply[0]) or ("Unfortunately" in exp_reply[0]):
                     print(f"============ {exp_reply[0]}")
                     print("============ Refuse to Answer")
                     break
@@ -551,6 +651,12 @@ if __name__ == "__main__":
             for sub_xai_dict in xai_prompts_write:
                 f.write(f"{sub_xai_dict}\n")
         print(f"============ Successful File Saved in {result_file_name}")
+
+        if args.metrics_log:
+            os.makedirs(os.path.dirname(args.metrics_log) or ".", exist_ok=True)
+            with open(args.metrics_log, "w") as f:
+                for row in metrics_rows:
+                    f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
     if skipped:
         print(f"============ Resume: skipped {skipped} already-completed questions")

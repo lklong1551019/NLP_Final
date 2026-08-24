@@ -9,7 +9,6 @@ import random
 import traceback
 from tqdm import tqdm
 from datasets import load_dataset
-from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
 from model import llm_api
@@ -195,6 +194,27 @@ def get_args():
                         help='Use 4-bit quantization (for 8GB GPUs)')
     parser.add_argument('--no_4bit', dest='load_in_4bit', action='store_false',
                         help='Disable 4-bit quantization')
+    parser.add_argument('--openai_key', type=str, default=None,
+                        help='OpenAI API key (or set OPENAI_API_KEY)')
+    parser.add_argument('--openai_model', type=str, default='gpt-3.5-turbo',
+                        help='Model for --xai_model openai')
+    parser.add_argument('--no_log_all_metrics', dest='log_all_metrics', action='store_false',
+                        default=True,
+                        help='Do not compute the probability metrics alongside the optimised '
+                             'one. They are what makes runs in different --score_mode values '
+                             'comparable, so only turn this off if the target has no logits.')
+    parser.add_argument('--usage_log', type=str, default=None,
+                        help='JSONL of per-call token usage for the API explainer. '
+                             'Without it the API spend can only be estimated.')
+    parser.add_argument('--score_mode', type=str, default='accuracy',
+                        choices=['accuracy', 'prob_accuracy', 'flip', 'logprob', 'margin', 'tv'],
+                        help="Fidelity signal averaged over the sampled questions. "
+                             "'accuracy' is the published metric; 'logprob' is the signed "
+                             "shift in the target's probability over the answer choices.")
+    parser.add_argument('--metrics_log', type=str, default=None,
+                        help='JSONL with every metric for each scored question')
+    parser.add_argument('--verbose', action='store_true', default=False,
+                        help='Print per-question fidelity detail')
     args = parser.parse_args()
     return args
 
