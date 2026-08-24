@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I pricked myself with the pin.\n### Choices: [choice]A bead of sweat dripped from my face.@ [choice]A drop of blood formed on my finger.@'] || GT-A:A drop of blood formed on my finger. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected answer A because it associates pricking oneself with a pin with the formation of a drop of blood, which is a common consequence of such an action.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cô gái tham dự bữa tiệc sinh nhật của bạn cùng lớp.\n### Lựa chọn: [choice]Cô nhận được lời mời.@ [choice]Cô mua một món quà.@'] || GT-A:Cô nhận được lời mời. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Cô nhận được lời mời" là nguyên nhân của Tiền đề vì đây là một hành động thường xuyên xảy ra khi tham dự bữa tiệc sinh nhật.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

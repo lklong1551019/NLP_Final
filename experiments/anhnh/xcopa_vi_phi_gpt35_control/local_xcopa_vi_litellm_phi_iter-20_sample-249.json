@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tàu địch nổ tung.\n### Lựa chọn: [choice]Nó đi qua một cái mỏ.@ [choice]Nó đi thuyền vào bến cảng.@'] || GT-A:Nó đi qua một cái mỏ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': 'Không có đầu vào nào để xử lý. Hãy cung cấp đầu vào để tiếp tục.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

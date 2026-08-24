@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The puppy stayed near its owner.\n### Choices: [choice]The owner put a collar on the puppy.@ [choice]The owner kept the puppy on a leash.@'] || GT-A:The owner kept the puppy on a leash. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "The owner put a collar on the puppy" because it involves an action that is commonly associated with keeping a puppy near its owner.'}

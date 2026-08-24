@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman dyed her hair.\n### Choices: [choice]She wanted a new look.@ [choice]She wanted to blend in.@'] || GT-A:She wanted a new look. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "X" because it failed to properly understand the context of the premise and the question.'}

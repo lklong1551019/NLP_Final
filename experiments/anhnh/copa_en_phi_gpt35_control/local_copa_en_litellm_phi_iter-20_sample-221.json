@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I called my friend to chat.\n### Choices: [choice]I wanted privacy.@ [choice]I felt lonely.@'] || GT-A:I felt lonely. || LLM-A:I felt lonely.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have selected "I felt lonely" as the answer because calling a friend to chat can be associated with seeking companionship when feeling lonely.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

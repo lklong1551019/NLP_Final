@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The child woke up screaming.\n### Choices: [choice]He had a nightmare.@ [choice]He wet the bed.@'] || GT-A:He had a nightmare. || LLM-A:He had a nightmare.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "He had a nightmare" as the answer because it is a common explanation for a child waking up screaming.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

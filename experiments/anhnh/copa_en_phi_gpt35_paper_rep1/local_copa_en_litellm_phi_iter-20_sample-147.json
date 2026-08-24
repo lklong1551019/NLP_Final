@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The couple left early for the show.\n### Choices: [choice]They anticipated traffic around the theatre.@ [choice]They got directions to the theatre.@'] || GT-A:They anticipated traffic around the theatre. || LLM-A:They anticipated traffic around the theatre.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "They anticipated traffic around the theatre" because it is a common reason for leaving early for an event.'}

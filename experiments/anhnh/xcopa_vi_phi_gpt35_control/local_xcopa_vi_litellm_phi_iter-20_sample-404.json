@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi ngủ quên.\n### Lựa chọn: [choice]Tôi làm bữa sáng.@ [choice]Tôi đã bỏ bữa sáng.@'] || GT-A:Tôi đã bỏ bữa sáng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đã chọn câu trả lời "Tôi làm bữa sáng" vì nó dựa vào tiền đề "Tôi ngủ quên", và việc làm bữa sáng là một hành động tiếp theo thường xuyên xảy ra sau khi ngủ quên.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

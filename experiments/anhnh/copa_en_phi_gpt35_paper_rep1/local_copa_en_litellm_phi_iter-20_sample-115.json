@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman struggled to walk.\n### Choices: [choice]She wore high heels.@ [choice]She took off her shoes.@'] || GT-A:She wore high heels. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "She wore high heels" because it associates struggling to walk with wearing high heels as a common scenario in which walking can be difficult for some people.'}

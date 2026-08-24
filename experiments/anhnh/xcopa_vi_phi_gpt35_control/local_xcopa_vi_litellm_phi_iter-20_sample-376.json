@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi đỗ xe ở lối đi.\n### Lựa chọn: [choice]Nhà để xe đã mở.@ [choice]Nhà xe đã đầy.@'] || GT-A:Nhà xe đã đầy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn lựa "Nhà để xe đã mở" là nguyên nhân của Tiền đề vì nó tạo điều kiện cho việc đỗ xe ở lối đi.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

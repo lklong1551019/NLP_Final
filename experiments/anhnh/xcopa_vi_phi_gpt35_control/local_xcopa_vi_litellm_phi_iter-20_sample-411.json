@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi khuấy đường vào trà nóng.\n### Lựa chọn: [choice]Trà nóng.@ [choice]Đường tan.@'] || GT-A:Đường tan. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dự đoán rằng kết quả của Tiền đề là Đường tan vì khi khuấy đường vào trà nóng, đường sẽ tan vào trong trà nóng.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

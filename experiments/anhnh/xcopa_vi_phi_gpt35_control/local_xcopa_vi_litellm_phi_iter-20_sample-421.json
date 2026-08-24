@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi hít bụi trong căn gác.\n### Lựa chọn: [choice]Tôi nấc cụt.@ [choice]Tôi hắt xì.@'] || GT-A:Tôi hắt xì. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" vì nó đề cập đến việc hít bụi, tương tự như tiền đề đã đưa ra về việc hít bụi trong căn gác.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

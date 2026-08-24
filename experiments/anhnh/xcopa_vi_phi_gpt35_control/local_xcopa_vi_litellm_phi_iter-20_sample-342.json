@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cô gái bắt gặp anh trai đang đọc nhật ký của mình.\n### Lựa chọn: [choice]Cô bắt đầu giấu cuốn nhật ký.@ [choice]Cô ấy có một cuốn nhật ký mới.@'] || GT-A:Cô bắt đầu giấu cuốn nhật ký. || LLM-A:Điều dụng.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Điều dụng" vì không có đủ thông tin trong tiền đề để xác định chính xác kết quả.', 'ControlScore': 1.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

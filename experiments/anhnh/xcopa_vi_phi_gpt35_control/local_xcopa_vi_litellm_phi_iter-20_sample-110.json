@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nhỡ cuộc gọi của bạn gái tôi.\n### Lựa chọn: [choice]Tôi gọi lại cho cô ấy.@ [choice]Tôi gặp cô ấy đi ăn tối.@'] || GT-A:Tôi gọi lại cho cô ấy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dựa vào tiền đề "Tôi nhỡ cuộc gọi của bạn gái tôi" để đưa ra câu trả lời.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

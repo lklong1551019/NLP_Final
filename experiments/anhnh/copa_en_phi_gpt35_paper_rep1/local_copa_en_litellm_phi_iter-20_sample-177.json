@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The wind blew through the open window.\n### Choices: [choice]The doorbell rang.@ [choice]The curtains shuddered.@'] || GT-A:The curtains shuddered. || LLM-A:The curtains shuddered.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "The curtains shuddered" because it is an event that can plausibly happen as a result of the wind blowing through an open window, showing understanding of cause and effect relationships.'}

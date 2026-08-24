@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The group left the museum.\n### Choices: [choice]They took pictures of the exhibits.@ [choice]They viewed all the exhibits.@'] || GT-A:They viewed all the exhibits. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected choice A because it involves an action related to being in a museum, which is mentioned in the premise.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I felt comfortable.\n### Choices: [choice]I kneeled down on the ground.@ [choice]I wrapped myself in a blanket.@'] || GT-A:I wrapped myself in a blanket. || LLM-A:I wrapped myself in a blanket.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I wrapped myself in a blanket" as the answer because it associates feeling comfortable with being wrapped in a blanket for warmth or coziness.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

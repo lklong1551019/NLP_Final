@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The artist created new work.\n### Choices: [choice]She critiqued her previous work.@ [choice]She felt a stroke of inspiration.@'] || GT-A:She felt a stroke of inspiration. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it mentions critiquing previous work, which could be seen as a plausible cause for the artist creating new work.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cả gia đình mất hết đồ đạc.\n### Lựa chọn: [choice]Họ đã bán căn nhà.@ [choice]Ngôi nhà của họ bốc cháy.@'] || GT-A:Ngôi nhà của họ bốc cháy. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "X" dựa trên tiền đề rằng cả gia đình mất hết đồ đạc mà không cần biết nguyên nhân cụ thể là do bán căn nhà hay ngôi nhà bốc cháy.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

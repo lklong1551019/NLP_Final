@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The phone rang.\n### Choices: [choice]The man hung up the phone.@ [choice]The man picked up the phone.@'] || GT-A:The man picked up the phone. || LLM-A:The man picked up the phone.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The man picked up the phone" because it associates the ringing of a phone with someone picking it up rather than hanging up.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

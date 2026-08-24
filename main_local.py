@@ -13,6 +13,7 @@ from transformers.trainer_utils import PREFIX_CHECKPOINT_DIR
 from model.predictor import load_model, generate_api_predictor_output, diff_task_score_ecqa, diff_task_score_trivaqa
 from model.predictor import generate_predictor_output_ecqa, generate_predictor_output_trivaqa
 from model.predictor import contains_answer
+from model.predictor import CONTROL as PRED_CONTROL
 from model import llm_api
 from model.explainer import reponse_xai_model, generate_counterfact_prompt, generate_local_xai_prompt, generate_exp_prompt
 
@@ -467,7 +468,12 @@ if __name__ == "__main__":
 
                 # Save explanation
                 save_explanation = xai_list[-1]
-                xai_prompts_write.append({"Score": diff_score, "XAI prompt": save_explanation})
+                record = {"Score": diff_score, "XAI prompt": save_explanation}
+                if PRED_CONTROL.get("last"):
+                    # Irrelevant-hint baseline for this same instance.
+                    record["ControlScore"] = PRED_CONTROL["last"]["diff_random"]
+                    record["ControlHint"] = PRED_CONTROL["last"]["hint"]
+                xai_prompts_write.append(record)
                 print(f"=== Score: {diff_score} || Explanation: {save_explanation}")
 
                 if iter%5 == 0 and sum(scores_list) != 0:

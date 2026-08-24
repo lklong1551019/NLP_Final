@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The ballerina tore a ligament.\n### Choices: [choice]She pointed her toes.@ [choice]She twisted her ankle.@'] || GT-A:She twisted her ankle. || LLM-A:She twisted her ankle.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She twisted her ankle" because it is a plausible cause of tearing a ligament, even though it might not be the most accurate answer in this context.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

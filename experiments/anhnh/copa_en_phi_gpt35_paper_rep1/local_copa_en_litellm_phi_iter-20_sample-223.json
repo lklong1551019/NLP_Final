@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I ducked.\n### Choices: [choice]The fireworks launched up in the air.@ [choice]The frisbee soared towards my head.@'] || GT-A:The frisbee soared towards my head. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice "The frisbee soared towards my head" because it associates the action of "ducked" with an object flying towards the head, which could indicate a potential cause for the action.'}

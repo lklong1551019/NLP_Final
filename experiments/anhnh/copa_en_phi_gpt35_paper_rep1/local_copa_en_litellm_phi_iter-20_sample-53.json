@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The boy was in a mischievous mood.\n### Choices: [choice]He decided to play a card game with his sister.@ [choice]He decided to play a practical joke on his sister.@'] || GT-A:He decided to play a practical joke on his sister. || LLM-A:He decided to play a practical joke on his sister.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He decided to play a practical joke on his sister" because mischievous behavior often involves pranks or practical jokes.'}

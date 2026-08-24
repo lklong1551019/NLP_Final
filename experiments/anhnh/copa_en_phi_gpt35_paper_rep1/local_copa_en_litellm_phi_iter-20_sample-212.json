@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man got plastic surgery.\n### Choices: [choice]He aged.@ [choice]He looked younger.@'] || GT-A:He looked younger. || LLM-A:He looked younger.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "He looked younger" as the answer because getting plastic surgery is commonly associated with making a person appear younger rather than older.'}

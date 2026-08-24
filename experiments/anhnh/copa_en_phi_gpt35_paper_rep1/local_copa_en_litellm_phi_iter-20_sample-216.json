@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The child burped.\n### Choices: [choice]He took a swig of soda.@ [choice]He opened the soda can.@'] || GT-A:He took a swig of soda. || LLM-A:He took a swig of soda.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "He took a swig of soda" as the answer because it associates burping with drinking soda, leading to a causal link between the two events.'}

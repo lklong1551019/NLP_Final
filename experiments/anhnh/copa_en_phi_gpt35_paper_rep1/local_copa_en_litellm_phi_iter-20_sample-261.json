@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man sprayed himself with cologne.\n### Choices: [choice]He wanted to impress his date.@ [choice]He put gel in his hair.@'] || GT-A:He wanted to impress his date. || LLM-A:He wanted to impress his date.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He wanted to impress his date" as the answer because spraying cologne is often associated with wanting to smell good and make a good impression on someone.'}

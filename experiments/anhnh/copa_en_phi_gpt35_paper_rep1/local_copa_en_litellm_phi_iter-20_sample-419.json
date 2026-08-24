@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I tossed a coin into the fountain of water.\n### Choices: [choice]The coin sunk to the bottom.@ [choice]The coin broke in half.@'] || GT-A:The coin sunk to the bottom. || LLM-A:The coin sunk to the bottom.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The coin sunk to the bottom" as the answer because tossing a coin into water typically results in it sinking due to the density of the coin being higher than that of water.'}

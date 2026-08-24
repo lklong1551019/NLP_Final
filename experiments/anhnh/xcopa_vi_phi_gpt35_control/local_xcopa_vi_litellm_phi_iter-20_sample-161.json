@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi gặp một người bạn cũ.\n### Lựa chọn: [choice]Tôi tiết lộ một bí mật cho anh ta.@ [choice]Tôi ôm anh.@'] || GT-A:Tôi ôm anh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời "X" có thể do mô hình đánh giá rằng không có thông tin nào cho biết kết quả của Tiền đề từ việc gặp một người bạn cũ và lựa chọn giữa việc tiết lộ bí mật hoặc ôm người đó.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

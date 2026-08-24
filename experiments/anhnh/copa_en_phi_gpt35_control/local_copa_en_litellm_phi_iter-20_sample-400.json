@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The woman set an ambitious goal.\n### Choices: [choice]She slacked off.@ [choice]She worked hard.@'] || GT-A:She worked hard. || LLM-A:She worked hard.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She worked hard" as the answer because setting an ambitious goal is usually associated with working hard to achieve it.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

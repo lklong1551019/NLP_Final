@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông ăn kem dưới ánh mặt trời.\n### Lựa chọn: [choice]Kem mất hương vị của nó.@ [choice]Kem chảy ra từ que.@'] || GT-A:Kem chảy ra từ que. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì nó liên quan đến việc kem bị ảnh hưởng dưới ánh nắng mặt trời, trong khi lựa chọn khác không có sự kết nối rõ ràng với tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The vacationers took a ferry to the resort.\n### Choices: [choice]The resort was booked.@ [choice]The resort was on an island.@'] || GT-A:The resort was on an island. || LLM-A:The resort was booked.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The resort was booked" because it mentions a reason for the vacationers taking a ferry to the resort, implying a direct cause-and-effect relationship.'}

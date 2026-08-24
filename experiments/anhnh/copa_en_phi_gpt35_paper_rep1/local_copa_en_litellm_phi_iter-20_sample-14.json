@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The sailor was quarantined.\n### Choices: [choice]He was exposed to the disease.@ [choice]He recovered from the disease.@'] || GT-A:He was exposed to the disease. || LLM-A:He was exposed to the disease.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He was exposed to the disease." as the answer because being exposed to a disease is a common reason for being quarantined.'}

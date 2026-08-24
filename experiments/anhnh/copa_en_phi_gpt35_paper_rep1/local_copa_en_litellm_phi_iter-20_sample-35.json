@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I lost my patience.\n### Choices: [choice]My friend kept me waiting.@ [choice]My friend arrived on time.@'] || GT-A:My friend kept me waiting. || LLM-A:My friend kept me waiting.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "My friend kept me waiting" as the answer because it directly addresses the cause of losing patience mentioned in the premise.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The text "My friend kept me waiting" could be chosen as the answer due to its direct correlation with the premise of losing patience, as it presents a clear cause and effect relationship.\nScore:\n0.0'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "My friend kept me waiting" as the answer because it directly addresses the impatience caused by waiting, aligning well with the premise provided.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model seems to favor answers that directly address the specific scenario presented in the premise, such as the impatience caused by waiting.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model appears to prioritize answers that offer a direct explanation for the impatience experienced in the given scenario.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have chosen "My friend kept me waiting" because it directly addresses the scenario presented in the premise, where patience was lost due to waiting.'}

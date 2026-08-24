@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I hung the wet linen on the outdoor clothesline.\n### Choices: [choice]The linen dried.@ [choice]The linen stained.@'] || GT-A:The linen dried. || LLM-A:The linen dried.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The linen dried." as the answer because hanging wet linen on an outdoor clothesline is commonly known to result in the linen drying.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

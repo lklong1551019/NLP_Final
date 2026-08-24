@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ nắm chặt cổ họng.\n### Lựa chọn: [choice]Cô nuốt thức ăn.@ [choice]Cô nghẹn thức ăn.@'] || GT-A:Cô nghẹn thức ăn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng nguyên nhân của tiền đề là cô nghẹn thức ăn vì hành động nắm chặt cổ họng thường được kích thích khi cảm thấy nghẹn.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

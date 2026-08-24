@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đưa tay lên ngực.\n### Lựa chọn: [choice]Tôi cảm nhận nhịp tim của tôi.@ [choice]Nhịp tim của tôi tăng tốc.@'] || GT-A:Tôi cảm nhận nhịp tim của tôi. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Tôi cảm nhận nhịp tim của tôi" vì hành động "Tôi đưa tay lên ngực" thường gắn liền với việc cảm nhận nhịp tim.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

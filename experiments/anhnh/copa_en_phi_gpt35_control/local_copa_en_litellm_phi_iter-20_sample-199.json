@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I exited my bedroom through the window.\n### Choices: [choice]The house was on fire.@ [choice]The house was empty.@'] || GT-A:The house was on fire. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have chosen the answer "The house was on fire" because it associates exiting through a window with escaping during a fire emergency.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

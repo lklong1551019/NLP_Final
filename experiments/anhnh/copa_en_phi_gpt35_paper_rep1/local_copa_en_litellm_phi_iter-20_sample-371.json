@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman felt nostalgic.\n### Choices: [choice]She ran into a childhood friend.@ [choice]She yelled at her children.@'] || GT-A:She ran into a childhood friend. || LLM-A:She ran into a childhood friend.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "She ran into a childhood friend" because the premise mentions the woman feeling nostalgic, which is a common emotion triggered by meeting someone from one\'s past.'}

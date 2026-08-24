@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the effect of the Premise?\n### Premise: The pilot's radar detected a storm.\n### Choices: [choice]The pilot navigated away from the storm.@ [choice]The pilot flew through the storm.@"] || GT-A:The pilot navigated away from the storm. || LLM-A:The pilot navigated away from the storm.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The pilot navigated away from the storm" because it is a logical response to the premise that the pilot\'s radar detected a storm.'}

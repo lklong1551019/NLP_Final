@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the cause of the Premise?\n### Premise: I nodded my head at my friend's statement.\n### Choices: [choice]I was confused.@ [choice]I agreed with him.@"] || GT-A:I agreed with him. || LLM-A:I was confused.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "I was confused" because nodding one\'s head can sometimes be interpreted as a sign of confusion rather than agreement.'}

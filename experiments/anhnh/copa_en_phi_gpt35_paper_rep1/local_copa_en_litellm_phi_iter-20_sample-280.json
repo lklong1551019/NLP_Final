@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: My mood improved.\n### Choices: [choice]I listened to music.@ [choice]I did the dishes.@'] || GT-A:I listened to music. || LLM-A:I listened to music.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "I listened to music" as the answer because it associates listening to music with improving one\'s mood.'}

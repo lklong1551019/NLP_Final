@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman sat outside on the porch.\n### Choices: [choice]She wanted to watch the sunset.@ [choice]She thought she saw lightning.@'] || GT-A:She wanted to watch the sunset. || LLM-A:She wanted to watch the sunset.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "She wanted to watch the sunset" because sitting outside on the porch is commonly associated with watching the sunset for leisure or enjoyment.'}

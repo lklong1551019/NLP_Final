@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I lost my patience.\n### Choices: [choice]My friend kept me waiting.@ [choice]My friend arrived on time.@'] || GT-A:My friend kept me waiting. || LLM-A:My friend kept me waiting.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "My friend kept me waiting" as the answer because it directly addresses the issue of losing patience mentioned in the premise.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I looked into the sun.\n### Choices: [choice]The sun blinded me.@ [choice]The sun tanned my skin.@'] || GT-A:The sun blinded me. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected choice A because it directly connects the action of looking into the sun with being blinded, which is a common consequence of looking at the sun.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

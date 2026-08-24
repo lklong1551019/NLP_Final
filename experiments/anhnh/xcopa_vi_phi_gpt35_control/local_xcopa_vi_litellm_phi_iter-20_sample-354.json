@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Chiếc xe dần dần dừng lại.\n### Lựa chọn: [choice]Nó hết xăng.@ [choice]Người lái xe ngủ thiếp đi.@'] || GT-A:Nó hết xăng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Nó hết xăng" vì đó là một nguyên nhân phổ biến dẫn đến việc xe dừng lại.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

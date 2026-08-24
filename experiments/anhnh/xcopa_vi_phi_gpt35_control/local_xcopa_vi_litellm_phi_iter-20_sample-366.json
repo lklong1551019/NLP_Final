@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi cảm thấy buồn chán.\n### Lựa chọn: [choice]Tôi khịt mũi.@ [choice]Tôi ngáp.@'] || GT-A:Tôi ngáp. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" vì trong tiền đề, ngữ cảnh chỉ đề cập đến cảm xúc buồn chán, không liên quan đến việc khịt mũi hoặc ngáp.', 'ControlScore': 1.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

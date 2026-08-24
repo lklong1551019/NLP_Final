@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: The businessman's credit card got declined.\n### Choices: [choice]He wrote an IOU.@ [choice]He paid with cash.@"] || GT-A:He paid with cash. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP> The model may have chosen answer choice X because it does not directly address the effect of the premise, which is the businessman's credit card getting declined."}

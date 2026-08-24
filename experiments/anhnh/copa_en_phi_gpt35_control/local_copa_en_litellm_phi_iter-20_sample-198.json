@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man went to the doctor.\n### Choices: [choice]The doctor was on leave.@ [choice]The man felt ill.@'] || GT-A:The man felt ill. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected choice A because it suggests a possible reason for the man going to the doctor, which aligns with the premise provided.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

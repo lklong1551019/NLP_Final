@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The boy flinched.\n### Choices: [choice]The girl ignored him.@ [choice]The girl poked him.@'] || GT-A:The girl poked him. || LLM-A:The girl ignored him.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have selected "The girl ignored him" because it is a common reaction to someone flinching, showing a lack of attention or concern.'}

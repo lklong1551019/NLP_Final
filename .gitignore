@@ -7,3 +7,7 @@ test_deepseek.py
 
 .venv/
 .env.bak
+
+# Experiment outputs under experiments/ are published on purpose; the blanket
+# *.json rule above would otherwise swallow them.
+!experiments/**/*.json

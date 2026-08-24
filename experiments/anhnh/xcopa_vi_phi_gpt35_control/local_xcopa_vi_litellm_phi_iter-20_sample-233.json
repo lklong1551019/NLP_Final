@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Một cơn lốc xoáy đi qua thị trấn.\n### Lựa chọn: [choice]Mái của tòa án bị thổi bay.@ [choice]Đường cao tốc trở nên băng giá.@'] || GT-A:Mái của tòa án bị thổi bay. || LLM-A:Máy chọn lốc xoáy trong nghị.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Mái của tòa án bị thổi bay" vì nó liên quan đến hậu quả phổ biến của một cơn lốc xoáy.', 'ControlScore': 1.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

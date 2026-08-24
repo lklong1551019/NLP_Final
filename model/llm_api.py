@@ -24,7 +24,16 @@ DEFAULT_XAI_MODEL = "deepseek/deepseek-v4-pro"
 # Call-level bookkeeping. An empty completion (provider-side content filtering)
 # would otherwise be scored as a wrong answer and silently bias the results, so
 # we count these and report them alongside the scores.
-STATS = {"calls": 0, "empty": 0, "errors": 0}
+STATS = {"calls": 0, "empty": 0, "errors": 0, "context_overflow": 0}
+
+# Errors that will never succeed on retry: the request itself is invalid, so
+# sleeping and sending it again only wastes wall-clock.
+_NON_RETRYABLE = ("maximum context length", "context_length_exceeded",
+                  "string too long", "invalid_request_error")
+
+
+def _is_non_retryable(exc):
+    return any(m in str(exc).lower() for m in _NON_RETRYABLE)
 
 
 def stats_summary():
@@ -32,6 +41,7 @@ def stats_summary():
         f"LLM calls: {STATS['calls']} | "
         f"empty completions: {STATS['empty']} | "
         f"failed calls: {STATS['errors']} | "
+        f"context overflow: {STATS['context_overflow']} | "
         f"fallback used: {STATS.get('fallback_used', 0)}"
     )
 
@@ -116,6 +126,12 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
             return content
         except Exception as exc:  # noqa: BLE001 - retried and re-raised below
             last_error = exc
+            if _is_non_retryable(exc):
+                # e.g. the trajectory prompt outgrew the model's context window.
+                # Retrying is pointless; go straight to the fallback below.
+                if "context" in str(exc).lower():
+                    STATS["context_overflow"] += 1
+                break
             if attempt < retries - 1:
                 time.sleep(2 ** attempt)
 

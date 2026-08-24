@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I turned the page on the calendar.\n### Choices: [choice]I marked an appointment on the calendar.@ [choice]It was the beginning of a new month.@'] || GT-A:It was the beginning of a new month. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have chosen the answer because it contains a plausible explanation related to turning the page on the calendar.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The family moved into a bigger house.\n### Choices: [choice]The son graduated from high school.@ [choice]The mother gave birth to twins.@'] || GT-A:The mother gave birth to twins. || LLM-A:The mother gave birth to twins.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "The mother gave birth to twins" because it associates the concept of moving into a bigger house with a significant life event like the birth of twins, indicating a change in family circumstances.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi cúi xuống.\n### Lựa chọn: [choice]Pháo hoa được phóng lên không trung.@ [choice]Chiếc dĩa nhựa bay vút lên đầu tôi.@'] || GT-A:Chiếc dĩa nhựa bay vút lên đầu tôi. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Pháo hoa được phóng lên không trung" vì trong ngữ cảnh câu hỏi, việc cúi xuống có thể gây ra tiếng nổ giống như pháo hoa.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

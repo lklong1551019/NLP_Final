@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The runner sensed his competitor gaining on him.\n### Choices: [choice]He dropped out of the race.@ [choice]He sped up his pace.@'] || GT-A:He sped up his pace. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "He dropped out of the race." because it associates the competitor gaining on the runner with a negative outcome, leading to the runner giving up.', 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: We rode the roller coaster.\n### Choices: [choice]It looked scary.@ [choice]It looked fun.@'] || GT-A:It looked fun. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer X because it did not find a suitable connection between the premise "We rode the roller coaster" and the provided choices.'}

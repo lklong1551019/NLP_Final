@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the effect of the Premise?\n### Premise: The man's email inbox was full of spam.\n### Choices: [choice]He deleted the spam.@ [choice]He sent out a mass email.@"] || GT-A:He deleted the spam. || LLM-A:He deleted the spam.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He deleted the spam" because it is a logical response to the premise of the man\'s email inbox being full of spam.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The man signed the activists' petition.\n### Choices: [choice]He supported their cause.@ [choice]He denounced them as crazy.@"] || GT-A:He supported their cause. || LLM-A:He supported their cause.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He supported their cause" as the answer because it is a common and reasonable response to someone signing a petition.'}

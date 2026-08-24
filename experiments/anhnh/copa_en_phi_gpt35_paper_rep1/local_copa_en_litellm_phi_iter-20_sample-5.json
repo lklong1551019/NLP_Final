@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl ran out of energy.\n### Choices: [choice]She played checkers.@ [choice]She jumped rope.@'] || GT-A:She jumped rope. || LLM-A:She played checkers.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "She played checkers" because it associates playing checkers with mental activity that could potentially drain one\'s energy.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man took sleeping medication.\n### Choices: [choice]He became drowsy.@ [choice]He ran a fever.@'] || GT-A:He became drowsy. || LLM-A:He became drowsy.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He became drowsy" as the answer because it is a logical consequence of taking sleeping medication, which is a common side effect.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

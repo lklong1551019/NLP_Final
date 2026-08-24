@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: The factory owner refused to raise employees' wages.\n### Choices: [choice]The owner appointed a new manager.@ [choice]The employees went on strike.@"] || GT-A:The employees went on strike. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "The employees went on strike." because it relates to the scenario of employees being dissatisfied with their wages and taking action.'}

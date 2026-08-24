@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The building was evacuated.\n### Choices: [choice]The elevator stopped functioning.@ [choice]The fire alarm went off.@'] || GT-A:The fire alarm went off. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer choice "The fire alarm went off" because it associates evacuations with fire alarms going off as a common safety protocol.'}

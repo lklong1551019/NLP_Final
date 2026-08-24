@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông nhướng mày.\n### Lựa chọn: [choice]Anh ấy ngạc nhiên.@ [choice]Anh cảm thấy nản lòng.@'] || GT-A:Anh ấy ngạc nhiên. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Anh ấy ngạc nhiên" vì nhướng mày thường là biểu hiện của sự ngạc nhiên hoặc không hiểu chuyện gì đang diễn ra.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

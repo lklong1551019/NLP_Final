@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The passengers got off the train.\n### Choices: [choice]The train arrived at the station.@ [choice]The train blared its whistle.@'] || GT-A:The train arrived at the station. || LLM-A:The train arrived at the station.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "The train arrived at the station" because it directly relates to the passengers getting off the train, indicating a common sequence of events.'}

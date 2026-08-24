@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl memorized the code.\n### Choices: [choice]She recited it to herself.@ [choice]She forgot to write it down.@'] || GT-A:She recited it to herself. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen option A because it involves the girl doing something actively with the code, which aligns with the premise of the girl memorizing it.'}

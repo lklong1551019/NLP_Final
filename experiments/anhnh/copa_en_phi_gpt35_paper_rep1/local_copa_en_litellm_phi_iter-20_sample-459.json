@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The car got dented.\n### Choices: [choice]The driver hit a telephone pole.@ [choice]The driver ran a red light.@'] || GT-A:The driver hit a telephone pole. || LLM-A:The driver hit a telephone pole.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "The driver hit a telephone pole" as the answer because it directly explains the cause of the car getting dented.'}

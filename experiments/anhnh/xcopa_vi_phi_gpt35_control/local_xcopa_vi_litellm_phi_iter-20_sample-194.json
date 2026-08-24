@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Dung nham chảy từ núi lửa.\n### Lựa chọn: [choice]Núi lửa phun trào.@ [choice]Núi lửa không hoạt động.@'] || GT-A:Núi lửa phun trào. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Núi lửa phun trào" vì nó liên quan đến việc dung nham chảy từ núi lửa, và phun trào là một nguyên nhân phổ biến gây ra hiện tượng này.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

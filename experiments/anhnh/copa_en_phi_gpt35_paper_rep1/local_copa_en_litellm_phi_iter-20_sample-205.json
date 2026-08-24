@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The soda bottle hissed.\n### Choices: [choice]I turned over the bottle.@ [choice]I twisted off the cap.@'] || GT-A:I twisted off the cap. || LLM-A:I turned over the bottle.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "I turned over the bottle" because the action of turning over the bottle is associated with the sound of hissing in some contexts.'}

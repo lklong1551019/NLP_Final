@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông mất khả năng nói.\n### Lựa chọn: [choice]Ông bị đột quỵ.@ [choice]Ông hít một hơi thật sâu.@'] || GT-A:Ông bị đột quỵ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng nguyên nhân của Tiền đề là do ông bị đột quỵ vì nó là một trong những lựa chọn được cung cấp.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

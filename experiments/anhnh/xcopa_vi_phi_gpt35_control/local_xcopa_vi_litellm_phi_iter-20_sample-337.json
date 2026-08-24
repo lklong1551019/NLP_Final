@@ -1,0 +1,3 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông bỏ thuốc lá.\n### Lựa chọn: [choice]Anh bắt đầu tập thể dục nhiều hơn.@ [choice]Anh bắt đầu thức dậy sớm hơn.@'] || GT-A:Anh bắt đầu tập thể dục nhiều hơn. || LLM-A:Anh bắt đầu tập thể dục nhiều hơn.
+### Đầu vào: [choice]Anh bắt đầu thức dậy sớm hơn.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Anh bắt đầu tập thể dục nhiều hơn" vì nó liên quan đến việc bỏ thuốc lá, một biểu hiện của việc cải thiện sức khỏe và chăm sóc bản thân hơn.', 'ControlScore': 1.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cô gái chọc quê cậu bé.\n### Lựa chọn: [choice]Cô sống kế nhà cậu.@ [choice]Cô đã phải lòng cậu.@'] || GT-A:Cô đã phải lòng cậu. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chủ động "Cô sống kế nhà cậu" vì thông tin này dễ dàng kết nối với việc cô gái chọc quê cậu bé, tạo ra một mối liên kết hợp lý.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

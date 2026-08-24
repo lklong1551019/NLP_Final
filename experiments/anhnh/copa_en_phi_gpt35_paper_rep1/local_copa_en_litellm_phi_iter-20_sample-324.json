@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The gambler was confident.\n### Choices: [choice]He bet all of his money.@ [choice]He went home broke.@'] || GT-A:He bet all of his money. || LLM-A:He bet all of his money.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "He bet all of his money" because it associates confidence with taking risks, such as betting all of one\'s money.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông đập đầu.\n### Lựa chọn: [choice]Anh lạc trong suy nghĩ.@ [choice]Anh ấy bị chấn động.@'] || GT-A:Anh ấy bị chấn động. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Anh lạc trong suy nghĩ" vì nó liên kết việc đập đầu với việc mất khả năng tập trung hoặc suy nghĩ đúng cách.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

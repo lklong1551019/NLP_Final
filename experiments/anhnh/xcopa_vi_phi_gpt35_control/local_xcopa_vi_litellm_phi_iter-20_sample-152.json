@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Những quả chín đung đưa dưới nắng.\n### Lựa chọn: [choice]Nó đã bị ăn.@ [choice]Nó co rúm lại.@'] || GT-A:Nó co rúm lại. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đã kết luận rằng kết quả của Tiền đề là X dựa trên việc quả chín đung đưa dưới nắng có thể đã bị ăn hoặc co rúm lại.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I exercised.\n### Choices: [choice]I felt energetic.@ [choice]I was scared.@'] || GT-A:I felt energetic. || LLM-A:I felt energetic.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I felt energetic" because exercising commonly leads to feeling energetic as a result of endorphins and increased blood flow.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

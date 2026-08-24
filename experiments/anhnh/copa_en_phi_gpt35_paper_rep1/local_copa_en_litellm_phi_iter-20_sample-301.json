@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The student graduated from the university.\n### Choices: [choice]He looked for a job.@ [choice]He took up a hobby.@'] || GT-A:He looked for a job. || LLM-A:He looked for a job.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He looked for a job" as the answer because graduating from university often leads to individuals seeking employment opportunities. The concept of finding a job is closely associated with completing education.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Gỗ tách làm đôi.\n### Lựa chọn: [choice]Tôi xếp gỗ trong lò sưởi.@ [choice]Tôi vung rìu xuống gỗ.@'] || GT-A:Tôi vung rìu xuống gỗ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời X vì nó phát hiện rằng hành động "Gỗ tách làm đôi" có thể được gây ra bởi việc vung rìu xuống gỗ, mà không cần xếp gỗ trong lò sưởi.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

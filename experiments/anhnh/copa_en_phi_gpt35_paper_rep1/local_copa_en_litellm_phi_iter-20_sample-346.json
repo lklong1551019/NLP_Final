@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The wood floor became scratched.\n### Choices: [choice]The boy threw the cushions off the couch.@ [choice]The boy dragged a chair across the floor.@'] || GT-A:The boy dragged a chair across the floor. || LLM-A:The boy dragged a chair across the floor.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The boy dragged a chair across the floor" because it involves an action that could potentially scratch a wood floor, aligning with the premise provided.'}

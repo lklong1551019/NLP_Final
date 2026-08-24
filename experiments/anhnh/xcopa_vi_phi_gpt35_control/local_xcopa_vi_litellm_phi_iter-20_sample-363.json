@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Những người nhập cư bị bắt gặp cư trú bất hợp pháp trong nước.\n### Lựa chọn: [choice]Họ tìm được việc làm.@ [choice]Họ đã bị trục xuất.@'] || GT-A:Họ đã bị trục xuất. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dự đoán rằng họ đã bị trục xuất vì hành vi cư trú bất hợp pháp trong nước có thể dẫn đến hậu quả này.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

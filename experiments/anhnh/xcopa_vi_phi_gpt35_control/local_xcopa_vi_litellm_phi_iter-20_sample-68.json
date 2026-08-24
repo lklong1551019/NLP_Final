@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người phụ nữ mắc lỗi đánh máy trong trình xử lý văn bản.\n### Lựa chọn: [choice]Cô xóa tài liệu.@ [choice]Cô nhấn phím xóa lùi.@'] || GT-A:Cô nhấn phím xóa lùi. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dựa vào tiền đề rằng người phụ nữ mắc lỗi đánh máy trong trình xử lý văn bản, và chọn câu trả lời là "X" dựa trên thông tin có sẵn.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

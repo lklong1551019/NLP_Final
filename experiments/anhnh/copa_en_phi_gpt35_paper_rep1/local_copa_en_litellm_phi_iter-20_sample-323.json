@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I deposited the letter in the mailbox.\n### Choices: [choice]The post office delivered the letter.@ [choice]The post office expedited the letter.@'] || GT-A:The post office delivered the letter. || LLM-A:.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The post office delivered the letter" because it is a common and logical consequence of depositing a letter in a mailbox.'}

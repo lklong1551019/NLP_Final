@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The family searched the neighborhood.\n### Choices: [choice]Their dog ran away from home.@ [choice]Expensive jewelry was missing from their home.@'] || GT-A:Their dog ran away from home. || LLM-A:Their dog ran away from home.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "Their dog ran away from home" as the answer because it is a plausible cause for a family searching the neighborhood.'}

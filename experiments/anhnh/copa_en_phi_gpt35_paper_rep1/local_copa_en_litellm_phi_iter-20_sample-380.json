@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The document printed out illegibly.\n### Choices: [choice]The printer was low on ink.@ [choice]The print was out of paper.@'] || GT-A:The printer was low on ink. || LLM-A:The printer was low on ink.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "The printer was low on ink" because it suggests a common reason for documents printing illegibly.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "The printer was low on ink" as the answer because it is a plausible explanation for why the document printed out illegibly.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have associated the answer "The printer was low on ink" with the premise because low ink levels can often lead to illegible printing.\n<EXP> It is possible that the model connected the choice "The printer was low on ink" with the premise due to the common occurrence of print quality issues when the ink is running low.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have inferred that the document printed out illegibly due to the common issue of low ink levels causing printing problems.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "The printer was low on ink" because it is a commonly known issue that can result in illegible printing.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely favored "The printer was low on ink" because it is a well-known cause of illegible printing issues in documents.'}

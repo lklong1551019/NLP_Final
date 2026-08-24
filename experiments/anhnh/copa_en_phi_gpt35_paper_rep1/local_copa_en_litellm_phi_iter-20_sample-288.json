@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The student rushed to finish the book.\n### Choices: [choice]It was due to be returned to the library.@ [choice]He borrowed it from a friend.@'] || GT-A:It was due to be returned to the library. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "It was due to be returned to the library" because it relates to a common reason for rushing to finish a book, which is a deadline or obligation to return it.'}

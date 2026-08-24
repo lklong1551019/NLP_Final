@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man did a canon ball into the pool.\n### Choices: [choice]The lifeguard jumped in after him.@ [choice]The man soaked the lifeguard.@'] || GT-A:The man soaked the lifeguard. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it describes a plausible action that a lifeguard might take after someone does a canon ball into the pool.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

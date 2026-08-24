@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The boy failed his history exam.\n### Choices: [choice]He paid attention in class.@ [choice]He forgot to study.@'] || GT-A:He forgot to study. || LLM-A:He forgot to study.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "He forgot to study" as the answer because it directly addresses a common reason for failing an exam - lack of preparation or studying.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

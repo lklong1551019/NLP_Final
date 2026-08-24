@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Sách rơi ra khỏi tủ sách.\n### Lựa chọn: [choice]Các kệ sách phủ bụi.@ [choice]Một trận động đất làm rung chuyển tủ sách.@'] || GT-A:Một trận động đất làm rung chuyển tủ sách. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Một trận động đất làm rung chuyển tủ sách" là nguyên nhân của tiền đề dựa trên khả năng tủ sách bị rung chuyển và làm sách rơi ra.', 'ControlScore': 1.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

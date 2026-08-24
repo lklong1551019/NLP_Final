@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man ate the ice cream in the sun.\n### Choices: [choice]The ice cream lost its flavor.@ [choice]The ice cream dripped from the cone.@'] || GT-A:The ice cream dripped from the cone. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "The ice cream lost its flavor" because it is a common consequence of eating ice cream in the sun.'}

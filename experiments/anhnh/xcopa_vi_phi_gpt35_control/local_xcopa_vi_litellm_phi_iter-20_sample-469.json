@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi đổ nước đầy chai.\n### Lựa chọn: [choice]Tôi đã uống hết nước trong đó.@ [choice]Tôi giữ nó trong tủ lạnh.@'] || GT-A:Tôi đã uống hết nước trong đó. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dựa vào việc chai nước đã được đổ đầy để chọn lựa "Tôi đã uống hết nước trong đó" là nguyên nhân của tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

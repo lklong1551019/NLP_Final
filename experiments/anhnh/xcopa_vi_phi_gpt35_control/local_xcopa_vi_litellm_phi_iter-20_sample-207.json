@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Chuông cửa reo.\n### Lựa chọn: [choice]Vị khách gõ cửa.@ [choice]Người phụ nữ nhìn qua lỗ khóa ở cửa.@'] || GT-A:Người phụ nữ nhìn qua lỗ khóa ở cửa. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Vị khách gõ cửa" vì hành động này là hậu quả trực tiếp của việc chuông cửa reo, đây là một kịch bản phổ biến khi chuông cửa reo.', 'ControlScore': 1.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

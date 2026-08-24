@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I poured the water into the glass.\n### Choices: [choice]The water quenched my thirst.@ [choice]The glass became full.@'] || GT-A:The glass became full. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it involves the water having a specific effect, which could be seen as a logical outcome of pouring water into a glass.'}

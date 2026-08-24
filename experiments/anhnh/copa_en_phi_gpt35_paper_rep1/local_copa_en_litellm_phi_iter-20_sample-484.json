@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man lost his temper.\n### Choices: [choice]He turned off his computer.@ [choice]He threw a chair across the room.@'] || GT-A:He threw a chair across the room. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "He threw a chair across the room" because it associates losing temper with a physical action like throwing objects.'}

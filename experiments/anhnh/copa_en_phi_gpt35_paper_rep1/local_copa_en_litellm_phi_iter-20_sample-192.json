@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The girl stepped on the ice.\n### Choices: [choice]She slid.@ [choice]She shivered.@'] || GT-A:She slid. || LLM-A:She slid.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "She slid" because stepping on ice commonly results in slipping, which would be a natural consequence in this scenario.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The public figure got out of the limousine.\n### Choices: [choice]Cameras flashed in his direction.@ [choice]His family attended the press conference.@'] || GT-A:Cameras flashed in his direction. || LLM-A:The cameras flashed in his direction.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "Cameras flashed in his direction" because it directly relates to the action of a public figure getting out of a limousine, indicating a typical media response.'}

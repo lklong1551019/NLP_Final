@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đập cái đinh bằng búa.\n### Lựa chọn: [choice]Chiếc đinh chìm vào gỗ.@ [choice]Cái đinh trở nên rỉ sét.@'] || GT-A:Chiếc đinh chìm vào gỗ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dựa vào thông tin từ tiền đề là "Tôi đập cái đinh bằng búa" để suy luận và chọn câu trả lời phù hợp.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

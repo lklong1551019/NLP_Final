@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Civilian deaths from the war surged.\n### Choices: [choice]Pacifists staged a protest.@ [choice]Pacifists held a parade.@'] || GT-A:Pacifists staged a protest. || LLM-A:Pacifists staged a protest.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "Pacifists staged a protest" because it associates civilian deaths with pacifists taking action against the war, which aligns with the concept of activism and response to conflict.'}

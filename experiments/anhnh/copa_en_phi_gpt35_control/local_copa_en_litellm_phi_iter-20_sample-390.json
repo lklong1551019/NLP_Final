@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The boy stepped in mud.\n### Choices: [choice]The mud stuck to his shoes.@ [choice]The mud hit him in the face.@'] || GT-A:The mud stuck to his shoes. || LLM-A:The mud stuck to his shoes.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "The mud stuck to his shoes" because it is a reasonable and plausible effect that can happen when a person steps in mud.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}
