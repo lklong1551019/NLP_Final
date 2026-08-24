@@ -15,6 +15,7 @@ The experiment was run twice to compare the performance of different Explainer m
 | **Predictor (Scoring)** | `Qwen/Qwen3.5-4B` | 4-bit precision |
 | **Explainer (Run 1 - Pro)** | `deepseek-v4-pro` | - |
 | **Explainer (Run 2 - Flash)** | `deepseek-v4-flash` | - |
+| **Explainer (Run 3 - Reasoning Flow)** | `deepseek-v4-flash` | Predictor Reasoning Injection |
 
 ### Configuration Details
 - **Dataset:** `xcopa_vi` (XCOPA, Vietnamese split)
@@ -32,11 +33,13 @@ Below are the aggregated results comparing the two Explainer model variants:
 |---|---|---|---|---|
 | **DeepSeek-v4-Pro** | 200 | **87.5%** | **0.5041** | 1.0000 |
 | **DeepSeek-v4-Flash** | 200 | 85.0% | 0.4100 | 1.0000 |
+| **DeepSeek-v4-Flash (Reasoning Flow)** | 200 | 87.0% | 0.2183 | 1.0000 |
 
 ### Key Observations:
 1. **Model Capability Gap:** Using the heavier `deepseek-v4-pro` as the Explainer LLM yielded a significantly higher Average Faithfulness Score (0.5041) compared to `deepseek-v4-flash` (0.4100).
 2. **Correctness Improvement:** The Pro variant also helped improve the baseline correctness of the predictor model slightly (87.5% vs 85.0%), indicating that higher quality explanations correlate with better task performance.
 3. **Localization Success:** The Vietnamese prompts were highly successful. The models consistently adhered to the formatting without throwing the "API error" fallback that was previously caused by broken list formatting and English prompt collisions.
+4. **Reasoning Flow Impact:** Passing the Predictor's internal reasoning directly to the Explainer caused a sharp drop in the Faithfulness Score (down to 0.2183). This suggests that the Predictor's self-generated reasoning is often less faithful/coherent than the Explainer's post-hoc rationalization, or that the Explainer strictly penalized the Predictor's flawed logic.
 
 ---
 

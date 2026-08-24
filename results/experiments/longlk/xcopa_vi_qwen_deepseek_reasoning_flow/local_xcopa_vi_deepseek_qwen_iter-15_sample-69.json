@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cô gái khoe khoang với bạn bè.\n### Lựa chọn: [choice]Cô bị điểm kém.@ [choice]Cô đã thắng một cuộc thi.@'] || GT-A:Cô đã thắng một cuộc thi. || LLM-A:Cô đã thắng một cuộc thi.
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình đưa ra lựa chọn này vì nó liên kết hành vi "khoe khoang" với cảm xúc tự hào và thành tích tích cực, trong khi "bị điểm kém" thường gắn với trạng thái tiêu cực và không phải điều để khoe. Do đó, việc thắng cuộc thi được coi là nguyên nhân hợp lý hơn.@'}

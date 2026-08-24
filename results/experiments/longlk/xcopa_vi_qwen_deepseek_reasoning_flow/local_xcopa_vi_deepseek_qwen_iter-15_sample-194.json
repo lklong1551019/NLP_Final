@@ -1,0 +1,7 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Dung nham chảy từ núi lửa.\n### Lựa chọn: [choice]Núi lửa phun trào.@ [choice]Núi lửa không hoạt động.@'] || GT-A:Núi lửa phun trào. || LLM-A:Núi lửa phun trào.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình nhận diện mối quan hệ nhân quả giữa hiện tượng dung nham chảy và hoạt động phun trào của núi lửa.  \n<EXP> Lựa chọn còn lại mô tả trạng thái núi lửa không hoạt động, vốn không tạo ra dung nham chảy, nên bị mô hình loại bỏ.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã ưu tiên phương án mô tả hoạt động phun trào vì nó liên quan trực tiếp đến hiện tượng dung nham chảy, trong khi phương án còn lại mô tả trạng thái không tạo ra dung nham.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình ưu tiên phương án có mối quan hệ nhân quả trực tiếp với tiền đề, đồng thời loại bỏ phương án mô tả trạng thái không tạo ra hiện tượng được nêu.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án thể hiện nguyên nhân trực tiếp của hiện tượng được nêu trong tiền đề, đồng thời loại bỏ phương án mô tả trạng thái không thể tạo ra hiện tượng đó.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình lựa chọn phương án thể hiện nguyên nhân trực tiếp gây ra sự kiện trong tiền đề và loại bỏ phương án mô tả trạng thái không liên quan đến việc tạo ra hiện tượng đó.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình ưu tiên phương án có mối quan hệ nhân quả trực tiếp với hiện tượng dung nham chảy, đồng thời loại bỏ phương án mô tả trạng thái không tạo ra hiện tượng được nêu.'}

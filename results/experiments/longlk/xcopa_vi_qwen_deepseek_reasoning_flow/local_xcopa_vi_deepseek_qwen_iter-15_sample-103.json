@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Con cá nổi trên mặt bể.\n### Lựa chọn: [choice]Nó đói rồi.@ [choice]Nó đã chết.@'] || GT-A:Nó đã chết. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình lựa chọn câu trả lời dựa trên liên tưởng thực tế rằng cá khi chết thường nổi lên mặt nước, trong khi đói không phải là nguyên nhân trực tiếp khiến cá nổi trên mặt bể.</EXP>'}
