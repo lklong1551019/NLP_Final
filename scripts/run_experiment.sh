@@ -14,9 +14,10 @@ PYTHON="${PYTHON:-python}"
 START_IDX="${START_IDX:-0}"
 END_IDX="${END_IDX:-200}"
 XAI_ITER="${XAI_ITER:-15}"
+EXTRA_ARGS="${EXTRA_ARGS:-}"
 
 # Create a unique output folder for this team member's experiment variant
-TEAM_RESULTS_DIR="./results/experiments/${DATASET}_${PRED_MODEL}_${XAI_MODEL}"
+TEAM_RESULTS_DIR="${TEAM_RESULTS_DIR:-./results/experiments/${DATASET}_${PRED_MODEL}_${XAI_MODEL}}"
 mkdir -p "$TEAM_RESULTS_DIR"
 
 echo "============================================================"
@@ -32,7 +33,8 @@ echo "============================================================"
     --ques_idx_start "$START_IDX" \
     --ques_idx_end "$END_IDX" \
     --xai_iter "$XAI_ITER" \
-    --save_file_path "$TEAM_RESULTS_DIR"
+    --save_file_path "$TEAM_RESULTS_DIR" \
+    $EXTRA_ARGS
 
 echo "============================================================"
 echo " Running Global Pipeline for ${DATASET}"
@@ -44,6 +46,7 @@ echo "============================================================"
     --xai_model "$XAI_MODEL" \
     --xai_iter "$XAI_ITER" \
     --ques_sample "${QUES_SAMPLE:-15}" \
-    --save_file "$TEAM_RESULTS_DIR"
+    --save_file "$TEAM_RESULTS_DIR" \
+    $EXTRA_ARGS
 
 echo "Experiment variant complete! Results saved in ${TEAM_RESULTS_DIR}"

@@ -161,6 +161,8 @@ def get_args():
                         help='Output dir. --save_file_path is accepted as an alias so the '
                              'same flag works for main_local.py and main_global.py.')
     # New arguments
+    parser.add_argument('--use_predictor_reasoning', action='store_true', default=False,
+                        help='Query the target model for reasoning and pass it to the explainer.')
     parser.add_argument('--deepseek_key', type=str, default=None,
                         help='DeepSeek API key (or set DEEPSEEK_API_KEY env var)')
     parser.add_argument('--top_p_exp', type=float, default=None,
@@ -377,8 +379,19 @@ if __name__ == "__main__":
                     # Generate prediction from LLMs
                     output_ans = generate_ans_function(pred_model, pred_tokenizer, task_instruction, [input_zip[idx]], [answer[idx]], args)
 
+                    # Get Predictor Reasoning if enabled
+                    predictor_reasoning = None
+                    if getattr(args, 'use_predictor_reasoning', False):
+                        from model.predictor import generate_predictor_reasoning
+                        predictor_reasoning_list = generate_predictor_reasoning(pred_model, pred_tokenizer, [input_zip[idx]], output_ans, args)
+                        if predictor_reasoning_list:
+                            predictor_reasoning = predictor_reasoning_list[0]
+                            print(f"============ Predictor Reasoning: {predictor_reasoning}")
+
                     # Generate true explanation
-                    output_exp_prompt = generate_exp_prompt(xai_prompts_list[-1], [input_zip[idx]], output_ans, args)
+                    output_exp_prompt = generate_exp_prompt(xai_prompts_list[-1], [input_zip[idx]], output_ans, args, predictor_reasoning=predictor_reasoning)
+                    if getattr(args, 'use_predictor_reasoning', False):
+                        print(f"============ Init Explainer Prompt:\n{output_exp_prompt[0] if isinstance(output_exp_prompt, list) else output_exp_prompt}\n========================")
                     exp_reply = reponse_xai_model(output_exp_prompt, args, xai_local_model, xai_local_tokenizer)
                     exp_reply = exp_reply.split(":\n\n")[-1]
                     exp_reply = exp_reply.split("\n\n")

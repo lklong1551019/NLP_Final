@@ -85,14 +85,18 @@ def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=No
 
     return response
 
-def generate_exp_prompt(task_instruction, input_zip, output_ans, args):
+def generate_exp_prompt(task_instruction, input_zip, output_ans, args, predictor_reasoning=None):
 
     if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
         qa_pair = zip(input_zip, output_ans)
         if args.data == "xcopa_vi":
             exp_prompt = [f"{task_instruction}\n\n### Đầu vào:\n{item[0]}\n### Trả lời: {item[1]}" for item in qa_pair]
+            if predictor_reasoning:
+                exp_prompt = [f"{prompt}\n\n### Giải thích nội bộ của mô hình: {predictor_reasoning}" for prompt in exp_prompt]
         else:
             exp_prompt = [f"{task_instruction}\n\n### Input: Q:{item[0]}\nA:{item[1]}" for item in qa_pair]
+            if predictor_reasoning:
+                exp_prompt = [f"{prompt}\n\n### Internal explanation of the model: {predictor_reasoning}" for prompt in exp_prompt]
 
     elif args.data == "trivaqa":
         question = [x[0] for x in input_zip]
@@ -154,9 +158,15 @@ def generate_global_xai_prompt(xai_prompts_list, scores_list, args):
 
     return xai_final_prompt
 
-def generate_local_xai_prompt(xai_prompts_list, scores_list, question, output_ans, args=None):
+def generate_local_xai_prompt(xai_prompts_list, scores_list, question, output_ans, args=None, predictor_reasoning=None):
     is_vi = args is not None and getattr(args, 'data', '') == "xcopa_vi"
     question_answer_list = f"### Đầu vào:\n{question}\n### Trả lời: {output_ans}" if is_vi else f"Q:{question}\nA:{output_ans}"
+
+    if predictor_reasoning:
+        if is_vi:
+            question_answer_list += f"\n### Giải thích nội bộ của mô hình: {predictor_reasoning}"
+        else:
+            question_answer_list += f"\n### Internal explanation of the model: {predictor_reasoning}"
 
     if is_vi:
         # ---------------------------------------------------------
@@ -167,13 +177,13 @@ def generate_local_xai_prompt(xai_prompts_list, scores_list, question, output_an
         # Văn bản: <EXP>...</EXP> \n Điểm số: 0.5
         # Vui lòng cung cấp văn bản khách quan mới...
         # ---------------------------------------------------------
-        meta_instruction = "Tôi có một số đoạn văn bản và điểm số tương ứng của chúng. Đây là những lời giải thích tiềm năng cho câu hỏi và câu trả lời được cung cấp bên dưới. Các đoạn văn này đã được xáo trộn ngẫu nhiên; điểm càng cao thì chất lượng giải thích cho câu trả lời càng tốt (điểm dao động từ 0 đến 1, dựa trên mức độ liên quan). Đầu ra của bạn sẽ được đánh giá dựa trên thang điểm này."
+        meta_instruction = "Tôi có một số đoạn văn bản và điểm số tương ứng của chúng. Đây là những lời giải thích tiềm năng cho câu hỏi, câu trả lời và suy luận của bản thân mô hình đó được cung cấp bên dưới. Các đoạn văn này đã được xáo trộn ngẫu nhiên; điểm càng cao thì chất lượng giải thích cho câu trả lời càng tốt (điểm dao động từ 0 đến 1, dựa trên mức độ liên quan). Đầu ra của bạn sẽ được đánh giá dựa trên thang điểm này."
         task_instruction = "Các ví dụ dưới đây minh họa cách áp dụng câu giải thích của bạn: Bạn sẽ thay thế thẻ <EXP> bằng câu giải thích đó. Kết quả của bạn được coi là kém nếu điểm số thấp hơn văn bản trước đó, và được coi là tốt nếu điểm số cao hơn. Lưu ý: Đầu ra phải luôn bắt đầu bằng <EXP>."
-        act_instruction = "Dựa trên suy luận của bạn, hãy cung cấp một câu giải thích khách quan mới về lý do mô hình chọn các câu trả lời này, bất kể chúng đúng hay sai. Tuyệt đối không tự trả lời câu hỏi hay đưa ra gợi ý nào khác. Mọi lời giải thích phải bắt đầu bằng <EXP>. Không lặp lại câu hỏi hay câu trả lời ban đầu. Chỉ xuất ra câu giải thích."
+        act_instruction = "Dựa trên suy luận của bạn, hãy cung cấp một câu giải thích khách quan mới về lý do mô hình chọn các câu trả lời này, bất kể chúng đúng hay sai. Tuyệt đối không tự trả lời câu hỏi hay đưa ra gợi ý nào khác. Mọi lời giải thích phải bắt đầu bằng <EXP>. Không lặp lại câu hỏi, câu trả lời ban đầu hay suy luận nội bộ của mô hình. Chỉ xuất ra câu giải thích."
         few_shot_template = "Văn bản:\n{0}\nĐiểm số:\n{1}\n\n"
     else:
         meta_instruction = f"I have some texts along with their corresponding scores. \
-                            The texts are the possible explanation of the following given question and answer. \
+                            The texts are the possible explanation of the following given question, answer, and the model's internal reasoning. \
                             The texts are arranged in random order based on their scores, \
                             where higher scores indicate better quality. \
                             The scores are calculated as how relative is the texts toward the given question and answer as the explanation. \
@@ -189,7 +199,7 @@ def generate_local_xai_prompt(xai_prompts_list, scores_list, question, output_an
                             Guess the reason no matter it is wrong or correct.\
                             Make sure not answer the questions or provide any suggestions to better answer the questions by yourself. \
                             Every explanations should begin with <EXP>. \
-                            Make sure not to repeat the input questions and answers. \
+                            Make sure not to repeat the input questions, answers, or the internal reasoning. \
                             Please only output the explanation sentences."
         few_shot_template = "Text:\n{0}\nScore:\n{1}\n\n"
 
