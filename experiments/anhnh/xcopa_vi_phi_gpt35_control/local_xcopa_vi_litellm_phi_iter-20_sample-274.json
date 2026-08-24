@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: CEO của công ty đã từ chức.\n### Lựa chọn: [choice]Hội đồng quản trị đã giải thể công ty.@ [choice]Hội đồng quản trị tìm thấy người thay thế ông.@'] || GT-A:Hội đồng quản trị tìm thấy người thay thế ông. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dựa vào việc CEO từ chức để kết luận rằng hội đồng quản trị đã giải thể công ty.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

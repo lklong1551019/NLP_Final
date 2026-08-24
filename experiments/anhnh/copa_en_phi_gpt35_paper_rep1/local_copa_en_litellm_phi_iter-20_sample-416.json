@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man was heartbroken.\n### Choices: [choice]His wife gave birth.@ [choice]His wife left him.@'] || GT-A:His wife left him. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "His wife left him" because it associates heartbreak with relationship issues such as a spouse leaving.'}

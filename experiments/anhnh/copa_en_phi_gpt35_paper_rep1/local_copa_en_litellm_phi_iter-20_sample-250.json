@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man punctured his foot.\n### Choices: [choice]He walked into a puddle.@ [choice]He stepped on broken glass.@'] || GT-A:He stepped on broken glass. || LLM-A:He stepped on broken glass.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "He stepped on broken glass" because it is a common scenario where someone can puncture their foot.'}

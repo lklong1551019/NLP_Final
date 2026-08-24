@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The disputing parties reached a settlement.\n### Choices: [choice]They didn't want to debate in court.@ [choice]They wanted to repair their personal relationship.@"] || GT-A:They didn't want to debate in court. || LLM-A:They didn't want to debate in court.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "They didn\'t want to debate in court" because reaching a settlement implies avoiding a legal confrontation like a court debate.'}

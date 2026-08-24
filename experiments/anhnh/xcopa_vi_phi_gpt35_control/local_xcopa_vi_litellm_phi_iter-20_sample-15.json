@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cô gái ghi nhớ mã.\n### Lựa chọn: [choice]Cô tự đọc nhẩm lại.@ [choice]Cô quên viết nó xuống.@'] || GT-A:Cô tự đọc nhẩm lại. || LLM-A:Cô tự đọc nhẩm lại.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình dựa vào việc cô gái ghi nhớ mã và chọn lựa chọn "Cô tự đọc nhẩm lại" có thể do việc đọc nhẩm lại là một cách hiệu quả để nhớ mã mà cô gái đã ghi nhớ.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

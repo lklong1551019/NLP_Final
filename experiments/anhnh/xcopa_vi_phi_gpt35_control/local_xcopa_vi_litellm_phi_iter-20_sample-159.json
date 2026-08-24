@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Giáo viên khen học sinh.\n### Lựa chọn: [choice]Học sinh trả lời đúng câu hỏi.@ [choice]Học sinh ngập ngừng trả lời câu hỏi.@'] || GT-A:Học sinh trả lời đúng câu hỏi. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dựa vào việc giáo viên khen học sinh để quyết định câu trả lời, có thể do học sinh trả lời đúng hoặc ngập ngừng trả lời câu hỏi.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

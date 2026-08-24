@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The fish bit the line.\n### Choices: [choice]The fisherman reeled in the fish.@ [choice]The fisherman recast the line.@'] || GT-A:The fisherman reeled in the fish. || LLM-A:The fisherman reeled in the fish.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The fisherman reeled in the fish" because it directly follows from the premise of the fish biting the line.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

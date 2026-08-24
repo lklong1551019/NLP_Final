@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The surfers returned to the beach.\n### Choices: [choice]They were drenched.@ [choice]They saw a shark.@'] || GT-A:They saw a shark. || LLM-A:They saw a shark.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "They saw a shark" as the answer because it associates surfers returning to the beach with a potential danger or reason for them to leave the water, such as seeing a shark.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

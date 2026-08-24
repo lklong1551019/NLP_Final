@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Lốp xe đạp của tôi bị xẹp.\n### Lựa chọn: [choice]Tôi bơm không khí vào lốp xe.@ [choice]Tôi tăng ga trên xe.@'] || GT-A:Tôi bơm không khí vào lốp xe. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì nó đánh giá rằng việc lốp xe bị xẹp thường liên quan đến việc bơm không khí vào lốp xe hơn là tăng ga trên xe.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

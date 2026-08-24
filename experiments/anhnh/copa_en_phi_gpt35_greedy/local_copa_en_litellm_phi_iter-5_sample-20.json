@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The couple decided to compromise.\n### Choices: [choice]They grew tired of arguing.@ [choice]They avoided discussing the problem.@'] || GT-A:They grew tired of arguing. || LLM-A:They grew tired of arguing.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "They grew tired of arguing" as the answer because compromise can be seen as a resolution after a period of disagreement or arguing.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nhìn vào mặt trời.\n### Lựa chọn: [choice]Mặt trời làm tôi mờ mắt.@ [choice]Mặt trời làm rám nắng da tôi.@'] || GT-A:Mặt trời làm tôi mờ mắt. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì nó kết hợp cả hai lựa chọn từ tiền đề một cách logic: Mặt trời làm mờ mắt và làm rám nắng da.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the cause of the Premise?\n### Premise: The man's breathing was loud.\n### Choices: [choice]His kidneys were failing.@ [choice]His lungs were congested.@"] || GT-A:His lungs were congested. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "His kidneys were failing" because it associates loud breathing with a potential issue related to the internal organs, such as kidney failure.'}

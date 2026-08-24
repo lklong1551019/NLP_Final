@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The CEO of the company resigned.\n### Choices: [choice]The board of directors dissolved the company.@ [choice]The board of directors found his replacement.@'] || GT-A:The board of directors found his replacement. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose option X because it does not accurately reflect the effect of the CEO resigning based on the given premise.'}

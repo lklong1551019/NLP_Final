@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman had rings under her eyes.\n### Choices: [choice]She stayed up all night.@ [choice]She put her son to bed.@'] || GT-A:She stayed up all night. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "She stayed up all night" because it associates rings under eyes with lack of sleep, which is a common cause in real-life scenarios.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

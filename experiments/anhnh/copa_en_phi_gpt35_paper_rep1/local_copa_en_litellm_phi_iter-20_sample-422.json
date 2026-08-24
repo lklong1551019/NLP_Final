@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The store cashier called security.\n### Choices: [choice]The customer used counterfeit money.@ [choice]The customer left his headlights on.@'] || GT-A:The customer used counterfeit money. || LLM-A:The customer used counterfeit money.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The customer used counterfeit money" as the answer because it directly relates to the store cashier calling security, indicating a potential cause-and-effect scenario.'}

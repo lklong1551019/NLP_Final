@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman lost her place in line.\n### Choices: [choice]More people entered the line.@ [choice]She stepped out of the line.@'] || GT-A:She stepped out of the line. || LLM-A:She stepped out of the line.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "She stepped out of the line" as the answer because it directly addresses a possible reason for the woman losing her place in line.'}

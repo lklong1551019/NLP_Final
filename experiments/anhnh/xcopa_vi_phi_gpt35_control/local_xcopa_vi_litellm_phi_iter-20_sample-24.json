@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông ngấn lệ.\n### Lựa chọn: [choice]Bụi bay vào mắt ông ấy.@ [choice]Anh đeo kính lên mắt.@'] || GT-A:Bụi bay vào mắt ông ấy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn lựa một trong hai lựa chọn dựa trên những thông tin có sẵn trong tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

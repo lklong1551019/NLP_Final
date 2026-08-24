@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ không còn chỗ trong tủ quần áo của mình.\n### Lựa chọn: [choice]Cô có nhiều quần áo.@ [choice]Cô gấp quần áo của mình.@'] || GT-A:Cô có nhiều quần áo. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của tiền đề là vì cô gái có nhiều quần áo, khiến cho không còn chỗ trong tủ quần áo của mình.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

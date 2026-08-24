@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The mother hushed her son.\n### Choices: [choice]Her son smirked.@ [choice]Her son whined.@'] || GT-A:Her son whined. || LLM-A:Her son whined.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "Her son whined" because it is a common response to being hushed by a mother.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

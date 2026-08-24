@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The accident was my fault.\n### Choices: [choice]I felt guilty.@ [choice]I pressed charges.@'] || GT-A:I felt guilty. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen "X" as the answer because it did not find a clear relationship between the premise and the provided choices.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

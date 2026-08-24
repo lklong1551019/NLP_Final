@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông trở nên khó chịu với bạn mình.\n### Lựa chọn: [choice]Bạn anh ngắt lời anh.@ [choice]Bạn anh mua cho anh bữa trưa.@'] || GT-A:Bạn anh ngắt lời anh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời X vì nó cho rằng việc bạn anh ngắt lời anh có thể là nguyên nhân khiến người đàn ông trở nên khó chịu với bạn mình.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The prisoner starved.\n### Choices: [choice]He died.@ [choice]He fled.@'] || GT-A:He died. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He died" as the answer because starvation often leads to death, making it a logical inference based on the premise provided.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

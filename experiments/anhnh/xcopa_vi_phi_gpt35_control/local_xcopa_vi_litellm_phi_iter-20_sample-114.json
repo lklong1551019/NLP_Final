@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nướng một chiếc bánh táo.\n### Lựa chọn: [choice]Một mùi thối rữa tràn ngập bếp.@ [choice]Một mùi thơm ấm áp tràn ngập nhà bếp.@'] || GT-A:Một mùi thơm ấm áp tràn ngập nhà bếp. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì nó không liên quan đến việc nướng bánh táo trong tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

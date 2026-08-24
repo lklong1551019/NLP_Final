@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The scratch in my skin was deep.\n### Choices: [choice]It healed quickly.@ [choice]It left a scar.@'] || GT-A:It left a scar. || LLM-A:It left a scar.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "It left a scar" because the premise mentions a scratch that was deep, which typically implies the possibility of a scar forming.'}

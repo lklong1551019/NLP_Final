@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman felt envious of her sister.\n### Choices: [choice]Her sister was happy.@ [choice]Her sister got divorced.@'] || GT-A:Her sister was happy. || LLM-A:Her sister was happy.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "Her sister was happy" because it associates envy with someone else\'s happiness, making it a plausible reason for the woman to feel envious of her sister.'}

@@ -1,0 +1,6 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông ngấn lệ.\n### Lựa chọn: [choice]Bụi bay vào mắt ông ấy.@ [choice]Anh đeo kính lên mắt.@'] || GT-A:Bụi bay vào mắt ông ấy. || LLM-A:Bụi bay vào mắt ông ấy.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Bụi bay vào mắt ông ấy" vì trong tiền đề có mô tả về việc người đàn ông ngấn lệ, điều này gợi ý rằng có thể bụi đã bay vào mắt của ông ấy và gây ra tình trạng ngấn lệ.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Bụi bay vào mắt ông ấy" vì trong tiền đề được mô tả về người đàn ông ngấn lệ, điều này gợi ý rằng bụi có thể bay vào mắt ông ấy và gây ra tình trạng ngấn lệ.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đã chọn câu trả lời "Bụi bay vào mắt ông ấy" vì trong tiền đề có mô tả về người đàn ông ngấn lệ, gợi ý rằng có thể bụi đã bay vào mắt ông ấy và gây ra tình trạng ngấn lệ.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Bụi bay vào mắt ông ấy" vì trong tiền đề được mô tả về người đàn ông ngấn lệ, gợi ý rằng bụi có thể bay vào mắt ông ấy và gây ra tình trạng ngấn lệ.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Bụi bay vào mắt ông ấy" dựa trên việc tiền đề mô tả người đàn ông ngấn lệ. Điều này gợi ý rằng có khả năng bụi đã bay vào mắt ông ấy và gây ra tình trạng ngấn lệ.'}

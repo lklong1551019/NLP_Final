@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I vacuumed the carpet.\n### Choices: [choice]My roommate spilled punch.@ [choice]My dog shed hair.@'] || GT-A:My dog shed hair. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "My dog shed hair." as the answer because it associates vacuuming with pet hair and shedding as a common reason for vacuuming.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

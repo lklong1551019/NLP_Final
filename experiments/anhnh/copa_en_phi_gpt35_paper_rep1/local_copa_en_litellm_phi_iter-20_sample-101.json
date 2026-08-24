@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The speaker made politically incorrect comments.\n### Choices: [choice]He bored the audience.@ [choice]He offended the audience.@'] || GT-A:He offended the audience. || LLM-A:He offended the audience.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He offended the audience." because it connects the premise of the speaker making politically incorrect comments with the consequence of potentially offending the audience.'}

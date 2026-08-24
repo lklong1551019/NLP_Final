@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The editor reworded a sentence in the manuscript.\n### Choices: [choice]He found the manuscript compelling.@ [choice]He deemed the sentence unclear.@'] || GT-A:He deemed the sentence unclear. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it suggests a positive reason for why the editor reworded the sentence in the manuscript.'}

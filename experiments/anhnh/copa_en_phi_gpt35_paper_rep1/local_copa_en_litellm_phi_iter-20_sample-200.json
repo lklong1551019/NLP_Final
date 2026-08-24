@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the cause of the Premise?\n### Premise: The boy's fingers became pruny.\n### Choices: [choice]He took a long shower.@ [choice]He lathered his hands with soap.@"] || GT-A:He took a long shower. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer A because it associates pruny fingers with being in water for a long time, which aligns with the choice "He took a long shower."'}

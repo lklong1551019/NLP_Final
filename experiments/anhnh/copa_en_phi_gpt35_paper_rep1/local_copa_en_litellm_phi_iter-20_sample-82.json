@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I pulled the drain plug in the bathtub.\n### Choices: [choice]The water drained out of the tub.@ [choice]The water splashed onto the floor.@'] || GT-A:The water drained out of the tub. || LLM-A:The water drained out of the tub.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The water drained out of the tub" as the answer because pulling the drain plug in the bathtub typically results in the water draining out, which aligns with common knowledge and logical reasoning.'}

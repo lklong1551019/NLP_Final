@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The famous statue burned down.\n### Choices: [choice]It was struck by lightning.@ [choice]People came to venerate it.@'] || GT-A:It was struck by lightning. || LLM-A:It was struck by lightning.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "It was struck by lightning" as the answer because it is a common reason for statues to catch fire, although in this case, the premise explicitly states that the statue burned down.'}

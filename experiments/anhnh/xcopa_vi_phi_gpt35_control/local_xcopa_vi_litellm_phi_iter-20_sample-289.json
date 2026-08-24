@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tên tội phạm đã bị xử tử.\n### Lựa chọn: [choice]Anh ta bị tống vào tù.@ [choice]Anh ta bị kết tội giết người.@'] || GT-A:Anh ta bị kết tội giết người. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời "X" có thể là do nó quyết định rằng nguyên nhân của Tiền đề là anh ta bị tống vào tù, hoặc anh ta bị kết tội giết người.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

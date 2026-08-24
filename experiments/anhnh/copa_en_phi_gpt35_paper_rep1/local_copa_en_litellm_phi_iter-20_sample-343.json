@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The woman was short on money for rent.\n### Choices: [choice]She worked overtime.@ [choice]She quit her job.@'] || GT-A:She worked overtime. || LLM-A:She worked overtime.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She worked overtime" as the answer because it is a common solution when someone is short on money for rent. This option reflects a responsible and proactive approach to addressing financial issues.'}

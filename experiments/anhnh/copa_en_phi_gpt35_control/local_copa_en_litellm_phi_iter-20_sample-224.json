@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl bit her nails.\n### Choices: [choice]She was worried.@ [choice]She was surprised.@'] || GT-A:She was worried. || LLM-A:She was worried.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have selected "She was worried." as the answer because biting nails is often associated with nervousness or anxiety, which aligns with the concept of being worried.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

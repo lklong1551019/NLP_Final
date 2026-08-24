@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The girl stepped on the ice.\n### Choices: [choice]She slid.@ [choice]She shivered.@'] || GT-A:She slid. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She slid." as the answer because it associates stepping on ice with sliding due to the slippery nature of ice.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

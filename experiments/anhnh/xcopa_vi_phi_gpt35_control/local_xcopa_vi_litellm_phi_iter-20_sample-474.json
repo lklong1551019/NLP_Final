@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người phụ nữ đang nhìn chằm chằm vào tôi.\n### Lựa chọn: [choice]Tôi đã ôm cô ấy.@ [choice]Tôi cảm thấy khó chịu.@'] || GT-A:Tôi cảm thấy khó chịu. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là "X" dựa trên việc tôi đã ôm cô ấy.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

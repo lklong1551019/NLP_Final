@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I paused to stop talking.\n### Choices: [choice]I lost my voice.@ [choice]I ran out of breath.@'] || GT-A:I ran out of breath. || LLM-A:I lost my voice.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "I lost my voice" because losing one\'s voice can be a common reason for pausing while talking.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

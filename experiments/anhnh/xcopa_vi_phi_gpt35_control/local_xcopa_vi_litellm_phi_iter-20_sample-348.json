@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Bức tượng nổi tiếng bị thiêu rụi.\n### Lựa chọn: [choice]Nó bị sét đánh.@ [choice]Mọi người đến để tôn kính nó.@'] || GT-A:Nó bị sét đánh. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì nó nghĩ rằng bức tượng bị thiêu rụi có thể được do nó bị sét đánh hoặc bởi sự tôn kính của mọi người đến.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

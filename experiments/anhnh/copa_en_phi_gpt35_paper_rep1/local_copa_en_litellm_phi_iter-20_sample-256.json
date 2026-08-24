@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The car ran out of gas.\n### Choices: [choice]The driver was stranded on the road.@ [choice]The driver picked up a hitchhiker.@'] || GT-A:The driver was stranded on the road. || LLM-A:The driver was stranded on the road.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected the answer "The driver was stranded on the road" because it directly follows from the premise that the car ran out of gas, leading to the driver being stranded.'}

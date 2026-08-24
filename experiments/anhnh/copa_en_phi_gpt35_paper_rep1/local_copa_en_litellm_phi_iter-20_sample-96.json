@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Books fell out of the bookcase.\n### Choices: [choice]The shelves were covered with dust.@ [choice]An earthquake shook the bookcase.@'] || GT-A:An earthquake shook the bookcase. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen answer choice A because it mentions dust, which could imply a lack of recent movement or disturbance in the bookcase, potentially causing the books to fall.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông bôi kem chống nắng.\n### Lựa chọn: [choice]Anh ngồi trong bóng râm.@ [choice]Anh ấy đã đi đến bãi biển.@'] || GT-A:Anh ấy đã đi đến bãi biển. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng nguyên nhân của tiền đề là anh ngồi trong bóng râm.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

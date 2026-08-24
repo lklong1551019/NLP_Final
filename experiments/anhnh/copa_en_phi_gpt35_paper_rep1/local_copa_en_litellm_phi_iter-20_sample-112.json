@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I saw my breath when I exhaled.\n### Choices: [choice]The weather was chilly.@ [choice]My chest felt tight.@'] || GT-A:The weather was chilly. || LLM-A:The weather was chilly.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "The weather was chilly" because it associates seeing one\'s breath when exhaling with cold weather.'}

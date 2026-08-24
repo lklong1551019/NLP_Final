@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Nhà văn đã bỏ lỡ thời hạn của cô cho bản dự thảo.\n### Lựa chọn: [choice]Cô ấy tịt ngòi.@ [choice]Cô chỉnh sửa bản nháp.@'] || GT-A:Cô ấy tịt ngòi. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Cô ấy tịt ngòi" vì nếu nhà văn đã bỏ lỡ thời hạn cho bản dự thảo, có thể cô ấy đã không làm gì cả, dẫn đến việc không hoàn thành công việc.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

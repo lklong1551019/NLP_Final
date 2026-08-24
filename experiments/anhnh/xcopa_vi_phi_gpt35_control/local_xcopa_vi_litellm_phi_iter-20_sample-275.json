@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đến giảng đường muộn.\n### Lựa chọn: [choice]Tôi ngồi ở hàng ghế sau.@ [choice]Tôi đến gần bục giảng.@'] || GT-A:Tôi ngồi ở hàng ghế sau. || LLM-A:Lưu có đã tôi duyên đây trị hỏi lại không có thể lến tên bảo pháp.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời không liên quan đến tiền đề vì không hiểu rõ vấn đề hoặc không có thông tin đủ để đưa ra câu trả lời chính xác.', 'ControlScore': 1.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

@@ -1,0 +1,50 @@
+type: task
+name: faithlm-phi2-gpt35-xcopa-vi
+
+# Image already carries torch + CUDA, so the task only installs the thin
+# dependencies on top instead of pulling ~2.5GB of torch on every run.
+image: huggingface/transformers-pytorch-gpu:latest
+
+env:
+  # Taken from the environment at `dstack apply` time - never written to the
+  # shared volume, which is group- and world-readable.
+  - LITELLM_API_KEY
+  - LITELLM_BASE_URL=https://ai-gateway01.qualgo.ai/v1
+  # Paper's explainer (Table 2 uses GPT-3.5-Turbo).
+  - LITELLM_XAI_MODEL=openrouter/openai/gpt-3.5-turbo
+  # Deliberately empty: a fallback model would silently substitute a different,
+  # stronger explainer and destroy the condition being measured.
+  - LITELLM_FALLBACK_MODEL=
+  - HF_HOME=/mnt/project/productivity/anhnh/.cache/huggingface
+  - HF_HUB_CACHE=/mnt/project/productivity/anhnh/.cache/huggingface/hub
+  - PYTHONUNBUFFERED=1
+  - PYTHON=python3
+  - TEMP_EXP=0.9
+  - TOP_P_EXP=0.9
+  - MAX_TOKENS=1000
+  - RESUME=1
+  - OUTDIR=/mnt/project/productivity/anhnh/results/NLP_Final/xcopa_vi_phi_gpt35
+
+commands:
+  # Fail loudly and early if the compute node cannot reach what the run needs.
+  - "nvidia-smi --query-gpu=name,memory.total --format=csv,noheader"
+  - "curl -sf -o /dev/null --max-time 20 https://huggingface.co/api/models/microsoft/phi-2 && echo NET_HF_OK || { echo NET_HF_FAIL; exit 1; }"
+  - "curl -s -o /dev/null -w \"GATEWAY_HTTP=%{http_code}\\n\" --max-time 20 -H \"Authorization: Bearer $LITELLM_API_KEY\" $LITELLM_BASE_URL/models"
+  - "pip install -q --no-cache-dir 'transformers>=4.40' 'datasets>=2.19' 'openai>=1.30' scikit-learn python-dotenv tqdm accelerate"
+  - "mkdir -p $OUTDIR"
+  # 200 questions, xai_iter=20 per paper Table 2 (COPA column), 8 shards.
+  # Phi-2 in fp16 is ~5.5GB, so 8 concurrent copies fit in one 141GB H200.
+  - "bash scripts/run_sharded.sh xcopa_vi phi litellm 0 200 20 8 $OUTDIR"
+  - "echo DONE; ls -1 $OUTDIR/local_*.json | wc -l"
+
+resources:
+  gpu: H200NVL:1
+  shm_size: 32GB
+
+volumes:
+  - /mnt/project:/mnt/project
+
+# The fleet runs near capacity, so queue instead of failing.
+retry:
+  on_events: [no-capacity]
+  duration: 24h

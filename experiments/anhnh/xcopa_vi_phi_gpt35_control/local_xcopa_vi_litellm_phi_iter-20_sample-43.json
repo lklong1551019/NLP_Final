@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đẩy cửa.\n### Lựa chọn: [choice]Cánh cửa mở ra.@ [choice]Cánh cửa bị khóa.@'] || GT-A:Cánh cửa mở ra. || LLM-A:Cánh cửa mở ra.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình xác định rằng khi tiền đề là "Tôi đẩy cửa", thì kết quả là cánh cửa mở ra, dựa trên việc đẩy cửa thường dẫn đến việc mở cửa trong tình huống thông thường.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

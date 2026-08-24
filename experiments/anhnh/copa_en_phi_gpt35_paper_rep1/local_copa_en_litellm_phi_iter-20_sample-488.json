@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man unlaced his shoes.\n### Choices: [choice]The shoes loosened.@ [choice]The shoes became worn.@'] || GT-A:The shoes loosened. || LLM-A:The shoes loosened.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The shoes loosened" because it directly connects with the action described in the premise of the man unlacing his shoes.'}

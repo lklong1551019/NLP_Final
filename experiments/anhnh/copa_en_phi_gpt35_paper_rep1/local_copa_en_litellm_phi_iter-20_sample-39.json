@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The boy squeezed the balloon.\n### Choices: [choice]The balloon popped.@ [choice]The balloon flew away.@'] || GT-A:The balloon popped. || LLM-A:The balloon popped.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The balloon popped" as the answer because squeezing a balloon often leads to it popping due to the pressure exerted on it.'}

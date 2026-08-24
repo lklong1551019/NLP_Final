@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the effect of the Premise?\n### Premise: The boy pinched the girl's elbow.\n### Choices: [choice]She shrugged her shoulders at him.@ [choice]She jerked her arm away from him.@"] || GT-A:She jerked her arm away from him. || LLM-A:She jerked her arm away from him.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She jerked her arm away from him" as the answer because it is a more direct and plausible reaction to someone pinching the girl\'s elbow compared to shrugging her shoulders.'}

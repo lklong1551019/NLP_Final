@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The office was closed.\n### Choices: [choice]It was a holiday.@ [choice]It was summer.@'] || GT-A:It was a holiday. || LLM-A:It was a holiday.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "It was a holiday" because holidays are often a common reason for offices to be closed.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

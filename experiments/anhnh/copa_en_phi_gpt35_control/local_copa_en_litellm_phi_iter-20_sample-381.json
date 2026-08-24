@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The stadium played the national anthem.\n### Choices: [choice]The fans turned to the flag.@ [choice]The fans rushed the field.@'] || GT-A:The fans turned to the flag. || LLM-A:The fans turned to the flag.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The fans turned to the flag" as the answer because it is a common reaction for people when the national anthem is played.', 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

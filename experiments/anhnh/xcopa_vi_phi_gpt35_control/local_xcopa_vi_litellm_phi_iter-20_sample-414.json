@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Máy tính xách tay không bật lên được.\n### Lựa chọn: [choice]Tôi đã đánh rơi nó.@ [choice]Tôi đã sạc pin nó.@'] || GT-A:Tôi đã đánh rơi nó. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Tôi đã sạc pin nó" là nguyên nhân của tiền đề vì mô hình nhận biết rằng máy tính xách tay không hoạt động do pin hết.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

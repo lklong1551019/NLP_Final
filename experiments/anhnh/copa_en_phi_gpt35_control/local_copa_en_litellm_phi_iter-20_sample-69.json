@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl bragged to her friends.\n### Choices: [choice]She got a bad grade.@ [choice]She won a contest.@'] || GT-A:She won a contest. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected choice A because it associates bragging with negative events like getting a bad grade, which could be seen as a cause.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

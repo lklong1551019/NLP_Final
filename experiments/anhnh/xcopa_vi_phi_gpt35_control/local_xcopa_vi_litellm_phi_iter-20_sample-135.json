@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cậu bé thất bại trong kỳ thi lịch sử.\n### Lựa chọn: [choice]Cậu rất tập trung trong lớp.@ [choice]Cậu quên học bài.@'] || GT-A:Cậu quên học bài. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Cậu rất tập trung trong lớp" là nguyên nhân của Tiền đề vì đây là một phản ứng phổ biến khi một học sinh thất bại trong kỳ thi, do họ cố gắng tập trung trong lớp học.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

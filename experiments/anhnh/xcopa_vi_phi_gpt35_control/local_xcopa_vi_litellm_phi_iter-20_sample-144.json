@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đứa trẻ để lại vụn bánh trên sàn nhà.\n### Lựa chọn: [choice]Kiến bò đến vụn bánh.@ [choice]Đứa trẻ bỏ bánh mì đi.@'] || GT-A:Kiến bò đến vụn bánh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dựa vào tiền đề rằng đứa trẻ để lại vụn bánh trên sàn nhà để đưa ra câu trả lời.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

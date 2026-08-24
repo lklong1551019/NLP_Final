@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I had to wait in line.\n### Choices: [choice]I took a seat.@ [choice]I skimmed a magazine.@'] || GT-A:I skimmed a magazine. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because waiting in line often involves standing rather than taking a seat.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

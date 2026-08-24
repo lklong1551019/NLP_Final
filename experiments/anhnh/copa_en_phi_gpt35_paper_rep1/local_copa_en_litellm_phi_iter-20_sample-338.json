@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the effect of the Premise?\n### Premise: The woman punched her attacker in the nose.\n### Choices: [choice]The attacker's body went lifeless.@ [choice]The attacker started to bleed.@"] || GT-A:The attacker started to bleed. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen option A because it depicts a consequence that can be associated with a physical altercation like getting knocked unconscious.'}

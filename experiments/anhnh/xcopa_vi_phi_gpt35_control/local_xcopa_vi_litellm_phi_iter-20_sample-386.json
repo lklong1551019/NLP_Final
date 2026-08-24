@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cậu bé nhăn mặt.\n### Lựa chọn: [choice]Cô bé bỏ mặc cậu.@ [choice]Cô bé chọt cậu.@'] || GT-A:Cô bé chọt cậu. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì trong tiền đề được nêu ra, cậu bé nhăn mặt, và không có thông tin nào liên quan đến cô bé bỏ mặc cậu hoặc chọt cậu.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

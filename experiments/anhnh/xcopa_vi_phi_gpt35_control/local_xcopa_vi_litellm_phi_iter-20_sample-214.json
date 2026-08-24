@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người tù chết đói.\n### Lựa chọn: [choice]Anh ấy đã chết.@ [choice]Anh chạy trốn.@'] || GT-A:Anh ấy đã chết. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời X vì đối với tiền đề "Người tù chết đói", một trong những kết quả có thể xảy ra là "Anh ấy đã chết".', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

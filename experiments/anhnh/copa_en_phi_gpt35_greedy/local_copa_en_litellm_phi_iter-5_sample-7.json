@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl pinched her nose.\n### Choices: [choice]The baby drooled on her bib.@ [choice]The baby soiled her diaper.@'] || GT-A:The baby soiled her diaper. || LLM-A:The baby soiled her diaper.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The baby soiled her diaper" as the answer because it involves a messy or unpleasant action similar to pinching one\'s nose, showing a connection based on bodily functions.'}

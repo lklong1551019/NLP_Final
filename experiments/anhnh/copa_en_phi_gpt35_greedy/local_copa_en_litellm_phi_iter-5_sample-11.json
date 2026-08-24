@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man hit his head.\n### Choices: [choice]He got lost in thought.@ [choice]He got a concussion.@'] || GT-A:He got a concussion. || LLM-A:He got a concussion.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He got a concussion" as the answer because it directly relates to the premise of the man hitting his head, which is a common cause of concussion.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The team rigged the contest in their favor.\n### Choices: [choice]They won.@ [choice] They dropped out.@'] || GT-A:They won. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "They won." because rigging a contest usually leads to winning.'}

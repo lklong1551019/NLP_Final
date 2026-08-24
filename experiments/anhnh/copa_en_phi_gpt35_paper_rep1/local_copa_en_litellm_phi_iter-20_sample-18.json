@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The accident was my fault.\n### Choices: [choice]I felt guilty.@ [choice]I pressed charges.@'] || GT-A:I felt guilty. || LLM-A:I felt guilty.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "I felt guilty" as the answer because it is a common emotional response when someone believes they are at fault for an accident.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The plane hit some turbulence.\n### Choices: [choice]The man tightened his seatbelt.@ [choice]The man looked out the window.@'] || GT-A:The man tightened his seatbelt. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer choice A because it understands that turbulence on a plane can prompt passengers to tighten their seatbelts for safety.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

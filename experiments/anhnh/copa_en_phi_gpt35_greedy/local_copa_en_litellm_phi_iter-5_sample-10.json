@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The young campers felt scared.\n### Choices: [choice]Their camp counselor told them a ghost story.@ [choice]They toasted marshmallows on the campfire.@'] || GT-A:Their camp counselor told them a ghost story. || LLM-A:Their camp counselor told them a ghost story.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "Their camp counselor told them a ghost story" as the answer because it relates to a common scenario where campers feel scared due to a scary story being told.'}

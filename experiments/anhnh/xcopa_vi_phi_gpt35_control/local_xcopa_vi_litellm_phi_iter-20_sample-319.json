@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cậu bé đeo niềng răng.\n### Lựa chọn: [choice]Cậu có một lỗ sâu răng.@ [choice]Răng cậu trở nên thẳng.@'] || GT-A:Răng cậu trở nên thẳng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng "X" là kết quả của Tiền đề vì cậu bé đeo niềng răng có thể dẫn đến việc có một lỗ sâu răng hoặc việc răng của cậu trở nên thẳng.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

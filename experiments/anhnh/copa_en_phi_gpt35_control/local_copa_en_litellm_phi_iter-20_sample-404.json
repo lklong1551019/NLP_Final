@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I slept through my alarm.\n### Choices: [choice]I made breakfast.@ [choice]I missed breakfast.@'] || GT-A:I missed breakfast. || LLM-A:I missed breakfast.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I missed breakfast" because it correctly interprets that sleeping through the alarm would lead to missing breakfast as a direct consequence.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

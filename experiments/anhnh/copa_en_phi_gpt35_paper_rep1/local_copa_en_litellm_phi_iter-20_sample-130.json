@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The girl handed her money to the cashier.\n### Choices: [choice]The cashier gave the girl her change.@ [choice]The cashier forgot to give the girl a receipt.@'] || GT-A:The cashier gave the girl her change. || LLM-A:The cashier gave the girl her change.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "The cashier gave the girl her change" because it directly follows the action described in the premise where the girl handed her money to the cashier.'}

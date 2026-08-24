@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Hơi thở của người đàn ông rất to.\n### Lựa chọn: [choice]Thận của anh ta không còn hoạt động.@ [choice]Phổi anh ta bị tắc nghẽn.@'] || GT-A:Phổi anh ta bị tắc nghẽn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn lựa chính xác một trong hai lựa chọn vì cả hai đều có thể gây ra hơi thở to của người đàn ông.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

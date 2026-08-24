@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Bạn tôi quay đầu về phía tôi.\n### Lựa chọn: [choice]Tôi hét to tên anh.@ [choice]Tôi vẫy tay.@'] || GT-A:Tôi hét to tên anh. || LLM-A:Hãy tế đề thường nữ.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Hãy tế đề thường nữ" có thể dựa vào việc phân tích cú pháp và ngữ cảnh của câu hỏi "Đâu là nguyên nhân của Tiền đề?" để đưa ra kết luận này.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

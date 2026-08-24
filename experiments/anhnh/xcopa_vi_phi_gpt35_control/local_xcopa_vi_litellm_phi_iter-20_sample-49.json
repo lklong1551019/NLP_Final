@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Nhạc sĩ đường phố thu hút một đám đông.\n### Lựa chọn: [choice]Mọi người cho anh tiền lẻ.@ [choice]Anh tiễn đám đông đi.@'] || GT-A:Mọi người cho anh tiền lẻ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn lựa chọn "Mọi người cho anh tiền lẻ" vì nó liên quan đến việc nhạc sĩ đường phố thu hút một đám đông và việc mọi người có thể cho anh tiền lẻ sau khi nghe anh biểu diễn.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

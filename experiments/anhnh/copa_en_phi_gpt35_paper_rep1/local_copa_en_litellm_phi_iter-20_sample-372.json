@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The student procrastinated on the paper.\n### Choices: [choice]He submitted the paper early.@ [choice]He submitted the paper incomplete.@'] || GT-A:He submitted the paper incomplete. || LLM-A:He submitted the paper incomplete.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "He submitted the paper incomplete" because procrastinating on a paper often leads to submitting it incomplete rather than early.'}

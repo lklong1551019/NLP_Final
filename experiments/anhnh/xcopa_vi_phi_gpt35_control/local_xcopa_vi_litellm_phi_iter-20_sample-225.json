@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi lật trang lịch.\n### Lựa chọn: [choice]Tôi đánh dấu một cuộc hẹn trên lịch.@ [choice]Đó là sự khởi đầu của một tháng mới.@'] || GT-A:Đó là sự khởi đầu của một tháng mới. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "X" do dựa vào việc phân tích từ ngữ trong tiền đề và lựa chọn, mà không cần hiểu rõ hoặc liên kết ý nghĩa giữa chúng.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

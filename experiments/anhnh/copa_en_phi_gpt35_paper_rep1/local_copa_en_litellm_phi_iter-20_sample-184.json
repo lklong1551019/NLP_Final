@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I declined the invitation to the birthday party.\n### Choices: [choice]I was lonely.@ [choice]I was out of town.@'] || GT-A:I was out of town. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it mentions feeling lonely, which could be a common reason for declining a social invitation.'}

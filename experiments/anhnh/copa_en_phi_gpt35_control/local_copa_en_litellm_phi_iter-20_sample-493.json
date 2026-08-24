@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man swatted at the fly.\n### Choices: [choice]The fly buzzed away.@ [choice]The fly stayed still.@'] || GT-A:The fly buzzed away. || LLM-A:The fly buzzed away.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The fly buzzed away" as the answer because it directly follows the action of the man swatting at the fly, suggesting a cause-effect relationship.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

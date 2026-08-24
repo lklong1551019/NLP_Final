@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The ink on the poster smeared.\n### Choices: [choice]I waited for the ink to dry.@ [choice]I spilled water on the poster.@'] || GT-A:I spilled water on the poster. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "I spilled water on the poster" because it provides a specific action that could lead to the ink smearing.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

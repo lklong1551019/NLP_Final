@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl memorized the code.\n### Choices: [choice]She recited it to herself.@ [choice]She forgot to write it down.@'] || GT-A:She recited it to herself. || LLM-A:She recited it to herself.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She recited it to herself" as the answer because it makes logical sense that if the girl memorized something, she would then recite it to herself to remember it accurately.'}

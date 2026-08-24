@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người phụ nữ đấm vào mũi kẻ tấn công.\n### Lựa chọn: [choice]Cơ thể của kẻ tấn công trở nên vô hồn.@ [choice]Kẻ tấn công bắt đầu chảy máu.@'] || GT-A:Kẻ tấn công bắt đầu chảy máu. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn lựa "Cơ thể của kẻ tấn công trở nên vô hồn" vì thường sau khi bị đấm vào mũi, người ta có thể mất ý thức hoặc trạng thái vô hồn.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

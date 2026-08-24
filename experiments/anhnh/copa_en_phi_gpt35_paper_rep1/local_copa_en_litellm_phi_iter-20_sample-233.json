@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: A tornado came through the town.\n### Choices: [choice]The roof of the courthouse blew off.@ [choice]The highway became dangerously icy.@'] || GT-A:The roof of the courthouse blew off. || LLM-A:The roof of the courthouse blew off.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "The roof of the courthouse blew off" as the answer because it directly relates to the effect of a tornado, which is a common consequence of a tornado passing through a town.'}

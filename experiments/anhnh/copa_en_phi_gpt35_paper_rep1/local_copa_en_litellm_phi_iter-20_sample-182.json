@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The girl threw the water balloon at the boy.\n### Choices: [choice]The boy got a concussion.@ [choice]The boy got soaked.@'] || GT-A:The boy got soaked. || LLM-A:The boy got a concussion.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "The boy got a concussion" because it interprets the action of throwing a water balloon as a potentially harmful or violent act that could result in a concussion.'}

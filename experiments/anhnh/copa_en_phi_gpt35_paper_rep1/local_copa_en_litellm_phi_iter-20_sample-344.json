@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The child's hand quickly recoiled.\n### Choices: [choice]He touched the hot stove.@ [choice]He patted the puppy's head.@"] || GT-A:He touched the hot stove. || LLM-A:He touched the hot stove.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He touched the hot stove" because it associates the phrase "quickly recoiled" with the concept of touching a hot object, which implies a quick reaction to pain or heat.'}

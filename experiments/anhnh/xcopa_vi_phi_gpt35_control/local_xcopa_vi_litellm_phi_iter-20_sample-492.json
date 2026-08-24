@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đã phải chờ xếp hàng.\n### Lựa chọn: [choice]Tôi ngồi xuống.@ [choice]Tôi đọc lướt qua một tạp chí.@'] || GT-A:Tôi đọc lướt qua một tạp chí. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" vì trong tiền đề, người nói đã phải chờ xếp hàng, không có thông tin nào liên quan đến việc ngồi xuống hoặc đọc tạp chí.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

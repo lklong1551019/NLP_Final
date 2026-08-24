@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The kayakers paddled their oars.\n### Choices: [choice]The kayak reached the shore.@ [choice]The kayak hit a wave.@'] || GT-A:The kayak reached the shore. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer choice A because it mentions the kayak reaching the shore, which is a common outcome of kayakers paddling their oars.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

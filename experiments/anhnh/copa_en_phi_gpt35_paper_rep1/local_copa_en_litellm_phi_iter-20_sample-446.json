@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The woman had a sore throat.\n### Choices: [choice]Her voice sounded raspy.@ [choice]She spoke with an accent.@'] || GT-A:Her voice sounded raspy. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer choice X because it understands that a sore throat can lead to a raspy voice, so it associates the sore throat with the raspy voice.'}

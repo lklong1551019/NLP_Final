@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I emptied my pockets.\n### Choices: [choice]I retrieved a ticket stub.@ [choice]I found a weapon.@'] || GT-A:I retrieved a ticket stub. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen answer choice X because it sees a connection between emptying pockets and not finding a weapon, associating emptying pockets with not having something harmful like a weapon.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

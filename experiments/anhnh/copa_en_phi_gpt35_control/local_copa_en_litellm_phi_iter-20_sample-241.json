@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The teenager was embarrassed to go to school.\n### Choices: [choice]She got a pimple.@ [choice]She got her braces off.@'] || GT-A:She got a pimple. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "She got a pimple" because it associates embarrassment with physical appearance issues like pimples.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

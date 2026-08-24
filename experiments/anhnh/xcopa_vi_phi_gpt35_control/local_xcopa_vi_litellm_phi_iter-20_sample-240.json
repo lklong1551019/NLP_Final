@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Con cá cắn câu.\n### Lựa chọn: [choice]Người ngư dân kéo con cá vào.@ [choice]Người ngư dân đánh cá tiếp.@'] || GT-A:Người ngư dân kéo con cá vào. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là X vì nó nhận diện quan hệ logic giữa con cá cắn câu và việc người ngư dân kéo con cá vào, có thể gây ra kết quả X.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

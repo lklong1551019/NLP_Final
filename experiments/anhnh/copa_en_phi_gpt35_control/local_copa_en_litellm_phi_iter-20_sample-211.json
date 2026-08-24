@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl yanked the ribbon out of her hair.\n### Choices: [choice]She tied the ribbon.@ [choice]The ribbon looked babyish.@'] || GT-A:The ribbon looked babyish. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it mentions the ribbon being tied, which is a common action associated with ribbons.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

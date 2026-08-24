@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The tire on my bike was flat.\n### Choices: [choice]I pumped air into the tire.@ [choice]I switched gears on the bike.@'] || GT-A:I pumped air into the tire. || LLM-A:I pumped air into the tire.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "I pumped air into the tire" because it directly addresses the issue of the flat tire, which is the main concern in the premise.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman ran out of room in her closet.\n### Choices: [choice]She acquired an extensive wardrobe.@ [choice]She folded her laundry.@'] || GT-A:She acquired an extensive wardrobe. || LLM-A:She acquired an extensive wardrobe.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She acquired an extensive wardrobe" as the answer because it explains why the woman ran out of room in her closet, implying that she had too many clothes to fit in it.'}

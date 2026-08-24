@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Hộp đựng nhựa tan chảy.\n### Lựa chọn: [choice]Tôi ngâm hộp đựnh trong nước ấm.@ [choice]Tôi đặt hộp đựng lên bếp nóng.@'] || GT-A:Tôi đặt hộp đựng lên bếp nóng. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của tiền đề là do hộp đựng nhựa tan chảy có thể xảy ra khi hộp đựng được ngâm trong nước ấm hoặc đặt lên bếp nóng, dẫn đến một tình huống không an toàn.', 'ControlScore': 1.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

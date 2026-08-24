@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi quên cả thời gian.\n### Lựa chọn: [choice]Tôi đã mơ mộng.@ [choice]Tôi buồn nôn.@'] || GT-A:Tôi đã mơ mộng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Tôi đã mơ mộng" vì nó liên kết hành vi quên thời gian với việc mơ mộng, giả định rằng việc mơ mộng có thể làm cho người ta quên mất thời gian.', 'ControlScore': 1.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}
