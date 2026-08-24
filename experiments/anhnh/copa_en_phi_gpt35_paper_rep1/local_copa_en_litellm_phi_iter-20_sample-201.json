@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I spit out the milk.\n### Choices: [choice]The milk tasted sour.@ [choice]My mouth was dry.@'] || GT-A:The milk tasted sour. || LLM-A:The milk tasted sour.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The milk tasted sour" as the answer because it directly relates to the action of spitting out the milk, suggesting a reason for the behavior.'}

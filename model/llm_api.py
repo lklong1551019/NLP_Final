@@ -33,7 +33,16 @@ DEFAULT_XAI_MODEL = "deepseek/deepseek-v4-pro"
 # Call-level bookkeeping. An empty completion (provider-side content filtering)
 # would otherwise be scored as a wrong answer and silently bias the results, so
 # we count these and report them alongside the scores.
-STATS = {"calls": 0, "empty": 0, "errors": 0}
+STATS = {"calls": 0, "empty": 0, "errors": 0, "context_overflow": 0}
+
+# Errors that will never succeed on retry: the request itself is invalid, so
+# sleeping and sending it again only wastes wall-clock.
+_NON_RETRYABLE = ("maximum context length", "context_length_exceeded",
+                  "string too long", "invalid_request_error")
+
+
+def _is_non_retryable(exc):
+    return any(m in str(exc).lower() for m in _NON_RETRYABLE)
 
 
 def stats_summary():
@@ -41,6 +50,8 @@ def stats_summary():
         f"LLM calls: {STATS['calls']} | "
         f"empty completions: {STATS['empty']} | "
         f"failed calls: {STATS['errors']} | "
+        f"context overflow: {STATS['context_overflow']} | "
+        f"rate limited: {STATS.get('rate_limited', 0)} | "
         f"fallback used: {STATS.get('fallback_used', 0)}"
     )
 
@@ -252,21 +263,28 @@ def chat(prompt, model, max_tokens=1000, temperature=0.0, system=None, retries=4
             # to a DIFFERENT model - which corrupts any experiment keyed on the
             # model id (measured: 23% of one run served by the fallback). Wait
             # out the window instead, and never fall back on a rate limit.
+            # Checked before _is_non_retryable so a 429 never reaches the
+            # fallback path, whatever the provider words the message.
             if "429" in str(exc) or type(exc).__name__ == "RateLimitError":
                 STATS["rate_limited"] = STATS.get("rate_limited", 0) + 1
                 wait = float(os.environ.get("RATE_LIMIT_WAIT", "20"))
                 print(f"[llm_api] 429 rate-limited on {model}; waiting {wait:.0f}s")
                 time.sleep(wait)
                 continue
+            if _is_non_retryable(exc):
+                # e.g. the trajectory prompt outgrew the model's context window.
+                # Retrying is pointless; go straight to the fallback below.
+                if "context" in str(exc).lower():
+                    STATS["context_overflow"] += 1
+                break
             if attempt < retries - 1:
                 time.sleep(2 ** attempt)
 
     # Some providers return an empty body rather than an error for prompts their
-    # content filter dislikes. Retrying the same model does not help, so fall
-    # back to a different one once before giving up.
-    # The fallback exists for provider content filters that return empty
-    # bodies (B4). A rate-limited primary is NOT a content problem - swapping
-    # models there silently changes the experiment, so let it fail loudly.
+    # content filter dislikes (B4). Retrying the same model does not help, so
+    # fall back to a different one once before giving up. A rate-limited primary
+    # is NOT a content problem - swapping models there silently changes the
+    # experiment, so let it fail loudly instead.
     rate_limited = "429" in str(last_error) or type(last_error).__name__ == "RateLimitError"
     fallback = None if rate_limited else _first_env("LITELLM_FALLBACK_MODEL")
     if fallback and fallback != model:

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cậu bé bị đau lưng.\n### Lựa chọn: [choice]Ba lô của cậu mở.@ [choice]Ba lô của cậu nặng trĩu.@'] || GT-A:Ba lô của cậu nặng trĩu. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của cậu bé bị đau lưng là do ba lô của cậu mở, dựa trên việc kết nối thông tin về việc ba lô bị mở và cậu bé đau lưng.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

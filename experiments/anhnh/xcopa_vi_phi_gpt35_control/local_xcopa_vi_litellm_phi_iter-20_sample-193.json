@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ có quầng thâm dưới mắt.\n### Lựa chọn: [choice]Cô thức cả đêm.@ [choice]Cô đặt con trai lên giường.@'] || GT-A:Cô thức cả đêm. || LLM-A:Cô đặt con trai lên giường.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình quyết định câu trả lời dựa trên việc người phụ nữ có quầng thâm dưới mắt và hành động của cô đặt con trai lên giường, không phải do cô thức cả đêm.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

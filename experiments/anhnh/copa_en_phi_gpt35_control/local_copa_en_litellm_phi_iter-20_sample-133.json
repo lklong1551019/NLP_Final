@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The team lost the tournament.\n### Choices: [choice]They disappointed their fans.@ [choice]They inspired their fans.@'] || GT-A:They disappointed their fans. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "They disappointed their fans" as the answer because losing a tournament is generally seen as a negative outcome that could lead to disappointment among fans.', 'ControlScore': 0.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

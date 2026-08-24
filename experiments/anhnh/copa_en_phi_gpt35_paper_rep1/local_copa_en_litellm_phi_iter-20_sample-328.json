@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I took a sip of the scalding coffee.\n### Choices: [choice]I bit my tongue.@ [choice]I burnt my tongue.@'] || GT-A:I burnt my tongue. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP> The model may have chosen answer A because it is related to the act of taking a sip of scalding coffee and the potential consequences, such as biting one's tongue."}

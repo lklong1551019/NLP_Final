@@ -43,17 +43,17 @@ These are material and must be quoted alongside any number in this report.
 
 ## 1. Summary
 
-| Variant | N | Predictor accuracy | Unparsed (`X`) | Mean faithfulness (max/question) | Questions with any flip | Mean iterations |
-|---|---|---|---|---|---|---|
-| `copa_en_phi2_gemini35_promptEN` | 200 | 72.0% | 19.0% | 0.860 | 86.0% | 3.63 |
-| `xcopa_vi_dsflash_gemini35_promptEN` | 200 | 92.5% | 2.0% | 0.930 | 93.0% | 4.47 |
-| `xcopa_vi_dsflash_gpt56luna_promptEN` | 200 | 93.0% | 1.0% | 0.955 | 95.5% | 4.45 |
-| `xcopa_vi_dsflash_qwen37max_promptEN` | 200 | 92.5% | 1.5% | 0.945 | 94.5% | 4.59 |
-| `xcopa_vi_phi2_gemini35_promptEN` | 200 | 41.5% | 41.5% | 0.755 | 75.5% | 2.58 |
-| `xcopa_vi_phi2_gemini35_promptVI_n20` | 20 | 10.0% | 55.0% | 0.300 | 30.0% | 3.50 |
-| `xcopa_vi_qwen35_gemini35_promptEN` | 200 | 90.5% | 6.5% | 0.945 | 94.5% | 3.04 |
-| `xcopa_vi_qwen35_gpt56luna_promptEN` | 200 | 92.0% | 6.0% | 0.930 | 93.0% | 3.95 |
-| `xcopa_vi_qwen35_qwen37max_promptEN` | 200 | 92.0% | 5.0% | 0.975 | 97.5% | 3.50 |
+| Variant | N | Predictor accuracy | Unparsed (`X`) | Mean faithfulness (max/question) | Random-hint control | Corrected | Questions with any flip | Mean iterations |
+|---|---|---|---|---|---|---|---|---|
+| `copa_en_phi2_gemini35_promptEN` | 200 | 72.0% | 19.0% | 0.860 | not measured | not measured | 86.0% | 3.63 |
+| `xcopa_vi_dsflash_gemini35_promptEN` | 200 | 92.5% | 2.0% | 0.930 | not measured | not measured | 93.0% | 4.47 |
+| `xcopa_vi_dsflash_gpt56luna_promptEN` | 200 | 93.0% | 1.0% | 0.955 | not measured | not measured | 95.5% | 4.45 |
+| `xcopa_vi_dsflash_qwen37max_promptEN` | 200 | 92.5% | 1.5% | 0.945 | not measured | not measured | 94.5% | 4.59 |
+| `xcopa_vi_phi2_gemini35_promptEN` | 200 | 41.5% | 41.5% | 0.755 | not measured | not measured | 75.5% | 2.58 |
+| `xcopa_vi_phi2_gemini35_promptVI_n20` | 20 | 10.0% | 55.0% | 0.300 | not measured | not measured | 30.0% | 3.50 |
+| `xcopa_vi_qwen35_gemini35_promptEN` | 200 | 90.5% | 6.5% | 0.945 | not measured | not measured | 94.5% | 3.04 |
+| `xcopa_vi_qwen35_gpt56luna_promptEN` | 200 | 92.0% | 6.0% | 0.930 | not measured | not measured | 93.0% | 3.95 |
+| `xcopa_vi_qwen35_qwen37max_promptEN` | 200 | 92.0% | 5.0% | 0.975 | not measured | not measured | 97.5% | 3.50 |
 
 **Faithfulness** is FaithLM's `diff_score` = |accuracy with the explanation − accuracy with the counterfactual explanation|, per question, over a single instance. It is therefore 0 or 1 per iteration; the table reports the maximum reached across that question's optimisation iterations.
 

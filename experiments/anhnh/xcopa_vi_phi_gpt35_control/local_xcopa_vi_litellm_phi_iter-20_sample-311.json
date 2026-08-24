@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Con mèo đuổi theo con chim.\n### Lựa chọn: [choice]Con chim bay đi.@ [choice]Con chim bắt được con sâu.@'] || GT-A:Con chim bay đi. || LLM-A:Con chim bay đi.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Con chim bay đi" vì nó là lựa chọn phù hợp với tiền đề "Con mèo đuổi theo con chim", trong đó chúng ta không biết điều gì xảy ra sau khi con mèo đuổi con chim.', 'ControlScore': 1.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I felt exhausted.\n### Choices: [choice]I slept all day.@ [choice]I studied all day.@'] || GT-A:I studied all day. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "I slept all day" because it associates feeling exhausted with needing rest, which aligns with the concept of sleeping to recover energy.'}

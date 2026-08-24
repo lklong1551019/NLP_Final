@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The frozen food thawed.\n### Choices: [choice]I put it in the microwave.@ [choice]I covered it with plastic wrap.@'] || GT-A:I put it in the microwave. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen answer choice X because it did not find a suitable reason in the premise for why the frozen food thawed.'}

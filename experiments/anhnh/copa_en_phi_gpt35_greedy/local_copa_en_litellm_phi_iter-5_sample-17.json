@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The man remained silent when his friend finishing speaking.\n### Choices: [choice]He wanted to offer his friend support.@ [choice]He was thinking about his friend's words.@"] || GT-A:He was thinking about his friend's words. || LLM-A:He was thinking about his friend's words.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "He was thinking about his friend\'s words" because it interprets the man\'s silence as a sign of him pondering over what his friend said.'}

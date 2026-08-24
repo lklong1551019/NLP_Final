@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The ripe fruit lingered in the sun.\n### Choices: [choice]It was eaten.@ [choice]It shriveled up.@'] || GT-A:It shriveled up. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer A because it mentions the ripe fruit being eaten, which is a common outcome for ripe fruit left in the sun.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

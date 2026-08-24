@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I arrived late to the lecture.\n### Choices: [choice]I took a seat in the back row.@ [choice]I approached the podium.@'] || GT-A:I took a seat in the back row. || LLM-A:I took a seat in the back row.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "I took a seat in the back row" because arriving late to the lecture often leads to finding a seat in the back row to avoid disrupting others or drawing attention.'}

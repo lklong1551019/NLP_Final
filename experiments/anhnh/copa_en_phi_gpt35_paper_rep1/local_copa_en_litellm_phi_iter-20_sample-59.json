@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man pressed down on the moist flap of the envelope.\n### Choices: [choice]He put a stamp on the envelope.@ [choice]He sealed the envelope shut.@'] || GT-A:He sealed the envelope shut. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "He sealed the envelope shut." because pressing down on the flap of an envelope is commonly associated with sealing it shut.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman sighed with frustration.\n### Choices: [choice]Her husband misunderstood her concerns.@ [choice]Her husband kissed her goodbye.@'] || GT-A:Her husband misunderstood her concerns. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model might have chosen answer A because it contains a plausible reason that could lead to frustration for the woman, even though it is not explicitly mentioned in the premise.'}

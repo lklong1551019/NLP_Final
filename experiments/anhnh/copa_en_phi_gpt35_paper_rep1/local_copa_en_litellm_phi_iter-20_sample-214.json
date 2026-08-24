@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The prisoner starved.\n### Choices: [choice]He died.@ [choice]He fled.@'] || GT-A:He died. || LLM-A:He died.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "He died" as the answer because the premise directly states that the prisoner starved, which typically leads to death.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Lửa rừng lan rộng.\n### Lựa chọn: [choice]Những cơn gió trở nên mạnh hơn.@ [choice]Những kẻ chủ mưu đã bị bắt giữ.@'] || GT-A:Những cơn gió trở nên mạnh hơn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng "Những cơn gió trở nên mạnh hơn" là nguyên nhân của tiền đề vì cơn gió mạnh có thể thổi lan lửa rừng nhanh chóng.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

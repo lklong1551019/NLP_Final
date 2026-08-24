@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman travelled abroad.\n### Choices: [choice]She wanted to learn how to draw.@ [choice]She wanted to learn about other cultures.@'] || GT-A:She wanted to learn about other cultures. || LLM-A:She wanted to learn about other cultures.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "She wanted to learn about other cultures" because traveling abroad is often associated with the opportunity to learn about other cultures and gain new experiences.'}

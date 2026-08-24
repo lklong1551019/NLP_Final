@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: My hands became sticky.\n### Choices: [choice]I ate a doughnut.@ [choice]I had a sweet tooth.@'] || GT-A:I ate a doughnut. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "I ate a doughnut" because it associates sticky hands with having eaten something sticky like a doughnut.'}

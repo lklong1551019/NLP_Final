@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man wrote a will.\n### Choices: [choice]He was dying.@ [choice]He was a widower.@'] || GT-A:He was dying. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP> The model may have selected answer choice A because writing a will is commonly associated with someone who is dying, as it is often done to specify how one's belongings should be distributed after their death.", 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

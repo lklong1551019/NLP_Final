@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi cắn một lát dưa hấu.\n### Lựa chọn: [choice]Tôi vô tình nuốt hạt dưa.@ [choice]Tôi vô tình sứt mẻ răng.@'] || GT-A:Tôi vô tình nuốt hạt dưa. || LLM-A:Được đã tìm về các sĩ một khu viên?
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời "Được đã tìm về các sĩ một khu viên" có thể do việc kết hợp các từ khóa từ câu hỏi và tiền đề mà không hiểu rõ ngữ cảnh hoặc logic phản hồi.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

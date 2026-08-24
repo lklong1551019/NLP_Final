@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The photographer forgot to use the flash on the camera.\n### Choices: [choice]The photos turned out blurry.@ [choice]Everyone in the photos refused to smile.@'] || GT-A:The photos turned out blurry. || LLM-A:The photos turned out blurry.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The photos turned out blurry" as the answer because it directly relates to the premise of the photographer forgetting to use the flash on the camera, which would result in blurry photos.'}

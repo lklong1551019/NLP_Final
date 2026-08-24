@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Bãi đậu xe của tòa nhà trống rỗng.\n### Lựa chọn: [choice]Tôi đậu xe bên kia đường.@ [choice]Tôi đậu gần lối vào.@'] || GT-A:Tôi đậu gần lối vào. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình dựa vào việc bãi đậu xe của tòa nhà trống rỗng để suy luận rằng việc đậu xe ở bên kia đường là kết quả của Tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

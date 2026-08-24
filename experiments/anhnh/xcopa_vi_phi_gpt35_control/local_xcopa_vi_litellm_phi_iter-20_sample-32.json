@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông giảm cân.\n### Lựa chọn: [choice]Mọi người cô lập anh.@ [choice]Mọi người khen anh.@'] || GT-A:Mọi người khen anh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì trong tiền đề, người đàn ông giảm cân không có liên quan trực tiếp đến việc mọi người cô lập hay khen anh.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

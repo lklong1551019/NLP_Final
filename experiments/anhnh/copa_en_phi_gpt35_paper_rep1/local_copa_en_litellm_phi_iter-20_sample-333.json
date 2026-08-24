@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man underwent emergency surgery.\n### Choices: [choice]He lost his temper.@ [choice]He suffered a heart attack.@'] || GT-A:He suffered a heart attack. || LLM-A:He suffered a heart attack.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He suffered a heart attack" as the answer because emergency surgery is commonly associated with health issues such as a heart attack.'}

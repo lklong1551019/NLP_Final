@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man stained his suit.\n### Choices: [choice]He got it dry-cleaned.@ [choice]He hung it in his closet.@'] || GT-A:He got it dry-cleaned. || LLM-A:He got it dry-cleaned.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose "He got it dry-cleaned." as the answer because it correctly matches the effect of staining a suit with the action of getting it dry-cleaned, which is a common solution for removing stains from clothing.'}

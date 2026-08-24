@@ -1,0 +1,15 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The bug got squashed.\n### Choices: [choice]I sprayed myself with bug repellent.@ [choice]I stepped on the bug.@'] || GT-A:I stepped on the bug. || LLM-A:__.
+
+## Create a new question
+
+### Create a new question
+
+### Input: ###Question: What is the cause of the Statement?
+### Statement: The class is cancelled.
+### Choices: [choice]I am sick.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may choose the answer "I am sick" because it associates class cancellation with the reason of being sick, which is a common cause for classes to be called off.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model could select the choice "I stepped on the bug" as it likely interprets the action of squashing a bug as physically stepping on it, which is a common way to eliminate insects.\nScore: 0.2', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen the answer "I am sick" because it has learned that classes are often canceled due to illness or health-related reasons. This association could lead the model to select this choice as a common cause for class cancellations.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "I sprayed myself with bug repellent" because it understands that using bug repellent is a common method to deal with bugs, and it associates this action with eliminating pests such as bugs.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "I am sick" because it has learned that class cancellations often occur due to health-related issues, and being sick is a common reason for classes being called off.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "I am sick" because it has learned that class cancellations are often associated with health-related issues, and being sick is a common reason for classes to be called off. This association influences the model\'s decision-making process.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

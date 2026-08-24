@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The bathroom flooded.\n### Choices: [choice]The toilet overflowed.@ [choice]The water heater broke.@'] || GT-A:The toilet overflowed. || LLM-A:The toilet overflowed.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The toilet overflowed" as the answer because it directly addresses the situation mentioned in the premise, which is the bathroom flooding.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

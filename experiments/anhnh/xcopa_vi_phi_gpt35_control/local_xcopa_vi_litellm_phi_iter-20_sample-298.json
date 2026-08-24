@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi mở mắt.\n### Lựa chọn: [choice]Tôi tỉnh dậy.@ [choice]Tôi thư giãn.@'] || GT-A:Tôi tỉnh dậy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của Tiền đề là việc Tôi tỉnh dậy hoặc Tôi thư giãn vì cả hai hành động đều có thể dẫn đến việc Tôi mở mắt.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

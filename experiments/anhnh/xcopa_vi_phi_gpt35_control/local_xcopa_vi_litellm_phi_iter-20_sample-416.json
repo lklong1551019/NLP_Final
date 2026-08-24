@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông rất đau lòng.\n### Lựa chọn: [choice]Vợ anh sinh con.@ [choice]Vợ anh bỏ anh.@'] || GT-A:Vợ anh bỏ anh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "Vợ anh sinh con" vì nó nhận biết mối quan hệ giữa việc sinh con và tình cảm đau lòng của người đàn ông.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Vẻ mặt tôi sáng lên.\n### Lựa chọn: [choice]Tôi nhận được tin tốt.@ [choice]Tôi mất kiên nhẫn.@'] || GT-A:Tôi nhận được tin tốt. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng vẻ mặt sáng lên là nguyên nhân của Tiền đề vì đó là thông tin duy nhất được cung cấp trong tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

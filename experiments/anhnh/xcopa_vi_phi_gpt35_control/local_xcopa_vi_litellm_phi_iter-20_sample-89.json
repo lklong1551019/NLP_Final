@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cậu bé bị lạc trong rừng.\n### Lựa chọn: [choice]Cậu dựng lều.@ [choice]Cậu hét lên cầu cứu.@'] || GT-A:Cậu hét lên cầu cứu. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" vì có thể đó là hành động một cách tự nhiên mà một cậu bé bị lạc trong rừng có thể thực hiện khi cảm thấy sợ hãi hoặc cần giúp đỡ.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

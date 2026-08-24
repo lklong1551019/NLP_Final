@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông nổi bật trong đám đông.\n### Lựa chọn: [choice]Anh mang ba lô.@ [choice]Anh mặc vest neon.@'] || GT-A:Anh mặc vest neon. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì trong tiền đề được mô tả là "người đàn ông nổi bật trong đám đông", không có thông tin cụ thể về việc anh ta mang ba lô hay mặc vest neon.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

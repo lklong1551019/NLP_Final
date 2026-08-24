@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tên tội phạm bỏ chạy khỏi cảnh sát.\n### Lựa chọn: [choice]Cảnh sát chăm sóc nạn nhân.@ [choice]Cảnh sát đuổi theo tên tội phạm.@'] || GT-A:Cảnh sát đuổi theo tên tội phạm. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là cảnh sát đuổi theo tên tội phạm vì có một mối liên hệ giữa việc tội phạm bỏ chạy và cảnh sát sẽ đuổi theo.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man put on sunscreen.\n### Choices: [choice]He sat in the shade.@ [choice]He went to the beach.@'] || GT-A:He went to the beach. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "He went to the beach" because it associates putting on sunscreen with going to the beach, which is a common scenario where sunscreen is used.'}

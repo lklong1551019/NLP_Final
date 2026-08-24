@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The friends lost touch.\n### Choices: [choice]They enjoyed each other's company.@ [choice]They moved to different cities.@"] || GT-A:They moved to different cities. || LLM-A:They moved to different cities.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "They moved to different cities" because it is a common reason for friends losing touch, indicating a plausible cause based on real-life scenarios.'}

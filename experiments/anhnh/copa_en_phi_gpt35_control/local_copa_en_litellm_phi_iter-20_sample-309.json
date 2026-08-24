@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman communicated with sign language.\n### Choices: [choice]She was born premature.@ [choice]She was born deaf.@'] || GT-A:She was born deaf. || LLM-A:She was born deaf.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "She was born deaf" as the answer because it associates sign language with deafness, which is a common stereotype.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

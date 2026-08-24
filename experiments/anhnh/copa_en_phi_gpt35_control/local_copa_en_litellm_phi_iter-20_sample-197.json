@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The executive went bankrupt.\n### Choices: [choice]He sold his company stock.@ [choice]He squandered his fortune.@'] || GT-A:He squandered his fortune. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "He squandered his fortune" because it associates bankruptcy with reckless spending or mismanagement of funds, which is a common reason for financial downfall.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

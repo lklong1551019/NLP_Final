@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The player tackled his opponent.\n### Choices: [choice]His opponent caught the pass.@ [choice]His opponent hit the ground.@'] || GT-A:His opponent hit the ground. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose the answer "His opponent caught the pass" because it may have associated the word "tackled" with a successful play in sports, leading to a potential misconception in this context.'}

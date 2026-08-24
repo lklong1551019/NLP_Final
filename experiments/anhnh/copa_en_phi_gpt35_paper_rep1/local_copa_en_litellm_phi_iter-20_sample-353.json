@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man held similar beliefs to those of his parents.\n### Choices: [choice]His parents influenced him.@ [choice]His parents disowned him.@'] || GT-A:His parents influenced him. || LLM-A:His parents influenced him.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "His parents influenced him" as the answer because it correctly reflects the idea that the man\'s beliefs were shaped by his parents.'}

@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The hungry vagrant stole food.\n### Choices: [choice]He incited pity.@ [choice]He had no money.@'] || GT-A:He had no money. || LLM-A:He had no money.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen "He had no money" as the answer because it is a common reason for someone to steal food when they are hungry.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model might have selected "He had no money" as the answer because financial desperation is often a common motivator for theft.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen "He had no money" as the answer due to the common association between poverty and resorting to theft for basic necessities like food.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely identified "He had no money" as the cause because financial hardship is a common trigger for individuals to resort to stealing, especially when it comes to obtaining basic necessities like food.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "He had no money" as the cause because financial hardship often leads individuals to desperate measures like stealing food.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The model potentially identified "He had no money" as the explanation due to the strong link between poverty and the act of stealing food out of necessity.'}

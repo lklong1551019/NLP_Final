@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The wasp flew towards the boy.\n### Choices: [choice]The boy ran away.@ [choice]The boy picked a flower.@'] || GT-A:The boy ran away. || LLM-A:The boy ran away.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The boy ran away" because it associates the presence of a wasp with the action of a person running away, as common behavior when someone encounters a flying insect.'}

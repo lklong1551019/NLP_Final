@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Các mặt hàng đã được đóng gói trong bọc bong bóng.\n### Lựa chọn: [choice]Nó dễ vỡ.@ [choice]Nó nhỏ.@'] || GT-A:Nó dễ vỡ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của Tiền đề là do nó dễ vỡ, vì các mặt hàng đã được đóng gói trong bọc bong bóng.'}

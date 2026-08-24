@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tên tội phạm nhắm súng vào nạn nhân của mình.\n### Lựa chọn: [choice]Tên tội phạm đặt súng xuống.@ [choice]Nạn nhân đưa tay lên.@'] || GT-A:Nạn nhân đưa tay lên. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì dựa vào tiền đề, nó nhận thấy rằng tên tội phạm nhắm súng vào nạn nhân, không phải là nạn nhân đưa tay lên hoặc tên tội phạm đặt súng xuống.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

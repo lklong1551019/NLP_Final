@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: I excused my colleague's blunder.\n### Choices: [choice]I believed his intentions were good.@ [choice]I believed that he knew better.@"] || GT-A:I believed his intentions were good. || LLM-A:I believed his intentions were good.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "I believed his intentions were good" because excusing a colleague\'s blunder can be seen as an act of assuming positive intentions.'}

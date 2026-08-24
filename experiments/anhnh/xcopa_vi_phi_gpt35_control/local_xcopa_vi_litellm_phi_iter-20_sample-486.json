@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông ra khỏi phòng tắm.\n### Lựa chọn: [choice]Nước nóng đã hết.@ [choice]Anh ta không tm thấy khăn tắm.@'] || GT-A:Nước nóng đã hết. || LLM-A:Những những chạy về làm những một đã được cách sẽ dẫn được nhằm.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn lựa chọn "Nước nóng đã hết" là câu trả lời vì nó đưa ra một kết luận có thể liên quan đến việc người đàn ông ra khỏi phòng tắm.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

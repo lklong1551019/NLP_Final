@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: I paused to stop talking.\n### Choices: [choice]I lost my voice.@ [choice]I ran out of breath.@'] || GT-A:I ran out of breath. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen answer X because it failed to accurately determine the cause of the premise "I paused to stop talking" based on the given choices.'}

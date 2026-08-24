@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Vận động viên chạy cảm nhận được đối thủ đang bám sát.\n### Lựa chọn: [choice]Anh bỏ cuộc đua.@ [choice]Anh tăng tốc.@'] || GT-A:Anh tăng tốc. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng vận động viên cảm nhận đối thủ đang bám sát là lý do chính khiến anh ta quyết định tăng tốc hoặc bỏ cuộc.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

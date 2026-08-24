@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Trời bắt đầu mưa.\n### Lựa chọn: [choice]Tài xế bật đèn pha.@ [choice]Tài xế lùi xe.@'] || GT-A:Tài xế bật đèn pha. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" có thể dựa vào việc kết hợp thông tin từ tiền đề "Trời bắt đầu mưa" và lựa chọn "Tài xế bật đèn pha" để suy luận rằng khi trời mưa, tài xế cần bật đèn pha để tăng cường tầm nhìn.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

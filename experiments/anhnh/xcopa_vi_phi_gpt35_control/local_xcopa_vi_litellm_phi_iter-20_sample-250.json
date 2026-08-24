@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông đâm thủng chân anh.\n### Lựa chọn: [choice]Anh bước vào một vũng nước.@ [choice]Anh bước lên kính vỡ.@'] || GT-A:Anh bước lên kính vỡ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn lựa chưa chắc chắn về nguyên nhân của tiền đề, có thể do anh bước vào một vũng nước hoặc anh bước lên kính vỡ.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man raised his eyebrows.\n### Choices: [choice]He was surprised.@ [choice]He felt discouraged.@'] || GT-A:He was surprised. || LLM-A:He was surprised.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He was surprised." as the answer because the action of raising eyebrows is commonly associated with expressing surprise.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

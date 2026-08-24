@@ -23,7 +23,7 @@ from collections import defaultdict
 
 
 def parse_local_file(path):
-    target, scores = None, []
+    target, scores, controls = None, [], []
     with open(path, "r", encoding="utf-8") as fh:
         for line in fh:
             line = line.strip()
@@ -38,6 +38,8 @@ def parse_local_file(path):
                     continue
                 if isinstance(entry.get("Score"), (int, float)):
                     scores.append(float(entry["Score"]))
+                if isinstance(entry.get("ControlScore"), (int, float)):
+                    controls.append(float(entry["ControlScore"]))
 
     if target is None:
         return None
@@ -55,6 +57,8 @@ def parse_local_file(path):
         "unparsed": pred == "X",
         "scores": scores,
         "iterations": len(scores),
+        "controls": controls,
+        "max_control": max(controls) if controls else None,
         "max_score": max(scores) if scores else 0.0,
         "mean_score": statistics.fmean(scores) if scores else 0.0,
         "any_flip": any(s > 0 for s in scores),
@@ -105,10 +109,18 @@ def pct(num, den):
     return f"{100.0 * num / den:.1f}%" if den else "n/a"
 
 
-_STATS_RE = re.compile(
-    r"LLM calls: (\d+) \| empty completions: (\d+) \| "
-    r"failed calls: (\d+) \| fallback used: (\d+)"
-)
+# Matched field-by-field rather than as one fixed sequence: stats_summary() has
+# gained fields over time (context overflow, rate limited) and a positional
+# pattern silently stops matching the moment one is inserted in the middle.
+_STATS_LINE_RE = re.compile(r"LLM calls: \d+ .*")
+_STATS_FIELDS = {
+    "calls": re.compile(r"LLM calls: (\d+)"),
+    "empty": re.compile(r"empty completions: (\d+)"),
+    "errors": re.compile(r"failed calls: (\d+)"),
+    "fallback": re.compile(r"fallback used: (\d+)"),
+    "rate_limited": re.compile(r"rate limited: (\d+)"),
+    "context_overflow": re.compile(r"context overflow: (\d+)"),
+}
 
 
 def collect_api_stats(results_dir):
@@ -124,12 +136,12 @@ def collect_api_stats(results_dir):
                 text = open(os.path.join(root, name), encoding="utf-8", errors="replace").read()
             except OSError:
                 continue
-            for m in _STATS_RE.finditer(text):
+            for line in _STATS_LINE_RE.findall(text):
                 totals["procs"] += 1
-                totals["calls"] += int(m.group(1))
-                totals["empty"] += int(m.group(2))
-                totals["errors"] += int(m.group(3))
-                totals["fallback"] += int(m.group(4))
+                for key, field_re in _STATS_FIELDS.items():
+                    m = field_re.search(line)
+                    if m:
+                        totals[key] = totals.get(key, 0) + int(m.group(1))
     return totals
 
 
@@ -143,6 +155,20 @@ def build(results_dir, output_path):
     out.append("")
     out.append(f"> Results directory: `{results_dir}`")
     out.append("")
+
+    # Interpretation lives in FINDINGS.md so that regenerating this file cannot
+    # destroy it. Inline it here so a reader of the report sees the conclusions
+    # next to the numbers instead of having to know another file exists.
+    findings_path = os.path.join(results_dir, "FINDINGS.md")
+    if os.path.isfile(findings_path):
+        with open(findings_path, encoding="utf-8") as fh:
+            body = fh.read().strip()
+        out.append("<!-- inlined from FINDINGS.md - edit that file, not this one -->")
+        out.append("")
+        out.append(body)
+        out.append("")
+        out.append("---")
+        out.append("")
 
     # ---- setup ---------------------------------------------------------
     out.append("## 0. Experimental setup")
@@ -227,8 +253,8 @@ def build(results_dir, output_path):
     # ---- summary table -------------------------------------------------
     out.append("## 1. Summary")
     out.append("")
-    out.append("| Variant | N | Predictor accuracy | Unparsed (`X`) | Mean faithfulness (max/question) | Questions with any flip | Mean iterations |")
-    out.append("|---|---|---|---|---|---|---|")
+    out.append("| Variant | N | Predictor accuracy | Unparsed (`X`) | Mean faithfulness (max/question) | Random-hint control | Corrected | Questions with any flip | Mean iterations |")
+    out.append("|---|---|---|---|---|---|---|---|---|")
     for variant in sorted(variants):
         loc = variants[variant]["local"]
         if not loc:
@@ -239,9 +265,16 @@ def build(results_dir, output_path):
         flips = sum(r["any_flip"] for r in loc)
         mean_max = statistics.fmean(r["max_score"] for r in loc)
         mean_it = statistics.fmean(r["iterations"] for r in loc)
+        ctl = [r["max_control"] for r in loc if r["max_control"] is not None]
+        if ctl:
+            mean_ctl = statistics.fmean(ctl)
+            ctl_txt = f"{mean_ctl:.3f}"
+            corr_txt = f"**{mean_max - mean_ctl:+.3f}**"
+        else:
+            ctl_txt = corr_txt = "not measured"
         out.append(
             f"| `{variant}` | {n} | {pct(acc, n)} | {pct(unp, n)} | "
-            f"{mean_max:.3f} | {pct(flips, n)} | {mean_it:.2f} |"
+            f"{mean_max:.3f} | {ctl_txt} | {corr_txt} | {pct(flips, n)} | {mean_it:.2f} |"
         )
     out.append("")
     out.append("**Faithfulness** is FaithLM's `diff_score` = |accuracy with the explanation "

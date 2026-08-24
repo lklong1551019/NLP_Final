@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The electricity in the house shut off.\n### Choices: [choice]I looked for a flashlight.@ [choice]I picked up a shovel.@'] || GT-A:I looked for a flashlight. || LLM-A:I looked for a flashlight.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "I looked for a flashlight" as the answer because it is a logical response to the electricity shutting off in the house, indicating a need for alternative light source.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ đi du lịch nước ngoài.\n### Lựa chọn: [choice]Cô muốn học vẽ.@ [choice]Cô muốn tìm hiểu về các nền văn hóa khác.@'] || GT-A:Cô muốn tìm hiểu về các nền văn hóa khác. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời X vì không phải lựa chọn nào cũng liên quan đến nguyên nhân của Tiền đề "Người phụ nữ đi du lịch nước ngoài".', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

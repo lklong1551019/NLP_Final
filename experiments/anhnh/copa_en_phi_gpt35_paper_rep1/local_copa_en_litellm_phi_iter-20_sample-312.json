@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl switched schools.\n### Choices: [choice]School let out for the summer.@ [choice]She moved to a new town.@'] || GT-A:She moved to a new town. || LLM-A:She moved to a new town.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected "She moved to a new town" as the answer because it correctly identifies a common reason for a student to switch schools, which is relocating to a new town.'}

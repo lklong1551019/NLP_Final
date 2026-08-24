@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cô gái véo mũi.\n### Lựa chọn: [choice]Đứa bé chảy nước dãi trên chiếc yếm của cô.@ [choice]Đứa bé làm bẩn tã của mình.@'] || GT-A:Đứa bé làm bẩn tã của mình. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Đứa bé chảy nước dãi trên chiếc yếm của cô" vì hành vi véo mũi của cô gái có thể gây ra sự bẩn của chiếc yếm.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man felt proud of his brother.\n### Choices: [choice]His brother got in an argument with their parents.@ [choice]His brother got accepted into law school.@'] || GT-A:His brother got accepted into law school. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "His brother got accepted into law school." because it relates to a positive achievement that could make someone feel proud.'}

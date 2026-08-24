@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: All my socks were in the laundry.\n### Choices: [choice]I wore sandals.@ [choice]I wore boots.@'] || GT-A:I wore sandals. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen answer choice "I wore boots" because it is a plausible action to take if all the socks are in the laundry, indicating that wearing boots instead of sandals is a reasonable option.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the cause of the Premise?\n### Premise: The writer missed her deadline for the draft submission.\n### Choices: [choice]She had writer's block.@ [choice]She edited the draft.@"] || GT-A:She had writer's block. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected "She had writer\'s block" as the answer because it could be a common reason for missing a deadline in a writing context.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đầu người đàn ông đau nhói.\n### Lựa chọn: [choice]Anh uống siro ho.@ [choice]Anh uống aspirin.@'] || GT-A:Anh uống aspirin. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Anh uống siro ho" vì nó có thể giảm đau nhói đầu của người đàn ông, mặc dù không nhất thiết phải là phương pháp chính xác để giải quyết vấn đề.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

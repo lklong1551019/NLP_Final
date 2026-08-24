@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Một thiên thạch rơi xuống đại dương.\n### Lựa chọn: [choice]Một cơn sóng thần đã xảy ra.@ [choice]Nó bắt đầu mưa đá.@'] || GT-A:Một cơn sóng thần đã xảy ra. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là X vì nó đưa ra kết luận dựa trên việc thiên thạch rơi xuống đại dương mà không liên quan đến cơn sóng thần hay mưa đá.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The government oppressed its citizens.\n### Choices: [choice]The citizens staged a revolt.@ [choice]The citizens registered to vote.@'] || GT-A:The citizens staged a revolt. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose answer A because it understands that when a government oppresses its citizens, a common reaction is for the citizens to stage a revolt, which aligns with the context provided in the premise.'}

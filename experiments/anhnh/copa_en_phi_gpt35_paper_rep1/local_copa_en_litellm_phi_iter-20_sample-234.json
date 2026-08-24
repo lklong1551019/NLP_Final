@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The student received tutoring.\n### Choices: [choice]His grades improved.@ [choice]He cheated on the exam.@'] || GT-A:His grades improved. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "His grades improved" as the answer because it associates tutoring with academic improvement.'}

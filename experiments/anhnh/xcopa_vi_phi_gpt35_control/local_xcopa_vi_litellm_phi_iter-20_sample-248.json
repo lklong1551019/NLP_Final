@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cô gái nở một nụ cười.\n### Lựa chọn: [choice]Má cô ửng đỏ.@ [choice]Lúm đồng tiền của cô hiện rõ.@'] || GT-A:Lúm đồng tiền của cô hiện rõ. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì nó liên quan đến hành động của cô gái, cụ thể là việc nở một nụ cười. Câu trả lời X có thể được hiểu là sự liên kết giữa hành động của cô gái với việc xuất hiện một kết quả cụ thể.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

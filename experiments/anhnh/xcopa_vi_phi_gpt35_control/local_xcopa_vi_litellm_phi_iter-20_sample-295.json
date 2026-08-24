@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tiếng nhạc quá nhỏ để nghe thấy.\n### Lựa chọn: [choice]Tôi tăng âm lượng.@ [choice]Tôi sáng tác bài hát của riêng tôi.@'] || GT-A:Tôi tăng âm lượng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì đó là lựa chọn không liên quan hoặc không hợp lý với tiền đề được cung cấp.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

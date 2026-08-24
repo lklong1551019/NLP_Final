@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cô gái muốn cảm ơn cô giáo dạy toán.\n### Lựa chọn: [choice]Cô gái bị giữ lại sau giờ học.@ [choice]Cô gái mang cho cô giáo một quả táo.@'] || GT-A:Cô gái mang cho cô giáo một quả táo. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì nó không nhất thiết phải liên quan trực tiếp đến tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

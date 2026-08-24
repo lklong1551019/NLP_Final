@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I was lost.\n### Choices: [choice]I counted my cash.@ [choice]I unfolded a map.@'] || GT-A:I unfolded a map. || LLM-A:I unfolded a map.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "I unfolded a map" because it associates getting lost with the action of unfolding a map to find one\'s way.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Các sinh viên rời khỏi lớp học.\n### Lựa chọn: [choice]Chuông reo.@ [choice]Giáo viên giao bài tập về nhà.@'] || GT-A:Chuông reo. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của tiền đề là giáo viên giao bài tập về nhà vì đó là một hành động tiềm ẩn có thể khiến sinh viên rời khỏi lớp học.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

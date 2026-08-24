@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The girl lost control of her bike.\n### Choices: [choice]She let go of the handlebars.@ [choice]She crashed into a fence.@'] || GT-A:She crashed into a fence. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "X" because it failed to connect the premise about the girl losing control of her bike with the given choices. It might have struggled to infer a direct relationship between the premise and the provided options.'}

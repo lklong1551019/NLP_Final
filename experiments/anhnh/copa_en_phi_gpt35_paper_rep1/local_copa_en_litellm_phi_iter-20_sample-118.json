@@ -1,0 +1,2 @@
+============ Corrct --> Q:["###Question: What is the effect of the Premise?\n### Premise: The politician's argument was considered absurd.\n### Choices: [choice]He lost the support of voters.@ [choice]He was accused of corruption.@"] || GT-A:He lost the support of voters. || LLM-A:He lost the support of voters.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "He lost the support of voters" as the answer because it is a common consequence of an argument being considered absurd, which aligns with the premise provided.'}

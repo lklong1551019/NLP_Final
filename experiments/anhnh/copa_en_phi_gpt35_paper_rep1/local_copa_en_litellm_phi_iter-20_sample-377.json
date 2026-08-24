@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The criminal aimed the gun at his victim.\n### Choices: [choice]The criminal put down the gun.@ [choice]The victim put his hands up.@'] || GT-A:The victim put his hands up. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected answer choice A because it implies that the criminal did not actually use the gun on the victim, potentially avoiding a violent outcome.'}

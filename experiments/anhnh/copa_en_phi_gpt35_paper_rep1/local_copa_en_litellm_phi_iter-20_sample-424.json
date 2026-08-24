@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The family went to the zoo.\n### Choices: [choice]The children admired the animals.@ [choice]The children chased the animals.@'] || GT-A:The children admired the animals. || LLM-A:The children admired the animals.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The children admired the animals" because it is a common and positive activity that children usually do at the zoo, which aligns with the peaceful and enjoyable nature of a zoo visit described in the premise.'}

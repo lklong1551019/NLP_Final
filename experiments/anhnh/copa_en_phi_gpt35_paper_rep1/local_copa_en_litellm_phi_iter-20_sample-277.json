@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The family lost all their belongings.\n### Choices: [choice]They sold their house.@ [choice]Their house caught fire.@'] || GT-A:Their house caught fire. || LLM-A:Their house caught fire.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "Their house caught fire." as the answer because it directly explains the cause of the family losing all their belongings mentioned in the premise.'}

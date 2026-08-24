@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Con ong bay về phía cậu bé.\n### Lựa chọn: [choice]Cậu bé bỏ chạy.@ [choice]Cậu bé hái một bông hoa.@'] || GT-A:Cậu bé bỏ chạy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "X" vì kết quả của tiền đề không liên quan đến lựa chọn "Cậu bé bỏ chạy" hoặc "Cậu bé hái một bông hoa".', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

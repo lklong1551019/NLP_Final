@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi để trái cây trên bàn.\n### Lựa chọn: [choice]Quả rụng hạt.@ [choice]Ruồi tràn ngập trái cây.@'] || GT-A:Ruồi tràn ngập trái cây. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Quả rụng hạt" vì việc để trái cây trên bàn có thể dẫn đến việc quả rơi xuống và rụng hạt.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

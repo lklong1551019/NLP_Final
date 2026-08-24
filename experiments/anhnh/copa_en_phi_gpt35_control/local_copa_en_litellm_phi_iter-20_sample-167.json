@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman put on her shades.\n### Choices: [choice]The sunlight was bright.@ [choice]She hailed a cab.@'] || GT-A:The sunlight was bright. || LLM-A:The sunlight was bright.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The sunlight was bright" as the answer because it directly relates to the woman putting on her shades, indicating a possible cause-effect relationship.', 'ControlScore': 0.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

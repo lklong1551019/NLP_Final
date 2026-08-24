@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The driver took a detour.\n### Choices: [choice]An accident occurred on the main road.@ [choice]She followed the truck in front of her.@'] || GT-A:An accident occurred on the main road. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected the answer "An accident occurred on the main road." because it associates detours with accidents as a common reason for taking a different route.'}

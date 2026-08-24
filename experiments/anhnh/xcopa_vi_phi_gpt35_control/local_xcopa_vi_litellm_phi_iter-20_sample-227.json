@@ -1,0 +1,3 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cô gái đánh rơi quả bóng cao su.\n### Lựa chọn: [choice]Bóng nảy lên.@ [choice]Bóng phát sáng.@'] || GT-A:Bóng nảy lên. || LLM-A:Chơi vậy tâm...
+### Lựa chọn: [choice]Bóng nảy lên.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời "Chơi vậy tâm..." có thể do việc không liên kết trực tiếp với tiền đề "Cô gái đánh rơi quả bóng cao su". Mô hình có thể đã không hiểu hoặc không thể đưa ra kết luận chính xác từ thông tin đầu vào.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

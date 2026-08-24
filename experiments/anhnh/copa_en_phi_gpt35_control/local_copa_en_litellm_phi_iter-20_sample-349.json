@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I left the fruit out on the table.\n### Choices: [choice]The fruit shed seeds.@ [choice]Flies swarmed the fruit.@'] || GT-A:Flies swarmed the fruit. || LLM-A:The fruit shed seeds.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The fruit shed seeds" because leaving fruit out on the table can lead to the seeds falling out of the fruit naturally.', 'ControlScore': 1.0, 'ControlHint': 'A new bakery opened two streets away from the library.'}

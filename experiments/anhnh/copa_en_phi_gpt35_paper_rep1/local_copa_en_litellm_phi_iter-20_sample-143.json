@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The man received strange looks from passengers on the train.\n### Choices: [choice]He was staring at the ground.@ [choice]He was talking to himself.@'] || GT-A:He was talking to himself. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "He was staring at the ground." because it is a plausible explanation for why the man received strange looks from passengers on the train.'}

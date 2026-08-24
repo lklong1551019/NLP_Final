@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The mercury in the thermometer rose.\n### Choices: [choice]I dropped the thermometer.@ [choice]The weather got warmer.@'] || GT-A:The weather got warmer. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have selected choice A because it involves a direct action that could physically cause the mercury to rise in the thermometer, which might seem more plausible than the weather getting warmer.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The employee faked sick.\n### Choices: [choice]He had stomach cramps.@ [choice]He wanted a day off.@'] || GT-A:He wanted a day off. || LLM-A:He wanted a day off.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "He wanted a day off" because faking sick could be associated with wanting a day off from work.'}

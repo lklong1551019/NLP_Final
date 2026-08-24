@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ đã hủy tài khoản thẻ tín dụng của mình.\n### Lựa chọn: [choice]Cô nhận ra thẻ bị mất.@ [choice]Cô nhận ra thẻ đã hết hạn.@'] || GT-A:Cô nhận ra thẻ bị mất. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng nguyên nhân của tiền đề là người phụ nữ đã hủy tài khoản thẻ tín dụng của mình.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

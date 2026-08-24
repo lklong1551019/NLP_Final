@@ -1,0 +1,7 @@
+============ Corrct --> Q:["###Question: What is the cause of the Premise?\n### Premise: The man wore a lifejacket in the water.\n### Choices: [choice]He couldn't swim.@ [choice]The water was shallow.@"] || GT-A:He couldn't swim. || LLM-A:He couldn't swim.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose "He couldn\'t swim" because wearing a lifejacket in the water implies a lack of ability to swim.'}
+{'Score': 0.0, 'XAI prompt': "<EXP> The man's choice to wear a lifejacket suggests a potential fear or lack of confidence in his swimming abilities, leading to the conclusion that he couldn't swim."}
+{'Score': 0.0, 'XAI prompt': "<EXP> The man's decision to wear a lifejacket in the water may indicate a concern for safety, suggesting that he couldn't swim."}
+{'Score': 1.0, 'XAI prompt': '<EXP> The man may have chosen to wear a lifejacket in the water due to a potential lack of swimming skills, hinting at the answer "He couldn\'t swim."'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer "He couldn\'t swim" is likely chosen because wearing a lifejacket in the water implies a lack of ability to swim.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The man\'s decision to wear a lifejacket in the water suggests a potential lack of swimming skills, leading to the conclusion that he couldn\'t swim.\n<EXP> The choice of "He couldn\'t swim" as the answer may stem from the implication that wearing a lifejacket indicates a lack of ability to swim.'}

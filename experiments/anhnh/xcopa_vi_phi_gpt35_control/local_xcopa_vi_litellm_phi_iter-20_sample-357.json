@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi về nhà sớm.\n### Lựa chọn: [choice]Tôi bị nhức đầu.@ [choice]Ông chủ của tôi đã tổ chức một cuộc họp.@'] || GT-A:Tôi bị nhức đầu. || LLM-A:Tôi bị nhức đầu.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Tôi bị nhức đầu" có thể dựa trên việc liên kết giữa việc về nhà sớm và cảm giác không khỏe mạnh do bị nhức đầu.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

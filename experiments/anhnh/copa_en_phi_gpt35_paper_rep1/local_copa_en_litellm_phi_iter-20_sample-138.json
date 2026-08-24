@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The two children simultaneously reached down to retrieve the ball.\n### Choices: [choice]The ball rolled away.@ [choice]Their heads collided.@'] || GT-A:Their heads collided. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected the answer "X" because it did not find a direct match or strong relationship between the provided premise and the choices given.'}

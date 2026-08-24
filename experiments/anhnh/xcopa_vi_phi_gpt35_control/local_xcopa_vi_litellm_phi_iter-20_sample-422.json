@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Nhân viên thu ngân gọi bảo vệ.\n### Lựa chọn: [choice]Khách hàng đã sử dụng tiền giả.@ [choice]Khách hàng bật đèn pha lên.@'] || GT-A:Khách hàng đã sử dụng tiền giả. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của tiền đề là khách hàng đã sử dụng tiền giả, vì thông tin về việc sử dụng tiền giả có thể gây ra tình huống cần sự can thiệp của bảo vệ.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

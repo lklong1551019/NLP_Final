@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: A cold draft came in through the window.\n### Choices: [choice]I relaxed.@ [choice]I shivered.@'] || GT-A:I shivered. || LLM-A:I shivered.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "I shivered" as the answer because the cold draft coming in through the window would typically cause someone to shiver due to the drop in temperature.', 'ControlScore': 1.0, 'ControlHint': 'The train timetable was revised at the start of the quarter.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The cat chased the bird.\n### Choices: [choice]The bird flew away.@ [choice]The bird caught a worm.@'] || GT-A:The bird flew away. || LLM-A:The bird flew away.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected "The bird flew away" as the answer because it is a common outcome when a cat chases a bird.', 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The boy tripped.\n### Choices: [choice]His jacket was unzipped.@ [choice]His shoelaces were untied.@'] || GT-A:His shoelaces were untied. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen the answer "His shoelaces were untied." because it is a common reason for someone to trip.', 'ControlScore': 1.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

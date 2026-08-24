@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Thẻ tín dụng của doanh nhân đã bị từ chối.\n### Lựa chọn: [choice]Anh ấy đã viết một IOU.@ [choice]Anh trả bằng tiền mặt.@'] || GT-A:Anh trả bằng tiền mặt. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Anh ấy đã viết một IOU" vì nó đưa ra một giải pháp có thể xảy ra khi thẻ tín dụng bị từ chối, mà không cần phải trả bằng tiền mặt.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

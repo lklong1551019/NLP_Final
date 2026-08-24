@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The travelers reached the border.\n### Choices: [choice]The patrol agent checked their passports.@ [choice]The patrol agent accused them of smuggling.@'] || GT-A:The patrol agent checked their passports. || LLM-A:The patrol agent checked their passports.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The patrol agent checked their passports" because it is a common and expected action when travelers reach a border.'}

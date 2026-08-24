@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Luật sư đi cầu thang lên văn phòng của cô.\n### Lựa chọn: [choice]Thư ký đã về nhà.@ [choice]Thang máy không hoạt động.@'] || GT-A:Thang máy không hoạt động. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Thang máy không hoạt động" vì điều này có thể giải thích tại sao luật sư phải đi cầu thang lên văn phòng của cô.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

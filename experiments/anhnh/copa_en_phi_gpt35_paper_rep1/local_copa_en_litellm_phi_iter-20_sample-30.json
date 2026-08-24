@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl landed in the pool.\n### Choices: [choice]She ran on the pool deck.@ [choice]She jumped off the diving board.@'] || GT-A:She jumped off the diving board. || LLM-A:She jumped off the diving board.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "She jumped off the diving board" as the answer because it involves an action that could lead to the girl landing in the pool.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ đeo bông nhét tai.\n### Lựa chọn: [choice]Cô bị phân tâm bởi tiếng ồn.@ [choice]Cô ấy vừa bấm lỗ tai.@'] || GT-A:Cô bị phân tâm bởi tiếng ồn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Cô bị phân tâm bởi tiếng ồn" là câu trả lời vì hành vi đeo bông nhét tai của người phụ nữ có thể là dấu hiệu của việc cô bị ảnh hưởng bởi tiếng ồn xung quanh.', 'ControlScore': 1.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: I picked the tomatoes from the vine.\n### Choices: [choice]They were ripe.@ [choice]I watered them.@'] || GT-A:They were ripe. || LLM-A:They were ripe.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "They were ripe" as the answer because ripe tomatoes being picked from the vine is a common occurrence and a logical reason for picking them.', 'ControlScore': 1.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}

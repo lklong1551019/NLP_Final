@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The nation endured a natural disaster.\n### Choices: [choice]Leaders of other countries formed an alliance.@ [choice]Leaders of other countries sent emergency relief.@'] || GT-A:Leaders of other countries sent emergency relief. || LLM-A:Leaders of other countries sent emergency relief.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "Leaders of other countries sent emergency relief" because it directly addresses the impact of the natural disaster mentioned in the premise.'}

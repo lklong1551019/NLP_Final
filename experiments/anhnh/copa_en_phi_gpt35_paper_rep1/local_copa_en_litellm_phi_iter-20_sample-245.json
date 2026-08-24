@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The teammates directed blame at each other.\n### Choices: [choice]They lost their game.@ [choice]Their coach cancelled practice.@'] || GT-A:They lost their game. || LLM-A:They lost their game.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "They lost their game" because it seems like a plausible consequence of teammates blaming each other, indicating a potential conflict or failure.'}

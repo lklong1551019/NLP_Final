@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người thủy thủ đã được cách ly.\n### Lựa chọn: [choice]Anh đã tiếp xúc với dịch bệnh.@ [choice]Anh đã khỏi bệnh.@'] || GT-A:Anh đã tiếp xúc với dịch bệnh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "X" vì nó nhận ra mối liên hệ giữa việc người thủy thủ bị cách ly và việc anh ấy đã tiếp xúc với dịch bệnh, dẫn đến việc đưa ra giả định rằng anh ấy là nguyên nhân của tiền đề.'}

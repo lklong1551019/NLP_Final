@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The forest fire spread.\n### Choices: [choice]The winds became stronger.@ [choice]The arsonists were apprehended.@'] || GT-A:The winds became stronger. || LLM-A:The winds became stronger.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose "The winds became stronger" as the answer because it is a common cause for the spread of a forest fire.'}

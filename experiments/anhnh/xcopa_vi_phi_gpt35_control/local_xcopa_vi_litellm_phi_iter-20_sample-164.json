@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Con trỏ trên màn hình máy tính di chuyển.\n### Lựa chọn: [choice]Người dùng nhấp chuột.@ [choice]Người dùng đã di chuyển chuột.@'] || GT-A:Người dùng đã di chuyển chuột. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng nguyên nhân của tiền đề là do người dùng nhấp chuột.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

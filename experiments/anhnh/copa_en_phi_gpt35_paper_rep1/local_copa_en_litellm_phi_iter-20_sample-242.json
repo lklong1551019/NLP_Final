@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: My facial expression lit up.\n### Choices: [choice]I received good news.@ [choice]I lost my patience.@'] || GT-A:I received good news. || LLM-A:I received good news.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "I received good news" because the phrase "facial expression lit up" is often associated with positive emotions or reactions, which aligns with the idea of receiving good news.'}

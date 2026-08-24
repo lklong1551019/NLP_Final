@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cậu bé đá máy bán hàng tự động.\n### Lựa chọn: [choice]Máy phun ra tiền thối.@ [choice]Túi khoai tây chiên bị kẹt.@'] || GT-A:Túi khoai tây chiên bị kẹt. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của Tiền đề là máy phun ra tiền thối vì thông tin về máy phun tiền đã được đề cập trong câu hỏi.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

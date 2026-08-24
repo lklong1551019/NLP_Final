@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The check I wrote bounced.\n### Choices: [choice]My bank account was empty.@ [choice]I earned a pay raise.@'] || GT-A:My bank account was empty. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model may have chosen "My bank account was empty" as the answer because it directly explains why the check bounced.', 'ControlScore': 0.0, 'ControlHint': 'The stadium roof was repainted during the off-season.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The woman clutched her throat.\n### Choices: [choice]She swallowed her food.@ [choice]She choked on her food.@'] || GT-A:She choked on her food. || LLM-A:She choked on her food.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "She choked on her food" because the action of "clutching her throat" is commonly associated with choking rather than simply swallowing food.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Học sinh được dạy kèm.\n### Lựa chọn: [choice]Điểm số của anh được cải thiện.@ [choice]Anh gian lận trong kì thi.@'] || GT-A:Điểm số của anh được cải thiện. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời "X" vì không có đủ thông tin để xác định liệu điểm số của anh có được cải thiện hay anh đã gian lận trong kì thi.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

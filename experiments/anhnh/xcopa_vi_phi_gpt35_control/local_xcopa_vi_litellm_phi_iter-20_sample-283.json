@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi tức giận.\n### Lựa chọn: [choice]Tôi kiểm tra hộp thư khi rời khỏi nhà.@ [choice]Tôi đóng sầm cửa khi rời khỏi nhà.@'] || GT-A:Tôi đóng sầm cửa khi rời khỏi nhà. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời X vì nó liên quan đến hành động cụ thể "Tôi tức giận" mà Tiền đề đã đề cập.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

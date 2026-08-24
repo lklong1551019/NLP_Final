@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: I pushed the door.\n### Choices: [choice]The door opened.@ [choice]The door locked.@'] || GT-A:The door opened. || LLM-A:The door opened.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The door opened" because it is a logical result of the action described in the premise, where pushing the door typically results in it opening.'}

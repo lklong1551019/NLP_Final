@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Các nhân viên thành lập một công đoàn.\n### Lựa chọn: [choice]Họ muốn điều kiện làm việc tốt hơn.@ [choice]Họ được tăng lương.@'] || GT-A:Họ muốn điều kiện làm việc tốt hơn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời "X" có thể dựa vào việc đánh giá khả năng của từng lựa chọn và quyết định rằng không có đủ thông tin để chọn lựa một trong hai.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

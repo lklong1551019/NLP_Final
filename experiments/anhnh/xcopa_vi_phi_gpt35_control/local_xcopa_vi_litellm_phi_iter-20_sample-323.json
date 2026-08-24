@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi gửi thư trong hộp thư.\n### Lựa chọn: [choice]Bưu điện chuyển thư.@ [choice]Bưu điện xúc tiến bức thư.@'] || GT-A:Bưu điện chuyển thư. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đã chọn đáp án "X" vì nó liên kết hành động "gửi thư trong hộp thư" với việc bưu điện chuyển thư, điều này phù hợp với ngữ cảnh mô hình đã học được.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

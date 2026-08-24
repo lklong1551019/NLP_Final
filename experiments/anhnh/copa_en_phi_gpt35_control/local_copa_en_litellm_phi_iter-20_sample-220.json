@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The hungry vagrant stole food.\n### Choices: [choice]He incited pity.@ [choice]He had no money.@'] || GT-A:He had no money. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen the answer "He had no money" because it relates to the premise of the hungry vagrant stealing food due to lack of resources.', 'ControlScore': 0.0, 'ControlHint': 'The weather forecast mentions scattered clouds tomorrow afternoon.'}
