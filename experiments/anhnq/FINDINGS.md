@@ -1,4 +1,4 @@
-# quocanh — thay tầng đọc kết quả bằng xác suất
+# anhnq — thay tầng đọc kết quả bằng xác suất
 
 Predictor cục bộ, explainer qua OpenAI API. Log từng vòng lặp trong `metrics.jsonl`
 của mỗi thư mục run; mỗi lần chạy ghi **đủ cả sáu chỉ số** bất kể `--score_mode` nào
@@ -89,7 +89,7 @@ Chi phí API đo thật trên toàn bộ: **$5.07** qua 11.334 lượt gọi.
 ## Tái tạo bảng số
 
 ```bash
-python scripts/compare_score_modes.py experiments/quocanh
-python scripts/iters_to_flip.py experiments/quocanh
-python scripts/random_hint_control.py --run_dir experiments/quocanh/xcopa_vi_qwen_gpt4omini_logprob
+python scripts/compare_score_modes.py experiments/anhnq
+python scripts/iters_to_flip.py experiments/anhnq
+python scripts/random_hint_control.py --run_dir experiments/anhnq/xcopa_vi_qwen_gpt4omini_logprob
 ```
