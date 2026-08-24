@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Khách hàng đã phê duyệt kế hoạch của kiến trúc sư.\n### Lựa chọn: [choice]Các kiến trúc sư xây dựng tòa nhà.@ [choice]Kiến trúc sư đã điều chỉnh các kế hoạch.@'] || GT-A:Các kiến trúc sư xây dựng tòa nhà. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là "X" vì nó kết luận rằng các kiến trúc sư xây dựng tòa nhà dựa trên việc khách hàng đã phê duyệt kế hoạch của họ.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

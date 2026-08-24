@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Diễn giả đã bình luận không chính xác.\n### Lựa chọn: [choice]Anh làm khán giả chán.@ [choice]Anh xúc phạm khán giả.@'] || GT-A:Anh xúc phạm khán giả. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là "X" vì mặc dù Diễn giả đã bình luận không chính xác, nhưng không có thông tin nào cho thấy anh ấy làm khán giả chán hoặc xúc phạm họ.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

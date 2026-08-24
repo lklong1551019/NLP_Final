@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Túi rác đã đầy.\n### Lựa chọn: [choice]Tôi đem nó đến bãi rác.@ [choice]Tôi đổ nó xuống bồn rửa chén.@'] || GT-A:Tôi đem nó đến bãi rác. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn kết quả "Tôi đem nó đến bãi rác" vì nó nhận thấy rằng khi túi rác đã đầy, việc đưa nó đến bãi rác là một giải pháp hợp lý để xử lý tình huống đó.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

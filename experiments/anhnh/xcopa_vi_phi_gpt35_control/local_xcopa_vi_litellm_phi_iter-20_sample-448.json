@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Công việc kinh doanh của người phụ nữ đã thành công.\n### Lựa chọn: [choice]Cô sa thải nhân viên của mình.@ [choice]Cô trở nên giàu có.@'] || GT-A:Cô trở nên giàu có. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Cô sa thải nhân viên của mình" vì đó là hành động tiếp theo trong quá trình làm kinh doanh thành công.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

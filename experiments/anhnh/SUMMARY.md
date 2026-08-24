@@ -40,6 +40,7 @@ These are material and must be quoted alongside any number in this report.
 | `copa_en_phi_gpt35_control` | 500 | 70.8% | 22.4% | 0.860 | 0.554 | **+0.306** | 86.0% | 3.11 |
 | `copa_en_phi_gpt35_greedy` | 30 | 86.7% | 13.3% | 0.767 | not measured | not measured | 76.7% | 2.47 |
 | `copa_en_phi_gpt35_paper_rep1` | 500 | 70.4% | 22.6% | 0.872 | not measured | not measured | 87.2% | 3.14 |
+| `xcopa_vi_phi_gpt35_control` | 500 | 11.8% | 45.4% | 0.336 | 0.122 | **+0.214** | 33.6% | 7.82 |
 | `xcopa_vi_phi_gpt35_greedy` | 30 | 33.3% | 40.0% | 0.233 | not measured | not measured | 23.3% | 3.00 |
 
 **Faithfulness** is FaithLM's `diff_score` = |accuracy with the explanation − accuracy with the counterfactual explanation|, per question, over a single instance. It is therefore 0 or 1 per iteration; the table reports the maximum reached across that question's optimisation iterations.
@@ -92,6 +93,23 @@ Iterations before early-stop:
 | 11 | 13 |
 | 16 | 1 |
 | 20 | 2 |
+
+### `xcopa_vi_phi_gpt35_control`
+
+- Questions evaluated: **500**
+- Predictor accuracy (no explanation): **11.8%**
+- Answers the parser could not resolve (`X`): **227**
+- Questions where the counterfactual flipped the prediction at least once: **168/500**
+
+Iterations before early-stop:
+
+| Iterations | Questions |
+|---|---|
+| 1 | 275 |
+| 6 | 48 |
+| 11 | 18 |
+| 16 | 8 |
+| 20 | 151 |
 
 ### `xcopa_vi_phi_gpt35_greedy`
 
@@ -183,6 +201,35 @@ Iterations before early-stop:
 | Their heads collided. | X |
 | The lid was off the garbage can. | X |
 | … | … (133 more) |
+
+### `xcopa_vi_phi_gpt35_control` — 441 incorrect predictions
+
+- Genuinely picked the wrong option: **214**
+- Response the parser could not resolve to any option (`X`): **227**
+
+> Most 'errors' are parsing failures, not reasoning failures. What this
+> pipeline calls *accuracy* is closer to a **parse-success rate**, and it
+> degrades on Vietnamese relative to English. Any accuracy figure taken
+> from FaithLM should be read with that in mind.
+
+| Gold answer | Model answer |
+|---|---|
+| Nó dễ vỡ. | Các bắt dòng về hướng trong điều phòng. |
+| Tôi lấy một cuống vé. | Tôi lấy một thấy đường. |
+| Cố vấn trại của họ kể cho họ một câu chuyện ma. | Số trường yêu phản hồi của họ kể cho nơi trên lửa trại. |
+| Điện trong khu phố đã tắt. | Mãy việc lớn của các hàng xây trường. |
+| Anh xúc phạm khán giả. | X |
+| Một giọt máu hình thành trên ngón tay của tôi. | Chúng ta để hướng dẫn. |
+| Nó đã chết. | Nó đáp án. |
+| Thang máy đã đến tầng được chỉ định. | Đủ đồng bị ở một thời gian. |
+| Bố mẹ cậu nhốt cậu anh. | X |
+| Nước nhà vệ sinh tràn ra. | Nước hỏi những giá trình về máy bị hỏng. |
+| Người chủ xích con chó con. | Vạn bắp rời được giao. |
+| Anh đứng trên mặt hồ tĩnh lặng. | Mô tả không một tây âm năm ảnh hoàn vũ. |
+| Anh ấy bị chấn động. | X |
+| Tôi gọi lại cho cô ấy. | X |
+| Con chó của họ bỏ nhà ra đi. | Đồ trang sức đắt tiền đã bị mất khỏi nhà gồm của tranh. |
+| … | … (426 more) |
 
 ### `xcopa_vi_phi_gpt35_greedy` — 20 incorrect predictions
 

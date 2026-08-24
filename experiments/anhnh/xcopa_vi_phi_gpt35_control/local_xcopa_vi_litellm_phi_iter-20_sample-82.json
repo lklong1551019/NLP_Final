@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi rút phích cắm trong bồn tắm.\n### Lựa chọn: [choice]Nước rút ra khỏi bồn.@ [choice]Nước văng lên sàn nhà.@'] || GT-A:Nước rút ra khỏi bồn. || LLM-A:Như lượng của các bằng hồi.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "Như lượng của các bằng hồi" vì nó nhận diện được mối liên kết giữa việc rút phích cắm trong bồn tắm và việc nước có thể chảy ra từ bồn tắm.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

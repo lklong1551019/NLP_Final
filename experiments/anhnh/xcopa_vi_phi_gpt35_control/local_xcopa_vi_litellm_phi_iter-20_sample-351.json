@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Dây giày của đứa bé bị tuột.\n### Lựa chọn: [choice]Nó học cách buộc chúng.@ [choice]Nó chạy quanh sân.@'] || GT-A:Nó chạy quanh sân. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời "X" có thể do kết hợp của việc dây giày bị tuột và nguyên nhân mà mô hình cho là phù hợp với tình huống, bất kể lựa chọn có thể có.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

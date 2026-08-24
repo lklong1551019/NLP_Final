@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Hai đứa đồng loạt thò tay xuống lấy bóng.\n### Lựa chọn: [choice]Bóng lăn đi.@ [choice]Đầu chúng va vào nhau.@'] || GT-A:Đầu chúng va vào nhau. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X có thể do nó nhận diện được hành động "hai đứa đồng loạt thò tay xuống lấy bóng" làm tiền đề và đưa ra kết luận rằng sau đó bóng lăn đi.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cô gái mất kiểm soát chiếc xe đạp của mình.\n### Lựa chọn: [choice]Cô buông tay lái.@ [choice]Cô đâm vào một hàng rào.@'] || GT-A:Cô đâm vào một hàng rào. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì nó là một trong hai lựa chọn được cung cấp, không phụ thuộc vào kết quả cuối cùng của tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

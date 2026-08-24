@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cậu bé đang trong tâm trạng tinh nghịch.\n### Lựa chọn: [choice]Cậu quyết định chơi một ván bài với chị gái.@ [choice]Cậu quyết định chọc em gái mình.@'] || GT-A:Cậu quyết định chọc em gái mình. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là X vì nó đánh giá rằng hành vi của cậu bé trong tình huống tinh nghịch này sẽ dẫn đến hành động đó.', 'ControlScore': 0.0, 'ControlHint': 'Mái sân vận động được sơn lại trong kỳ nghỉ giữa mùa.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Mối đầy nhà.\n### Lựa chọn: [choice]Mối biến mất khỏi nhà.@ [choice]Mối ăn gỗ trong nhà.@'] || GT-A:Mối ăn gỗ trong nhà. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn lựa chính xác câu trả lời X vì nó liên quan đến mối đầy nhà trong tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

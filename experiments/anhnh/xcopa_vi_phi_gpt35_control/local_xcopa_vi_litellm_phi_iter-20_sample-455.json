@@ -1,0 +1,7 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn nhảy canon vào hồ bơi.\n### Lựa chọn: [choice]Nhân viên cứu hộ nhảy vào sau anh ta.@ [choice]Người đàn ông làm ướt viên cứu hộ.@'] || GT-A:Người đàn ông làm ướt viên cứu hộ. || LLM-A:
+
+### Đầu vào: ### Đầu vụ:
+### Lựa chọn: Đã một đầu vào được phản hồi bạn nhân là một với văn khoa học nhân dong.
+
+### Tâm đại: ### Nhận thời gian câu hỏi cho một tiếp vào. Tâm đại: [choice]Một tiếp vào được hướng lưu rừng đầu vụ?
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn lựa này có thể là do việc hiểu sai hoặc nhầm lẫn giữa các đối tượng trong câu mô tả về Tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

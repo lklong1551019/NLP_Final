@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người biểu diễn xiếc tung hứng trong khi đi xe đạp một bánh.\n### Lựa chọn: [choice]Khán giả reo hò trong sự ngạc nhiên.@ [choice]Acrobat vung lên từ một cái bẫy.@'] || GT-A:Khán giả reo hò trong sự ngạc nhiên. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời X vì nó liên quan đến việc biểu diễn xiếc và hứng thú của khán giả, phù hợp với bối cảnh mà Tiền đề đã cung cấp.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

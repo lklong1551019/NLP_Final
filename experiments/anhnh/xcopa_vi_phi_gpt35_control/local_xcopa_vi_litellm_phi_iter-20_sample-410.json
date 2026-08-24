@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người phụ nữ bị kết tội nhẹ.\n### Lựa chọn: [choice]Cô bị kết án lao động công ích.@ [choice]Cô đã bị xử bắn.@'] || GT-A:Cô bị kết án lao động công ích. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Cô bị kết án lao động công ích" vì việc bị kết tội nhẹ có thể dẫn đến hình phạt lao động công ích.', 'ControlScore': 1.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông đã trải qua ca phẫu thuật khẩn cấp.\n### Lựa chọn: [choice]Anh mất bình tĩnh.@ [choice]Anh bị đau tim.@'] || GT-A:Anh bị đau tim. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "X" vì nó không có đủ thông tin để xác định nguyên nhân cụ thể của tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

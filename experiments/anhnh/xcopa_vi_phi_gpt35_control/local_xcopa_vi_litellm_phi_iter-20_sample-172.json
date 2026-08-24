@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi thèm một ly sữa.\n### Lựa chọn: [choice]Tôi đang ăn bánh quy.@ [choice]Tôi đang nướng bánh mì.@'] || GT-A:Tôi đang ăn bánh quy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể dựa vào thông tin từ tiền đề "Tôi thèm một ly sữa" để chọn câu trả lời là "Tôi đang nướng bánh mì" vì sữa thường được sử dụng trong việc nướng bánh mì hoặc làm bánh.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

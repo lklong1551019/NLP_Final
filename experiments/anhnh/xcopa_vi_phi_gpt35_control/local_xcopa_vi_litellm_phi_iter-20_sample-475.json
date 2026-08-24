@@ -1,0 +1,3 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cả nhóm rời khỏi bảo tàng.\n### Lựa chọn: [choice]Họ chụp ảnh các tác phẩm triển lãm.@ [choice]Họ đã xem tất cả các tác phẩm triển lãm.@'] || GT-A:Họ đã xem tất cả các tác phẩm triển lãm. || LLM-A:Thường tổng phần triển lãm.
+### Lựa chọn: [choice]Thường tổng.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Thường tổng phần triển lãm" vì nó chứa từ khóa "triển lãm" tương tự với "bảo tàng" trong câu hỏi và "Tiền đề" đề cập đến việc rời khỏi bảo tàng.', 'ControlScore': 1.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

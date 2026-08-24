@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông đánh rơi thìa.\n### Lựa chọn: [choice]Tay anh run run.@ [choice]Anh liếm cái muỗng.@'] || GT-A:Tay anh run run. || LLM-A:Tay anh run run.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Tay anh run run" có thể do việc kết nối từ việc người đàn ông đánh rơi thìa với việc tay anh run run, mặc dù việc anh liếm cái muỗng cũng có thể gây ra tình huống tương tự như vậy.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người chơi tấn công đối thủ của mình.\n### Lựa chọn: [choice]Đối thủ của anh bắt được đường chuyền.@ [choice]Đối thủ của anh ta ngã xuống đất.@'] || GT-A:Đối thủ của anh ta ngã xuống đất. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là X vì nó kết hợp việc người chơi tấn công đối thủ với các lựa chọn đưa ra, dẫn đến kết luận là X.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

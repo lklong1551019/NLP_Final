@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ nhuộm tóc.\n### Lựa chọn: [choice]Cô muốn một cái nhìn mới.@ [choice]Cô muốn hòa nhập.@'] || GT-A:Cô muốn một cái nhìn mới. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể dựa vào thông tin về việc người phụ nữ nhuộm tóc để cho rằng cô muốn một cái nhìn mới hoặc cô muốn hòa nhập, dẫn đến câu trả lời là X.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

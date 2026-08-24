@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đặt khăn giấy lên chỗ đổ.\n### Lựa chọn: [choice]Khăn giấy hấp thụ chất lỏng.@ [choice]Chỗ đổ nước còn dính.@'] || GT-A:Khăn giấy hấp thụ chất lỏng. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình cho rằng kết quả của Tiền đề là X vì nó đánh giá khăn giấy hấp thụ chất lỏng có thể xảy ra hơn là chỗ đổ nước còn dính.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

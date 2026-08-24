@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Một tiếng ồn vang khắp sân khấu.\n### Lựa chọn: [choice]Nhạc sĩ gõ chân.@ [choice]Nhạc sĩ đập trống.@'] || GT-A:Nhạc sĩ đập trống. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Nhạc sĩ gõ chân" là nguyên nhân của Tiền đề vì hành động gõ chân của nhạc sĩ cũng có thể tạo ra tiếng ồn vang khắp sân khấu.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

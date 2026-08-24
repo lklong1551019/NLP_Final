@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Con tin đầu hàng yêu cầu của kẻ bắt cóc.\n### Lựa chọn: [choice]Kẻ bắt cóc đe dọa làm hại con tin.@ [choice]Kẻ bắt cóc đã tự thả con tin.@'] || GT-A:Kẻ bắt cóc đe dọa làm hại con tin. || LLM-A:Kẻ bắt cóc đứng mới khác.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "Kẻ bắt cóc đứng mới khác" dựa trên việc phân tích ngữ cảnh và các từ khóa trong câu hỏi và tiền đề.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

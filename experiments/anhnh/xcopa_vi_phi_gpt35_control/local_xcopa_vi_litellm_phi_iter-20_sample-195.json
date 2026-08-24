@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ đi giày vào.\n### Lựa chọn: [choice]Cô biết tất cả mọi người trong bữa tiệc.@ [choice]Cô muốn rời khỏi bữa tiệc.@'] || GT-A:Cô muốn rời khỏi bữa tiệc. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời "X" vì trong tiền đề không có thông tin liên quan đến việc biết tất cả mọi người trong bữa tiệc hoặc muốn rời khỏi bữa tiệc.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

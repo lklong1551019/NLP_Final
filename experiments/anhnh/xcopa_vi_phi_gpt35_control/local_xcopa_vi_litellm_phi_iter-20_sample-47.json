@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi làm đổ rượu lên áo.\n### Lựa chọn: [choice]Tôi đeo tạp dề.@ [choice]Tôi đã thay áo.@'] || GT-A:Tôi đã thay áo. || LLM-A:Một chống không.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình cho rằng "Một chống không" là kết quả của Tiền đề vì trong lựa chọn, không có sự liên kết trực tiếp giữa việc làm đổ rượu lên áo và việc đeo tạp dề hay thay áo.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

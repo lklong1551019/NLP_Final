@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Sân vận động đã mở nhạc quốc ca.\n### Lựa chọn: [choice]Các cổ động viên chào cờ.@ [choice]Các cổ động viên đổ xô ra sân.@'] || GT-A:Các cổ động viên chào cờ. || LLM-A:Người giáo trị của Thị Ngọc phải tứ khổ.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể lấy từ khía cạnh khác nhau trong câu hỏi và tiền đề, không nhất thiết phải kết hợp chúng theo cách logic.', 'ControlScore': 1.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}

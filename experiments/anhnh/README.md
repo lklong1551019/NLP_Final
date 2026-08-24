@@ -8,6 +8,7 @@ disabled for every run, so the explainer identity is never silently substituted.
 |---|---|---|---|
 | `copa_en_phi_gpt35_paper_rep1` | 500 | Paper Table 2 (COPA): 20 steps, predictor temp 0.7, explainer temp 0.9, top-p 0.9 | Reproduction |
 | `copa_en_phi_gpt35_control` | 500 | As above **+ irrelevant-hint control** | Metric validity |
+| `xcopa_vi_phi_gpt35_control` | 500 | Paper config **+ irrelevant-hint control** | Cross-lingual, matched |
 | `copa_en_phi_gpt35_greedy` | 30 | 5 steps, greedy decoding | Decoding ablation |
 | `xcopa_vi_phi_gpt35_greedy` | 30 | 5 steps, greedy decoding | Cross-lingual comparison |
 
@@ -58,3 +59,54 @@ behaves as a baseline should rather than as noise.
 Incorrect predictions are flipped by a random hint more often (0.735) than
 correct ones (0.599), which is what you would expect: a model that is already
 wrong needs less of a nudge to move to the other option.
+
+## Cross-lingual, matched at 500 instances
+
+Balanced COPA test and XCOPA-vi test are the **same 500 items**, so language is
+the only variable. Same predictor, explainer, config and control.
+
+| | copa_en | xcopa_vi |
+|---|---|---|
+| Accuracy | 70.8% | **11.8%** |
+| Unparseable (`X`) | 22.4% | **45.4%** |
+| Fidelity | 0.860 | 0.336 |
+| Irrelevant hint | 0.554 | 0.122 |
+| **Corrected** | **+0.306** | **+0.214** |
+| Mean iterations | 3.11 | **7.82** |
+
+Vietnamese accuracy is 11.8% (95% CI [9.3%, 14.9%]); restricted to the 273
+instances that produced a parseable answer it is 21.6% ([17.1%, 26.9%]). Chance
+on a two-choice task is 50%, well outside both intervals, so Phi-2 is not merely
+uninformed in Vietnamese - it picks the wrong option systematically.
+
+An earlier 30-instance estimate put this at 33.3%. The 500-instance value is
+11.8%, off by 21 points, and at n=30 the confidence interval [19.2%, 51.2%]
+still contained chance. Nothing here is safe to conclude from small samples.
+
+### The conditional result
+
+Splitting by whether the predictor answered at all changes the picture:
+
+| Group | copa_en corrected | xcopa_vi corrected |
+|---|---|---|
+| Correct prediction | +0.4011 (n=354) | **+0.4746** (n=59) |
+| Incorrect prediction | +0.2647 (n=34) | +0.3224 (n=214) |
+| Unparseable (`X`) | +0.0179 (n=112) | +0.0441 (n=227) |
+
+Where the model actually produces an answer, the corrected signal **survives the
+language change and is if anything larger**. The aggregate drop from +0.306 to
++0.214 is driven almost entirely by the 227 unparseable instances, which
+contribute +0.044.
+
+The random-hint control also collapses in Vietnamese (0.554 → 0.122), which is
+consistent: a model that cannot read the question cannot read the hint either,
+so it has nothing to be suggestible to.
+
+### Cost
+
+Vietnamese needed 7.82 optimisation iterations per question against 3.11 for
+English, and ~82s/question against ~19s. FaithLM's early stop fires on the first
+non-zero score, so when the measurement yields nothing the loop runs to the
+20-iteration cap on every instance. The framework spends the most compute
+exactly where it works least - the paper's Limitations section mentions the
+carbon cost of iterating, but not that the cost scales inversely with success.

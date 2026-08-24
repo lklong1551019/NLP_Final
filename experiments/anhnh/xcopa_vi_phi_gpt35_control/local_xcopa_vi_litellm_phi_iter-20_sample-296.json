@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tóc của cậu bé dựng lên.\n### Lựa chọn: [choice]Cô bé xoa xoa đầu cậu bé.@ [choice]Cô bé giật nó.@'] || GT-A:Cô bé xoa xoa đầu cậu bé. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Cô bé xoa xoa đầu cậu bé" là câu trả lời vì hành động này có thể là một cách để giúp cậu bé giảm cảm giác khó chịu do tóc dựng lên.', 'ControlScore': 0.0, 'ControlHint': 'Một tiệm bánh mới khai trương cách thư viện hai con phố.'}

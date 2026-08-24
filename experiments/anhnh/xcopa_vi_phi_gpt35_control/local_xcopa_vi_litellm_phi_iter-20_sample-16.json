@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi rót nước vào ly.\n### Lựa chọn: [choice]Nước làm dịu cơn khát của tôi.@ [choice]Chiếc ly trở nên đầy.@'] || GT-A:Chiếc ly trở nên đầy. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Nước làm dịu cơn khát của tôi" vì nó liên quan đến việc rót nước vào ly, một hành động tự nhiên và logic.', 'ControlScore': 0.0, 'ControlHint': 'Dự báo thời tiết cho biết ngày mai trời có mây rải rác.'}

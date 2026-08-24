@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người ăn xin đói khát đã trộm thức ăn.\n### Lựa chọn: [choice]Anh gây thương cảm.@ [choice]Anh không có tiền.@'] || GT-A:Anh không có tiền. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Anh gây thương cảm" là câu trả lời vì nó thấy rằng việc người ăn xin đói khát đã trộm thức ăn có thể khiến người khác cảm thấy thương cảm và chia sẻ thức ăn với họ.', 'ControlScore': 0.0, 'ControlHint': 'Lịch tàu chạy đã được điều chỉnh từ đầu quý này.'}
