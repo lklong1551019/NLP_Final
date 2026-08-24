@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cậu bé bị lạc trong rừng.\n### Choices: [choice]Cậu dựng lều.@ [choice]Cậu hét lên cầu cứu.@'] || GT-A:Cậu hét lên cầu cứu. || LLM-A:Cậu hét lên cầu cứu.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the response depicting shouting for help because it represents the most immediate and causally logical reaction to the state of being lost described in the premise, whereas building a tent implies a subsequent survival strategy rather than an initial effect.'}

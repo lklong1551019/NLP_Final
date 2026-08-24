@@ -22,8 +22,8 @@ These are material and must be quoted alongside any number in this report.
 |---|---|---|
 | Fidelity optimisation steps (Alg. 1) | 20 | 8 |
 | Predictor temperature | 0.7 | 0.0 / 0.01 |
-| Explainer temperature | 0.9 | 0.01 (local) / 0.9 (global) |
-| Explainer top-p | 0.9 | not set (1.0) |
+| Explainer temperature | 0.9 | 0.9 |
+| Explainer top-p | 0.9 | 0.9 |
 | Trigger-prompt steps (Alg. 2) | 100 | 8 |
 | Sampled instances per step | 30 (Table 2) / 15 (§4.3) | 12 |
 | Repetitions | 3 runs averaged, grid search | 1 |
@@ -32,6 +32,14 @@ These are material and must be quoted alongside any number in this report.
 | Explainer | GPT-3.5-Turbo, Claude-2 | API model (see above) |
 | Baselines | SelfExp, Self-consistency | **not implemented** |
 | Truthfulness metric | GPT-4o + RoBERTa-L + XLNet-L | **not implemented** |
+
+### API call statistics
+
+- Processes reporting: 2
+- Total LLM calls: **2995**
+- Calls that failed outright: 0
+- Calls the primary model left empty and that were retried away: 0
+- Calls served by the **fallback** model: **0** (0.0%)
 
 ## 1. Summary
 
@@ -44,6 +52,8 @@ These are material and must be quoted alongside any number in this report.
 | `xcopa_vi_phi2_gemini35_promptEN` | 200 | 41.5% | 41.5% | 0.755 | 75.5% | 2.58 |
 | `xcopa_vi_phi2_gemini35_promptVI_n20` | 20 | 10.0% | 55.0% | 0.300 | 30.0% | 3.50 |
 | `xcopa_vi_qwen35_gemini35_promptEN` | 200 | 90.5% | 6.5% | 0.945 | 94.5% | 3.04 |
+| `xcopa_vi_qwen35_gpt56luna_promptEN` | 200 | 92.0% | 6.0% | 0.930 | 93.0% | 3.95 |
+| `xcopa_vi_qwen35_qwen37max_promptEN` | 200 | 92.0% | 5.0% | 0.975 | 97.5% | 3.50 |
 
 **Faithfulness** is FaithLM's `diff_score` = |accuracy with the explanation − accuracy with the counterfactual explanation|, per question, over a single instance. It is therefore 0 or 1 per iteration; the table reports the maximum reached across that question's optimisation iterations.
 
@@ -153,6 +163,36 @@ Iterations before early-stop:
 | 1 | 120 |
 | 6 | 76 |
 | 8 | 4 |
+
+### `xcopa_vi_qwen35_gpt56luna_promptEN`
+
+- Questions evaluated: **200**
+- Predictor accuracy (no explanation): **92.0%**
+- Answers the parser could not resolve (`X`): **12**
+- Questions where the counterfactual flipped the prediction at least once: **186/200**
+
+Iterations before early-stop:
+
+| Iterations | Questions |
+|---|---|
+| 1 | 86 |
+| 6 | 104 |
+| 8 | 10 |
+
+### `xcopa_vi_qwen35_qwen37max_promptEN`
+
+- Questions evaluated: **200**
+- Predictor accuracy (no explanation): **92.0%**
+- Answers the parser could not resolve (`X`): **10**
+- Questions where the counterfactual flipped the prediction at least once: **195/200**
+
+Iterations before early-stop:
+
+| Iterations | Questions |
+|---|---|
+| 1 | 101 |
+| 6 | 96 |
+| 8 | 3 |
 
 ## 3. Error analysis
 
@@ -339,4 +379,62 @@ Iterations before early-stop:
 | Đứa bé làm bẩn tã của mình. | X |
 | Cô quên cài đồng hồ báo thức. | X |
 | … | … (4 more) |
+
+### `xcopa_vi_qwen35_gpt56luna_promptEN` — 16 incorrect predictions
+
+- Genuinely picked the wrong option: **4**
+- Response the parser could not resolve to any option (`X`): **12**
+
+> Most 'errors' are parsing failures, not reasoning failures. What this
+> pipeline calls *accuracy* is closer to a **parse-success rate**, and it
+> degrades on Vietnamese relative to English. Any accuracy figure taken
+> from FaithLM should be read with that in mind.
+
+| Gold answer | Model answer |
+|---|---|
+| Anh xúc phạm khán giả. | X |
+| Cô đi giày cao gót. | X |
+| Tôi lao vào trong. | X |
+| Tôi mở  bản đồ. | X |
+| Tôi đậu gần lối vào. | X |
+| Người cha nhẹ nhàng đá đứa bé. | X |
+| Nước thấm chảy ra. | Nó ngấm nước. |
+| Mối ăn gỗ trong nhà. | X |
+| Nước trái cây tràn ra. | X |
+| Bụi bay ra khỏi lỗ. | X |
+| Cô nhảy dây. | Cô chơi cờ đam. |
+| Trọng tài ra quyết định sai. | X |
+| Tôi xúc tuyết ra khỏi đường. | X |
+| Cô đâm vào một hàng rào. | X |
+| Họ đã nhìn thấy một con cá mập. | Họ ướt đẫm. |
+| … | … (1 more) |
+
+### `xcopa_vi_qwen35_qwen37max_promptEN` — 16 incorrect predictions
+
+- Genuinely picked the wrong option: **6**
+- Response the parser could not resolve to any option (`X`): **10**
+
+> Most 'errors' are parsing failures, not reasoning failures. What this
+> pipeline calls *accuracy* is closer to a **parse-success rate**, and it
+> degrades on Vietnamese relative to English. Any accuracy figure taken
+> from FaithLM should be read with that in mind.
+
+| Gold answer | Model answer |
+|---|---|
+| Chuông báo cháy reng. | X |
+| Người cha đuổi con trai ra khỏi nhà. | X |
+| Đầu chúng va vào nhau. | X |
+| Cô bị mất biên lai. | Chiếc váy không vừa. |
+| Ông ấy đang nghĩ về những lời nói của bạn mình. | 1**: " |
+| Rèm cửa rung rinh. | Chuông cửa reo. |
+| Tôi rất tức giận. | Tôi rút phích cắm đèn. |
+| Anh nâng thanh xà trên đầu. | Anh uốn cong cơ bắp trong gương. |
+| Cô muốn rời khỏi bữa tiệc. | X |
+| Bụi bay vào mắt ông ấy. | X |
+| Cô bầm tím đầu gối. | X |
+| Tôi đã thay áo. | Tôi đeo tạp dề. (I put on an apron.) |
+| Cô bước ra khỏi hàng. | X |
+| Đứa bé làm bẩn tã của mình. | X |
+| Anh ấy đi học đại học. | X |
+| … | … (1 more) |
 

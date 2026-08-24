@@ -147,8 +147,18 @@ def build(results_dir, output_path):
     # ---- setup ---------------------------------------------------------
     out.append("## 0. Experimental setup")
     out.append("")
-    out.append("Both FaithLM roles were served by an OpenAI-compatible LiteLLM gateway; no")
-    out.append("local model weights were used. See `docs/changelog_2026-08-17.md` §E.")
+    # The local pipeline runs the Predictor from HF weights on the GPU, so the
+    # "gateway only" note is wrong for those runs. LOCAL_PREDICTOR=1 (or a
+    # predictor id that is not a gateway route) switches the wording.
+    _pred_is_local = os.environ.get("LOCAL_PREDICTOR") == "1" or "local" in os.environ.get(
+        "LITELLM_PRED_MODEL", ""
+    ).lower()
+    if _pred_is_local:
+        out.append("The Explainer was served by an OpenAI-compatible gateway; the Predictor ran")
+        out.append("from local Hugging Face weights on the GPU. See `docs/changelog_2026-08-17.md` §E.")
+    else:
+        out.append("Both FaithLM roles were served by an OpenAI-compatible LiteLLM gateway; no")
+        out.append("local model weights were used. See `docs/changelog_2026-08-17.md` §E.")
     out.append("")
     out.append("| Role | Model | Temperature | max_tokens |")
     out.append("|---|---|---|---|")
@@ -179,8 +189,12 @@ def build(results_dir, output_path):
     out.append("|---|---|---|")
     out.append("| Fidelity optimisation steps (Alg. 1) | 20 | 8 |")
     out.append("| Predictor temperature | 0.7 | 0.0 / 0.01 |")
-    out.append("| Explainer temperature | 0.9 | 0.01 (local) / 0.9 (global) |")
-    out.append("| Explainer top-p | 0.9 | not set (1.0) |")
+    # run_sharded.sh passes --temp_exp/--top_p_exp (paper Table 2 defaults
+    # 0.9/0.9). Hardcoding "0.01 / not set" here misreported every sweep run.
+    _temp_exp = os.environ.get("TEMP_EXP", "0.9")
+    _top_p_exp = os.environ.get("TOP_P_EXP", "0.9")
+    out.append(f"| Explainer temperature | 0.9 | {_temp_exp} |")
+    out.append(f"| Explainer top-p | 0.9 | {_top_p_exp} |")
     out.append("| Trigger-prompt steps (Alg. 2) | 100 | 8 |")
     out.append("| Sampled instances per step | 30 (Table 2) / 15 (§4.3) | 12 |")
     out.append("| Repetitions | 3 runs averaged, grid search | 1 |")

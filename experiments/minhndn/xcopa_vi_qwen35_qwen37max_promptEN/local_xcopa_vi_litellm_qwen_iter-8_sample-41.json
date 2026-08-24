@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi cắn vào quả đào.\n### Choices: [choice]Quả đào bầm dập.@ [choice]Nước trái cây tràn ra.@'] || GT-A:Nước trái cây tràn ra. || LLM-A:Nước trái cây tràn ra.
+{'Score': 1.0, 'XAI prompt': "<EXP>The model selects this option because biting into a peach is causally linked to the release of juice due to the fruit's high water content and soft flesh, making it the most direct physical consequence among the choices."}

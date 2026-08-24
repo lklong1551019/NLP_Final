@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Nhân viên thu ngân từ chối hoàn tiền chiếc váy cho người phụ nữ.\n### Choices: [choice]Cô bị mất biên lai.@ [choice]Chiếc váy không vừa.@'] || GT-A:Cô bị mất biên lai. || LLM-A:Cô bị mất biên lai.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the first choice because it interprets the refusal of a refund as most plausibly resulting from the customer’s inability to provide proof of purchase, while the alternative describes a fit problem that does not itself explain why the refund was refused.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc từ chối hoàn tiền được giải thích bởi việc người phụ nữ không có biên lai để xác nhận giao dịch mua hàng.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Người phụ nữ bị từ chối hoàn tiền vì không có biên lai để chứng minh việc mua chiếc váy.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc không có biên lai khiến nhân viên thu ngân không thể xác minh giao dịch, nên từ chối hoàn tiền cho chiếc váy.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Người phụ nữ không thể nhận lại tiền vì không có biên lai để xác nhận giao dịch mua chiếc váy.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Người phụ nữ bị từ chối hoàn tiền vì cô không xuất trình được biên lai để xác minh việc mua chiếc váy.</EXP>'}

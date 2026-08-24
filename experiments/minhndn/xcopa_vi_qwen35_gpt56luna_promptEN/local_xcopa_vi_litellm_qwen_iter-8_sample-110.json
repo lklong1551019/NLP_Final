@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi nhỡ cuộc gọi của bạn gái tôi.\n### Choices: [choice]Tôi gọi lại cho cô ấy.@ [choice]Tôi gặp cô ấy đi ăn tối.@'] || GT-A:Tôi gọi lại cho cô ấy. || LLM-A:Tôi gọi lại cho cô ấy.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model likely selects the first choice because missing a girlfriend’s call conventionally creates a reason to return the call, making that option a more direct and causally relevant response than meeting for dinner.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vì đã lỡ cuộc gọi của bạn gái, hành động phù hợp là gọi lại cho cô ấy để phản hồi cuộc gọi bị bỏ lỡ.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vì người nói đã bỏ lỡ cuộc gọi của bạn gái, việc gọi lại trực tiếp giải quyết tình huống và phản hồi liên lạc bị bỏ lỡ.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vì người nói không nghe được cuộc gọi của bạn gái, gọi lại là cách trực tiếp để tiếp tục liên lạc với cô ấy.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vì đã bỏ lỡ cuộc gọi, người nói cần chủ động liên lạc lại để tiếp tục cuộc trò chuyện với bạn gái.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Vì người nói đã nhỡ cuộc gọi của bạn gái, gọi lại là hành động phù hợp để phản hồi và tiếp tục liên lạc với cô ấy.</EXP>'}

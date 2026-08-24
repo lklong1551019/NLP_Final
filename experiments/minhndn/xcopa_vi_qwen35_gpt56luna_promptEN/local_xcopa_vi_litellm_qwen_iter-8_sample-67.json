@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông mặc áo phao.\n### Choices: [choice]Anh ấy không biết bơi.@ [choice]Nước cạn.@'] || GT-A:Anh ấy không biết bơi. || LLM-A:Anh ấy không biết bơi.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the first choice because it interpreted wearing a life jacket as more directly associated with not knowing how to swim than with shallow water, although the premise alone does not logically establish either cause.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer links the man’s choice to wear a life jacket with an inability to swim, treating the flotation aid as evidence of limited swimming ability rather than attributing it to shallow water.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer associates wearing a life jacket with not being able to swim, viewing the flotation device as an indicator of limited swimming ability rather than a response to shallow water.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer treats the life jacket as indicating that the man cannot swim, rather than attributing his wearing it to shallow water.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer connects the man’s life-jacket use with an inability to swim, interpreting the flotation equipment as a sign of limited swimming ability rather than shallow water.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer infers that wearing a life jacket is caused by the man’s inability to swim, rather than by the water being shallow.</EXP>'}

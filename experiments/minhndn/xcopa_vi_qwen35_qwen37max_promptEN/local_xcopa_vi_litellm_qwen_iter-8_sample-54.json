@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đứa trẻ phàn nàn rằng nó phải đi vệ sinh.\n### Choices: [choice]Bố nó cho nó uống soda.@ [choice]Bố nó dừng xe ở trạm xăng.@'] || GT-A:Bố nó dừng xe ở trạm xăng. || LLM-A:Bố nó dừng xe ở trạm xăng.
+{'Score': 1.0, 'XAI prompt': "<EXP>The model selects this option because it identifies a direct causal relationship between the child's stated physiological need in the premise and the father's responsive action of stopping at a location that provides restroom facilities."}

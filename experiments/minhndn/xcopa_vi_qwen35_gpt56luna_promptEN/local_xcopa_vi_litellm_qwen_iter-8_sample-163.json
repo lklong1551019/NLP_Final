@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Học sinh đến lớp ướt sũng.\n### Choices: [choice]Chiếc ô của anh bị hỏng.@ [choice]Chiếc xe đạp của anh đã bị đánh cắp.@'] || GT-A:Chiếc ô của anh bị hỏng. || LLM-A:Chiếc ô của anh bị hỏng.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the first choice because arriving at class soaking wet is more directly and plausibly explained by a broken umbrella than by a stolen bicycle.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The selected answer indicates that the student became soaked because the umbrella failed to protect them from the rain.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer connects the student’s soaked condition with an umbrella malfunction, which would leave them exposed to rain while traveling to class.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The broken umbrella plausibly caused the student to get soaked by failing to provide protection from the rain.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The student likely arrived soaked because the broken umbrella could not shield them from the rain.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The chosen answer is supported because a broken umbrella would leave the student unprotected from rain, explaining why they arrived soaking wet.</EXP>'}

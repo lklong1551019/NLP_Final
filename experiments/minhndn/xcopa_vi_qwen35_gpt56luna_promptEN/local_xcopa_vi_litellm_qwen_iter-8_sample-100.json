@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Một cái cây rơi trên đường dây điện.\n### Choices: [choice]Điện trong khu phố đã tắt.@ [choice]Dự báo có gió lớn.@'] || GT-A:Điện trong khu phố đã tắt. || LLM-A:Điện trong khu phố đã tắt.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because it interpreted a tree falling on an electrical line as a likely direct cause of a neighborhood power outage, establishing a plausible cause-and-effect relationship.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> A fallen tree can damage or interrupt power lines, making a neighborhood-wide electricity outage the most direct consequence.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise describes a physical obstruction involving an electrical line, which is most directly associated with a disruption to the electricity supply rather than a weather forecast.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc một cái cây đổ lên đường dây điện có thể làm gián đoạn hoặc ngắt nguồn cung cấp điện, nên dẫn đến mất điện trong khu phố.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Cây đổ trực tiếp lên đường dây điện có thể làm hỏng hoặc ngắt kết nối hệ thống điện, vì vậy lựa chọn về việc khu phố bị mất điện phù hợp hơn lựa chọn dự báo thời tiết.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Cây đổ lên đường dây điện có thể gây hư hỏng và làm gián đoạn việc cung cấp điện, nên phù hợp với việc khu phố bị mất điện hơn là dự báo gió lớn.'}

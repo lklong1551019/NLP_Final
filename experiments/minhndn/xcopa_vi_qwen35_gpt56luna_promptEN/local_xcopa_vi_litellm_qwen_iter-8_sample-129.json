@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông trở nên khó chịu với bạn mình.\n### Choices: [choice]Bạn anh ngắt lời anh.@ [choice]Bạn anh mua cho anh bữa trưa.@'] || GT-A:Bạn anh ngắt lời anh. || LLM-A:Bạn anh ngắt lời anh.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected this option because it represents an event that can plausibly cause someone to become annoyed, whereas the alternative describes a considerate action that would generally be less likely to produce that reaction.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Being interrupted by his friend can cause the man to feel annoyed because it prevents him from finishing what he was saying.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The selected answer identifies the friend’s interruption as the triggering event that explains the man’s resulting irritation.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The friend’s interruption provides a direct explanation for the man’s annoyance, while buying him lunch would more likely be a positive or considerate action.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer is appropriate because the friend interrupting the man directly accounts for his becoming annoyed, unlike buying him lunch, which is generally a favorable gesture.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The interruption is a plausible cause of the man’s irritation because it disrupts his interaction, whereas receiving lunch would generally be a favorable act rather than a source of annoyance.</EXP>'}

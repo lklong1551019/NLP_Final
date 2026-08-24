@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cửa thang máy mở ra.\n### Choices: [choice]Thang máy đã đến tầng được chỉ định.@ [choice]Thang máy bị kẹt giữa các tầng.@'] || GT-A:Thang máy đã đến tầng được chỉ định. || LLM-A:Thang máy đã đến tầng được chỉ định.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because an elevator door opening is generally associated with the elevator arriving at a designated floor, making that option appear causally consistent with the premise.</EXP>'}

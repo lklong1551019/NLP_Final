@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Mọi người đều không ủng hộ cặp đôi đính hôn.\n### Choices: [choice]Hai vợ chồng có thai.@ [choice]Hai vợ chồng chạy trốn.@'] || GT-A:Hai vợ chồng chạy trốn. || LLM-A:Hai vợ chồng chạy trốn.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model likely selected the second choice because it interpreted the Vietnamese premise as indicating that nobody supports the engaged couple, which may imply social opposition or pressure leading the couple to flee; this is an inferential association rather than a logically entailed consequence.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc không ai ủng hộ cặp đôi đính hôn cho thấy họ phải đối mặt với sự phản đối hoặc áp lực từ những người xung quanh, nên lựa chọn rời đi hoặc chạy trốn là hệ quả phù hợp nhất.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vì không nhận được sự ủng hộ từ mọi người, cặp đôi có thể chịu áp lực hoặc sự phản đối, khiến việc rời đi hay chạy trốn trở thành hệ quả phù hợp.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc cặp đôi không nhận được sự ủng hộ từ bất kỳ ai có thể tạo ra áp lực và phản đối xã hội, từ đó khiến họ lựa chọn rời đi hoặc chạy trốn.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Do không nhận được sự ủng hộ từ mọi người, cặp đôi có thể chịu áp lực và sự phản đối, khiến họ lựa chọn rời đi hoặc chạy trốn.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc không nhận được sự ủng hộ từ mọi người có thể khiến cặp đôi chịu áp lực và phản đối, dẫn đến quyết định rời đi hoặc chạy trốn.</EXP>'}

@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Bàn tay của cô gái trở nên phồng rộp.\n### Choices: [choice]Cô gõ một lá thư.@ [choice]Cô trèo lên một sợi dây.@'] || GT-A:Cô trèo lên một sợi dây. || LLM-A:Cô trèo lên một sợi dây.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the second choice because it inferred that climbing a rope involves friction and pressure on the hands, which can plausibly cause blisters. The answer is based on a common-sense causal association between the physical activity and the stated condition.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer is selected because climbing a rope directly exposes the hands to repeated rubbing and pressure, making blistering a likely consequence.</EXP>'}
+{'Score': 1.0, 'XAI prompt': "<EXP>The answer is chosen because climbing a rope can subject the girl's hands to friction and pressure, which may cause them to become blistered.</EXP>"}
+{'Score': 0.0, 'XAI prompt': '<EXP>The selected answer is supported by the idea that climbing a rope creates repeated friction and pressure on the hands, which can lead to blistering.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Climbing a rope can cause blisters because the hands repeatedly grip and rub against the rough surface.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer is selected because gripping and pulling along a rope can create sustained friction on the hands, resulting in blisters.</EXP>'}

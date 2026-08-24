@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi cảm thấy kiệt sức.\n### Choices: [choice]Tôi đi ngủ sớm.@ [choice]Tôi thức cả đêm.@'] || GT-A:Tôi đi ngủ sớm. || LLM-A:Tôi đi ngủ sớm.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the first choice because it interprets feeling exhausted as a condition that is generally associated with going to sleep early, creating a straightforward cause-and-effect relationship.'}

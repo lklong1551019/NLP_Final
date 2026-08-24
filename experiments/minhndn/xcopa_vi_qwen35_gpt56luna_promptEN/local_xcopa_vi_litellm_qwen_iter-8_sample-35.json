@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi mất kiên nhẫn.\n### Choices: [choice]Bạn tôi làm tôi chờ.@ [choice]Bạn tôi đến đúng giờ.@'] || GT-A:Bạn tôi làm tôi chờ. || LLM-A:Bạn tôi làm tôi chờ.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the first choice because the premise expresses impatience, which is more plausibly associated with being made to wait than with someone arriving on time.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vì bạn tôi làm tôi phải chờ nên tôi mất kiên nhẫn.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vì phải chờ đợi bạn tôi quá lâu nên tôi mất kiên nhẫn.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc bạn tôi khiến tôi phải chờ đợi đã dẫn đến cảm giác mất kiên nhẫn.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vì bạn tôi làm tôi chờ nên tôi mất kiên nhẫn.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Vì bạn tôi làm tôi chờ nên tôi mất kiên nhẫn.'}

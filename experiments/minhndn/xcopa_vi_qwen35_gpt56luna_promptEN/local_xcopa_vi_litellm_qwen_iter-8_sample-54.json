@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đứa trẻ phàn nàn rằng nó phải đi vệ sinh.\n### Choices: [choice]Bố nó cho nó uống soda.@ [choice]Bố nó dừng xe ở trạm xăng.@'] || GT-A:Bố nó dừng xe ở trạm xăng. || LLM-A:Bố nó dừng xe ở trạm xăng.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the second choice because the premise describes a child needing to use the restroom, which is associated with stopping at a location that provides restroom access; the first choice does not directly address that need.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The child’s complaint about needing to use the restroom explains why the father stops the car at a gas station, where restroom facilities are likely available; drinking soda would not resolve the immediate need.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The child says they need to use the restroom, so the father stops at a gas station to provide access to one.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The child’s need to use the restroom prompts the father to stop the car at a gas station, where restroom access is available.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The father stops the car at a gas station because it offers a suitable place for the child to use the restroom.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The child’s complaint about needing to use the restroom leads the father to stop the car at a gas station, where restroom facilities may be available.</EXP>'}

@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đất nước tuyên chiến với lãnh thổ láng giềng.\n### Choices: [choice]Những người lính được phái ra chiến đấu.@ [choice]Những người lính được đoàn tụ với gia đình họ.@'] || GT-A:Những người lính được phái ra chiến đấu. || LLM-A:Những người lính được phái ra chiến đấu.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because declaring war on a neighboring territory conventionally entails deploying soldiers to fight, making that option a direct consequence of the premise.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Tuyên chiến với lãnh thổ láng giềng dẫn đến việc huy động binh lính để tham gia chiến đấu, nên lựa chọn này phù hợp trực tiếp với hệ quả của tiền đề.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Tuyên chiến với lãnh thổ láng giềng thường kéo theo việc điều động binh lính ra chiến đấu, vì vậy lựa chọn này phản ánh trực tiếp hệ quả của tiền đề.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc một quốc gia tuyên chiến thường dẫn đến điều động binh lính tham gia chiến đấu, nên lựa chọn này thể hiện hệ quả trực tiếp của tiền đề.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Tuyên chiến với lãnh thổ láng giềng thường dẫn đến việc điều động binh lính tham gia chiến đấu, nên lựa chọn này là hệ quả trực tiếp của tiền đề.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Tuyên chiến thường dẫn đến việc huy động và cử binh lính ra chiến đấu, phù hợp trực tiếp với hệ quả được nêu trong lựa chọn.'}

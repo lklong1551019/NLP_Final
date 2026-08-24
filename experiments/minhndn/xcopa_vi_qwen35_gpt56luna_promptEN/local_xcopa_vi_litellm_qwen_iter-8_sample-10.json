@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các trại viên trẻ cảm thấy sợ hãi.\n### Choices: [choice]Cố vấn trại của họ kể cho họ một câu chuyện ma.@ [choice]Họ nướng marshmallows trên lửa trại.@'] || GT-A:Cố vấn trại của họ kể cho họ một câu chuyện ma. || LLM-A:Cố vấn trại của họ kể cho họ một câu chuyện ma.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the first choice because it provides a direct causal explanation for the campers feeling afraid, whereas roasting marshmallows does not inherently imply fear.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Câu trả lời đúng vì việc cố vấn kể chuyện ma có thể trực tiếp khiến các trại viên trẻ sợ hãi, trong khi nướng kẹo dẻo không giải thích được cảm giác đó.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Câu chuyện ma do cố vấn kể tạo ra nguyên nhân phù hợp với cảm giác sợ hãi của các trại viên trẻ.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc kể chuyện ma là một nguyên nhân trực tiếp và hợp lý dẫn đến cảm giác sợ hãi của các trại viên trẻ.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc cố vấn kể một câu chuyện ma có thể khiến các trại viên trẻ cảm thấy sợ hãi, phù hợp trực tiếp với nguyên nhân được hỏi.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc cố vấn kể một câu chuyện ma là nguyên nhân trực tiếp khiến các trại viên trẻ cảm thấy sợ hãi.'}

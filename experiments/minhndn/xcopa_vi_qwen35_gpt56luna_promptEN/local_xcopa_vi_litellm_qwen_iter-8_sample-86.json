@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cậu bé gác chân lên bàn.\n### Choices: [choice]Bố cậu ngồi xuống bàn.@ [choice]Bố cậu giáo huấn cậu.@'] || GT-A:Bố cậu giáo huấn cậu. || LLM-A:Bố cậu giáo huấn cậu.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected the second choice because it interpreted the boy’s act of putting his feet on the table as improper behavior that would likely prompt his father to reprimand or lecture him; this reflects a commonsense causal inference rather than a directly stated consequence.'}

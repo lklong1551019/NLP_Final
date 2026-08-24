@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi lục túi của tôi.\n### Choices: [choice]Tôi lấy một cuống vé.@ [choice]Tôi tìm thấy một vũ khí.@'] || GT-A:Tôi lấy một cuống vé. || LLM-A:Tôi lấy một cuống vé.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because it interpreted the Vietnamese premise as “I searched my pocket,” and associated searching a pocket with retrieving a ticket stub rather than finding a weapon.</EXP>'}

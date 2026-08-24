@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi cắn vào quả đào.\n### Choices: [choice]Quả đào bầm dập.@ [choice]Nước trái cây tràn ra.@'] || GT-A:Nước trái cây tràn ra. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected “X” because it failed to map the Vietnamese premise to either available consequence and produced an unsupported output, likely due to uncertainty, misunderstanding, or an inability to follow the required choice format.'}

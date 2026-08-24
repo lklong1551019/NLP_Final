@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi đẩy cửa.\n### Choices: [choice]Cánh cửa mở ra.@ [choice]Cánh cửa bị khóa.@'] || GT-A:Cánh cửa mở ra. || LLM-A:Cánh cửa mở ra.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model maps the Vietnamese premise “Tôi đẩy cửa” to the common causal outcome that pushing a door makes it open, and selects the choice expressing that outcome.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer follows the ordinary causal relationship implied by the premise: applying a pushing force to the door results in the door opening.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The premise describes an action performed on the door, and the selected answer states the direct physical result of that action.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The explanation identifies the answer as the natural consequence of exerting a pushing force on a door.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The premise indicates that the door is being pushed, which supports the answer describing the door opening as the resulting event.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The answer represents the expected result of pushing a door, namely that the door opens.'}

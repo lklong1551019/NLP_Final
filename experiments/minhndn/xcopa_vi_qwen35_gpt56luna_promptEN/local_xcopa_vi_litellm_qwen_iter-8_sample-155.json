@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi bắt đầu đốt lửa trong lò sưởi.\n### Choices: [choice]Tôi đã hết củi.@ [choice]Trong nhà thật lạnh.@'] || GT-A:Trong nhà thật lạnh. || LLM-A:Trong nhà thật lạnh.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected the statement that most plausibly explains why someone would begin making a fire in a fireplace, interpreting the action as a response to a cold indoor environment.'}

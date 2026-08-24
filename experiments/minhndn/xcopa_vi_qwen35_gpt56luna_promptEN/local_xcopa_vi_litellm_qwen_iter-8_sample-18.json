@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tai nạn là lỗi của tôi.\n### Choices: [choice]Tôi cảm thấy tội lỗi.@ [choice]Tôi kiện.@'] || GT-A:Tôi cảm thấy tội lỗi. || LLM-A:Tôi cảm thấy tội lỗi.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because the premise states that the accident is the speaker’s fault, which semantically implies a feeling of guilt; the alternative describes taking legal action, which is not directly entailed.'}

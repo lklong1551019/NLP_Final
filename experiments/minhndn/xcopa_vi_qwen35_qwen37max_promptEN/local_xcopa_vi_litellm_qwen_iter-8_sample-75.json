@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi nhập dãy mã vào ổ khóa.\n### Choices: [choice]Tôi đóng khóa.@ [choice]Khóa bật mở.@'] || GT-A:Khóa bật mở. || LLM-A:Khóa bật mở.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects this option because entering a code into a lock is semantically and causally linked to the mechanism unlocking, representing the intended functional outcome of the action described in the premise.'}

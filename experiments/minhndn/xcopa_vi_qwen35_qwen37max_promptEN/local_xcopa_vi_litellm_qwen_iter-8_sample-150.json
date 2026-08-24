@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tim của nam diễn viên đập mạnh trước màn biểu diễn.\n### Choices: [choice]Anh ấy sợ sân khấu.@ [choice]Anh ghi nhớ lời thoại của mình.@'] || GT-A:Anh ấy sợ sân khấu. || LLM-A:Anh ấy sợ sân khấu.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects this option because a pounding heart is a physiological symptom commonly associated with anxiety or stage fright, establishing a direct causal link between the physical sensation described in the premise and the emotional state of fear.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Điện trong nhà tôi tắt.\n### Choices: [choice]Tôi rút phích cắm đèn.@ [choice]Tôi rất tức giận.@'] || GT-A:Tôi rất tức giận. || LLM-A:Tôi rút phích cắm đèn.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the answer based on causal reasoning patterns learned during training, identifying that unplugging a device is a direct physical cause of electricity being off, whereas an emotional state lacks a mechanistic link to the premise.'}

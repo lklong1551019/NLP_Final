@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cây rụng lá.\n### Choices: [choice]Lá chuyển màu.@ [choice]Lá dồn trên mặt đường.@'] || GT-A:Lá dồn trên mặt đường. || LLM-A:Lá dồn trên mặt đường.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the answer because it interprets the Vietnamese premise as stating that leaves fall from trees, making accumulation of leaves on the ground a direct consequence.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Vì cây rụng lá nên những chiếc lá sẽ rơi xuống và dồn lại trên mặt đường.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì cây rụng lá nên lá rơi xuống và dồn lại trên mặt đường.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Vì cây rụng lá nên lá rơi xuống, dồn lại trên mặt đường.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Vì cây rụng lá nên lá rơi xuống và dồn lại trên mặt đường.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Vì cây rụng lá nên những chiếc lá rơi xuống và dồn lại trên mặt đường.'}

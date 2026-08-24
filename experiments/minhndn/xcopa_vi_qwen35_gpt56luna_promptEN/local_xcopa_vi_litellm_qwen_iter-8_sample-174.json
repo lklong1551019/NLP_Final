@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Bãi đậu xe của tòa nhà trống rỗng.\n### Choices: [choice]Tôi đậu xe bên kia đường.@ [choice]Tôi đậu gần lối vào.@'] || GT-A:Tôi đậu gần lối vào. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected “X” because the premise states that the building’s parking lot is empty, but neither provided choice directly expresses that fact or a clear consequence of it, making the intended relationship ambiguous.'}

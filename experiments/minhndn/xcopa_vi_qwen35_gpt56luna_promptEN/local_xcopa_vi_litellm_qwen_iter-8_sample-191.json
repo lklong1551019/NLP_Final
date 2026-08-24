@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông nặng ký quyết định giảm cân.\n### Choices: [choice]Ông ấy cắt giảm đồ ngọt.@ [choice]Anh tránh cafein.@'] || GT-A:Ông ấy cắt giảm đồ ngọt. || LLM-A:Ông ấy cắt giảm đồ ngọt.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this answer because reducing sweets is a commonly inferred method for losing weight, making it more directly related to the stated decision than avoiding caffeine.</EXP>'}

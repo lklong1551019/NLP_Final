@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cậu bé khóc với người trông trẻ.\n### Choices: [choice]Cậu ấy nhớ bố mẹ.@ [choice]Đó là thời gian ăn nhẹ.@'] || GT-A:Cậu ấy nhớ bố mẹ. || LLM-A:Cậu ấy nhớ bố mẹ.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the first choice because the premise describes a boy crying to a babysitter, and missing his parents is a plausible emotional cause, whereas snack time does not directly explain the crying.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Cậu bé khóc vì nhớ bố mẹ, điều này giải thích trực tiếp hành động khóc với người trông trẻ hơn so với việc đến giờ ăn nhẹ.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Cậu bé khóc vì nhớ bố mẹ; cảm xúc này là nguyên nhân phù hợp hơn so với việc chỉ đến giờ ăn nhẹ.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Cậu bé khóc vì nhớ bố mẹ, đây là nguyên nhân hợp lý hơn so với việc chỉ đến giờ ăn nhẹ.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Cậu bé khóc vì nhớ bố mẹ, vì nguyên nhân này phù hợp trực tiếp với hành động khóc hơn so với việc đến giờ ăn nhẹ.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Cậu bé nhớ bố mẹ nên khóc với người trông trẻ, còn giờ ăn nhẹ không giải thích trực tiếp cảm xúc đó.</EXP>'}

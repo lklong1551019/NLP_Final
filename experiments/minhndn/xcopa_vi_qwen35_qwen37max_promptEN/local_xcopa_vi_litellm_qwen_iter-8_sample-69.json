@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái khoe khoang với bạn bè.\n### Choices: [choice]Cô bị điểm kém.@ [choice]Cô đã thắng một cuộc thi.@'] || GT-A:Cô đã thắng một cuộc thi. || LLM-A:Cô đã thắng một cuộc thi.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects the chosen option because winning a competition provides a socially normative and logical motivation for boasting to friends, whereas receiving a low grade typically elicits shame or sadness rather than prideful self-promotion.'}

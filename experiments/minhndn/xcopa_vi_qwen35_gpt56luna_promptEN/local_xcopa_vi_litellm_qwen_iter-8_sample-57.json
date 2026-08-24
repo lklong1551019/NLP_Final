@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Bồn rửa trong phòng tắm bị tắc.\n### Choices: [choice]Tôi bật vòi nước.@ [choice]Tôi đổ nước xả vào đó.@'] || GT-A:Tôi đổ nước xả vào đó. || LLM-A:Tôi đổ nước xả vào đó.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the second choice because pouring a drain-clearing substance into a clogged bathroom sink is interpreted as an action intended to remove the blockage, whereas turning on the faucet would likely add more water without resolving the obstruction.</EXP>'}

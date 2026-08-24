@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Luật sư đi cầu thang lên văn phòng của cô.\n### Choices: [choice]Thư ký đã về nhà.@ [choice]Thang máy không hoạt động.@'] || GT-A:Thang máy không hoạt động. || LLM-A:Thang máy không hoạt động.
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer identifies a plausible reason for using the stairs: an unavailable elevator would necessitate taking the staircase to reach the office.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The premise indicates that the lawyer goes upstairs by the staircase, which is explained by the elevator being unavailable rather than the secretary leaving.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The lawyer uses the stairs because the elevator is not functioning, making the secretary’s departure irrelevant to the choice of route.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The lawyer takes the stairs because the elevator is not working, directly explaining the chosen route to the office.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The lawyer’s use of the stairs is consistent with the elevator being unavailable, which provides the relevant cause for this action.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The lawyer’s choice to use the stairs is explained by the elevator being unavailable, making the other option unrelated.</EXP>'}

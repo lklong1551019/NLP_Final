@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Phòng tắm ngập nước.\n### Choices: [choice]Nước nhà vệ sinh tràn ra.@ [choice]Máy nước nóng bị hỏng.@'] || GT-A:Nước nhà vệ sinh tràn ra. || LLM-A:Nước nhà vệ sinh tràn ra.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because it interpreted the flooded bathroom as most directly caused by water overflowing from the toilet, while treating a malfunctioning water heater as a less immediate or less typical explanation.</EXP>'}

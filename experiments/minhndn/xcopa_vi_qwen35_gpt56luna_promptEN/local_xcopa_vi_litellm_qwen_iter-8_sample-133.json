@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đội thua giải đấu.\n### Choices: [choice]Họ làm người hâm mộ thất vọng.@ [choice]Họ truyền cảm hứng cho người hâm mộ của họ.@'] || GT-A:Họ làm người hâm mộ thất vọng. || LLM-A:Họ làm người hâm mộ thất vọng.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because the Vietnamese premise means “The team lost the tournament,” which conventionally implies disappointing its fans; the answer reflects a direct cause-and-effect interpretation of the premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise indicates that the team lost the tournament, so the selected answer identifies the likely negative emotional effect this outcome has on its fans.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The statement describes an unfavorable result for the team, and the chosen effect corresponds to the disappointment that such a result can cause among its supporters.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise presents a negative outcome for the team, making disappointment among its fans the corresponding effect.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Losing a tournament is an unfavorable event that would generally cause the team’s supporters to feel disappointed.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The team’s loss is an unfavorable result, so it would generally make its supporters feel disappointed.'}

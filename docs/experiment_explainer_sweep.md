@@ -69,6 +69,13 @@ Nghĩa là 100 câu đầu hơi thuận lợi, và con số 0.960 từng đượ
 so với baseline 0.920" thực chất chỉ còn +0.010 (p = 0.75). Đây chính là lý do không
 nên báo cáo chênh lệch nhỏ ở N=100 như một cải tiến.
 
+**Cập nhật (§8.4):** kết luận bão hoà này đã được **kiểm chứng độc lập trên target thứ
+hai**. Grid đầy đủ 3 explainer × 2 target (6 ô, N=200 mỗi ô) cho dải 0.930–0.975, hai
+target gộp lại không phân biệt được (p=0.607), và không explainer nào giữ thứ hạng khi
+đổi target. Có đúng **một** cặp đạt p<0.05 (luna vs Qwen3.7-max trên Qwen3.5-4B,
+p=0.034) nhưng rớt Bonferroni, không qua McNemar (p=0.052) và đổi dấu trên target kia —
+chi tiết ở §8.4.
+
 Khác biệt thật nằm ở chất lượng đo: unparsed giảm từ 9% (baseline) xuống 1,0–2,0%,
 call rỗng từ ~19,6% (đợt đo đầu của team) xuống **0 trên toàn bộ 5.924 call** của ba
 arm sweep ở N=200 (0/7.089 nếu tính cả hai run Phi-2). GPT-5.6-luna đứng đầu danh nghĩa (0.955) nhưng **không** nên diễn
@@ -320,7 +327,7 @@ python scripts/analyze_position_bias.py --results_dir <dir>
 `VERTEX_CREDENTIALS=./config/gen-lang-client.json`. Seed câu hỏi: index tuần tự 0–199 (chuẩn team; baseline cũ của team dừng ở 0–99).
 Các lệnh trên dùng `RESUME=1` mặc định nên chạy lại chỉ sinh phần còn thiếu.
 
-## 8. Trục target: đồng bộ với trục prompt-VI của team
+## 8. Grid explainer × target: ceiling effect có tái lập không?
 
 ### 8.1 Lý do chạy
 
@@ -364,7 +371,73 @@ không**, chứ không phân biệt được chất lượng giải thích. `X` 
 faithfulness đi 0.755 → 0.945 → 0.930 — tương quan với parse-rate rõ hơn nhiều so với với
 năng lực model.
 
-### 8.4 Cắt lát index 0-99 (để so với run N=100 của teammate)
+### 8.4 Grid đầy đủ: 3 explainer × 2 target (N=200 mỗi ô)
+
+Bổ sung hai ô còn thiếu (luna, Qwen3.7-max trên target Qwen3.5-4B) để trả lời câu hỏi
+**ceiling effect là thuộc tính của metric hay của riêng `deepseek-v4-flash`?**
+
+| Explainer | Target v4-flash | Target Qwen3.5-4B | %VI (v4-flash / Qwen3.5-4B) |
+|---|---|---|---|
+| Gemini-3.5-flash | 0.930 | 0.945 | 69.7% / 75.3% |
+| GPT-5.6-luna | 0.955 | 0.930 | 34.9% / 23.7% |
+| Qwen3.7-max | 0.945 | **0.975** | 1.2% / 0.4% |
+
+Chi tiết hai ô mới (N=200, indices 0-199):
+
+| Ô | Acc | `X` | Faithfulness | Flip | Mean iter |
+|---|---|---|---|---|---|
+| Qwen3.5-4B × GPT-5.6-luna | 92.0% | 6.0% | 0.930 [0.886-0.958] | 93.0% | 3.95 |
+| Qwen3.5-4B × Qwen3.7-max | 92.0% | 5.0% | **0.975** [0.943-0.989] | 97.5% | 3.50 |
+
+**Kết luận: ceiling effect tái lập độc lập trên target thứ hai.** Cả 6 ô nằm trong dải
+0.930-0.975 (rộng 4.5 điểm). Gộp theo target thì hai target không phân biệt được
+(0.943 vs 0.950, z=−0.51, **p=0.607**). Không explainer nào giữ được thứ hạng khi đổi
+target: luna đứng đầu trên v4-flash nhưng đứng cuối trên Qwen3.5-4B.
+
+#### Một cặp significant — báo cáo minh bạch, nhưng không đứng vững
+
+luna (0.930) vs Qwen3.7-max (0.975) trên target Qwen3.5-4B: **z=−2.12, p=0.034**.
+Ba lý do không nên đọc đây là "Qwen3.7-max tốt hơn":
+
+1. **Đa kiểm định.** Đây là 1 trong 6 cặp trong-target. Ngưỡng Bonferroni p<0.0083 —
+   p=0.034 **rớt**. Với 6 phép kiểm dưới giả thuyết null đúng, xác suất có ít nhất một
+   cặp p<0.05 là ~26%, tức kết quả này nằm trong kỳ vọng ngẫu nhiên.
+2. **Sai phép kiểm cho thiết kế.** Hai arm chạy **cùng 200 câu** → dữ liệu ghép cặp,
+   giả định "hai mẫu độc lập" của two-proportion z-test không thoả. **McNemar trên cùng
+   dữ liệu cho p=0.052**. Toàn bộ hiệu ứng là **13 câu chỉ Qwen3.7-max lật** so với
+   **4 câu chỉ luna lật**.
+3. **Đổi dấu giữa hai target.** Trên v4-flash cặp này chạy ngược chiều: Qwen3.7-max
+   0.945 **thấp hơn** luna 0.955 (p=0.646). Hiệu ứng đảo chiều khi đổi target thì không
+   phải thuộc tính của explainer.
+
+Giữ z-test làm số chính để nhất quán với 6 cặp đã publish ở §3; McNemar báo kèm vì nó là
+phép kiểm đúng ở đây, không phải vì nó cho p đẹp hơn.
+
+### 8.5 Ngôn ngữ giải thích: biến nhiễu chưa kiểm soát
+
+`PROMPT_LANG=en` chỉ đặt **chỉ thị** và **scaffold** bằng tiếng Anh; premise/choices vẫn
+tiếng Việt, và `exp_instruction` nguyên bản của paper **không nêu ngôn ngữ output**. Mỗi
+explainer tự quyết, và chúng quyết rất khác nhau (đo bằng phát hiện dấu tiếng Việt trên
+toàn bộ record giải thích):
+
+| Explainer | v4-flash | Qwen3.5-4B | Theo ngôn ngữ của |
+|---|---|---|---|
+| Qwen3.7-max | 1.2% VI | 0.4% VI | **chỉ thị** |
+| GPT-5.6-luna | 34.9% VI | 23.7% VI | lưng chừng |
+| Gemini-3.5-flash | 69.7% VI | 75.3% VI | **nội dung** |
+
+Tỷ lệ này là thuộc tính của **explainer**, không phải target (Qwen3.7-max ~1% trên cả hai).
+
+Ý nghĩa: ngôn ngữ giải thích biến thiên từ **0.4% đến 75.3%** tiếng Việt mà faithfulness
+vẫn nằm gọn trong 0.930-0.975. Metric **không nhìn thấy** một khác biệt thô đến mức đó —
+thêm một chiều cho lập luận bão hoà ở §3.
+
+Đây là **quan sát trên prompt nguyên bản**, không phải can thiệp: bản đặc tả của paper đơn
+giản là không xác định ngôn ngữ output khi dữ liệu không phải tiếng Anh — một lỗ hổng chỉ
+lộ ra khi chạy trên ngữ liệu phi-Anh. Ép tiếng Việt sẽ phải sửa `exp_instruction`, làm mất
+tính so sánh với toàn bộ các ô trên, nên **cố ý không làm**.
+
+### 8.6 Cắt lát index 0-99 (để so với run N=100 của teammate)
 
 | Lát | N | Predictor accuracy | Unparsed `X` | Faithfulness | Flip |
 |---|---|---|---|---|---|

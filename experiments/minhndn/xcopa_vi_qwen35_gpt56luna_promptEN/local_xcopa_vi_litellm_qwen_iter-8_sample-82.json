@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi rút phích cắm trong bồn tắm.\n### Choices: [choice]Nước rút ra khỏi bồn.@ [choice]Nước văng lên sàn nhà.@'] || GT-A:Nước rút ra khỏi bồn. || LLM-A:Nước rút ra khỏi bồn.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected the first choice because it interpreted the Vietnamese premise as describing the removal of a plug from a bathtub, which conventionally causes the water to drain. The response is concise because the task format appears to require choosing one option, and the model matched the stated effect to the most directly associated consequence.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer identifies the direct consequence of removing the bathtub plug: the water can flow out through the drain.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer describes the immediate physical result implied by removing the plug from the bathtub, namely that the contained water has an open path to drain away.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The answer states the consequence that most directly follows from pulling the plug, as the opening allows the bathtub’s water to leave through the drain.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer corresponds to the premise because removing the bathtub plug opens the drain, allowing the water inside to flow out.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The answer is supported by the premise because removing the plug creates an opening for the bathtub’s water to drain away.'}
