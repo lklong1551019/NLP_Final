@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người thủy thủ đã được cách ly.\n### Choices: [choice]Anh đã tiếp xúc với dịch bệnh.@ [choice]Anh đã khỏi bệnh.@'] || GT-A:Anh đã tiếp xúc với dịch bệnh. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình lựa chọn câu trả lời này vì đã xác định mối quan hệ nhân quả logic giữa việc tiếp xúc với dịch bệnh và việc phải thực hiện biện pháp cách ly y tế để ngăn ngừa lây lan.'}

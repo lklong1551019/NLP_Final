@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các mặt hàng đã được đóng gói trong bọc bong bóng.\n### Choices: [choice]Nó dễ vỡ.@ [choice]Nó nhỏ.@'] || GT-A:Nó dễ vỡ. || LLM-A:Nó dễ vỡ.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because the Vietnamese premise states that the items were packaged in bubble wrap, which is commonly associated with protecting fragile objects. The response reflects a likely semantic inference from the packaging method to the probable reason for using it.</EXP>'}

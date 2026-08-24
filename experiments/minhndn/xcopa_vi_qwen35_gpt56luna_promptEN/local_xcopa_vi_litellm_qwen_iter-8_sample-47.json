@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi làm đổ rượu lên áo.\n### Choices: [choice]Tôi đeo tạp dề.@ [choice]Tôi đã thay áo.@'] || GT-A:Tôi đã thay áo. || LLM-A:Tôi đã thay áo.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the second choice because spilling alcohol on a shirt is interpreted as a situation that would plausibly lead to changing the shirt, whereas wearing an apron is more naturally a preventive action that would occur before the spill.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc làm đổ rượu khiến áo bị bẩn hoặc ướt, nên hành động phù hợp sau đó là thay áo; đeo tạp dề chỉ giúp bảo vệ quần áo trước khi sự cố xảy ra.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc làm đổ rượu có thể khiến áo bị bẩn hoặc ám mùi, vì vậy thay áo là phản ứng phù hợp để xử lý hậu quả của sự cố.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Rượu bị đổ có thể làm áo bẩn, ướt hoặc có mùi, nên việc thay áo là cách xử lý hậu quả trực tiếp của sự cố.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc làm đổ rượu có thể khiến áo bị bẩn hoặc ướt, nên thay áo là hành động phù hợp để khắc phục tình trạng đó.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Rượu đổ lên áo tạo ra hậu quả trực tiếp như làm áo ướt, bẩn hoặc có mùi, nên thay áo là hành động phù hợp để xử lý tình trạng đó.'}

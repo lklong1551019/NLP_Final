@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông đã đi đến bác sĩ.\n### Choices: [choice]Bác sĩ được nghỉ phép.@ [choice]Người đàn ông bị bệnh.@'] || GT-A:Người đàn ông bị bệnh. || LLM-A:Người đàn ông bị bệnh.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the second choice because it inferred that visiting a doctor most commonly implies that the man is ill, although the premise does not explicitly establish his medical condition.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Người đàn ông đi khám bác sĩ cho thấy anh ta có vấn đề về sức khỏe, nên lựa chọn phù hợp là anh ta bị bệnh.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc người đàn ông đến gặp bác sĩ được xem là dấu hiệu cho thấy anh ta đang gặp vấn đề về sức khỏe, nên đáp án này phù hợp với nguyên nhân được suy ra từ tiền đề.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Tiền đề cho biết người đàn ông đã đi đến bác sĩ, và đáp án liên kết hành động này với khả năng ông ấy đang bị bệnh.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc người đàn ông tìm đến bác sĩ hàm ý rằng ông ấy đang có vấn đề về sức khỏe, vì vậy nguyên nhân được suy ra là ông ấy bị bệnh.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Hành động đi đến bác sĩ được hiểu là xuất phát từ tình trạng sức khỏe không tốt, nên lựa chọn này giải thích nguyên nhân của sự việc.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc đến gặp bác sĩ được liên hệ với nhu cầu thăm khám do sức khỏe có vấn đề, nên tiền đề được giải thích theo hướng người đàn ông bị bệnh.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc người đàn ông đến gặp bác sĩ được liên hệ với nhu cầu thăm khám do sức khỏe có vấn đề, nên tiền đề được giải thích theo hướng người đàn ông bị bệnh.'}

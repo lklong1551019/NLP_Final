@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi gõ cửa nhà hàng xóm.\n### Choices: [choice]Hàng xóm của tôi mời tôi vào.@ [choice]Hàng xóm của tôi rời khỏi nhà cô ấy.@'] || GT-A:Hàng xóm của tôi mời tôi vào. || LLM-A:Hàng xóm của tôi mời tôi vào.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects this answer because it recognizes a common social script where knocking on a door typically elicits an invitation to enter rather than causing the occupant to leave.'}

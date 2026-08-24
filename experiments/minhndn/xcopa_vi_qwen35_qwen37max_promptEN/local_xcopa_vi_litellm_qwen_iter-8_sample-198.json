@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông đã đi đến bác sĩ.\n### Choices: [choice]Bác sĩ được nghỉ phép.@ [choice]Người đàn ông bị bệnh.@'] || GT-A:Người đàn ông bị bệnh. || LLM-A:Người đàn ông bị bệnh.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects this option because it identifies a direct causal relationship where illness serves as the logical motivation for seeking medical attention, aligning with common sense reasoning patterns found in the training data.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tim của nam diễn viên đập mạnh trước màn biểu diễn.\n### Choices: [choice]Anh ấy sợ sân khấu.@ [choice]Anh ghi nhớ lời thoại của mình.@'] || GT-A:Anh ấy sợ sân khấu. || LLM-A:Anh ấy sợ sân khấu.
+{'Score': 1.0, 'XAI prompt': "<EXP>The model chose this answer because stage fright is a well-known psychological and physiological trigger that causes a person's heart to beat rapidly before a performance, establishing a direct cause-and-effect relationship with the premise."}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:["###Question: What is the cause of the Premise?\n### Premise: The girl's hands became blistered.\n### Choices: [choice]She typed up a letter.@ [choice]She climbed up a rope.@"] || GT-A:She climbed up a rope. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the choice involving climbing a rope because this physical activity generates significant friction on the skin of the hands, which is a direct and common physical cause of blisters, unlike typing on a keyboard.'}

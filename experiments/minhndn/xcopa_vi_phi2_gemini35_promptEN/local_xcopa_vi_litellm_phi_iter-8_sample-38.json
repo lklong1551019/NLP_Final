@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người phụ nữ va vào ghế sofa.\n### Choices: [choice]Chân ghế sofa bị lỏng ra.@ [choice]Cô bầm tím đầu gối.@'] || GT-A:Cô bầm tím đầu gối. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the second choice because it recognizes the common real-world physical consequence of a person bumping into a piece of furniture, establishing a cause-and-effect relationship between colliding with a sofa and sustaining a minor injury like a bruised knee.'}

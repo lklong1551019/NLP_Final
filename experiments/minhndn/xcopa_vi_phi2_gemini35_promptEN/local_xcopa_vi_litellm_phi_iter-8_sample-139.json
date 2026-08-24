@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Con gấu trúc lục lọi thùng rác.\n### Choices: [choice]Có thùng các tông trong thùng rác.@ [choice]Cái nắp rơi ra khỏi thùng rác.@'] || GT-A:Cái nắp rơi ra khỏi thùng rác. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected this option because it identified a logical cause-and-effect relationship between the action of a raccoon rummaging through a trash can and the physical consequence of the lid falling off, which is a common real-world outcome of such an event.'}

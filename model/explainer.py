@@ -84,7 +84,7 @@ def reponse_xai_model(prompt, args, xai_local_model=None, xai_local_tokenizer=No
                 max_tokens=args.max_tokens,
                 temperature=float(args.temp_exp),
                 top_p=getattr(args, "top_p_exp", None),
-                system="Bạn là một chuyên gia về giải thích hành vi của mô hình ngôn ngữ." if getattr(args, 'data', '') == "xcopa_vi" else "You are an expert at explaining language model behavior.",
+                system="Bạn là một chuyên gia về giải thích hành vi của mô hình ngôn ngữ." if llm_api.vi_prompts(args) else "You are an expert at explaining language model behavior.",
             )
         except Exception as e:
             print(f"[ERROR] Explainer API: {e}")
@@ -102,7 +102,7 @@ def generate_exp_prompt(task_instruction, input_zip, output_ans, args):
 
     if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
         qa_pair = zip(input_zip, output_ans)
-        if args.data == "xcopa_vi":
+        if llm_api.vi_prompts(args):
             exp_prompt = [f"{task_instruction}\n\n### Đầu vào:\n{item[0]}\n### Trả lời: {item[1]}" for item in qa_pair]
         else:
             exp_prompt = [f"{task_instruction}\n\n### Input: Q:{item[0]}\nA:{item[1]}" for item in qa_pair]
@@ -125,7 +125,7 @@ def generate_global_xai_prompt(xai_prompts_list, scores_list, args):
             score = scores_list[i]
             few_shot_score += f"Prompt:\n{xai_prompt}\nScore:\n{score}\n\n"
 
-        if getattr(args, 'data', '') == "xcopa_vi":
+        if llm_api.vi_prompts(args):
             # ---------------------------------------------------------
             # SAMPLE PROMPT (GLOBAL):
             # ### System instruction: Nhiệm vụ của bạn là tạo các hướng dẫn...
@@ -168,7 +168,7 @@ def generate_global_xai_prompt(xai_prompts_list, scores_list, args):
     return xai_final_prompt
 
 def generate_local_xai_prompt(xai_prompts_list, scores_list, question, output_ans, args=None):
-    is_vi = args is not None and getattr(args, 'data', '') == "xcopa_vi"
+    is_vi = llm_api.vi_prompts(args)
     question_answer_list = f"### Đầu vào:\n{question}\n### Trả lời: {output_ans}" if is_vi else f"Q:{question}\nA:{output_ans}"
 
     if is_vi:
@@ -222,7 +222,7 @@ def generate_counterfact_prompt(explanation, args):
     # instruction = f"Please generate one counterfactual example obtaining opposite meaning of the given sentence. \
     #                 Make sure you output sentence only."
     if args.data in ["ecqa", "copa", "social", "xcopa", "xcopa_vi", "copa_en"]:
-        if args.data == "xcopa_vi":
+        if llm_api.vi_prompts(args):
             # ---------------------------------------------------------
             # SAMPLE PROMPT (COUNTERFACTUAL):
             # Vui lòng tạo một ví dụ mang ý nghĩa trái ngược...

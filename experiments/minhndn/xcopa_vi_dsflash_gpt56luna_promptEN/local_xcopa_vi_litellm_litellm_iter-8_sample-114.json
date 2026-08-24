@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi nướng một chiếc bánh táo.\n### Choices: [choice]Một mùi thối rữa tràn ngập bếp.@ [choice]Một mùi thơm ấm áp tràn ngập nhà bếp.@'] || GT-A:Một mùi thơm ấm áp tràn ngập nhà bếp. || LLM-A:Một mùi thơm ấm áp tràn ngập nhà bếp.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selects the second choice because baking an apple pie is commonly associated with producing a warm, pleasant aroma, whereas a rotten smell is inconsistent with the typical effect of this action.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Baking an apple pie typically releases a warm, sweet, and inviting fragrance throughout the kitchen, rather than an unpleasant odor of decay.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Nướng bánh táo thường tạo ra hương thơm ngọt ngào, ấm áp lan tỏa trong bếp, phù hợp với lựa chọn mô tả mùi thơm dễ chịu hơn là mùi hôi thối.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc nướng bánh táo thường tạo ra hương thơm ngọt ngào và dễ chịu lan tỏa trong bếp, nên phù hợp với mô tả về một mùi thơm ấm áp thay vì mùi thối rữa.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Nướng một chiếc bánh táo thường làm tỏa ra hương thơm ngọt ngào và ấm áp trong nhà bếp, không phải mùi thối rữa khó chịu.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Nướng bánh táo thường tạo ra hương thơm ngọt ngào, dễ chịu và ấm áp lan tỏa trong bếp, trái ngược với mùi thối rữa.'}

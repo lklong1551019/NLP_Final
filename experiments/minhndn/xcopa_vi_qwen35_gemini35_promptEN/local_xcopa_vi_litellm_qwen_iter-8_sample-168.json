@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông nhìn chằm chằm vào bầu trời đêm.\n### Choices: [choice]Anh ước đó là mùa hè.@ [choice]Anh nghĩ nó thật đẹp.@'] || GT-A:Anh nghĩ nó thật đẹp. || LLM-A:Anh nghĩ nó thật đẹp.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects this choice because looking at the night sky is commonly associated with appreciating its aesthetic beauty, making the premise a plausible reaction or consequence of finding the sky beautiful.'}

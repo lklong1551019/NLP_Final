@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi cảm thấy kiệt sức.\n### Choices: [choice]Tôi đi ngủ sớm.@ [choice]Tôi thức cả đêm.@'] || GT-A:Tôi đi ngủ sớm. || LLM-A:Tôi đi ngủ sớm.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the first choice because it interprets feeling exhausted as a condition that normally leads to going to bed early, making that option appear more causally consistent than staying awake all night.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Vì cảm thấy kiệt sức thường làm giảm năng lượng và nhu cầu nghỉ ngơi tăng lên, hành động được chọn phù hợp với trạng thái đó.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Vì trạng thái kiệt sức cho thấy cơ thể cần được nghỉ ngơi, lựa chọn này phù hợp với nhu cầu phục hồi năng lượng.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Vì kiệt sức thường là dấu hiệu cho thấy cơ thể cần nghỉ ngơi, nên việc đi ngủ sớm phù hợp hơn với trạng thái này.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Đi ngủ sớm là phản ứng phù hợp với cảm giác kiệt sức vì giúp cơ thể nghỉ ngơi và phục hồi.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Đi ngủ sớm giúp cơ thể nghỉ ngơi và phục hồi sau khi cảm thấy kiệt sức.</EXP>'}

@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi rút phích cắm trong bồn tắm.\n### Choices: [choice]Nước rút ra khỏi bồn.@ [choice]Nước văng lên sàn nhà.@'] || GT-A:Nước rút ra khỏi bồn. || LLM-A:Nước rút ra khỏi bồn.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected this answer because it interpreted the Vietnamese premise as describing the act of unplugging the drain in a bathtub, and it associated that action with water leaving the tub.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> “Tôi rút phích cắm trong bồn tắm” indicates removing the bathtub’s drain plug, which allows the water to flow out of the tub; therefore, the first choice matches the described effect.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc rút phích cắm trong bồn tắm mở đường thoát nước, khiến nước chảy ra khỏi bồn.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc rút phích cắm của bồn tắm làm nước thoát qua lỗ xả, nên nước sẽ chảy ra ngoài bồn.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>“Tôi rút phích cắm trong bồn tắm” mô tả việc tháo nút chặn, làm nước trong bồn có đường thoát ra ngoài; vì vậy lựa chọn thứ nhất phù hợp với hiệu ứng của hành động này.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc rút phích cắm trong bồn tắm làm mở lỗ thoát nước, khiến nước trong bồn chảy ra ngoài.'}

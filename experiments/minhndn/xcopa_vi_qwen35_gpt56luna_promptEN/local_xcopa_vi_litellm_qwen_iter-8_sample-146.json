@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông ngậm bạc hà.\n### Choices: [choice]Môi anh nứt nẻ.@ [choice]Anh lo bị hôi miệng.@'] || GT-A:Anh lo bị hôi miệng. || LLM-A:Anh lo bị hôi miệng.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects the concern about bad breath because sucking a mint is commonly associated with freshening breath, implying that the man may be worried about unpleasant mouth odor.'}

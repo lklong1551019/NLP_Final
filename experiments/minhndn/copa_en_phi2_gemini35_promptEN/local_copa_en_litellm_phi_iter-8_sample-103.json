@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The fish floated on the surface of the tank.\n### Choices: [choice]It was hungry.@ [choice]It was dead.@'] || GT-A:It was dead. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> The model chose the incorrect option because it likely relied on a superficial association between "fish" and being "hungry" (as feeding fish is a common human activity), while failing to apply the common-sense physical and biological knowledge that dead fish float to the surface of a tank.'}

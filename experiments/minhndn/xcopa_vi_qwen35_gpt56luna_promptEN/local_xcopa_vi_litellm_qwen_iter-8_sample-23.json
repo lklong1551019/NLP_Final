@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Học sinh biết câu trả lời cho câu hỏi.\n### Choices: [choice]Cậu ấy giơ tay.@ [choice]Cậy ấy làm biếng.@'] || GT-A:Cậu ấy giơ tay. || LLM-A:Cậu ấy giơ tay.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the first choice because the premise states that the student knows the answer, which conventionally supports the action of raising a hand rather than being lazy.</EXP>'}

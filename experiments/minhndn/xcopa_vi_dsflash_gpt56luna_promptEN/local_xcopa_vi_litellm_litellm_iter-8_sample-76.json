@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Đám đông nhiều lên.\n### Choices: [choice]Người cha đưa cho con trai một ít tiền.@ [choice]Người cha nắm lấy tay con trai mình.@'] || GT-A:Người cha nắm lấy tay con trai mình. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model likely selected X because it interpreted the Vietnamese premise “Đám đông nhiều lên” as unrelated or insufficiently connected to either available choice, so it produced a default or arbitrary label rather than a logically entailed option.</EXP>'}

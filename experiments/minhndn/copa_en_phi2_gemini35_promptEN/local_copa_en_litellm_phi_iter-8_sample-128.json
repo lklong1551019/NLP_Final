@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The lawyer took the stairs up to her office.\n### Choices: [choice]The secretary went home for the day.@ [choice]The elevator was out of order.@'] || GT-A:The elevator was out of order. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model chose this answer because "the elevator was out of order" provides a direct, common-sense physical cause for someone choosing to take the stairs instead of using a more convenient method of vertical transportation in an office building.'}

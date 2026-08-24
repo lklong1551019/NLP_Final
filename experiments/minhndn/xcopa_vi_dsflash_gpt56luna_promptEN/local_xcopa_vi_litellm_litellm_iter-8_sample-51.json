@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Radar của phi công đã phát hiện ra một cơn bão.\n### Choices: [choice]Phi công điều hướng khỏi cơn bão.@ [choice]Phi công đã bay qua cơn bão.@'] || GT-A:Phi công điều hướng khỏi cơn bão. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected the first choice because detecting a storm on radar plausibly leads the pilot to navigate away from it, whereas flying through the storm is less consistent with an avoidance-oriented consequence.</EXP>'}

@@ -28,3 +28,4 @@ python scripts/build_report.py \
 | Directory | Runs |
 |---|---|
 | [`anhnh/`](anhnh/) | FaithLM reproduction on Phi-2 + GPT-3.5, metric-validity control, decoding ablation, English/Vietnamese comparison |
+| [`minhndn/`](minhndn/) | Explainer sweep across four 2026 models, explainer × target grid, position-bias and re-sampling controls |

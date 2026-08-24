@@ -1,0 +1,46 @@
+{
+  "source_dir": "results/experiments/xcopa_vi_xai_sweep_en/vertex-google-gemini-3-5-flash",
+  "xai_model": "vertex/google/gemini-3.5-flash",
+  "pred_model": "deepseek/deepseek-v4-flash",
+  "prompt_lang": "en",
+  "negation_temperature": 0.9,
+  "negation_top_p": 0.9,
+  "overall": {
+    "n": 183,
+    "unparsed": 5,
+    "n_scored": 178,
+    "reproduced": 108,
+    "rate": 0.6067415730337079,
+    "ci95_wilson": [
+      0.5334520479838576,
+      0.675521036282889
+    ]
+  },
+  "flip_round_1": {
+    "n": 66,
+    "unparsed": 0,
+    "n_scored": 66,
+    "reproduced": 47,
+    "rate": 0.7121212121212122,
+    "ci95_wilson": [
+      0.5936252235584776,
+      0.8072819721529609
+    ]
+  },
+  "flip_round_ge2": {
+    "n": 117,
+    "unparsed": 5,
+    "n_scored": 112,
+    "reproduced": 61,
+    "rate": 0.5446428571428571,
+    "ci95_wilson": [
+      0.4524610601997964,
+      0.6338637143198924
+    ]
+  },
+  "api_stats": {
+    "calls": 366,
+    "empty": 0,
+    "errors": 0
+  }
+}

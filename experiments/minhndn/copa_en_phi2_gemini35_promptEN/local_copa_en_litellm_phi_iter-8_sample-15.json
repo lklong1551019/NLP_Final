@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl memorized the code.\n### Choices: [choice]She recited it to herself.@ [choice]She forgot to write it down.@'] || GT-A:She recited it to herself. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model chose the first option because memorization is a cognitive process that is directly facilitated by active rehearsal, such as reciting information to oneself, which serves as a plausible cause for successfully retaining the code.'}

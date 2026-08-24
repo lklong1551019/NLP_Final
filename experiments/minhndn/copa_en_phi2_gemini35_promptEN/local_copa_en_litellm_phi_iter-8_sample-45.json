@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I drilled a hole in the wall.\n### Choices: [choice]A mouse crawled out of the hole.@ [choice]Dust blew out of the hole.@'] || GT-A:Dust blew out of the hole. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selected the choice involving dust blowing out of the hole because drilling is a physical process that generates debris and fine particles, making the immediate appearance of dust a direct and common physical consequence of the action described in the premise.'}

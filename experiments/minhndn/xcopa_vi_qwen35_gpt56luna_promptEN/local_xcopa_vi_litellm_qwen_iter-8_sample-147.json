@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cặp đôi đi sớm xem biểu diễn.\n### Choices: [choice]Họ đoán giao thông ùn tắc xung quanh nhà hát.@ [choice]Họ đã có chỉ đường đến nhà hát.@'] || GT-A:Họ đoán giao thông ùn tắc xung quanh nhà hát. || LLM-A:Họ đoán giao thông ùn tắc xung quanh nhà hát.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected this answer because it inferred that arriving early was intended to avoid anticipated congestion near the theater, treating that option as the likely cause of the couple’s early departure.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The answer identifies an anticipated traffic jam around the theater as the reason the couple went early, linking their early arrival to an effort to avoid congestion.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The early departure is explained by the expectation that traffic around the theater would become congested, making it preferable to travel before the anticipated slowdown.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer connects the couple’s decision to leave early with their expectation that traffic near the theater would be congested, making an earlier trip seem necessary.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The selected answer attributes the couple’s early departure to their expectation of traffic congestion around the theater.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer explains the couple’s early departure as being motivated by their expectation of heavy traffic around the theater.'}

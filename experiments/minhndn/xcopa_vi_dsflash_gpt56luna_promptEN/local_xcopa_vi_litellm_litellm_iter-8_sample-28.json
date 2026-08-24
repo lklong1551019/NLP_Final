@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Các thực phẩm đông lạnh tan băng.\n### Choices: [choice]Tôi cho nó vào lò vi sóng.@ [choice]Tôi bọc nó bằng bọc nhựa.@'] || GT-A:Tôi cho nó vào lò vi sóng. || LLM-A:Tôi cho nó vào lò vi sóng.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely selects this answer because thawing frozen food is commonly associated with using a microwave, making the choice semantically consistent with the stated event.'}

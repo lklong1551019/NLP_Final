@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông đã ký tên lên thỉnh nguyện của các nhà hoạt động.\n### Choices: [choice]Ông ủng hộ mục đích của họ.@ [choice]Ông tố cáo họ điên.@'] || GT-A:Ông ủng hộ mục đích của họ. || LLM-A:Ông ủng hộ mục đích của họ.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because signing an activists’ petition is conventionally interpreted as expressing support for the petition’s purpose, whereas the second choice conflicts with the implied action.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc ký tên vào một thỉnh nguyện thư cho thấy người đàn ông đồng tình và ủng hộ mục đích mà các nhà hoạt động đang theo đuổi, chứ không thể hiện sự tố cáo hay cho rằng họ điên.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc ký tên vào thỉnh nguyện của các nhà hoạt động thể hiện sự đồng thuận với mục tiêu hoặc yêu cầu họ nêu ra, thay vì phản đối hay xúc phạm họ.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc ký tên vào thỉnh nguyện cho thấy người đàn ông đồng tình với những điều các nhà hoạt động đang kêu gọi và ủng hộ mục đích của họ, không phải phản đối hay lên án họ.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc ký tên vào thỉnh nguyện thư cho thấy người đàn ông tán thành và ủng hộ mục tiêu của các nhà hoạt động, chứ không hàm ý ông lên án hay cho rằng họ bị điên.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc ký tên vào thỉnh nguyện thư cho thấy người đàn ông đồng ý với lời kêu gọi và ủng hộ mục tiêu của các nhà hoạt động, chứ không phải lên án họ hay cho rằng họ điên.'}

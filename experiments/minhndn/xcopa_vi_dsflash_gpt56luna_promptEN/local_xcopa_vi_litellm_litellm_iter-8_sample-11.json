@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông đập đầu.\n### Choices: [choice]Anh lạc trong suy nghĩ.@ [choice]Anh ấy bị chấn động.@'] || GT-A:Anh ấy bị chấn động. || LLM-A:Anh ấy bị chấn động.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the second choice because it interprets the Vietnamese premise as describing a man hitting his head, which commonly implies a concussion; this is a semantic inference from the event described rather than a direct repetition of the premise.</EXP>'}

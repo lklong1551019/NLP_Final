@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi dừng lại để dừng nói chuyện.\n### Choices: [choice]Tôi mất giọng.@ [choice]Tôi hết hơi.@'] || GT-A:Tôi hết hơi. || LLM-A:Tôi hết hơi.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model provides an answer because the task format explicitly requests a selection from the listed choices, so it generates the most plausible candidate rather than declining when the evidence is insufficient.'}

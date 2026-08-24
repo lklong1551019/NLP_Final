@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông mặc áo phao.\n### Choices: [choice]Anh ấy không biết bơi.@ [choice]Nước cạn.@'] || GT-A:Anh ấy không biết bơi. || LLM-A:Anh ấy không biết bơi.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected the first choice because it interpreted wearing a life jacket as more directly associated with not knowing how to swim, although that inference is not logically guaranteed by the premise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mặc áo phao thường được liên hệ với việc không biết bơi, nên lựa chọn này được xem là nguyên nhân phù hợp hơn.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc mặc áo phao cho thấy người đàn ông có thể không tự tin hoặc không có khả năng bơi, vì vậy đây là nguyên nhân phù hợp với việc anh ấy không biết bơi.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc chọn đáp án này dựa trên mối liên hệ thường gặp giữa áo phao và người không biết bơi hoặc cần hỗ trợ khi ở dưới nước.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Lựa chọn này phù hợp vì áo phao thường được sử dụng bởi người không biết bơi hoặc cần hỗ trợ khi ở dưới nước.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Áo phao thường được mặc để hỗ trợ an toàn dưới nước, đặc biệt khi người mặc không biết bơi, nên lựa chọn này phù hợp với câu trả lời đã cho.'}

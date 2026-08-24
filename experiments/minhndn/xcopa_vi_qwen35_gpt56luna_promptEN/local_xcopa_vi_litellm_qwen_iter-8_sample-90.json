@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ đi du lịch nước ngoài.\n### Choices: [choice]Cô muốn học vẽ.@ [choice]Cô muốn tìm hiểu về các nền văn hóa khác.@'] || GT-A:Cô muốn tìm hiểu về các nền văn hóa khác. || LLM-A:Cô muốn tìm hiểu về các nền văn hóa khác.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the second choice because traveling abroad is commonly associated with wanting to learn about other cultures, making that option semantically consistent with the premise.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer connects the woman’s decision to travel abroad with an interest in learning about different cultures, rather than with an unrelated desire to study drawing.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Choosing to travel abroad is explained by the woman’s desire to gain exposure to and understand cultures different from her own.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The woman travels abroad to gain exposure to cultures different from her own and learn more about them.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The selected answer identifies a culturally oriented motivation for traveling abroad, which directly aligns the action with learning about other societies rather than pursuing an unrelated artistic activity.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Traveling to another country suggests a desire to experience and learn about cultures beyond her own.</EXP>'}

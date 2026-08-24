@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Đứa bé ngủ thiếp đi.\n### Choices: [choice]Người cha đã thay tã cho em bé.@ [choice]Người cha nhẹ nhàng đá đứa bé.@'] || GT-A:Người cha nhẹ nhàng đá đứa bé. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects X because the premise states only that the baby fell asleep, while neither choice provides a clearly stated cause supported by that information.'}

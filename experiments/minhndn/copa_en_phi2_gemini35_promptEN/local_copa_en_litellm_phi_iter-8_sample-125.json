@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The rain was pouring down.\n### Choices: [choice]The storm worsened.@ [choice]I dashed to get inside.@'] || GT-A:I dashed to get inside. || LLM-A:The storm worsened.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose "The storm worsened" because it associated the active, continuous action of "pouring down" with a progression or escalation of weather severity, leading it to identify the intensification of the storm as a direct effect of the premise.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ đeo kính râm.\n### Choices: [choice]Ánh sáng mặt trời chói lóa.@ [choice]Cô gọi một chiếc taxi.@'] || GT-A:Ánh sáng mặt trời chói lóa. || LLM-A:Ánh sáng mặt trời chói lóa.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the first choice because wearing sunglasses is commonly associated with protecting the eyes from bright sunlight, making that option a plausible cause of the stated premise.'}

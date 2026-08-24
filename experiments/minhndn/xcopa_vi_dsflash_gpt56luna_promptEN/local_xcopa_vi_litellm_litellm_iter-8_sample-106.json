@@ -1,0 +1,7 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cậu thiếu niên lẻn ra khỏi nhà.\n### Choices: [choice]Cậu nói dối bố mẹ.@ [choice]Bố mẹ cậu nhốt cậu anh.@'] || GT-A:Bố mẹ cậu nhốt cậu anh. || LLM-A:Cậu nói dối bố mẹ.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model identifies the first choice as the likely cause because secretly leaving home is plausibly associated with deceiving or concealing the action from one’s parents, whereas the second choice is grammatically and semantically unclear and does not establish a convincing causal relationship.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Rời khỏi nhà một cách lén lút cho thấy cậu thiếu niên đang cố che giấu hành động của mình với bố mẹ, nên việc nói dối bố mẹ là nguyên nhân phù hợp với tình huống.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc lẻn ra khỏi nhà có thể bắt nguồn từ việc cậu thiếu niên đã nói dối bố mẹ để che giấu ý định hoặc hành động của mình.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Đáp án cho rằng cậu thiếu niên nói dối bố mẹ vì hành động lẻn ra khỏi nhà cho thấy cậu muốn che giấu việc mình rời đi, trong khi lựa chọn còn lại không nêu được nguyên nhân phù hợp.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Hành động lẻn ra khỏi nhà cho thấy cậu thiếu niên muốn che giấu việc mình rời đi, vì vậy nguyên nhân phù hợp là cậu đã nói dối bố mẹ.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc cậu thiếu niên lẻn ra khỏi nhà cho thấy cậu cố tình che giấu việc rời đi, nên nguyên nhân được chọn là cậu đã nói dối bố mẹ.</EXP>'}

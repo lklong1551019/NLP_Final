@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ ngừng chạy bộ.\n### Choices: [choice]Cô bị chuột rút ở bên.@ [choice]Cô có năng lượng trở lại.@'] || GT-A:Cô bị chuột rút ở bên. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose the first option because muscle cramps (chuột rút) are a physically limiting and painful condition that directly causes someone to stop physical activities like running, whereas having energy restored would cause the opposite behavior.'}

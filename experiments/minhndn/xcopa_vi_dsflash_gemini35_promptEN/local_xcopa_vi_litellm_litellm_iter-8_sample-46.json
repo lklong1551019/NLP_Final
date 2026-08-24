@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ cảm thấy ghen tị với chị gái mình.\n### Choices: [choice]Chị cô hạnh phúc.@ [choice]Chị gái cô đã ly hôn.@'] || GT-A:Chị cô hạnh phúc. || LLM-A:Chị cô hạnh phúc.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selects this answer because it identifies a logical and common human psychological cause-and-effect relationship, where someone is much more likely to feel envious (ghen tị) of a sibling who is happy and successful rather than one who has gone through a divorce.'}

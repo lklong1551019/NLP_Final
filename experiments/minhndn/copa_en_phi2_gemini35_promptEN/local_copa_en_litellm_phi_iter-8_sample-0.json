@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The item was packaged in bubble wrap.\n### Choices: [choice]It was fragile.@ [choice]It was small.@'] || GT-A:It was fragile. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected the correct choice because it successfully associated the real-world utility of "bubble wrap" with the protection of "fragile" items, recognizing the causal relationship that fragile objects require protective packaging to prevent damage.'}

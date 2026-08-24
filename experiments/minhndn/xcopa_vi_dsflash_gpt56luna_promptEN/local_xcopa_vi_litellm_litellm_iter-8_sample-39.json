@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cậu bé bóp bóng bay.\n### Choices: [choice]Bong bóng nổ.@ [choice]Bong bóng bay đi.@'] || GT-A:Bong bóng nổ. || LLM-A:Bong bóng nổ.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model identifies the Vietnamese premise as describing a boy squeezing a balloon and selects the outcome that is most directly associated with squeezing it: bursting.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The premise describes a boy squeezing a balloon, an action that causes the balloon to burst; therefore, the selected answer follows directly from the stated action.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Squeezing a balloon applies pressure to its surface, which can cause it to rupture and produce a popping sound.'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The boy’s action exerts pressure on the balloon, causing it to burst.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>By squeezing the balloon, the boy increases pressure inside it until its surface can no longer withstand the force, causing it to pop.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The boy squeezes the balloon, exerting force on it and causing it to pop.'}

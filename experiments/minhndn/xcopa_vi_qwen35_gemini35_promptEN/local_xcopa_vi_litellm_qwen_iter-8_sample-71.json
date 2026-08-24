@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ ngủ quên.\n### Choices: [choice]Cô ở lại đêm trong một khách sạn.@ [choice]Cô quên cài đồng hồ báo thức.@'] || GT-A:Cô quên cài đồng hồ báo thức. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the second choice because it identifies a direct, culturally and logically common causal relationship between failing to set an alarm clock ("quên cài đồng hồ báo thức") and accidentally oversleeping ("ngủ quên").'}

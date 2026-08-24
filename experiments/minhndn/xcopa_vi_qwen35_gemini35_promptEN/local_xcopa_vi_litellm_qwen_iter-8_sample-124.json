@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái ngửi thấy mùi gì đó bốc cháy.\n### Choices: [choice]Cô lấy bánh quy ra khỏi bình.@ [choice]Cô quên bánh quy trong lò nướng.@'] || GT-A:Cô quên bánh quy trong lò nướng. || LLM-A:Cô quên bánh quy trong lò nướng.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because it correctly identifies a common, logical cause-and-effect relationship in daily life, where forgetting food (cookies) in an active oven leads to it burning and producing a burnt smell.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: The son moved away from home.\n### Choices: [choice]He was discharged from the military.@ [choice]He was going to college.@'] || GT-A:He was going to college. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the college-related choice because going to university is a highly common, culturally prevalent, and statistically frequent real-world reason for young adults to move out of their parental home, establishing a strong causal link in its training data.'}

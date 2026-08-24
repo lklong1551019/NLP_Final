@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người đàn ông uống thuốc ngủ.\n### Choices: [choice]Ông trở nên buồn ngủ.@ [choice]Ông bị sốt.@'] || GT-A:Ông trở nên buồn ngủ. || LLM-A:Ông trở nên buồn ngủ.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the first choice because it interprets the Vietnamese premise as stating that the man takes sleeping medicine, which is semantically associated with becoming sleepy; the second choice describes fever, which is not supported by that premise.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Uống thuốc ngủ thường gây buồn ngủ, nên lựa chọn này phù hợp trực tiếp với tác động được nêu; không có thông tin cho thấy người đàn ông bị sốt.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Thuốc ngủ có tác dụng làm giảm sự tỉnh táo, vì vậy trạng thái buồn ngủ là hệ quả phù hợp với hành động được mô tả, còn sốt không có quan hệ nhân quả trực tiếp.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc uống thuốc ngủ làm người đàn ông giảm tỉnh táo và trở nên buồn ngủ, phù hợp với tác động được hỏi; tình trạng sốt không được gợi ra từ hành động này.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Người đàn ông dùng thuốc ngủ, nên tác động được mô tả là cơ thể chuyển sang trạng thái buồn ngủ thay vì xuất hiện triệu chứng sốt.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Thuốc ngủ làm giảm mức độ tỉnh táo của cơ thể, vì vậy người đàn ông có xu hướng trở nên buồn ngủ thay vì bị sốt.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Hành động uống thuốc ngủ được liên kết với việc cơ thể buồn ngủ, trong khi sốt là một trạng thái không được hành động này gợi lên.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Thuốc ngủ thường khiến cơ thể giảm tỉnh táo và dẫn đến cảm giác buồn ngủ, còn việc bị sốt không phải là tác động được liên hệ với loại thuốc này.</EXP>'}

@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi thấy hơi thở của mình khi tôi thở ra.\n### Choices: [choice]Thời tiết se lạnh.@ [choice]Ngực tôi cảm thấy căng cứng.@'] || GT-A:Thời tiết se lạnh. || LLM-A:Thời tiết se lạnh.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the first choice because observing one’s breath upon exhalation is commonly associated with cool or cold air, which can make exhaled moisture visible. The response appears to match the premise through a straightforward physical-cause association rather than through complex inference.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The chosen answer identifies cool weather as the cause because visible breath is produced when warm, moist exhaled air condenses in colder surroundings.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Hơi thở có thể nhìn thấy khi không khí bên ngoài lạnh làm hơi ẩm trong hơi thở ngưng tụ thành những giọt nhỏ.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer is supported because exhaled breath becomes visible when the surrounding air is cool enough to condense the moisture in it.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The selected answer is relevant because cold weather can cause the moisture in exhaled air to condense, making the breath visible.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The answer is appropriate because cool weather causes moisture in exhaled air to condense, making the breath visible.</EXP>'}

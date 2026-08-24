@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Hơi nước bốc lên từ nồi nước.\n### Choices: [choice]Nước sôi.@ [choice]Tôi đậy nắp nồi.@'] || GT-A:Nước sôi. || LLM-A:Nước sôi.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the first choice because steam rising from a pot is most directly associated with boiling water, while covering the pot is not presented as the primary cause.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Hơi nước bốc lên là dấu hiệu cho thấy nước đang sôi, nên đáp án này giải thích trực tiếp hiện tượng được nêu trong tiền đề.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Hiện tượng hơi nước bốc lên phù hợp với trạng thái nước sôi, vì khi được đun đến nhiệt độ sôi, nước chuyển thành hơi và thoát lên trên.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Nước sôi tạo ra hơi nước bốc lên, vì vậy hiện tượng trong tiền đề là kết quả trực tiếp của đáp án này.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Đáp án được chọn vì nước sôi làm phát sinh hơi nước bốc lên, thể hiện mối quan hệ nguyên nhân trực tiếp với hiện tượng trong tiền đề.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Nước sôi được xem là nguyên nhân khiến hơi nước hình thành và bốc lên từ nồi, phù hợp trực tiếp với hiện tượng đã nêu.</EXP>'}

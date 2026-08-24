@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Những người đi nghỉ đã đi phà đến khu nghỉ mát.\n### Choices: [choice]Khu nghỉ dưỡng đã được đặt trước.@ [choice]Khu nghỉ mát nằm trên một hòn đảo.@'] || GT-A:Khu nghỉ mát nằm trên một hòn đảo. || LLM-A:Khu nghỉ mát nằm trên một hòn đảo.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected this answer because taking a ferry to reach a resort most directly suggests that the resort is located on an island; the alternative does not explain the stated transportation method.'}

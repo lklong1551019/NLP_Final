@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái hết năng lượng.\n### Choices: [choice]Cô chơi cờ đam.@ [choice]Cô nhảy dây.@'] || GT-A:Cô nhảy dây. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình lựa chọn phương án này vì hoạt động nhảy dây đòi hỏi sự vận động thể chất liên tục và tiêu hao nhiều calo, dẫn đến kết quả trực tiếp là cơ thể bị mất năng lượng và mệt mỏi, tạo ra mối quan hệ nguyên nhân - kết quả logic hơn so với việc chơi cờ đam vốn là một hoạt động trí tuệ ít tiêu hao thể lực.'}

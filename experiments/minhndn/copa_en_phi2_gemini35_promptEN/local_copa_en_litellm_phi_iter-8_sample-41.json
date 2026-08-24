@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I bit into the peach.\n### Choices: [choice]The peach bruised.@ [choice]Juice spilled out.@'] || GT-A:Juice spilled out. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the incorrect option because it likely associated the physical action of biting a soft fruit with the immediate, highly visible consequence of juice releasing ("Juice spilled out"), while failing to recognize that biting physically damages and "bruises" the fruit\'s flesh at the point of contact.'}

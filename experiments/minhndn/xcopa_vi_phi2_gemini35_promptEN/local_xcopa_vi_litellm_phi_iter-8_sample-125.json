@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Mưa đã trút xuống.\n### Choices: [choice]Cơn bão trở nên tồi tệ hơn.@ [choice]Tôi lao vào trong.@'] || GT-A:Tôi lao vào trong. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose "Tôi lao vào trong" (I rushed inside) because it represents a direct, immediate, and common human reaction to the sudden event of rain pouring down ("Mưa đã trút xuống"), establishing a logical cause-and-effect relationship where the premise acts as the trigger for the action in the selected choice.'}

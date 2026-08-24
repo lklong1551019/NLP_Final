@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi từ chối lời mời đến bữa tiệc sinh nhật.\n### Choices: [choice]Tôi cô đơn.@ [choice]Tôi không có nhà.@'] || GT-A:Tôi không có nhà. || LLM-A:Tôi không có nhà.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely interpreted the refusal as being caused by an inability to host or attend because it lacks a home, selecting the option it associated most directly with a practical constraint rather than loneliness.'}

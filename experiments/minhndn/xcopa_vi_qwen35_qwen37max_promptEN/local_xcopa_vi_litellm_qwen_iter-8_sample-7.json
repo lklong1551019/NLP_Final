@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cô gái véo mũi.\n### Choices: [choice]Đứa bé chảy nước dãi trên chiếc yếm của cô.@ [choice]Đứa bé làm bẩn tã của mình.@'] || GT-A:Đứa bé làm bẩn tã của mình. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': "<EXP>The model likely selected this option because pinching one's nose is a common physical reaction to an unpleasant odor, and a soiled diaper is semantically associated with bad smells, whereas drooling on a bib does not typically trigger such a response."}

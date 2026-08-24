@@ -1,0 +1,7 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi dừng lại để dừng nói chuyện.\n### Choices: [choice]Tôi mất giọng.@ [choice]Tôi hết hơi.@'] || GT-A:Tôi hết hơi. || LLM-A:Tôi mất giọng.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model likely selected the first choice because it interpreted “dừng nói chuyện” as being unable to continue speaking and associated that condition more directly with losing one’s voice than with running out of breath.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>“Dừng lại để dừng nói chuyện” indicates stopping speech itself, so “Tôi mất giọng” is the more direct explanation than running out of breath.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc dừng nói chuyện được giải thích là do người nói bị mất giọng, thay vì do đã hết hơi.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Việc không thể tiếp tục nói được quy cho tình trạng mất giọng, chứ không phải do thiếu hơi.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Cụm từ “dừng nói chuyện” được liên hệ trực tiếp với việc mất giọng, vì vậy đáp án này phù hợp hơn với nguyên nhân khiến người nói phải ngừng lại.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>Câu trả lời cho rằng việc ngừng nói xuất phát từ mất giọng, vì nguyên nhân này liên quan trực tiếp đến khả năng phát âm hơn là tình trạng hết hơi.</EXP>'}

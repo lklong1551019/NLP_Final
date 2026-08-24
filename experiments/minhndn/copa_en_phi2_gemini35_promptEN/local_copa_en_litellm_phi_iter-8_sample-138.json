@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The two children simultaneously reached down to retrieve the ball.\n### Choices: [choice]The ball rolled away.@ [choice]Their heads collided.@'] || GT-A:Their heads collided. || LLM-A:Their heads collided.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this choice because it correctly identifies the most physically plausible and common immediate consequence of two people simultaneously bending down to grab the same object in close proximity.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cô gái ném quả bóng nước vào cậu bé.\n### Choices: [choice]Cậu bé bị chấn động.@ [choice]Cậu bé đã ướt sũng.@'] || GT-A:Cậu bé đã ướt sũng. || LLM-A:Cậu bé đã ướt sũng.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model generates this answer because it identifies the most direct and physically causal consequence of the action described in the premise, where throwing a water balloon logically results in the target becoming wet rather than suffering a concussion.'}

@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi bóp miếng bọt biển ẩm ướt.\n### Choices: [choice]Nó ngấm nước.@ [choice]Nước thấm chảy ra.@'] || GT-A:Nước thấm chảy ra. || LLM-A:Nước thấm chảy ra.
+{'Score': 0.0, 'XAI prompt': '<EXP> The answer describes the observable result of squeezing a wet sponge: water is expelled from it, so it is selected as the effect of the stated action.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc bóp miếng bọt biển đang ướt làm nước bị đẩy ra ngoài và chảy ra, nên đây là kết quả trực tiếp của hành động.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Khi bóp miếng bọt biển ẩm, lực ép làm nước bên trong bị đẩy ra ngoài và chảy ra.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Việc bóp miếng bọt biển ẩm tạo áp lực làm nước bên trong bị đẩy ra ngoài, dẫn đến hiện tượng nước thấm chảy ra.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Khi bóp miếng bọt biển ẩm ướt, áp lực làm nước chứa trong các lỗ xốp bị đẩy ra ngoài và chảy ra.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Bóp miếng bọt biển ẩm tạo lực ép lên phần nước bên trong, khiến nước bị đẩy ra ngoài và chảy ra.'}

@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Chiếc xe bị hỏng.\n### Choices: [choice]Tôi bật lửa.@ [choice]Động cơ quá nóng.@'] || GT-A:Động cơ quá nóng. || LLM-A:Động cơ quá nóng.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the engine overheating option because a broken vehicle is commonly associated with a mechanical problem involving excessive engine heat, making that choice appear more causally relevant than the unrelated action of lighting a lighter.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Động cơ quá nóng là nguyên nhân trực tiếp có thể khiến xe bị hỏng, trong khi việc bật lửa không liên quan đến tình trạng hư hỏng của xe.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Động cơ quá nóng có thể làm xe ngừng hoạt động hoặc bị hỏng, nên phù hợp với việc giải thích tình trạng của xe hơn so với hành động bật lửa.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Động cơ quá nóng là nguyên nhân hợp lý gây ra tình trạng xe bị hỏng, còn việc bật lửa không tạo mối liên hệ nhân quả với sự cố này.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Động cơ quá nóng có thể dẫn đến hỏng hóc hoặc khiến xe không thể hoạt động bình thường, nên phù hợp để giải thích nguyên nhân của tình trạng xe bị hỏng hơn việc bật lửa.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Động cơ quá nóng có thể gây hư hỏng và làm xe ngừng hoạt động, nên liên quan trực tiếp đến tình trạng xe bị hỏng hơn so với việc bật lửa.'}

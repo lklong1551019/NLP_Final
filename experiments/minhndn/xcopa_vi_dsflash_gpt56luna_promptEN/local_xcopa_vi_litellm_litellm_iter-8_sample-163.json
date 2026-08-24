@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Học sinh đến lớp ướt sũng.\n### Choices: [choice]Chiếc ô của anh bị hỏng.@ [choice]Chiếc xe đạp của anh đã bị đánh cắp.@'] || GT-A:Chiếc ô của anh bị hỏng. || LLM-A:Chiếc ô của anh bị hỏng.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selects the first choice because it provides a plausible causal explanation for arriving at class soaking wet, whereas the alternative does not logically account for being wet.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Chiếc ô bị hỏng khiến học sinh không được che mưa, nên em đến lớp trong tình trạng ướt sũng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Chiếc ô bị hỏng khiến học sinh không thể tránh mưa trên đường đến lớp, dẫn đến việc em bị ướt sũng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Chiếc ô bị hỏng làm học sinh không thể che mưa khi đến lớp, vì vậy em bị ướt sũng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Chiếc ô bị hỏng khiến học sinh không được che mưa trên đường đến lớp, nên em đến nơi trong tình trạng ướt sũng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Chiếc ô bị hỏng khiến học sinh không thể che mưa trên đường đến lớp, nên em bị ướt sũng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Chiếc ô bị hỏng khiến học sinh không có vật che chắn khi trời mưa, nên quần áo bị thấm nước và em đến lớp ướt sũng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Chiếc ô bị hỏng khiến học sinh không được che chắn khỏi mưa trên đường đến lớp, nên em đến lớp trong tình trạng ướt sũng.'}

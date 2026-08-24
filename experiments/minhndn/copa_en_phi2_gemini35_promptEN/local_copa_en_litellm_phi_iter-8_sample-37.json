@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The man took sleeping medication.\n### Choices: [choice]He became drowsy.@ [choice]He ran a fever.@'] || GT-A:He became drowsy. || LLM-A:He became drowsy.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the correct choice because it successfully associated the semantic concept of "sleeping medication" with its direct, common physiological effect of causing drowsiness, which is a highly frequent and logical correlation found in its training data.'}

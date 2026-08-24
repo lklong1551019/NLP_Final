@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người chồng cảm thấy có lỗi khi lừa dối vợ.\n### Choices: [choice]Anh buộc tội cô ngoại tình.@ [choice]Anh thú nhận ngoại tình với cô.@'] || GT-A:Anh thú nhận ngoại tình với cô. || LLM-A:Anh thú nhận ngoại tình với cô.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this option because it recognized a direct causal and semantic link between the feeling of guilt described in the premise and the act of confession presented in the chosen answer.'}

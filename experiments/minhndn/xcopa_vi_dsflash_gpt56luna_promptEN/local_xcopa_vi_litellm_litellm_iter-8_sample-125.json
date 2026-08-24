@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Mưa đã trút xuống.\n### Choices: [choice]Cơn bão trở nên tồi tệ hơn.@ [choice]Tôi lao vào trong.@'] || GT-A:Tôi lao vào trong. || LLM-A:Tôi lao vào trong.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selects the second choice because the premise states that rain has started pouring, which most directly motivates moving indoors, whereas the first choice introduces an unsupported consequence about a storm worsening.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mưa trút xuống khiến việc lao vào trong trở thành phản ứng trực tiếp và hợp lý, trong khi bão trở nên tồi tệ hơn không được nêu rõ trong tiền đề.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì mưa đang trút xuống, việc chạy vào trong là hành động phù hợp trực tiếp với tình huống, còn việc cơn bão tồi tệ hơn không được tiền đề hỗ trợ.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì mưa đã trút xuống, lựa chọn lao vào trong thể hiện phản ứng trực tiếp để tránh mưa, còn việc cơn bão trở nên tồi tệ hơn là một diễn biến không được tiền đề chỉ ra.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mưa lớn khiến việc lao vào trong là phản ứng tự nhiên, còn việc cơn bão trở nên tồi tệ hơn không phải là hệ quả được nêu trực tiếp.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì mưa đã trút xuống, lao vào trong là phản ứng phù hợp với tình huống, còn việc cơn bão trở nên tồi tệ hơn không được tiền đề trực tiếp hỗ trợ.'}

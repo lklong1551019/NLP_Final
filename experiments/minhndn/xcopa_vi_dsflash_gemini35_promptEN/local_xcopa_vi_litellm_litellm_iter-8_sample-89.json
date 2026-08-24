@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cậu bé bị lạc trong rừng.\n### Choices: [choice]Cậu dựng lều.@ [choice]Cậu hét lên cầu cứu.@'] || GT-A:Cậu hét lên cầu cứu. || LLM-A:Cậu hét lên cầu cứu.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this answer because it identifies a more immediate, instinctive, and common behavioral reaction to being lost in a forest (crying out for help) compared to the more complex and time-consuming task of building a tent.'}

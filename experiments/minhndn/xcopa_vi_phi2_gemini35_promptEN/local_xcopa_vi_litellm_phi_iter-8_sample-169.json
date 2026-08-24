@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi cảm thấy kiệt sức.\n### Choices: [choice]Tôi đi ngủ sớm.@ [choice]Tôi thức cả đêm.@'] || GT-A:Tôi đi ngủ sớm. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model chose the correct option because it successfully identified the most logical cause-and-effect relationship in Vietnamese, recognizing that feeling exhausted ("Tôi cảm thấy kiệt sức") naturally leads to going to sleep early ("Tôi đi ngủ sớm") rather than staying up all night.'}

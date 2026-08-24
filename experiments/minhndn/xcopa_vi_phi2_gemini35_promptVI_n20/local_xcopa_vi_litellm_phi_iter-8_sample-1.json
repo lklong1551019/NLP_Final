@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tôi lục túi của tôi.\n### Choices: [choice]Tôi lấy một cuống vé.@ [choice]Tôi tìm thấy một vũ khí.@'] || GT-A:Tôi lấy một cuống vé. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>Mô hình lựa chọn phương án này vì hành động lục túi thường dẫn đến kết quả trực tiếp và phổ biến trong đời sống hàng ngày là tìm thấy hoặc lấy ra một vật dụng cá nhân nhỏ như cuống vé, tạo ra một mối liên hệ nguyên nhân - kết quả tự nhiên và mang tính thực tế cao hơn so với việc tìm thấy một vũ khí.'}

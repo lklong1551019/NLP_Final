@@ -109,10 +109,18 @@ def pct(num, den):
     return f"{100.0 * num / den:.1f}%" if den else "n/a"
 
 
-_STATS_RE = re.compile(
-    r"LLM calls: (\d+) \| empty completions: (\d+) \| "
-    r"failed calls: (\d+) \| fallback used: (\d+)"
-)
+# Matched field-by-field rather than as one fixed sequence: stats_summary() has
+# gained fields over time (context overflow, rate limited) and a positional
+# pattern silently stops matching the moment one is inserted in the middle.
+_STATS_LINE_RE = re.compile(r"LLM calls: \d+ .*")
+_STATS_FIELDS = {
+    "calls": re.compile(r"LLM calls: (\d+)"),
+    "empty": re.compile(r"empty completions: (\d+)"),
+    "errors": re.compile(r"failed calls: (\d+)"),
+    "fallback": re.compile(r"fallback used: (\d+)"),
+    "rate_limited": re.compile(r"rate limited: (\d+)"),
+    "context_overflow": re.compile(r"context overflow: (\d+)"),
+}
 
 
 def collect_api_stats(results_dir):
@@ -128,12 +136,12 @@ def collect_api_stats(results_dir):
                 text = open(os.path.join(root, name), encoding="utf-8", errors="replace").read()
             except OSError:
                 continue
-            for m in _STATS_RE.finditer(text):
+            for line in _STATS_LINE_RE.findall(text):
                 totals["procs"] += 1
-                totals["calls"] += int(m.group(1))
-                totals["empty"] += int(m.group(2))
-                totals["errors"] += int(m.group(3))
-                totals["fallback"] += int(m.group(4))
+                for key, field_re in _STATS_FIELDS.items():
+                    m = field_re.search(line)
+                    if m:
+                        totals[key] = totals.get(key, 0) + int(m.group(1))
     return totals
 
 
@@ -165,8 +173,18 @@ def build(results_dir, output_path):
     # ---- setup ---------------------------------------------------------
     out.append("## 0. Experimental setup")
     out.append("")
-    out.append("Both FaithLM roles were served by an OpenAI-compatible LiteLLM gateway; no")
-    out.append("local model weights were used. See `docs/changelog_2026-08-17.md` §E.")
+    # The local pipeline runs the Predictor from HF weights on the GPU, so the
+    # "gateway only" note is wrong for those runs. LOCAL_PREDICTOR=1 (or a
+    # predictor id that is not a gateway route) switches the wording.
+    _pred_is_local = os.environ.get("LOCAL_PREDICTOR") == "1" or "local" in os.environ.get(
+        "LITELLM_PRED_MODEL", ""
+    ).lower()
+    if _pred_is_local:
+        out.append("The Explainer was served by an OpenAI-compatible gateway; the Predictor ran")
+        out.append("from local Hugging Face weights on the GPU. See `docs/changelog_2026-08-17.md` §E.")
+    else:
+        out.append("Both FaithLM roles were served by an OpenAI-compatible LiteLLM gateway; no")
+        out.append("local model weights were used. See `docs/changelog_2026-08-17.md` §E.")
     out.append("")
     out.append("| Role | Model | Temperature | max_tokens |")
     out.append("|---|---|---|---|")
@@ -175,6 +193,20 @@ def build(results_dir, output_path):
     out.append(f"| Explainer | `{os.environ.get('LITELLM_XAI_MODEL', 'n/a')}` | `--temp_exp` | 1000 |")
     out.append(f"| Fallback (empty completions) | `{os.environ.get('LITELLM_FALLBACK_MODEL', 'n/a')}` | — | — |")
     out.append("")
+    # Sample size and index range are derived from the files actually present,
+    # so the deviations table cannot drift out of sync with the data (N=100 was
+    # hardcoded here originally and silently misreported wider runs).
+    _idxs = []
+    for _v in variants.values():
+        for _r in _v["local"]:
+            _m = re.search(r"sample-(\d+)\.json$", _r["file"])
+            if _m:
+                _idxs.append(int(_m.group(1)))
+    if _idxs:
+        _n_eval = f"{len(set(_idxs))} (indices {min(_idxs)}–{max(_idxs)}, **not** a random sample)"
+    else:
+        _n_eval = "n/a"
+
     out.append("### Deviations from the paper's Table 2")
     out.append("")
     out.append("These are material and must be quoted alongside any number in this report.")
@@ -183,12 +215,16 @@ def build(results_dir, output_path):
     out.append("|---|---|---|")
     out.append("| Fidelity optimisation steps (Alg. 1) | 20 | 8 |")
     out.append("| Predictor temperature | 0.7 | 0.0 / 0.01 |")
-    out.append("| Explainer temperature | 0.9 | 0.01 (local) / 0.9 (global) |")
-    out.append("| Explainer top-p | 0.9 | not set (1.0) |")
+    # run_sharded.sh passes --temp_exp/--top_p_exp (paper Table 2 defaults
+    # 0.9/0.9). Hardcoding "0.01 / not set" here misreported every sweep run.
+    _temp_exp = os.environ.get("TEMP_EXP", "0.9")
+    _top_p_exp = os.environ.get("TOP_P_EXP", "0.9")
+    out.append(f"| Explainer temperature | 0.9 | {_temp_exp} |")
+    out.append(f"| Explainer top-p | 0.9 | {_top_p_exp} |")
     out.append("| Trigger-prompt steps (Alg. 2) | 100 | 8 |")
     out.append("| Sampled instances per step | 30 (Table 2) / 15 (§4.3) | 12 |")
     out.append("| Repetitions | 3 runs averaged, grid search | 1 |")
-    out.append("| Instances evaluated | 500 | 100 (indices 0–99, **not** a random sample) |")
+    out.append(f"| Instances evaluated | 500 | {_n_eval} |")
     out.append("| Target model | Vicuna-7B, Phi-2 | API model (see above) |")
     out.append("| Explainer | GPT-3.5-Turbo, Claude-2 | API model (see above) |")
     out.append("| Baselines | SelfExp, Self-consistency | **not implemented** |")

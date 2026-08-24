@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người đàn ông ngấn lệ.\n### Choices: [choice]Bụi bay vào mắt ông ấy.@ [choice]Anh đeo kính lên mắt.@'] || GT-A:Bụi bay vào mắt ông ấy. || LLM-A:Bụi bay vào mắt ông ấy.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this option because it identifies a direct causal relationship between the physiological reaction of tearing up and the presence of an irritant in the eye, treating it as the most plausible explanation for the state described in the premise.'}

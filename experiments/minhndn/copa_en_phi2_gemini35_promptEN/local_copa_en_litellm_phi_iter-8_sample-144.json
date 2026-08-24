@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The child left crumbs on the floor.\n### Choices: [choice]Ants crawled to the crumbs.@ [choice]The child put the bread away.@'] || GT-A:Ants crawled to the crumbs. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose the correct option because it successfully identified the cause-and-effect relationship between leaving food crumbs on the floor and attracting insects like ants, which is a common real-world scenario represented in its training data.'}

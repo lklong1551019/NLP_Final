@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Cái chốt siết chặt.\n### Choices: [choice]Tôi thay chốt.@ [choice]Tôi vặn mỏ lết.@'] || GT-A:Tôi vặn mỏ lết. || LLM-A:Tôi vặn mỏ lết.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model chose "Tôi vặn mỏ lết" (I turned the wrench) as the cause because, in terms of physical causality, using a tool like a wrench to tighten a bolt or pin directly results in the state of the pin being tightened ("Cái chốt siết chặt").'}

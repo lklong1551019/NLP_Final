@@ -1,0 +1,9 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cậu bé bị lạc trong rừng.\n### Choices: [choice]Cậu dựng lều.@ [choice]Cậu hét lên cầu cứu.@'] || GT-A:Cậu hét lên cầu cứu. || LLM-A:Cậu hét lên cầu cứu.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected the option that represents a direct and commonly expected response to being lost in a forest, relying on general situational knowledge and the apparent causal relationship between the premise and the choice.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The answer reflects that a lost child would likely call for help to attract attention and increase the chance of being found.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The answer describes an action intended to signal the child’s location and obtain assistance after becoming lost in the forest.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise establishes that the child is lost in a forest, and the selected answer identifies the child’s attempt to seek assistance in response to that situation.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The premise describes a child being lost in a forest, while the answer portrays the child calling out in an effort to be heard and helped.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Being lost creates a need to attract rescuers, so calling for help is a relevant reaction because it can make the child’s presence known and prompt assistance.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The chosen response shows the child attempting to obtain assistance after becoming lost, directly connecting the situation to an effort to be located and rescued.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The selected action is a practical response to being lost, as making a loud call can alert nearby people to the child’s location and lead to help.'}

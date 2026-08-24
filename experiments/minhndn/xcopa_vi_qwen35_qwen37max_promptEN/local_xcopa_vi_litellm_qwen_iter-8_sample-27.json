@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi dừng lại để dừng nói chuyện.\n### Choices: [choice]Tôi mất giọng.@ [choice]Tôi hết hơi.@'] || GT-A:Tôi hết hơi. || LLM-A:Tôi hết hơi.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected the chosen option because it interpreted the premise as describing a temporary physical state of breathlessness necessitating a pause, which aligns more directly with the immediate physiological cause implied by the verb "dừng lại" than the alternative choice representing a complete loss of voice.'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tim của nam diễn viên đập mạnh trước màn biểu diễn.\n### Choices: [choice]Anh ấy sợ sân khấu.@ [choice]Anh ghi nhớ lời thoại của mình.@'] || GT-A:Anh ấy sợ sân khấu. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose the first option because "fear of the stage" (sợ sân khấu) is a common and logically sound cause for a actor\'s heart beating rapidly (tim đập mạnh) before a performance.'}

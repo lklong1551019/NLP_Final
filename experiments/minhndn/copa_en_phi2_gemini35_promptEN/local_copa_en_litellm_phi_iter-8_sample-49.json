@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: The street musician attracted a crowd.\n### Choices: [choice]People gave him change.@ [choice]He sent the crowd away.@'] || GT-A:People gave him change. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose the first option because it correctly identifies the logical and common real-world consequence of a street musician successfully attracting a crowd, which is that people would then give him money, whereas sending the crowd away contradicts the premise of attracting them.'}

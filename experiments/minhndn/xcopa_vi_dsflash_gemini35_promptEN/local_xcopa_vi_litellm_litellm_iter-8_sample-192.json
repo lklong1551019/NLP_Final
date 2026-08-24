@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Cô gái bước lên băng.\n### Choices: [choice]Cô trượt dài.@ [choice]Cô rùng mình.@'] || GT-A:Cô trượt dài. || LLM-A:Cô trượt dài.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model chose this answer because "bước lên băng" (stepping onto ice) is a physical action that naturally leads to the physical consequence of "trượt dài" (sliding/slipping) due to the slippery nature of ice, establishing a strong causal relationship between the premise and the chosen option.'}

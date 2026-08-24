@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Những người lướt sóng trở lại bãi biển.\n### Choices: [choice]Họ ướt đẫm.@ [choice]Họ đã nhìn thấy một con cá mập.@'] || GT-A:Họ đã nhìn thấy một con cá mập. || LLM-A:Họ đã nhìn thấy một con cá mập.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the shark-related option because returning to the beach is interpreted as a likely reaction to seeing a potential danger in the water, even though the premise does not explicitly establish that cause.</EXP>'}

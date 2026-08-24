@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ chật vật bước đi.\n### Choices: [choice]Cô đi giày cao gót.@ [choice]Cô cởi giày ra.@'] || GT-A:Cô đi giày cao gót. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>The model chose the first option because it correctly identifies a plausible physical cause-and-effect relationship, as wearing high heels is a common and logical reason for someone to struggle while walking, whereas removing shoes would typically make walking easier rather than causing a struggle.'}

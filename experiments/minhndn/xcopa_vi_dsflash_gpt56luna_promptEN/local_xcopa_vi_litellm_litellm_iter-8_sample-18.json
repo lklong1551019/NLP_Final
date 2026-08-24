@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Tai nạn là lỗi của tôi.\n### Choices: [choice]Tôi cảm thấy tội lỗi.@ [choice]Tôi kiện.@'] || GT-A:Tôi cảm thấy tội lỗi. || LLM-A:Tôi cảm thấy tội lỗi.
+{'Score': 0.0, 'XAI prompt': '<EXP>The model selected the first choice because it interpreted the Vietnamese premise “Tai nạn là lỗi của tôi” as expressing personal responsibility for an accident, which most directly implies feeling guilty rather than filing a lawsuit.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The premise indicates that the speaker accepts blame for the accident, leading to a feeling of guilt rather than an intention to sue.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The statement assigns responsibility for the accident to the speaker, which corresponds to experiencing guilt rather than taking legal action.</EXP>'}
+{'Score': 1.0, 'XAI prompt': '<EXP>The premise conveys that the speaker is responsible for the accident, supporting an emotional response of guilt instead of the action of suing.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The premise states that the accident was the speaker’s fault, so the selected answer reflects the resulting sense of personal guilt rather than the separate action of suing.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>The premise attributes the accident to the speaker, indicating remorse and self-blame, which aligns with feeling guilty rather than pursuing a lawsuit.</EXP>'}

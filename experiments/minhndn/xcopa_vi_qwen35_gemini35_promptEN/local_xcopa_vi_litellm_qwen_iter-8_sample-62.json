@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Tôi nhìn đồng hồ.\n### Choices: [choice]Tôi nghe tiếng tích tắc.@ [choice]Tôi muốn kiểm tra thời gian.@'] || GT-A:Tôi muốn kiểm tra thời gian. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the second choice because it identifies a strong causal relationship between the desire to check the time and the physical action of looking at a watch, which is a common, logical human behavior represented in its training data.'}

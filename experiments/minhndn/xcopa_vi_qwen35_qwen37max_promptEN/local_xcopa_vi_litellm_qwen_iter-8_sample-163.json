@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Học sinh đến lớp ướt sũng.\n### Choices: [choice]Chiếc ô của anh bị hỏng.@ [choice]Chiếc xe đạp của anh đã bị đánh cắp.@'] || GT-A:Chiếc ô của anh bị hỏng. || LLM-A:Chiếc ô của anh bị hỏng.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected this option because it identified a direct causal relationship between a malfunctioning umbrella and the state of being soaked, whereas the alternative choice regarding a stolen bicycle lacks a logical connection to physical wetness.'}

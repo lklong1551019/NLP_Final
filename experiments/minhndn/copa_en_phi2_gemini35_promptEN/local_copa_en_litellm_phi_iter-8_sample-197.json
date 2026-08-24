@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The executive went bankrupt.\n### Choices: [choice]He sold his company stock.@ [choice]He squandered his fortune.@'] || GT-A:He squandered his fortune. || LLM-A:He squandered his fortune.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selected this answer because "squandering a fortune" is a direct and common cause of financial ruin and bankruptcy, establishing a clear and logical causal relationship with the premise.'}

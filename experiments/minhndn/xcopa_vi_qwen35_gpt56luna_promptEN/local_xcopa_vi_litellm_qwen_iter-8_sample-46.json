@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Người phụ nữ cảm thấy ghen tị với chị gái mình.\n### Choices: [choice]Chị cô hạnh phúc.@ [choice]Chị gái cô đã ly hôn.@'] || GT-A:Chị cô hạnh phúc. || LLM-A:Chị cô hạnh phúc.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected this option because it interpreted the woman’s jealousy as most plausibly caused by her sister’s happiness, while the alternative describes divorce, which is generally associated with hardship rather than an obvious reason for envy.'}

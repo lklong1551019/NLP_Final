@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Steam rose off of the pot of water.\n### Choices: [choice]The water boiled.@ [choice]I covered the pot.@'] || GT-A:The water boiled. || LLM-A:The water boiled.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model selected this answer because it correctly identifies a scientifically valid cause-and-effect relationship, as heating water to its boiling point is the physical process that generates steam, whereas covering a pot would trap steam rather than cause its initial production.'}

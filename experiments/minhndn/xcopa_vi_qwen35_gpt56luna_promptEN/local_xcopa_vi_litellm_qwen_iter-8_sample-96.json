@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Sách rơi ra khỏi tủ sách.\n### Choices: [choice]Các kệ sách phủ bụi.@ [choice]Một trận động đất làm rung chuyển tủ sách.@'] || GT-A:Một trận động đất làm rung chuyển tủ sách. || LLM-A:Một trận động đất làm rung chuyển tủ sách.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the second choice because it represents a plausible causal event that could make a book fall from a bookshelf, whereas the first choice describes a condition that does not directly explain the falling.</EXP>'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Chúng tôi đi tàu lượn siêu tốc.\n### Choices: [choice]Trông nó thật đáng sợ.@ [choice]Trông nó rất vui.@'] || GT-A:Trông nó rất vui. || LLM-A:Trông nó rất vui.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model likely selected this answer because it interpreted riding a roller coaster as an activity generally associated with excitement and enjoyment, matching the positive description among the choices.</EXP>'}

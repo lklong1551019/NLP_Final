@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Kế toán quản lý sai quỹ của công ty.\n### Choices: [choice]Cô bị sa thải khỏi vị trí của mình.@ [choice]Cô đi nghỉ thai sản.@'] || GT-A:Cô bị sa thải khỏi vị trí của mình. || LLM-A:Cô bị sa thải khỏi vị trí của mình.
+{'Score': 1.0, 'XAI prompt': '<EXP>The model selects the first choice because it interprets the premise as describing financial mismanagement by an employee and associates that conduct with dismissal, while the alternative describes an unrelated event.</EXP>'}

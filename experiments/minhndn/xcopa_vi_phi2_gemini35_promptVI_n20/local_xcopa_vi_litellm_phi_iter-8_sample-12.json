@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the cause of the Premise?\n### Premise: Check tôi viết bị trả lại.\n### Choices: [choice]Tài khoản ngân hàng của tôi trống rỗng.@ [choice]Tôi đã được tăng lương.@'] || GT-A:Tài khoản ngân hàng của tôi trống rỗng. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình lựa chọn phương án này vì có mối quan hệ nhân quả trực tiếp giữa việc tài khoản ngân hàng không có tiền và hậu quả là séc thanh toán bị ngân hàng từ chối giao dịch.'}

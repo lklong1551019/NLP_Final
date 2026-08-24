@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: Người cha buồn bực việc con trai nghiện rượu.\n### Choices: [choice]Người cha mua cho con trai một cốc bia.@ [choice]Người cha đuổi con trai ra khỏi nhà.@'] || GT-A:Người cha đuổi con trai ra khỏi nhà. || LLM-A:Người cha đuổi con trai ra khỏi nhà.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected the second choice because it inferred a punitive or corrective consequence from the father’s distress about his son’s alcohol addiction, treating expulsion as a plausible effect of that situation.<|endoftext|>'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The answer reflects a negative consequence of the father’s distress over his son’s alcohol addiction, with the father responding by removing the son from the home.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The father’s sadness and frustration about his son’s alcoholism leads to a severe disciplinary response, namely sending him away from the household.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> The father’s unhappiness with his son’s alcohol addiction results in him expelling his son from the house.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The father’s distress about his son’s alcohol addiction is expressed through the consequential action of removing him from the home.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> The selected response describes a direct negative consequence of the father’s distress, in which he removes his alcohol-dependent son from the household.'}

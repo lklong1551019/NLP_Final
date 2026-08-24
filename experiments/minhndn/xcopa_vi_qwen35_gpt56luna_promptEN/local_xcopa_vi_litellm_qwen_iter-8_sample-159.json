@@ -1,0 +1,7 @@
+============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: Giáo viên khen học sinh.\n### Choices: [choice]Học sinh trả lời đúng câu hỏi.@ [choice]Học sinh ngập ngừng trả lời câu hỏi.@'] || GT-A:Học sinh trả lời đúng câu hỏi. || LLM-A:Học sinh trả lời đúng câu hỏi.
+{'Score': 0.0, 'XAI prompt': '<EXP> The model selected the first choice because it interpreted the teacher’s praise as most naturally resulting from the student answering the question correctly, while the alternative describes hesitation and does not conventionally explain praise.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Lời khen của giáo viên cho thấy học sinh đã thực hiện tốt yêu cầu, phù hợp với việc trả lời đúng câu hỏi hơn là ngập ngừng khi trả lời.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Giáo viên khen học sinh vì em đã trả lời đúng câu hỏi, thể hiện sự hoàn thành tốt nhiệm vụ; việc ngập ngừng không phải là nguyên nhân phù hợp để nhận lời khen.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Hành động khen ngợi cho thấy học sinh đã đáp ứng đúng yêu cầu của giáo viên, nên việc trả lời chính xác là nguyên nhân phù hợp hơn so với sự ngập ngừng.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Việc giáo viên khen học sinh hàm ý rằng câu trả lời của em đạt yêu cầu, phù hợp với lựa chọn trả lời đúng hơn lựa chọn thể hiện sự ngập ngừng.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Giáo viên khen học sinh vì câu trả lời của em được xem là chính xác và phù hợp với yêu cầu, thay vì thể hiện sự thiếu chắc chắn khi trả lời.'}
