@@ -67,9 +67,12 @@ sánh được giữa các chế độ).
 
 Ghi lại thay vì bỏ đi:
 
-- **Metric không giảm số vòng lặp.** Đã thử ba tín hiệu (`prob_shift`, `margin`,
-  `flip`), đều trên cùng đường đánh đổi: nhanh hơn thì lật được ít câu hơn. Thứ giảm
-  số vòng là **quy tắc dừng**, và hai thứ đó độc lập nhau.
+- **Metric không giảm số vòng lặp.** Ngoài `logprob` còn thử `margin`
+  (`0.5 − P(lựa chọn đầu)`, khoảng cách vượt ranh giới) và `flip`. Cả hai đều nằm
+  trên cùng đường đánh đổi: nhanh hơn thì lật được ít câu hơn. Chỉ thăm dò ở quy mô
+  10 câu nên không giữ dữ liệu — quá nhỏ để báo cáo, và kết luận này không dựa vào
+  con số cụ thể nào. Thứ thật sự giảm số vòng là **quy tắc dừng**, độc lập với cách
+  chấm. Hai chế độ đó vẫn còn trong code (`--score_mode margin|flip`) nếu cần chạy lại.
 - **Phi-2 không đọc được tiếng Việt**: 0.520 so với sàn đa số 0.530, chọn phương án
   A 87% — thiên lệch vị trí. Các lần chạy dùng nó đo trên nền nhiễu, nên kết quả
   Qwen ở trên thay thế chúng.
@@ -122,13 +125,14 @@ chi phí của chúng không nằm trong bảng — usage log chỉ được th�
 |---|---|
 | `xcopa_vi_qwen_gpt4omini_{accuracy,prob_accuracy,logprob}` | 500 câu, `xai_iter 5`, `stop_rule flip` — **kết quả chính** |
 | `xcopa_vi_phi_gpt35_{accuracy,logprob}` | 200 câu, cấu hình baseline; ngân sách lệch nhau nên chỉ dùng tham khảo |
-| `copa_en_phi_gpt35_fairbudget_*` | 10 câu × 5 chế độ, `--no_early_stop` — ngân sách bằng nhau để so số vòng |
 
-Số thư mục ở đây nhiều hơn các thành viên khác vì mỗi `--score_mode` là một thư mục
-riêng theo quy ước `<dataset>_<predictor>_<explainer>_<variant>`, và phần này chạy tới
-6 chế độ chấm trong khi các phần khác chạy một. Cùng một thí nghiệm vì thế sinh ra
-gấp 5–6 lần số thư mục. Các pilot thăm dò đã bị những lần chạy lớn thay thế đều đã bị
-xoá; mỗi thư mục còn lại đều đứng sau một con số cụ thể trong tài liệu này.
+Chỉ giữ các lần chạy đủ lớn để báo cáo. Các pilot thăm dò (10–20 câu) dùng để chốt
+thiết kế thí nghiệm đã bị xoá — chúng không đứng sau con số nào ở trên. Mỗi thư mục
+còn lại đều tương ứng với một chỉ số cụ thể trong tài liệu này.
+
+Số thư mục vẫn nhiều hơn các thành viên khác vì quy ước
+`<dataset>_<predictor>_<explainer>_<variant>` đặt **mỗi `--score_mode` một thư mục**,
+mà phần này so nhiều chế độ chấm trong khi các phần khác chạy một.
 | `random_hint_control.json` | 200 câu × 3 điều kiện (không hint / hint đúng / hint câu khác) |
 | `xcopa_vi_phi_gpt56luna_accuracy` | 179 câu, GPT-5.6 Luna — xem ghi chú bên dưới |
 
