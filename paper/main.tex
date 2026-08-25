@@ -1,0 +1,456 @@
+\documentclass[11pt]{article}
+\usepackage{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{inconsolata}
+
+\title{A Flip Is Not a Faithfulness Signal:\\
+Four Controls on \textsc{FaithLM} and a Vietnamese Stress Test}
+
+\author{
+  Nguyen Hoang Anh \and Ly Kim Long \and Nguyen Dang Nhat Minh \and Nguyen Quoc Anh \\
+  \texttt{NLP Final Project} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\textsc{FaithLM} scores an explanation by negating it and measuring how much the
+target model's prediction shifts. We reproduce its COPA setting with the paper's
+own models, obtaining $0.872$ against the $\sim\!0.85$ reported, and then subject
+the metric to four controls it does not include. Three attack \emph{validity}: an
+off-topic hint already flips the target on $55.4\%$ of instances; a hint written
+for a different question flips it on $14.0\%$; and a target whose answers are
+fully explained by ``pick the first-listed option''---$83/117$ correct and
+$83/117$ first-picks are the same $83$ instances---still scores $0.755$. One
+attacks \emph{reliability}: redrawing the contrary hint a single time, with the
+explanation, question and temperature unchanged, loses more than a third of all
+flips ($0.647$, $[0.596, 0.694]$). Across six explainer\,$\times$\,target cells
+the score never leaves $0.930$--$0.975$ and no comparison is significant, so the
+noise inside one measurement is an order of magnitude larger than the gaps the
+metric is asked to resolve. We trace much of this to the released implementation
+reading predictions by regular expression over generated text, which discards
+$45$--$47\%$ of Vietnamese predictions; reading choice probabilities instead---as
+the paper's own formulation specifies---raises the flip rate from $0.374$ to
+$0.509$ ($p=0.00011$).
+\end{abstract}
+
+\section{Introduction}
+
+Explanations produced by large language models are fluent but need not describe
+the computation that produced the answer
+\citep{jacovi2020faithfully,turpin2023unfaithful}. \textsc{FaithLM}
+\citep{chuang2026faithlm} proposes to settle this by intervention: an explainer
+LLM writes a \emph{contrary hint} $\neg E_{\text{NL}}$ asserting the opposite of
+the explanation, and fidelity is the resulting shift,
+\begin{equation}
+  S_E := f(X) - f(X \mid \neg E_{\text{NL}}).
+  \label{eq:se}
+\end{equation}
+A large shift is read as evidence that the explanation carried decision-relevant
+content.
+
+We reproduce this measurement and then ask what a large shift actually licenses.
+Our contributions:
+
+\begin{enumerate}\itemsep0pt
+\item \textbf{Reproduction} of the COPA setting with the paper's own target and
+  explainer (\S\ref{sec:repro}).
+\item \textbf{Three validity controls} showing the score survives removing the
+  explanation's content, and is high even for a target that does no reasoning
+  (\S\ref{sec:validity}).
+\item \textbf{A reliability control} showing a third of all flips are properties
+  of a single sampling draw rather than of the explanation
+  (\S\ref{sec:reliability}).
+\item \textbf{A concrete cause and fix}: the released code reads predictions from
+  prose, not from the model's distribution (\S\ref{sec:parser}).
+\item \textbf{A per-language XCOPA evaluation}. The original transfers COPA to
+  XCOPA without naming a language; we report Vietnamese explicitly
+  (\S\ref{sec:vi}).
+\item \textbf{An audit of the trigger-prompt optimiser}, which in one of three
+  runs never beat its human-written seed and in another scored the client's
+  error string as a candidate prompt (\S\ref{sec:alg2}).
+\end{enumerate}
+
+\section{Related Work}
+
+Faithfulness is commonly probed either by \emph{simulatability}---can a model
+reproduce predictions from an explanation \citep{madsen2024selfexp}---or by
+perturbing the input. \citet{jacovi2020faithfully} argue these test different
+properties. Chain-of-thought text is demonstrably unfaithful under controlled
+manipulation \citep{turpin2023unfaithful,lanham2023measuring}. \textsc{FaithLM}
+avoids token deletion, which is ill-defined when the decision-relevant content is
+latent, by intervening on meaning. Our concern is not that move but the absence
+of a null condition, and the reliability of a score read from a single stochastic
+draw.
+
+\section{Dataset}
+
+\paragraph{Balanced COPA.} \citet{roemmele2011copa} pose binary causal
+commonsense questions; \citet{kavumba2019balanced} add mirrored instances to
+suppress lexical shortcuts. We use the $500$-item test split.
+
+\paragraph{XCOPA-vi.} \citet{ponti2020xcopa} translate COPA into $11$ languages
+with professional translators. The Vietnamese test split contains \emph{the same
+$500$ items} as the English split, verified item by item, so the pair is parallel
+and language is the only variable. Neither corpus carries gold explanations,
+which is why we cannot report the original's second metric
+(\S\ref{sec:limits}).
+
+\section{Method}
+
+\paragraph{The measurement.} The target answers the question; an explainer
+proposes $E_{\text{NL}}$ from the (question, answer) pair alone---it never sees
+the target's own generation, which the pipeline discards after parsing, and its
+instruction literally asks it to \emph{guess} the reason; the explainer then
+writes $\neg E_{\text{NL}}$; the target answers again with the hint prepended.
+An optimisation loop rewrites the explanation to maximise Eq.~\ref{eq:se} and
+stops at the first non-zero score.
+
+\paragraph{Validity controls.} \textbf{(A) Off-topic hint}: a hint unrelated to
+the question (``The weather forecast mentions scattered clouds tomorrow
+afternoon.''). \textbf{(B) Mismatched hint}: the contrary hint written for a
+\emph{different} instance---same register, length and form, differing only in
+which question it belongs to, so it cannot be dismissed as trivially ignorable.
+\textbf{(C) Position bias}: we test whether a target's accuracy is explained by
+always choosing the first-listed option, and if so, what fidelity that target
+still earns.
+
+\paragraph{Reliability control (D).} Keeping the winning explanation fixed, we
+redraw the contrary hint once at the same temperature and re-ask the target,
+scoring with the pipeline's own rule. If the score is a property of the
+explanation, it should reproduce.
+
+\paragraph{Score modes.} The released code computes
+$|\Delta\text{accuracy}|$ over an argmax answer parsed out of generated text.
+We add \textsc{prob\_accuracy} (argmax over choice probabilities) and
+\textsc{logprob} (the continuous probability shift), both keeping
+Eq.~\ref{eq:se} and changing only how $f$ is read.
+
+\section{Experimental Setup}
+
+For the reproduction we follow Table~2 of the original: $20$ steps, target
+temperature $0.7$, explainer temperature $0.9$, top-$p$ $0.9$, $500$ instances,
+target \texttt{phi-2} and explainer \texttt{gpt-3.5-turbo}
+\citep{javaheripi2023phi2}. Both of the original's explainers have since been
+retired, so a separate axis substitutes four current ones with everything else
+fixed, using the paper's English prompts verbatim (diffed against the released
+commit; only whitespace differs). Additional targets---Qwen3.5-4B and
+DeepSeek-v4-flash---probe the Vietnamese setting. Where a Vietnamese prompt
+scaffold is used it is a fluent rewrite rather than a literal translation of
+the original strings, so the language axis varies wording as well as language. All runs, per-instance outputs
+and code are released.
+
+Three implementation details materially affect any reproduction.
+\textbf{(i)} \texttt{do\_sample} is never set, so \texttt{transformers} ignores
+the temperature the paper specifies and decodes greedily; we verified both
+regimes give the same result, but a run following Table~2 is not running the
+released configuration. \textbf{(ii)} The early-stopping condition is tested only
+every fifth iteration, so $16.6\%$ of executed iterations occur after the
+criterion is already met. \textbf{(iii)} 2026-generation models are
+reasoning models: one target spent $179$ of a $200$-token budget on reasoning and
+returned empty content, and one explainer spent $827$ reasoning tokens on a
+five-token answer. Disabling reasoning eliminated empty completions across
+$5{,}924$ calls and also brings these models closer to the paper's
+non-reasoning originals.
+
+\section{Results}
+
+\subsection{The reproduction succeeds}
+\label{sec:repro}
+
+With Phi-2 and GPT-3.5 on Balanced COPA, fidelity reaches $0.872$ over $500$
+instances against the $\sim\!0.85$ the original reports. A modern explainer under
+the same protocol gives $0.860$. The measurement reproduces.
+
+\subsection{The metric is saturated}
+\label{sec:ceiling}
+
+The contrary hint flipped \emph{every} parseable prediction in the reproduction:
+all $354$ correct and all $34$ incorrect answers score exactly $1.0$. Across a
+full $3\times2$ explainer\,$\times$\,target grid ($N=200$ per cell) the score
+never leaves $0.930$--$0.975$; pooled by target the two are indistinguishable
+($0.943$ vs $0.950$, $z=-0.51$, $p=0.607$), and no explainer keeps its rank
+across targets. Among four explainers from four laboratories, all six pairwise
+$z$-tests are non-significant ($p=0.216$--$0.754$). Doubling $N$ from $100$ to
+$200$ tightened the standard error from ${\sim}2.0\%$ to $1.5$--$1.8\%$ and still
+found nothing.
+
+\subsection{Validity: the score is not specific to the explanation}
+\label{sec:validity}
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+ & \textbf{COPA-en} & \textbf{XCOPA-vi} \\
+\midrule
+Fidelity                & 0.860 & 0.336 \\
+Control A (off-topic)   & 0.554 & 0.122 \\
+\textbf{Corrected}      & \textbf{+0.306} & \textbf{+0.214} \\
+\bottomrule
+\end{tabular}
+\caption{Control A, $500$ instances each, Phi-2 target. Roughly $64\%$ of the
+English score survives when the hint has nothing to do with the question.}
+\label{tab:controlA}
+\end{table}
+
+Table~\ref{tab:controlA} reports Control A. Control B, designed independently on
+a different target and explainer, agrees: an own-question hint flips $0.370$ of
+instances against $0.140$ for a hint belonging to another question
+($p<0.0001$, $n=200$). Two controls differing in design, target and explainer
+land in the same place---baselines of $0.122$ and $0.140$, corrected effects of
+$+0.214$ and $+0.230$. The effect is real and semantic; roughly one flip in seven
+is noise, and on English about two thirds of the headline number is
+suggestibility.
+
+Control C is sharper. On XCOPA-vi with English prompts, Phi-2 parses $117$ of
+$200$ instances; among those, the $83$ it answers correctly are \emph{the same
+$83$} on which it picks the first-listed option. A bot that always picks first
+scores $62\%$ on this subset, leaving a $9$-point comprehension margin. This
+target is not reasoning---and it is still scored at $0.755$ fidelity, with
+explanations that never mention position. By construction those explanations
+cannot be faithful, yet the metric rates them highly.
+
+\subsection{Reliability: a third of flips do not reproduce}
+\label{sec:reliability}
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Arm} & \textbf{Flips} & \textbf{Repro.} & \textbf{95\% CI} \\
+\midrule
+Gemini-3.5-flash & 178 & 0.607 & [0.533, 0.676] \\
+GPT-5.6-luna     & 187 & 0.684 & [0.615, 0.747] \\
+\midrule
+\textbf{Pooled}  & \textbf{365} & \textbf{0.647} & [0.596, 0.694] \\
+\bottomrule
+\end{tabular}
+\caption{Control D. One redraw of the contrary hint, everything else fixed.}
+\label{tab:repro}
+\end{table}
+
+Table~\ref{tab:repro} is the result we consider most consequential. Holding the
+explanation, question, target and temperature fixed and redrawing the contrary
+hint \emph{once}, only $64.7\%$ of flips reproduce---far below a $0.90$ stability
+threshold ($z=-16.1$) and significantly below $0.70$ ($p=0.026$). The two arms do
+not differ ($p=0.12$), so this is a property of the measurement, not of an
+explainer. A reported $0.930$ therefore means ``flipped on one draw'', not
+``$93\%$ of explanations are faithful''; the two-draw-consistent rate is
+${\approx}0.564$.
+
+This also answers the obvious objection to \S\ref{sec:ceiling}---run more
+questions. The noise lives inside each single-instance measurement, ${\sim}35$
+points of it, against inter-explainer gaps of ${\le}3.5$ points. Increasing $N$
+narrows the error bar of a quantity that is itself unstable.
+
+Flips found on the first iteration reproduce better than those found later
+($0.715$ vs $0.609$ pooled, $p=0.041$), which is the signature one would expect
+if the optimisation loop is partly harvesting lucky draws. We report this as
+suggestive only: it is significant on one arm and not the other, and would not
+survive correction for multiple comparisons.
+
+\subsection{A cause, and a fix}
+\label{sec:parser}
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrr}
+\toprule
+\textbf{Score mode} & \textbf{Flip rate} & \textbf{95\% CI} \\
+\midrule
+\textsc{accuracy} (released) & 0.374 & [0.315, 0.432] \\
+\textsc{prob\_accuracy}      & 0.460 & [0.400, 0.520] \\
+\textsc{logprob}             & \textbf{0.509} & [0.449, 0.570] \\
+\bottomrule
+\end{tabular}
+\caption{XCOPA-vi, $500$ instances. McNemar against the released mode:
+$p=0.00011$ (\textsc{logprob}), $p=0.01003$ (\textsc{prob\_accuracy}).}
+\label{tab:modes}
+\end{table}
+
+The released prompt ends at \texttt{\#\#\# Response:} without stating an output
+format, then searches the continuation for \texttt{[choice]\ldots@}. On XCOPA-vi
+this discards $45$--$47\%$ of predictions, at the same rate for two very
+different targets---a prompt--parser mismatch, not a target failure. Among
+surviving predictions the parser disagrees with a normalised argmax on $59\%$ of
+$150$ audited instances. The metric also measures $\Delta$correctness rather than
+$\Delta$prediction: on one instance the hint flipped the answer outright and the
+released metric recorded $0.0$, because neither answer matched the gold string.
+
+Table~\ref{tab:modes} shows what changes when $f$ is read from probabilities, as
+\S3.1 of the original specifies. The gain is significant, but the informative
+comparison is \textsc{prob\_accuracy} against \textsc{logprob}: $p=0.103$ at
+$n=500$, and since $500$ is the entire test split this is a ceiling, not a
+sample-size limit. \emph{Most of the improvement comes from abandoning the text
+parser, not from the continuous signal.}
+
+\subsection{On Vietnamese, the target dominates}
+\label{sec:vi}
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{llrrr}
+\toprule
+\textbf{Target} & \textbf{Prompt} & \textbf{Acc.} & \textbf{Unp.} & \textbf{Fid.} \\
+\midrule
+Phi-2             & VI & 11.8\% & 45.4\% & 0.336 \\
+Phi-2             & EN & 41.5\% & 41.5\% & 0.755 \\
+Qwen3.5-4B        & EN & 90.5\% & 6.5\%  & 0.945 \\
+DeepSeek-v4-flash & EN & 92.5\% & 2.0\%  & 0.930 \\
+\bottomrule
+\end{tabular}
+\caption{XCOPA-vi by target and prompt-scaffold language.}
+\label{tab:targets}
+\end{table}
+
+Table~\ref{tab:targets} shows an $80$-point accuracy range across targets, far
+exceeding any effect the metric reports. Fidelity tracks the \emph{parse rate}
+($41.5\% \to 6.5\% \to 2.0\%$ unparsed against $0.755 \to 0.945 \to 0.930$) more
+closely than it tracks model capability, and the curve is not monotone in model
+strength. Phi-2's Vietnamese accuracy is not evidence of anti-correlated
+reasoning: Control C shows it is position bias, and under probability reading the
+same model sits at $0.520$ against a majority-class floor of $0.530$---chance,
+with an $87\%$ preference for the first option.
+
+A further variable is uncontrolled by the original's specification. With English
+instructions over Vietnamese content, the paper's \texttt{exp\_instruction} never
+names an output language, and explainers disagree: measured by diacritic
+detection, explanation language ranges from $0.4\%$ to $75.3\%$ Vietnamese across
+explainers while fidelity stays inside $0.930$--$0.975$. The metric cannot see a
+difference that coarse.
+
+\subsection{The trigger-prompt optimiser does not improve on its own seed}
+\label{sec:alg2}
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Run} & \textbf{Seed} & \textbf{Best} & \textbf{\texttt{"API error."}} \\
+\midrule
+DeepSeek-v4-pro   & 0.467 & 0.533 & 5/16 \\
+DeepSeek-v4-flash & 0.467 & \textbf{0.400} & 1/16 \\
++ target reasoning & 0.333 & 0.600 & 0/16 \\
+\bottomrule
+\end{tabular}
+\caption{Algorithm~2 on XCOPA-vi: $15$ optimisation steps, $15$ sampled
+instances per step. \emph{Seed} is the human-crafted trigger prompt; \emph{Best}
+is the highest score any optimised prompt reached afterwards.}
+\label{tab:alg2}
+\end{table}
+
+The original's second algorithm optimises the \emph{trigger prompt} that elicits
+explanations, reporting that optimised prompts outperform the human-crafted seed.
+We ran it three times on XCOPA-vi (Table~\ref{tab:alg2}). In one run fifteen
+optimisation steps never beat the seed. The trajectories oscillate without trend
+and every run ends below its own best, so the returned prompt is not the best one
+found.
+
+Two properties of the setup explain why this is expected rather than surprising.
+Each step scores on $15$ sampled instances, so a score can only take values
+$k/15$ and the entire observed range spans a handful of instances. And because
+the sample is redrawn each step, consecutive scores are not comparable---the
+optimiser is being shown a noisy signal and asked to hill-climb on it, which is
+the same reliability problem as \S\ref{sec:reliability} at the level of the
+prompt rather than the instance.
+
+One run also exposes an error-handling defect with direct consequences for the
+result. The explainer client returns the literal string \texttt{"API error."} on
+failure; the loop stores it as the next trigger prompt and scores it. Five of
+sixteen records in that run carry \texttt{"API error."} as their prompt,
+\emph{including the final returned optimum}. A failed call is not distinguishable
+from a candidate prompt anywhere in the recorded trajectory.
+
+\subsection{Grounding the explainer in the target's reasoning}
+\label{sec:reasoning}
+
+Because the explainer sees only the question and the parsed answer, its
+explanation is a hypothesis about \emph{any} plausible reason for that answer---
+two models emitting the same choice receive the same explanation. Forwarding the
+target's own generated reasoning instead drops fidelity from $0.905$ to $0.425$
+($n=200$) while iterations rise from $4.87$ to $10.20$. The direction is not
+self-interpreting: an explanation that states a strong, specific, wrong claim is
+easy to invert into a derailing hint, whereas one tracking the target's actual
+reasoning offers less leverage. Under a metric rewarding large shifts, being more
+faithful can score lower. Separating the readings needs the truthfulness metric,
+which our corpora cannot support.
+
+\section{Error Analysis}
+
+Of $14$ errors across both English runs, $13$ are parsing failures and one is a
+genuinely wrong choice; what the pipeline calls accuracy is closer to a
+parse-success rate. The failure cascades: when the answer is unresolvable the
+pipeline passes the literal string \texttt{X} to the explainer, which explains it
+(``\emph{The model chose answer X based on the content of the question\ldots}''),
+and the hint and score that follow are about an answer never produced. This is
+why unparseable instances show a corrected effect of only
+$+0.018$--$+0.044$---there is nothing to be faithful to, and the control detects
+it.
+
+Raw generations show three distinct failure modes invisible to a parsed-answer
+metric. Phi-2 answers plain English prompts correctly but, once
+\texttt{Let's think step by step.} is appended for scoring, produces textbook
+exposition (``\emph{Use Case 1: Shipping Fragile Items}'') that never states a
+choice. In Vietnamese it emits corrupted scaffold tokens (``\emph{Lê nhiêu}'',
+``\emph{Bệnh hồi}''). And targets asked in Vietnamese frequently answer correctly
+\emph{in English} (``\emph{The kayak boat reaches the shore}'' for
+``\emph{Thuyền kayak đến bờ}''), which exact string matching against a Vietnamese
+gold scores as wrong.
+
+\section{Limitations and Ethical Considerations}
+\label{sec:limits}
+
+\paragraph{Single repetition.} The original averages three runs; ours are single
+runs and we report no variance. This is the same gap we identify in the original
+and we flag rather than repeat it silently.
+
+\paragraph{Missing metric and baselines.} We do not report truthfulness, which
+needs gold explanations that COPA and XCOPA lack; ECQA
+\citep{aggarwal2021ecqa} would be required. The original's baselines
+\citep{madsen2024selfexp,wang2022selfconsistency} are absent from the released
+code and we did not reimplement them, so comparisons are against published values.
+
+\paragraph{Scope of the controls.} Control D measures one redraw, on two of four
+arms, and only on instances that already flipped; $64.7\%$ is therefore an
+\emph{upper} bound on stability. The hypothesis that a weak target escapes the
+ceiling is untested rather than refuted---our intended middle target turned out to
+be strong ($90.5\%$).
+
+\paragraph{Granularity.} Under the released mode $S_E$ carries one bit per
+instance. A $30$-instance estimate of Vietnamese accuracy gave $33.3\%$ with an
+interval containing chance, against $11.8\%$ at $n=500$; we twice drew conclusions
+from $n=2$ that full runs overturned.
+
+\paragraph{Ethics.} All corpora are public. A first run of one explainer had
+$23\%$ of its calls silently served by a fallback model under rate limiting; we
+detected this through call accounting, quarantined the run, and fixed the client
+to wait rather than substitute. We report empty completions from content
+filtering rather than scoring them as wrong answers. No human subjects were
+involved.
+
+\section{Conclusion}
+
+\textsc{FaithLM} reproduces, and its contrary-hint score is not empty: a real
+semantic effect survives every control we ran. But the score as reported conflates
+that effect with how readily the target follows any hint, rates a
+position-choosing target at $0.755$, and loses a third of its flips to a single
+resampling. Under language transfer the binding constraint is not the metric but
+the regular-expression reader in front of it. We recommend that
+intervention-based faithfulness measures report a null-hint baseline, sample the
+contrary hint $k>1$ times and take a majority rather than stopping at the first
+flip, and read the intervened quantity from the model's distribution rather than
+from its prose.
+
+\bibliography{refs}
+\bibliographystyle{acl_natbib}
+
+\end{document}

@@ -13,3 +13,10 @@ results/
 # Experiment outputs under experiments/ are published on purpose; the blanket
 # *.json rule above would otherwise swallow them.
 !experiments/**/*.json
+
+# LaTeX build artefacts (paper/main.pdf is committed on purpose)
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.bbl
+paper/*.blg
