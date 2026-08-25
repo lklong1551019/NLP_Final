@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Du khách đã nhận phòng khách sạn.\n### Lựa chọn: [choice]Họ tháo vali ra.@ [choice]Họ đã đến sân bay.@'] || GT-A:Họ tháo vali ra. || LLM-A:Thư việc bùng.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "Thư việc bùng" vì nó không hiểu rõ hoặc không liên kết được thông tin về việc du khách nhận phòng khách sạn với các lựa chọn "Họ tháo vali ra" hoặc "Họ đã đến sân bay". Điều này có thể dẫn đến việc mô hình đưa ra một câu trả lời không liên quan hoặc không chính xác.'}

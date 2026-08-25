@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Phòng tắm ngập nước.\n### Lựa chọn: [choice]Nước nhà vệ sinh tràn ra.@ [choice]Máy nước nóng bị hỏng.@'] || GT-A:Nước nhà vệ sinh tràn ra. || LLM-A:X
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn lựa chọn "Nước nhà vệ sinh tràn ra" là nguyên nhân của tiền đề do nó là một nguyên nhân phổ biến dẫn đến tình trạng phòng tắm ngập nước.'}

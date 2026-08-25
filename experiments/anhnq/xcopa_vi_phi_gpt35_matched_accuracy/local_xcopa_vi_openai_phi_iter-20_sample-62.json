@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi nhìn đồng hồ.\n### Lựa chọn: [choice]Tôi nghe tiếng tích tắc.@ [choice]Tôi muốn kiểm tra thời gian.@'] || GT-A:Tôi muốn kiểm tra thời gian. || LLM-A:Đường kểm tra.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Đường kiểm tra" vì trong tiền đề có đề cập đến việc nhìn đồng hồ, và đường kiểm tra có thể liên quan đến việc kiểm tra thời gian.'}

@@ -1,4 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Kế toán quản lý sai quỹ của công ty.\n### Lựa chọn: [choice]Cô bị sa thải khỏi vị trí của mình.@ [choice]Cô đi nghỉ thai sản.@'] || GT-A:Cô bị sa thải khỏi vị trí của mình. || LLM-A:Người học của một tộc.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã không hiểu đúng ngữ cảnh hoặc mối quan hệ giữa các yếu tố trong câu hỏi, dẫn đến việc đưa ra câu trả lời không liên quan.'}
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời không liên quan vì không hiểu rõ về nội dung và mối quan hệ giữa tiền đề, câu hỏi và câu trả lời.'}
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "Người học của một tộc" vì không hiểu rõ về nội dung và mối quan hệ giữa tiền đề, câu hỏi và câu trả lời. Việc này có thể xuất phát từ việc không đủ thông tin để xác định một câu trả lời chính xác, dẫn đến việc chọn một câu trả lời ngẫu nhiên hoặc không liên quan.'}

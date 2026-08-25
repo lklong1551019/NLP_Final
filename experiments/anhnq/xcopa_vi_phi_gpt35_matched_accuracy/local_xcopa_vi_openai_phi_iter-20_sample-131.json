@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ được đưa lên xe lăn.\n### Lựa chọn: [choice]Cô bị liệt trong một tai nạn.@ [choice]Cô vào bệnh viện trong cáng.@'] || GT-A:Cô bị liệt trong một tai nạn. || LLM-A:Tổng cao với đồng thời hóa.
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình cho rằng câu trả lời là "Tổng cao với đồng thời hóa" có thể là do nó quan sát mối tương quan giữa việc người phụ nữ được đưa lên xe lăn và khả năng tổng cao với đồng thời hóa, mặc dù không liên quan trực tiếp đến nguyên nhân của tiền đề.'}

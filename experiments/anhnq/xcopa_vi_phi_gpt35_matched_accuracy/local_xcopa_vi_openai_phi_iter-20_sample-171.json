@@ -1,3 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cậu bé bắt nạt bạn mới.\n### Lựa chọn: [choice]Cậu chào đón người bạn mới.@ [choice]Cậu không ưa người bạn mới.@'] || GT-A:Cậu không ưa người bạn mới. || LLM-A:Cậu chào đón người bạn mới.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã quyết định rằng việc cậu bé chào đón người bạn mới là một hành động tích cực hoặc hợp lý dựa trên ngữ cảnh hoặc thông tin khác trong câu hỏi và tiền đề.'}
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "Cậu chào đón người bạn mới" vì nó đề cập đến hành động tích cực của việc chào đón người mới, tạo cơ hội cho mối quan hệ mới phát triển tốt hơn.'}

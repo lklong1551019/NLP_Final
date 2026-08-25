@@ -1,3 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Gió thổi qua cửa sổ.\n### Lựa chọn: [choice]Chuông cửa reo.@ [choice]Rèm cửa rung rinh.@'] || GT-A:Rèm cửa rung rinh. || LLM-A:Chuông cửa reo.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Chuông cửa reo" có thể là do từ "Tiền đề" đề cập đến âm thanh, và trong lựa chọn "Chuông cửa reo" liên quan đến âm thanh của chuông cửa.'}
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Chuông cửa reo" dựa trên việc kết nối từ "Tiền đề" đến hành động cụ thể của một chuông cửa reo. Trong trường hợp này, việc chuông cửa reo "reo" có thể được coi là một kết quả tiềm năng của việc gió thổi qua cửa sổ, dựa trên logic rằng gió mạnh có thể làm cho chuông reo.'}

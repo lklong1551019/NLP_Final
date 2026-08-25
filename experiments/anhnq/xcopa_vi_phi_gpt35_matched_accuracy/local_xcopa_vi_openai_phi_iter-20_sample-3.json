@@ -1,1 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Các du khách đã đến biên giới.\n### Lựa chọn: [choice]Các nhân viên tuần tra kiểm tra hộ chiếu của họ.@ [choice]Các nhân viên tuần tra buộc tội họ buôn lậu.@'] || GT-A:Các nhân viên tuần tra kiểm tra hộ chiếu của họ. || LLM-A:X

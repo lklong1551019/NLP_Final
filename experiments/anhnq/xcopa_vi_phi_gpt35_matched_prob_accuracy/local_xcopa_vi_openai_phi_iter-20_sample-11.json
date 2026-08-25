@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông đập đầu.\n### Lựa chọn: [choice]Anh lạc trong suy nghĩ.@ [choice]Anh ấy bị chấn động.@'] || GT-A:Anh ấy bị chấn động. || LLM-A:X
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" dựa trên việc kết hợp thông tin từ tiền đề "Người đàn ông đập đầu" với lựa chọn "Anh ấy bị chấn động". Mặc dù có thể không liên quan trực tiếp, mô hình có thể tìm thấy một mối liên kết ẩn giữa hai phần này để đưa ra câu trả lời.'}

@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nhập dãy mã vào ổ khóa.\n### Lựa chọn: [choice]Tôi đóng khóa.@ [choice]Khóa bật mở.@'] || GT-A:Khóa bật mở. || LLM-A:X
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" dựa trên việc liên kết Tiền đề với các lựa chọn và quan hệ logic giữa "Tôi nhập dãy mã vào ổ khóa" và "Tôi đóng khóa". Không rõ liệu câu trả lời này đúng hay sai, nhưng mô hình có thể quyết định theo một cách logic nào đó.'}

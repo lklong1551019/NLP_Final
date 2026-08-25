@@ -1,2 +1,0 @@
-============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người lái xe đi đường vòng.\n### Lựa chọn: [choice]Một vụ tai nạn xảy ra trên đường chính.@ [choice]Cô đi theo chiếc xe tải trước mặt.@'] || GT-A:Một vụ tai nạn xảy ra trên đường chính. || LLM-A:Một vụ tai nạn xảy ra trên đường chính.
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Một vụ tai nạn xảy ra trên đường chính" có thể do từ "nguyên nhân" xuất hiện trong câu hỏi và từ "tai nạn" xuất hiện trong lựa chọn đó, giúp mô hình kết nối các ý liên quan với nhau.'}

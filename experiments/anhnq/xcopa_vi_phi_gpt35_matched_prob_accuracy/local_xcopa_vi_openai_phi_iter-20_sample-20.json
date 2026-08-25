@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Hai vợ chồng quyết định thỏa hiệp.\n### Lựa chọn: [choice]Họ trở nên mệt mỏi vì tranh cãi.@ [choice]Họ tránh thảo luận về vấn đề này.@'] || GT-A:Họ trở nên mệt mỏi vì tranh cãi. || LLM-A:X
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng "Họ trở nên mệt mỏi vì tranh cãi" là nguyên nhân của Tiền đề dựa trên việc kết hợp các từ khóa như "mệt mỏi", "tranh cãi" từ lựa chọn đầu vào và Tiền đề.'}

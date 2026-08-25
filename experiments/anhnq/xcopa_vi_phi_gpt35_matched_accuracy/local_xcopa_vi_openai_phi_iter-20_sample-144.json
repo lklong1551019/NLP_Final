@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đứa trẻ để lại vụn bánh trên sàn nhà.\n### Lựa chọn: [choice]Kiến bò đến vụn bánh.@ [choice]Đứa trẻ bỏ bánh mì đi.@'] || GT-A:Kiến bò đến vụn bánh. || LLM-A:Hãy gọi bỏ bánh mì.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Đứa trẻ bỏ bánh mì đi" vì có thể đánh giá rằng hành động bỏ bánh mì đi là hợp lý dựa trên tiền đề về đứa trẻ để lại vụn bánh trên sàn nhà.'}

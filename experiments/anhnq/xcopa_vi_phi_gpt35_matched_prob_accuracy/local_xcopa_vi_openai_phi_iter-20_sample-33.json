@@ -1,4 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Bàn tay của cô gái trở nên phồng rộp.\n### Lựa chọn: [choice]Cô gõ một lá thư.@ [choice]Cô trèo lên một sợi dây.@'] || GT-A:Cô trèo lên một sợi dây. || LLM-A:Câu chíg kiều.
-### Lựa chọn: [choice]Cô gõ nói bắt khi góc.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "Câu chíg kiều" vì có thể nó đã gặp từ hoặc cụm từ tương tự trong dữ liệu huấn luyện và đánh giá rằng nó phù hợp với ngữ cảnh của câu hỏi.'}
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời "Cô gõ nói bắt khi góc" vì trong quá trình học, nó nhận diện mẫu từ "Cô gõ" và "nói bắt khi góc" xuất hiện cùng nhau nhiều lần trong dữ liệu huấn luyện, dẫn đến việc mô hình đưa ra lựa chọn dựa trên sự kết hợp này mà không cần hiểu rõ ngữ cảnh hoặc logic của câu hỏi.'}

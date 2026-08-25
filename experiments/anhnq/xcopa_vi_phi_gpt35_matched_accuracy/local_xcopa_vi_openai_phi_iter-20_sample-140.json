@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cậu bé gọt bút chì.\n### Lựa chọn: [choice]Nó rẻ tiền.@ [choice]Thật là buồn tẻ.@'] || GT-A:Thật là buồn tẻ. || LLM-A:Nó rẻ tiền.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Nó rẻ tiền" có thể do việc liên kết từ "Tiền đề" với "rẻ tiền", có thể mô hình nhận diện mối quan hệ giữa việc gọt bút chì và việc sản phẩm đó có giá thấp.'}

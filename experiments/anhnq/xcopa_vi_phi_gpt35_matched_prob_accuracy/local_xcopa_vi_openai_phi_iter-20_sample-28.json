@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Các thực phẩm đông lạnh tan băng.\n### Lựa chọn: [choice]Tôi cho nó vào lò vi sóng.@ [choice]Tôi bọc nó bằng bọc nhựa.@'] || GT-A:Tôi cho nó vào lò vi sóng. || LLM-A:X
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của Tiền đề là do việc đưa thực phẩm vào lò vi sóng hoặc bọc nó bằng bọc nhựa dẫn đến sự tan băng, dựa trên mối liên hệ giữa các hành động này và hiện tượng đó.'}

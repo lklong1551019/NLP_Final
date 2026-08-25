@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông đã đi đến bác sĩ.\n### Lựa chọn: [choice]Bác sĩ được nghỉ phép.@ [choice]Người đàn ông bị bệnh.@'] || GT-A:Người đàn ông bị bệnh. || LLM-A:Một kỹ giao hỌa.
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời dựa trên sự liên kết từ khóa "người đàn ông" và "bác sĩ" mặc dù câu trả lời không liên quan hoặc không hợp lý.'}

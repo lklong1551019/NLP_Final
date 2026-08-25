@@ -1,4 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Vé xem phim đã bán hết.\n### Lựa chọn: [choice]Đó là ngày khai mạc cho bộ phim.@ [choice]Bộ phim nhận được đánh giá kém.@'] || GT-A:Đó là ngày khai mạc cho bộ phim. || LLM-A:Như đây nắng đơn gọi phục trường.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã không hiểu đúng ngữ cảnh hoặc mâu thuẫn giữa câu hỏi và các lựa chọn, dẫn đến câu trả lời không liên quan.'}
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời dựa trên một cụm từ hoặc mẫu ngữ cảnh xuất hiện trong các đoạn văn, mà không quan tâm đến nghĩa hoặc logic của câu hỏi và lựa chọn.'}
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời dựa vào cấu trúc ngữ pháp chung hoặc một số từ ngữ tương tự giữa câu hỏi và câu trả lời, mặc dù không có sự logic hoặc mối liên hệ ý nghĩa rõ ràng giữa chúng.'}

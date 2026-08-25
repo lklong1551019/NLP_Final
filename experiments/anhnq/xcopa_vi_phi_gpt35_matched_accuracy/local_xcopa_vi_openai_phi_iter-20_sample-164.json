@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Con trỏ trên màn hình máy tính di chuyển.\n### Lựa chọn: [choice]Người dùng nhấp chuột.@ [choice]Người dùng đã di chuyển chuột.@'] || GT-A:Người dùng đã di chuyển chuột. || LLM-A:Người dùng nhấp chuột.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Người dùng nhấp chuột" vì nó liên quan đến hành động của người dùng và việc di chuyển con trỏ trên màn hình thường được kích hoạt bằng việc nhấp chuột.'}

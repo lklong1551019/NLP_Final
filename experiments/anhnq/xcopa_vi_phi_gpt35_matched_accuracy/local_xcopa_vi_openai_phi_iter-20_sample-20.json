@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Hai vợ chồng quyết định thỏa hiệp.\n### Lựa chọn: [choice]Họ trở nên mệt mỏi vì tranh cãi.@ [choice]Họ tránh thảo luận về vấn đề này.@'] || GT-A:Họ trở nên mệt mỏi vì tranh cãi. || LLM-A:Cơ hợp một các kỳ về một công chứng.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể cho rằng nguyên nhân của Tiền đề là việc hai vợ chồng quyết định thỏa hiệp dựa trên việc cơ hợp một các về một công chứng mà không cần liên quan đến việc họ trở nên mệt mỏi vì tranh cãi hay tránh thảo luận vấn đề này.'}

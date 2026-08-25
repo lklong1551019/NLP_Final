@@ -1,2 +1,0 @@
-============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Bạn gái của anh ấy đã chia tay với anh ta.\n### Lựa chọn: [choice]Anh cầu xin cô quay trở lại.@ [choice]Cô giới thiệu anh với bố mẹ.@'] || GT-A:Anh cầu xin cô quay trở lại. || LLM-A:Anh cầu xin cô quay trở lại.
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Anh cầu xin cô quay trở lại" có thể do nó đánh giá rằng việc cầu xin người yêu quay lại sau khi bị chia tay là một phản ứng phổ biến trong tình huống này.'}

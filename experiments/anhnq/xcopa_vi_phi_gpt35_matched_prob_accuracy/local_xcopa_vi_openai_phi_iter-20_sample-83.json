@@ -1,4 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người chồng cảm thấy có lỗi khi lừa dối vợ.\n### Lựa chọn: [choice]Anh buộc tội cô ngoại tình.@ [choice]Anh thú nhận ngoại tình với cô.@'] || GT-A:Anh thú nhận ngoại tình với cô. || LLM-A:X
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Anh buộc tội cô ngoại tình" vì nó có thể xem đó là một hành động liên quan đến việc lừa dối vợ, mặc dù không phải lúc nào cũng đúng.'}
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Anh buộc tội cô ngoại tình" vì nó có liên quan đến việc lừa dối vợ, dù không phải lúc nào cũng là câu trả lời chính xác.'}
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Anh buộc tội cô ngoại tình" vì nó có thể liên kết hành vi lừa dối vợ với việc buộc tội vợ ngoại tình, mặc dù kết nối này không phải lúc nào cũng chính xác.'}

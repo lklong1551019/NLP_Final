@@ -77,30 +77,24 @@ Ghi lại thay vì bỏ đi:
   A 87% — thiên lệch vị trí. Các lần chạy dùng nó đo trên nền nhiễu, nên kết quả
   Qwen ở trên thay thế chúng.
 
-## Lần chạy khớp cấu hình baseline — dừng giữa chừng vì hết credit
+## Không có bảng khớp cấu hình baseline
 
-`xcopa_vi_phi_gpt35_matched_*` — 200 câu, 20 bước, `stop_rule flip`, Phi-2 +
-gpt-3.5-turbo, khớp cấu hình baseline của `anhnh` trừ cỡ mẫu. Dừng ở lượt 360/600 vì
-tài khoản OpenAI hết credit (`429 credit_balance_exhausted`), **không phải lỗi code**.
+Kết quả chính chạy trên Qwen3.5-4B + gpt-4o-mini, tức đổi cách chấm **và** target
+**và** explainer cùng lúc. Một bảng giữ nguyên cấu hình baseline của `anhnh`
+(Phi-2 + gpt-3.5-turbo, 20 bước) và chỉ đổi cách chấm sẽ bổ khuyết chỗ đó.
 
-| Chế độ | Đã chấm | vòng/câu |
-|---|---|---|
-| `accuracy` | 109/200 (91 câu bị parser bỏ) | 9.07 |
-| `prob_accuracy` | 160/200 | 14.76 |
-| `logprob` | **0 — chưa kịp chạy** | — |
+Đã thử và **bỏ giữa chừng**. Phần chạy được — `accuracy` 109 câu, `prob_accuracy`
+160 câu — cho `0.402` so với `0.391`, **McNemar p = 1.00**: không phân biệt được.
+Đúng như dự đoán ghi trước khi chạy, vì cấu hình đó dùng Phi-2 mà Phi-2 không đọc
+được tiếng Việt (xem mục trên), nên cả hai chế độ đều đo trên nền nhiễu.
 
-Trên 87 câu cả hai chế độ cùng có: `accuracy` 0.402, `prob_accuracy` 0.391,
-McNemar **p = 1.00**. Không phân biệt được.
+Chạy nốt cần thêm ~$5.90 và ~6 giờ, nhiều khả năng chỉ để có thêm một cột cũng nằm
+quanh 0.39–0.40 với p không có ý nghĩa. Không đáng, nên dữ liệu dở dang đã bị xoá
+thay vì để lại một bảng không kết luận được gì.
 
-**Bảng này chưa dùng để kết luận được**, vì hai lý do:
-
-1. Thiếu `logprob` — đúng chế độ chính cần so.
-2. Cấu hình baseline dùng Phi-2, mà Phi-2 không đọc được tiếng Việt (xem mục trên),
-   nên cả hai chế độ đều đo trên nền nhiễu. Kết quả p = 1.00 phù hợp với dự đoán đã
-   ghi trước khi chạy, chứ không phải phát hiện mới.
-
-Muốn hoàn tất cần thêm khoảng **$4.90** (40 câu `prob_accuracy` + 200 câu `logprob` ở
-$0.0204/câu). Kết quả chính trên Qwen3.5-4B **không phụ thuộc bảng này**.
+Ai muốn làm lại thì rẻ hơn nhiều nếu **đổi target sang Qwen3.5-4B và giữ gpt-3.5**:
+cùng chi phí nhưng target đọc được tiếng Việt nên có tín hiệu thật, và nó tách riêng
+được ảnh hưởng của explainer.
 
 ### Chi phí đo được
 

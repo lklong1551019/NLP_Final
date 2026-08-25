@@ -1,4 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đứa trẻ rắc thức ăn cho cá vào bể.\n### Lựa chọn: [choice]Con cá nhảy ra khỏi bể.@ [choice]Con cá bơi về phía thức ăn.@'] || GT-A:Con cá bơi về phía thức ăn. || LLM-A:Khi làm lượng và có thể hơn các khó khảo cho cuộc các chủ và khi làm lượng của đã học.
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã chú ý đến việc đề cập đến việc đứa trẻ rắc thức ăn cho cá vào bể, và từ đó suy luận rằng con cá sẽ bơi về phía thức ăn.'}
-{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã áp dụng quy luật "đứa trẻ rắc thức ăn cho cá vào bể" để suy luận rằng con cá sẽ bơi về phía thức ăn dựa trên logic hành vi tự nhiên của cá khi cảm thấy thức ăn gần.'}
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã suy luận rằng con cá sẽ bơi về phía thức ăn dựa trên việc đứa trẻ rắc thức ăn cho cá vào bể, với giả định rằng con cá sẽ tự nhiên tiếp cận và phản ứng với thức ăn gần mình.'}

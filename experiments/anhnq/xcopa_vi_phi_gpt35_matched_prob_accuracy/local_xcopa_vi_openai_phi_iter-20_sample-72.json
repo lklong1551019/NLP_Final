@@ -1,2 +1,0 @@
-============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông bôi kem chống nắng.\n### Lựa chọn: [choice]Anh ngồi trong bóng râm.@ [choice]Anh ấy đã đi đến bãi biển.@'] || GT-A:Anh ấy đã đi đến bãi biển. || LLM-A:Anh làm khóa hệ của hỗ trợ tối.
-{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể lựa chọn câu trả lời "Anh làm khóa hệ của hỗ trợ tối" vì từ khóa "Tiền đề" xuất hiện trong câu hỏi đã được liên kết với cụm từ "khóa hệ của hỗ trợ tối".'}
