@@ -9,6 +9,24 @@
 Cách chấm được chọn bằng `--score_mode`; cơ chế mô tả trong
 [`docs/metric_experiment.md`](../../docs/metric_experiment.md).
 
+## Không có `SUMMARY.md`
+
+Các thành viên khác sinh `SUMMARY.md` bằng `scripts/build_report.py`. Ở đây thì
+không, vì script tính cột "Mean faithfulness" bằng cách lấy trung bình trường
+`Score` — mà `Score` là **đại lượng mà chế độ đó đang tối ưu**, và các chế độ tối ưu
+những thứ ở thang khác nhau: `accuracy` và `prob_accuracy` cho `|Δacc| ∈ {0,1}`, còn
+`logprob` cho dịch chuyển xác suất với biên độ khoảng 0.1.
+
+Đặt cạnh nhau, bảng đó cho `logprob` **0.104** so với `accuracy` **0.234** — tức
+trông như chế độ chính tệ nhất, trong khi cột "Questions with any flip" của chính
+bảng đó cho **88.6%** so với **23.4%**, ngược hẳn lại. Chú thích của script cũng
+khẳng định điểm số "is therefore 0 or 1 per iteration", đúng với chế độ của nhóm
+nhưng sai với `logprob` và `margin`.
+
+Một bảng đọc ngược kết luận thì nguy hiểm hơn là không có bảng. Số liệu nằm trong
+[`FINDINGS.md`](FINDINGS.md), so bằng **tỉ lệ lật** — đại lượng duy nhất giống nhau ở
+mọi chế độ.
+
 ## Các lần chạy
 
 Predictor chạy cục bộ, explainer qua OpenAI API trực tiếp (`--xai_model openai`).
