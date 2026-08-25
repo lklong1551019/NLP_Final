@@ -1,0 +1,21 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi rút phích cắm trong bồn tắm.\n### Lựa chọn: [choice]Nước rút ra khỏi bồn.@ [choice]Nước văng lên sàn nhà.@'] || GT-A:Nước rút ra khỏi bồn. || LLM-A:X
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" có thể do việc không hiểu rõ về quy trình hoặc không có đủ thông tin để xác định kết quả chính xác của việc rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì không có đủ dữ liệu hoặc thông tin cụ thể trong Tiền đề để suy luận một cách chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do không có đủ thông tin trong Tiền đề để xác định chính xác kết quả của việc rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do không có đủ thông tin trong Tiền đề để suy luận một cách chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì không có đủ thông tin trong Tiền đề để xác định chính xác kết quả của việc rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do không có đủ dữ liệu cụ thể trong Tiền đề để hiểu rõ về quy trình và kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì không có đủ thông tin trong Tiền đề để suy luận một cách chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì không có đủ thông tin cụ thể trong Tiền đề để suy luận một cách chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì không có đủ thông tin trong Tiền đề để suy luận một cách chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì thiếu thông tin cụ thể trong Tiền đề để có thể đưa ra một suy luận chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do không có đủ dữ liệu hoặc thông tin cụ thể trong Tiền đề để suy luận một cách chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do không có đủ thông tin trong Tiền đề để suy luận một cách chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do không có đủ thông tin trong Tiền đề để suy luận một cách chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do không có đủ thông tin trong Tiền đề để suy luận một cách chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do không có đủ thông tin trong Tiền đề để đưa ra một suy luận chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì không có đủ thông tin cụ thể trong Tiền đề để hiểu rõ về quy trình và kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do thiếu thông tin cụ thể trong Tiền đề, dẫn đến việc không đủ dữ liệu để hiểu rõ về quy trình và kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do không có đủ thông tin trong Tiền đề để đưa ra một suy luận chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "X" có thể do việc không có đủ thông tin cụ thể trong Tiền đề để đưa ra một suy luận chính xác về kết quả khi rút phích cắm trong bồn tắm.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" do thiếu thông tin cụ thể trong Tiền đề, dẫn đến việc không đủ dữ liệu để hiểu rõ về quy trình và kết quả khi rút phích cắm trong bồn tắm.'}

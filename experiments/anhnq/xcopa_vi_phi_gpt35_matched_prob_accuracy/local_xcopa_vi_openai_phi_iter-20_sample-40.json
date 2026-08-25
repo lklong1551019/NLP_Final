@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Du khách đã nhận phòng khách sạn.\n### Lựa chọn: [choice]Họ tháo vali ra.@ [choice]Họ đã đến sân bay.@'] || GT-A:Họ tháo vali ra. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "X" vì trong tiền đề không cung cấp thông tin cụ thể về hành động tiếp theo của du khách sau khi nhận phòng khách sạn.'}

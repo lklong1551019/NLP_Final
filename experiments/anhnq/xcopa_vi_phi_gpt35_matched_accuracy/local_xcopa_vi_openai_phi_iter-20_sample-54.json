@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đứa trẻ phàn nàn rằng nó phải đi vệ sinh.\n### Lựa chọn: [choice]Bố nó cho nó uống soda.@ [choice]Bố nó dừng xe ở trạm xăng.@'] || GT-A:Bố nó dừng xe ở trạm xăng. || LLM-A:Bố nó cho nó sự điệp đề.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình đưa ra câu trả lời này có thể dựa vào việc phân tích tiền đề và lựa chọn để suy luận rằng việc bố cho đứa trẻ sự điệp đề giúp giải quyết vấn đề của đứa trẻ liên quan đến việc phải đi vệ sinh.'}

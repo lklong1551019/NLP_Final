@@ -1,0 +1,4 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi tập thể dục.\n### Lựa chọn: [choice]Tôi cảm thấy tràn đầy năng lượng.@ [choice]Tôi đã hoảng sợ.@'] || GT-A:Tôi cảm thấy tràn đầy năng lượng. || LLM-A:Tôi thì máy.
+### Tôi thì bị.
+### Lựa chọn: [choice]Tôi thì máy.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "Tôi thì máy." vì có sự liên kết giữa việc tập thể dục và trạng thái cảm xúc hoặc tình trạng cụ thể mà người tập thể dục có thể trải qua sau khi tập.'}

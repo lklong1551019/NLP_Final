@@ -1,0 +1,7 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Giọng nói của người đàn ông khàn khàn.\n### Lựa chọn: [choice]Anh ấy bị cảm.@ [choice]Anh bỏ thuốc lá.@'] || GT-A:Anh ấy bị cảm. || LLM-A:
+
+### Hướng dẫn: Hãy đó có nói ơn vào chúng ta bạn có một cô giả mặt trong yêu như từ vượt cùng bạn có hội.
+
+### Đầu vào: ### Câu hỏi: Nói có cảm.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đưa ra câu trả lời "Nói có cảm" vì nó có thể nhận diện từ "nói" và "cảm" từ câu hỏi mà không cần hiểu ngữ cảnh hoặc logic liên quan.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Nói có cảm" vì trong câu hỏi, từ "nói" và "cảm" xuất hiện cùng nhau, và mô hình có thể đánh giá mối liên kết giữa chúng để đưa ra lựa chọn dựa trên việc kết hợp từ ngữ mà không cần hiểu rõ ngữ cảnh hoặc logic bài toán.'}

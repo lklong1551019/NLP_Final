@@ -1,0 +1,3 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cậu bé bóp bóng bay.\n### Lựa chọn: [choice]Bong bóng nổ.@ [choice]Bong bóng bay đi.@'] || GT-A:Bong bóng nổ. || LLM-A:Bong bóng nổ.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Bong bóng nổ" vì có liên quan đến tiền đề "Cậu bé bóp bóng bay", trong đó bong bóng thường nổ khi bị bóp.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Bong bóng nổ" vì nó có thể liên kết với tiền đề "Cậu bé bóp bóng bay" thông qua hành động bóp bóng, và trong trường hợp này, bong bóng thường nổ khi bị bóp.'}

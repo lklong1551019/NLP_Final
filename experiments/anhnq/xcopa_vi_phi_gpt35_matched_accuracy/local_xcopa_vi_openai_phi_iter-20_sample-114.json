@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nướng một chiếc bánh táo.\n### Lựa chọn: [choice]Một mùi thối rữa tràn ngập bếp.@ [choice]Một mùi thơm ấm áp tràn ngập nhà bếp.@'] || GT-A:Một mùi thơm ấm áp tràn ngập nhà bếp. || LLM-A:X

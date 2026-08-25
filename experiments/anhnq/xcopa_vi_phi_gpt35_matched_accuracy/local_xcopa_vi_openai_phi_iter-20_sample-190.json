@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tên tội phạm đầu thú.\n### Lựa chọn: [choice]Bằng chứng liên quan đến anh ta.@ [choice]Không có bằng chứng chống lại anh ta.@'] || GT-A:Bằng chứng liên quan đến anh ta. || LLM-A:Bằng chứng liên quan đến anh ta.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Bằng chứng liên quan đến anh ta" vì nó nhìn thấy từ khóa "Tiền đề" và quyết định rằng việc đề cập đến bằng chứng liên quan đến tên tội phạm đầu thú có thể là câu trả lời phù hợp.'}

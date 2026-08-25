@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Ban nhạc chơi bài hát hit của họ.\n### Lựa chọn: [choice]Khán giả vỗ tay theo điệu nhạc.@ [choice]Khán giả lịch sự lắng nghe trong im lặng.@'] || GT-A:Khán giả vỗ tay theo điệu nhạc. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Khán giả vỗ tay theo điệu nhạc" vì nó nghĩ rằng sau khi ban nhạc chơi bài hát hit của mình, khán giả thường sẽ phản ứng bằng cách vỗ tay.'}

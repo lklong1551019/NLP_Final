@@ -1,0 +1,3 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người đàn ông đau lưng.\n### Lựa chọn: [choice]Anh đi gặp bác sĩ tâm lý.@ [choice]Anh nằm trên giường vài ngày.@'] || GT-A:Anh nằm trên giường vài ngày. || LLM-A:Anh nằm trên giường vài ngày.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Anh nằm trên giường vài ngày" có thể do nó kết hợp thông tin từ tiền đề "Người đàn ông đau lưng" với lựa chọn đó để tạo ra một kịch bản hợp lý, mặc dù có thể không chính xác.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Anh nằm trên giường vài ngày" vì nó nhận diện rằng khi một người đau lưng, việc nằm trên giường để nghỉ ngơi và giảm áp lực lên cơ thể có thể là một phản ứng tự nhiên và phổ biến.'}

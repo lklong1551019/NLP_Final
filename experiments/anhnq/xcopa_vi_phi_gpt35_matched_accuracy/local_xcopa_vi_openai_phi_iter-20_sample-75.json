@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nhập dãy mã vào ổ khóa.\n### Lựa chọn: [choice]Tôi đóng khóa.@ [choice]Khóa bật mở.@'] || GT-A:Khóa bật mở. || LLM-A:Miện phật.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã không hiểu rõ hoặc đánh giá sai ngữ cảnh và mối quan hệ giữa các yếu tố trong câu hỏi và tiền đề, dẫn đến việc trả lời không chính xác.'}

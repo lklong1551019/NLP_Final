@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi tự chích bằng kim.\n### Lựa chọn: [choice]Một giọt mồ hôi chảy ra từ mặt tôi.@ [choice]Một giọt máu hình thành trên ngón tay của tôi.@'] || GT-A:Một giọt máu hình thành trên ngón tay của tôi. || LLM-A:X

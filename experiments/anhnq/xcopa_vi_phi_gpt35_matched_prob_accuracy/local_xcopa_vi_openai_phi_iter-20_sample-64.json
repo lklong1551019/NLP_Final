@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cái chốt siết chặt.\n### Lựa chọn: [choice]Tôi thay chốt.@ [choice]Tôi vặn mỏ lết.@'] || GT-A:Tôi vặn mỏ lết. || LLM-A:Tôi thay chốt.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Tôi thay chốt" có thể do nó xem xét từ ngữ "thay" và "chốt" trong cùng ngữ cảnh, khiến cho nó quyết định đó là câu trả lời phù hợp nhất mà không cần hiểu rõ ngữ cảnh hay logic của câu hỏi.'}

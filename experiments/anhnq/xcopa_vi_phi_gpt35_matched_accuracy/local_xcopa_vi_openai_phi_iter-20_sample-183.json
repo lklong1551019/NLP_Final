@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Nhiếp ảnh gia quên sử dụng đèn flash trên máy ảnh.\n### Lựa chọn: [choice]Những bức ảnh trở nên mờ ảo.@ [choice]Mọi người trong ảnh đều từ chối mỉm cười.@'] || GT-A:Những bức ảnh trở nên mờ ảo. || LLM-A:Những bức ảnh trở bạch đẻm cười.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể dựa vào việc nhiếp ảnh gia quên sử dụng đèn flash trên máy ảnh để kết luận rằng những bức ảnh trở nên mờ ảo, dù có thể không phải lúc nào cũng đúng.'}

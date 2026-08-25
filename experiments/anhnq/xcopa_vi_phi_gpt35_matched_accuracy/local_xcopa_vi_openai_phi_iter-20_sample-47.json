@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi làm đổ rượu lên áo.\n### Lựa chọn: [choice]Tôi đeo tạp dề.@ [choice]Tôi đã thay áo.@'] || GT-A:Tôi đã thay áo. || LLM-A:X

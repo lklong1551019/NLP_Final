@@ -74,30 +74,47 @@ Ghi lại thay vì bỏ đi:
   A 87% — thiên lệch vị trí. Các lần chạy dùng nó đo trên nền nhiễu, nên kết quả
   Qwen ở trên thay thế chúng.
 
-## Đang chạy — sẽ bổ sung sau
+## Lần chạy khớp cấu hình baseline — dừng giữa chừng vì hết credit
 
-Một lần chạy nữa chưa xong tại thời điểm merge này, ghi ra đây để không ai chạy trùng
-và để người đọc biết vì sao chưa có bảng khớp cấu hình baseline.
+`xcopa_vi_phi_gpt35_matched_*` — 200 câu, 20 bước, `stop_rule flip`, Phi-2 +
+gpt-3.5-turbo, khớp cấu hình baseline của `anhnh` trừ cỡ mẫu. Dừng ở lượt 360/600 vì
+tài khoản OpenAI hết credit (`429 credit_balance_exhausted`), **không phải lỗi code**.
 
-**`xcopa_vi_phi_gpt35_matched_{accuracy,prob_accuracy,logprob}`** — 200 câu, 20 bước,
-`stop_rule flip`, explainer temp 0.9 / top-p 0.9. Khớp cấu hình baseline của
-`anhnh` (Phi-2 + gpt-3.5-turbo, Table 2) trừ cỡ mẫu: 200 thay vì 500, vì ở 20 bước
-thì 500 câu mất khoảng 56 giờ.
+| Chế độ | Đã chấm | vòng/câu |
+|---|---|---|
+| `accuracy` | 109/200 (91 câu bị parser bỏ) | 9.07 |
+| `prob_accuracy` | 160/200 | 14.76 |
+| `logprob` | **0 — chưa kịp chạy** | — |
 
-Nó trả lời câu hỏi mà kết quả chính **không** trả lời được: bảng chính chạy trên
-Qwen3.5-4B + gpt-4o-mini, tức đổi metric **và** đổi target **và** đổi explainer cùng
-lúc. Lần chạy này giữ nguyên mọi thứ theo baseline và chỉ đổi cách chấm, nên bảng
-của nó đặt cạnh bảng của `anhnh` được.
+Trên 87 câu cả hai chế độ cùng có: `accuracy` 0.402, `prob_accuracy` 0.391,
+McNemar **p = 1.00**. Không phân biệt được.
 
-Kỳ vọng nên đặt thấp: cấu hình baseline dùng Phi-2, mà Phi-2 không đọc được tiếng
-Việt (xem mục trên), nên nhiều khả năng cả ba chế độ đều ra số nhỏ và sát nhau. Đó
-vẫn là kết quả đáng báo cáo — *trên chính cấu hình của paper thì cách chấm mới cho
-bao nhiêu* — chỉ là nó không thay thế được bảng Qwen.
+**Bảng này chưa dùng để kết luận được**, vì hai lý do:
 
-Lưu ý sẵn: lần chạy `xcopa_vi_phi_gpt35_{accuracy,logprob}` đã có trong thư mục này
-**ngân sách lệch nhau** (3.15 vòng so với 8.40) vì mỗi chế độ dừng theo luật riêng,
-nên số của nó không so trực tiếp được. Lần đang chạy dùng `stop_rule flip` cho cả ba
-chế độ để sửa đúng chỗ đó.
+1. Thiếu `logprob` — đúng chế độ chính cần so.
+2. Cấu hình baseline dùng Phi-2, mà Phi-2 không đọc được tiếng Việt (xem mục trên),
+   nên cả hai chế độ đều đo trên nền nhiễu. Kết quả p = 1.00 phù hợp với dự đoán đã
+   ghi trước khi chạy, chứ không phải phát hiện mới.
+
+Muốn hoàn tất cần thêm khoảng **$4.90** (40 câu `prob_accuracy` + 200 câu `logprob` ở
+$0.0204/câu). Kết quả chính trên Qwen3.5-4B **không phụ thuộc bảng này**.
+
+### Chi phí đo được
+
+| Lần chạy | Model | Lượt gọi | Chi phí |
+|---|---|---|---|
+| `matched200` | gpt-3.5-turbo | 6.933 | **$5.50** |
+| `full500` | gpt-4o-mini | 5.493 | $0.81 |
+| `luna200` | gpt-5.6-luna | 577 | $0.13 |
+| | | **13.003** | **$6.43** |
+
+`matched200` chiếm 85% tổng chi phí vì ba yếu tố nhân nhau: 20 bước thay vì 5 (4×),
+gpt-3.5-turbo thay vì gpt-4o-mini (3.3× mỗi token), và `stop_rule flip` hiếm khi kích
+hoạt trên Phi-2 tiếng Việt nên thực tế chạy 9–15 vòng/câu thay vì ~3. Tổng cộng đắt
+hơn khoảng 13 lần mỗi câu so với các lần chạy trước.
+
+Các lần chạy sớm hơn (`final_qwen`, `xcopa_vi_200`, các pilot) không có usage log nên
+chi phí của chúng không nằm trong bảng — usage log chỉ được thêm về sau.
 
 ## Các thư mục run
 

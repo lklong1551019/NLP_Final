@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Check tôi viết bị trả lại.\n### Lựa chọn: [choice]Tài khoản ngân hàng của tôi trống rỗng.@ [choice]Tôi đã được tăng lương.@'] || GT-A:Tài khoản ngân hàng của tôi trống rỗng. || LLM-A:Tôi không giản đồn đến nhất từ với không công ty.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn câu trả lời dựa trên việc kết hợp các từ khóa như "tài khoản ngân hàng", "trống rỗng", "tăng lương" trong câu lựa chọn và câu tiền đề.'}

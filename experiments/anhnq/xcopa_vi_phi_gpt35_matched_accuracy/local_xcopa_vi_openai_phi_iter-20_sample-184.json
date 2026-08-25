@@ -1,0 +1,3 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi từ chối lời mời đến bữa tiệc sinh nhật.\n### Lựa chọn: [choice]Tôi cô đơn.@ [choice]Tôi không có nhà.@'] || GT-A:Tôi không có nhà. || LLM-A:Tôi cô đơn mỗi câu hỏi.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Tôi cô đơn" vì nó có thể liên kết việc từ chối lời mời đến bữa tiệc sinh nhật với cảm giác cô đơn của người nói.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Tôi cô đơn" vì trong ngữ cảnh từ chối lời mời đến bữa tiệc sinh nhật, việc này có thể tạo ra cảm giác cô đơn cho người nói khi họ không tham gia vào một sự kiện xã hội quan trọng như vậy.'}

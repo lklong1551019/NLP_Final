@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ chật vật bước đi.\n### Lựa chọn: [choice]Cô đi giày cao gót.@ [choice]Cô cởi giày ra.@'] || GT-A:Cô đi giày cao gót. || LLM-A:Nếu một của một mùa đã đến hăn.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Nếu một của một mùa đã đến hăn" vì nó có thể xem xét ngữ cảnh từ câu tiền đề "Người phụ nữ chật vật bước đi" và lựa chọn "Cô cởi giày ra" gợi nhớ tới việc chuẩn bị cho mùa mới hoặc thay đổi trang phục.'}

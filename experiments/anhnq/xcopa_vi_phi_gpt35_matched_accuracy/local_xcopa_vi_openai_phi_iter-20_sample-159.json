@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Giáo viên khen học sinh.\n### Lựa chọn: [choice]Học sinh trả lời đúng câu hỏi.@ [choice]Học sinh ngập ngừng trả lời câu hỏi.@'] || GT-A:Học sinh trả lời đúng câu hỏi. || LLM-A:Học sinh trả lời đúng câu hỏi.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Học sinh trả lời đúng câu hỏi" có thể dựa vào việc kết hợp từ "Tiền đề: Giáo viên khen học sinh" với lựa chọn đó để tạo ra một mối liên kết hợp lý.'}

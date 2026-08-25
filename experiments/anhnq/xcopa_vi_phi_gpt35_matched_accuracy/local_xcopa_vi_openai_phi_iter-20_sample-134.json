@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Bạn tôi chỉ ra rằng tôi có thức ăn bị mắc kẹt trong răng.\n### Lựa chọn: [choice]Tôi cảm thấy xấu hổ.@ [choice]Tôi cảm thấy tự hào.@'] || GT-A:Tôi cảm thấy xấu hổ. || LLM-A:Tôi cảm thấy xấu hổ.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể chọn câu trả lời "Tôi cảm thấy xấu hổ" vì nó liên kết việc có thức ăn bị mắc kẹt trong răng với cảm xúc tiêu cực như xấu hổ.'}

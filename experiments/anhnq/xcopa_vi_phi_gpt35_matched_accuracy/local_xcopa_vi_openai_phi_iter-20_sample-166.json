@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi treo tấm vải ướt lên dây phơi ngoài trời.\n### Lựa chọn: [choice]Vải khô.@ [choice]Vải nhuộm màu.@'] || GT-A:Vải khô. || LLM-A:Tôi khô.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn câu trả lời "Tôi khô" có thể là do việc xác định rằng khi tấm vải ướt được treo ngoài trời, vải sẽ tự khô mà không cần phải nhuộm màu.'}
