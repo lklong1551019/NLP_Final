@@ -143,7 +143,9 @@ target \texttt{phi-2} and explainer \texttt{gpt-3.5-turbo}
 retired, so a separate axis substitutes four current ones with everything else
 fixed, using the paper's English prompts verbatim (diffed against the released
 commit; only whitespace differs). Additional targets---Qwen3.5-4B and
-DeepSeek-v4-flash---probe the Vietnamese setting. All runs, per-instance outputs
+DeepSeek-v4-flash---probe the Vietnamese setting. Where a Vietnamese prompt
+scaffold is used it is a fluent rewrite rather than a literal translation of
+the original strings, so the language axis varies wording as well as language. All runs, per-instance outputs
 and code are released.
 
 Three implementation details materially affect any reproduction.
