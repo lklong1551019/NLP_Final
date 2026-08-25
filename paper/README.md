@@ -1,6 +1,6 @@
 # ACL short paper
 
-`main.pdf` — 4.5 pages of body plus references, official ACL format
+`main.pdf` — ~4.5 pages of body plus references, official ACL format
 (`acl.sty`, `acl_natbib.bst` from [acl-org/acl-style-files](https://github.com/acl-org/acl-style-files)).
 
 ## Build
@@ -37,6 +37,9 @@ or to their written analysis. Nothing in the paper is estimated.
 | Δcorrectness ≠ Δprediction example | instance 4 scored 0.0 on a real flip | anhnq | `docs/metric_experiment.md` |
 | Target sweep (Table 4) | 11.8 / 41.5 / 90.5 / 92.5% | anhnh, minhndn | `anhnh/xcopa_vi_phi_gpt35_control`, `minhndn/*_promptEN` |
 | Explanation language spread | 0.4%–75.3% Vietnamese | minhndn | `docs/experiment_explainer_sweep.md` §8.5 |
+| Algorithm 2: seed vs best | 0.467→0.533 / 0.467→**0.400** / 0.333→0.600 | longlk | `longlk/*/global_*.json` |
+| Algorithm 2: error string as prompt | 5/16 records, incl. final | longlk | `longlk/xcopa_vi_qwen_deepseek/global_*.json` |
+| Explainer pro vs flash (same target) | 0.905 vs 0.850 | longlk | `longlk/xcopa_vi_qwen_deepseek{,_flash}` |
 | Reasoning-flow variant | 0.905 → 0.425, iter 4.87 → 10.20 | longlk | `longlk/SUMMARY.md`, `longlk/xcopa_vi_qwen_deepseek*` |
 | Iterations 7.82 vs 3.11 | — | anhnh | `anhnh/*_control` |
 | 16.6% wasted iterations | — | anhnq | `anhnq/FINDINGS.md` |

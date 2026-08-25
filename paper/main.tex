@@ -74,6 +74,9 @@ Our contributions:
 \item \textbf{A per-language XCOPA evaluation}. The original transfers COPA to
   XCOPA without naming a language; we report Vietnamese explicitly
   (\S\ref{sec:vi}).
+\item \textbf{An audit of the trigger-prompt optimiser}, which in one of three
+  runs never beat its human-written seed and in another scored the client's
+  error string as a candidate prompt (\S\ref{sec:alg2}).
 \end{enumerate}
 
 \section{Related Work}
@@ -322,6 +325,48 @@ names an output language, and explainers disagree: measured by diacritic
 detection, explanation language ranges from $0.4\%$ to $75.3\%$ Vietnamese across
 explainers while fidelity stays inside $0.930$--$0.975$. The metric cannot see a
 difference that coarse.
+
+\subsection{The trigger-prompt optimiser does not improve on its own seed}
+\label{sec:alg2}
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{lrrr}
+\toprule
+\textbf{Run} & \textbf{Seed} & \textbf{Best} & \textbf{\texttt{"API error."}} \\
+\midrule
+DeepSeek-v4-pro   & 0.467 & 0.533 & 5/16 \\
+DeepSeek-v4-flash & 0.467 & \textbf{0.400} & 1/16 \\
++ target reasoning & 0.333 & 0.600 & 0/16 \\
+\bottomrule
+\end{tabular}
+\caption{Algorithm~2 on XCOPA-vi: $15$ optimisation steps, $15$ sampled
+instances per step. \emph{Seed} is the human-crafted trigger prompt; \emph{Best}
+is the highest score any optimised prompt reached afterwards.}
+\label{tab:alg2}
+\end{table}
+
+The original's second algorithm optimises the \emph{trigger prompt} that elicits
+explanations, reporting that optimised prompts outperform the human-crafted seed.
+We ran it three times on XCOPA-vi (Table~\ref{tab:alg2}). In one run fifteen
+optimisation steps never beat the seed. The trajectories oscillate without trend
+and every run ends below its own best, so the returned prompt is not the best one
+found.
+
+Two properties of the setup explain why this is expected rather than surprising.
+Each step scores on $15$ sampled instances, so a score can only take values
+$k/15$ and the entire observed range spans a handful of instances. And because
+the sample is redrawn each step, consecutive scores are not comparable---the
+optimiser is being shown a noisy signal and asked to hill-climb on it, which is
+the same reliability problem as \S\ref{sec:reliability} at the level of the
+prompt rather than the instance.
+
+One run also exposes an error-handling defect with direct consequences for the
+result. The explainer client returns the literal string \texttt{"API error."} on
+failure; the loop stores it as the next trigger prompt and scores it. Five of
+sixteen records in that run carry \texttt{"API error."} as their prompt,
+\emph{including the final returned optimum}. A failed call is not distinguishable
+from a candidate prompt anywhere in the recorded trajectory.
 
 \subsection{Grounding the explainer in the target's reasoning}
 \label{sec:reasoning}
