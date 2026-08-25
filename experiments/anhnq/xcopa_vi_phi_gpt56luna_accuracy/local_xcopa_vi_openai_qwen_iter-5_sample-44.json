@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Các nhà hoạt động tẩy chay các sản phẩm.\n### Lựa chọn: [choice]Các sản phẩm đã được kiểm tra để đảm bảo chất lượng.@ [choice]Các sản phẩm được sản xuất thông qua lao động trẻ em.@'] || GT-A:Các sản phẩm được sản xuất thông qua lao động trẻ em. || LLM-A:X

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đẩy cửa.\n### Lựa chọn: [choice]Cánh cửa mở ra.@ [choice]Cánh cửa bị khóa.@'] || GT-A:Cánh cửa mở ra. || LLM-A:Cánh cửa mở ra.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án này vì nó diễn đạt hệ quả trực tiếp và hợp lý của hành động được nêu trong tiền đề.'}

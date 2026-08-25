@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tim của nam diễn viên đập mạnh trước màn biểu diễn.\n### Lựa chọn: [choice]Anh ấy sợ sân khấu.@ [choice]Anh ghi nhớ lời thoại của mình.@'] || GT-A:Anh ấy sợ sân khấu. || LLM-A:Anh ấy sợ sân khấu.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án mô tả trạng thái lo lắng hoặc căng thẳng, vì đây là nguyên nhân phù hợp về mặt thông thường với hiện tượng tim đập mạnh trước khi biểu diễn, trong khi việc ghi nhớ lời thoại không trực tiếp gây ra biểu hiện sinh lý này.'}

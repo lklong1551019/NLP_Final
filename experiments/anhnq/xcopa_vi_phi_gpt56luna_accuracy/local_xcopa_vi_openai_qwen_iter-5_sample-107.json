@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Phòng tắm ngập nước.\n### Lựa chọn: [choice]Nước nhà vệ sinh tràn ra.@ [choice]Máy nước nóng bị hỏng.@'] || GT-A:Nước nhà vệ sinh tràn ra. || LLM-A:Nước từ nhà vệ sinh tràn ra.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn phương án này vì sự cố nước từ nhà vệ sinh tràn ra có quan hệ nhân quả trực tiếp và phù hợp với tình trạng ngập nước, trong khi sự cố máy nước nóng bị hỏng không cho thấy mối liên hệ rõ ràng tương đương.'}

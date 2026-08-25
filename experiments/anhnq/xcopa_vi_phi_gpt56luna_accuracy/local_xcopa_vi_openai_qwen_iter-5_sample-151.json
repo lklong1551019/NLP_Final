@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi đã thua.\n### Lựa chọn: [choice]Tôi đếm tiền mặt của tôi.@ [choice]Tôi mở  bản đồ.@'] || GT-A:Tôi mở  bản đồ. || LLM-A:Tôi mở  bản đồ.
+{'Score': 1.0, 'XAI prompt': '<EXP>Phản hồi được chọn có vẻ dựa trên mối liên hệ ngữ nghĩa suy đoán rằng việc thất bại hoặc bị mất có thể dẫn đến nhu cầu định hướng, dù mối liên hệ này không được suy ra trực tiếp từ tiền đề và có thể là lựa chọn không chính xác.</EXP>'}

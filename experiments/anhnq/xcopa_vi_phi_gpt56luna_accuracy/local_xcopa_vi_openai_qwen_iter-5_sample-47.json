@@ -1,0 +1,4 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi làm đổ rượu lên áo.\n### Lựa chọn: [choice]Tôi đeo tạp dề.@ [choice]Tôi đã thay áo.@'] || GT-A:Tôi đã thay áo. || LLM-A:Tôi đã thay áo.
+{'Score': 0.0, 'XAI prompt': '<EXP>Phản hồi được chọn vì nó mô tả một hành động có tính khắc phục trực tiếp và hợp lý sau sự cố làm bẩn trang phục, trong khi lựa chọn còn lại chủ yếu là biện pháp phòng ngừa và không phải kết quả đã xảy ra.'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Mô hình ưu tiên phương án thể hiện hành động xử lý trực tiếp hậu quả của sự cố đã xảy ra, thay vì phương án mang tính phòng ngừa cho những tình huống tương tự trong tương lai.</EXP>'}
+{'Score': 0.0, 'XAI prompt': '<EXP>Lựa chọn được ưu tiên vì thể hiện một phản ứng xảy ra sau sự cố và trực tiếp giải quyết tình trạng phát sinh, còn lựa chọn kia mô tả biện pháp chuẩn bị nhằm ngăn ngừa vấn đề trước khi nó xảy ra.</EXP>'}

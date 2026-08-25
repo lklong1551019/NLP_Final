@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ chật vật bước đi.\n### Lựa chọn: [choice]Cô đi giày cao gót.@ [choice]Cô cởi giày ra.@'] || GT-A:Cô đi giày cao gót. || LLM-A:Cô đi giày cao gót.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án mô tả một yếu tố có thể gây khó khăn khi bước đi, phù hợp với mối quan hệ nguyên nhân–kết quả trong tiền đề.'}

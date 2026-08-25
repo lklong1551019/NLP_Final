@@ -1,0 +1,3 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Bạn tôi quay đầu về phía tôi.\n### Lựa chọn: [choice]Tôi hét to tên anh.@ [choice]Tôi vẫy tay.@'] || GT-A:Tôi hét to tên anh. || LLM-A:Tôi vẫy tay.
+{'Score': 0.0, 'XAI prompt': '<EXP> Vì vậy, mô hình có thể đã dựa vào chuẩn mực giao tiếp thông thường và mức độ phù hợp ngữ cảnh để ưu tiên lựa chọn được nêu trong dữ liệu trả lời.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã liên hệ việc người đối diện quay về phía mình với sự chú ý và tương tác xã hội, rồi ưu tiên một phản ứng dễ quan sát, phù hợp với ngữ cảnh giao tiếp trực tiếp và không đòi hỏi thêm giả định về nội dung lời nói.</EXP>'}

@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Du khách đã nhận phòng khách sạn.\n### Lựa chọn: [choice]Họ tháo vali ra.@ [choice]Họ đã đến sân bay.@'] || GT-A:Họ tháo vali ra. || LLM-A:Họ đã đến sân bay.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn phương án này do liên hệ các hoạt động của du khách với trình tự di chuyển thường gặp, nhưng mối liên hệ đó không được suy ra trực tiếp từ tiền đề nên lựa chọn có thể là kết quả của suy luận ngữ cảnh không chính xác.</EXP>'}

@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi gõ cửa nhà hàng xóm.\n### Lựa chọn: [choice]Hàng xóm của tôi mời tôi vào.@ [choice]Hàng xóm của tôi rời khỏi nhà cô ấy.@'] || GT-A:Hàng xóm của tôi mời tôi vào. || LLM-A:X

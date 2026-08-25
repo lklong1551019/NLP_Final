@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Người phụ nữ va vào ghế sofa.\n### Lựa chọn: [choice]Chân ghế sofa bị lỏng ra.@ [choice]Cô bầm tím đầu gối.@'] || GT-A:Cô bầm tím đầu gối. || LLM-A:Chân ghế sofa bị lỏng ra.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình lựa chọn phương án mô tả một hệ quả vật lý trực tiếp và có tính nhân quả rõ ràng hơn từ sự va chạm được nêu trong tiền đề, thay vì phương án liên quan đến chấn thương cá nhân nhưng không được xác định chắc chắn bởi thông tin đầu vào.'}

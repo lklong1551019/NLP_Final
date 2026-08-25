@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tay tôi bị chuột rút.\n### Lựa chọn: [choice]Tôi đã viết bài luận bằng tay.@ [choice]Vợ chồng tôi nắm tay nhau.@'] || GT-A:Tôi đã viết bài luận bằng tay. || LLM-A:Tôi đã viết bài luận bằng tay.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án này vì hoạt động sử dụng cơ tay kéo dài có mối liên hệ nhân quả trực tiếp hơn với tình trạng co rút cơ, trong khi phương án còn lại thường không đủ để giải thích hiện tượng đó.'}

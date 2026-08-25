@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Tôi thấy hơi thở của mình khi tôi thở ra.\n### Lựa chọn: [choice]Thời tiết se lạnh.@ [choice]Ngực tôi cảm thấy căng cứng.@'] || GT-A:Thời tiết se lạnh. || LLM-A:Thời tiết se lạnh.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án mô tả điều kiện môi trường làm hơi thở ngưng tụ và trở nên nhìn thấy được, vì đây là nguyên nhân trực tiếp phù hợp với hiện tượng nêu trong tiền đề; phương án còn lại chỉ là một cảm giác cơ thể và không giải thích rõ hiện tượng đó.'}

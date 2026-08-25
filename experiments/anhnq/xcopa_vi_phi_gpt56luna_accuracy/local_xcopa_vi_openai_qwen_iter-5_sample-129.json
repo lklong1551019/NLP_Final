@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông trở nên khó chịu với bạn mình.\n### Lựa chọn: [choice]Bạn anh ngắt lời anh.@ [choice]Bạn anh mua cho anh bữa trưa.@'] || GT-A:Bạn anh ngắt lời anh. || LLM-A:Bạn anh ngắt lời anh.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn phương án mô tả một hành vi dễ gây bực bội hoặc khó chịu, phù hợp trực tiếp với trạng thái cảm xúc được nêu; phương án còn lại thường mang ý nghĩa tích cực nên kém phù hợp về quan hệ nguyên nhân–kết quả.'}

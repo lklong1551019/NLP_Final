@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nhập dãy mã vào ổ khóa.\n### Lựa chọn: [choice]Tôi đóng khóa.@ [choice]Khóa bật mở.@'] || GT-A:Khóa bật mở. || LLM-A:Tôi đóng khóa.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình liên hệ hành động nhập mã vào ổ khóa với thao tác hoàn tất việc khóa, nên chọn phương án có quan hệ nhân quả gần nhất theo kiến thức thông thường; tuy nhiên, tiền đề không nêu rõ trạng thái ban đầu hoặc mục đích thao tác nên suy luận này có thể chưa chắc chắn.</EXP>'}

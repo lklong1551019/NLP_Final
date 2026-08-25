@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ đeo kính râm.\n### Lựa chọn: [choice]Ánh sáng mặt trời chói lóa.@ [choice]Cô gọi một chiếc taxi.@'] || GT-A:Ánh sáng mặt trời chói lóa. || LLM-A:Ánh sáng mặt trời chói lóa.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án này vì kính râm thường được sử dụng để giảm tác động của ánh sáng mạnh hoặc chói, tạo quan hệ nguyên nhân–kết quả phù hợp hơn so với phương án còn lại.'}

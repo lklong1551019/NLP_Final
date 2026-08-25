@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông đã ký tên lên thỉnh nguyện của các nhà hoạt động.\n### Lựa chọn: [choice]Ông ủng hộ mục đích của họ.@ [choice]Ông tố cáo họ điên.@'] || GT-A:Ông ủng hộ mục đích của họ. || LLM-A:Ông ủng hộ mục đích của họ.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án này vì hành động ký tên vào thỉnh nguyện thường cho thấy người đàn ông đồng tình hoặc ủng hộ mục đích của các nhà hoạt động, trong khi không có dấu hiệu cho thấy ông phản đối hay xúc phạm họ.'}

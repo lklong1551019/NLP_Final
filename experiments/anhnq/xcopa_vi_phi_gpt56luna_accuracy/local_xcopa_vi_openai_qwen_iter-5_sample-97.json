@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Điện trong nhà tôi tắt.\n### Lựa chọn: [choice]Tôi bật đèn lên.@ [choice]Tôi cài đặt lại bộ ngắt mạch.@'] || GT-A:Tôi cài đặt lại bộ ngắt mạch. || LLM-A:Tôi bật đèn lên.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn phương án này do liên hệ trực tiếp tình trạng mất điện với hành động sử dụng công tắc đèn, đồng thời ưu tiên một hành động đơn giản và xuất hiện trước trong danh sách lựa chọn, mà không đánh giá đầy đủ tính hiệu quả thực tế của hành động đó.'}

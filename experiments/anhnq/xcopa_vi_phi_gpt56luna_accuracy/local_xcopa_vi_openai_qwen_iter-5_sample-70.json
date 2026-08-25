@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Bãi cỏ lầy lội.\n### Lựa chọn: [choice]Trời mưa vào đêm qua.@ [choice]Nó đầy cỏ dại.@'] || GT-A:Trời mưa vào đêm qua. || LLM-A:Trời mưa vào đêm qua.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án đầu tiên vì một hiện tượng thời tiết xảy ra trước đó có quan hệ nhân quả trực tiếp và hợp lý với tình trạng mặt đất bị ướt, lầy; phương án còn lại chỉ mô tả đặc điểm của thảm thực vật, không giải thích rõ nguyên nhân tạo ra trạng thái lầy lội.'}

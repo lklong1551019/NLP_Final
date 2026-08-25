@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['###Question: What is the effect of the Premise?\n### Premise: I emptied my pockets.\n### Choices: [choice]I retrieved a ticket stub.@ [choice]I found a weapon.@'] || GT-A:I retrieved a ticket stub. || LLM-A:X
+{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected choice X because it mentions "I found a weapon," which is likely seen as unrelated or extreme given the premise "I emptied my pockets."'}

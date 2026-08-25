@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi treo tấm vải ướt lên dây phơi ngoài trời.\n### Lựa chọn: [choice]Vải khô.@ [choice]Vải nhuộm màu.@'] || GT-A:Vải khô. || LLM-A:Vải khô.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án này vì việc phơi một vật liệu đang ướt ngoài trời thường khiến nước bay hơi dưới tác động của không khí, nhiệt độ và ánh sáng, nên trạng thái được suy ra là khô hơn.'}

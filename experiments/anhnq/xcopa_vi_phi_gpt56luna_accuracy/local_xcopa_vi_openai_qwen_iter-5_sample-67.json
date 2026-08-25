@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người đàn ông mặc áo phao.\n### Lựa chọn: [choice]Anh ấy không biết bơi.@ [choice]Nước cạn.@'] || GT-A:Anh ấy không biết bơi. || LLM-A:Anh ấy không biết bơi.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình lựa chọn phương án thứ nhất vì liên hệ việc mặc áo phao với nhu cầu hỗ trợ an toàn khi không có khả năng bơi, trong khi phương án còn lại không tạo ra mối quan hệ nguyên nhân trực tiếp và rõ ràng bằng.'}

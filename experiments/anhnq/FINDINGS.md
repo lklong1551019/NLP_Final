@@ -125,6 +125,27 @@ chi phí của chúng không nằm trong bảng — usage log chỉ được th�
 | `copa_en_phi_gpt35_fairbudget_*` | 10 câu × 5 chế độ, `--no_early_stop` — ngân sách bằng nhau để so số vòng |
 | `xcopa_vi_qwen_gpt4omini_pilot_*` | 20 câu, pilot |
 | `random_hint_control.json` | 200 câu × 3 điều kiện (không hint / hint đúng / hint câu khác) |
+| `xcopa_vi_phi_gpt56luna_accuracy` | 179 câu, GPT-5.6 Luna — xem ghi chú bên dưới |
+| `copa_en_phi_gpt35_pilot4mode_*` | 10 câu × 4 chế độ, pilot thiết kế |
+
+### Ghi chú về `xcopa_vi_phi_gpt56luna_accuracy`
+
+Lần chạy này định thử explainer mạnh hơn. Chế độ `accuracy` chạy được 179 câu rồi
+`logprob` chết ngay với `RuntimeError: gpt-5.6-luna returned empty content`.
+
+Nguyên nhân: GPT-5.6 tiêu hết `max_completion_tokens` vào reasoning, không còn chỗ
+cho nội dung. Khi test một câu ngắn thì `reasoning_tokens = 0` nên không lộ; dưới
+tải thật với prompt tiếng Việt dài thì nó reasoning nhiều hơn. Cách tắt là
+`reasoning_effort="none"` — đã kiểm chứng: reasoning về 0, nội dung đầy đủ, và output
+giảm từ 145 xuống 72 token nên rẻ hơn.
+
+Đáng chú ý là lá chắn đã hoạt động đúng: backend **raise** thay vì âm thầm chấm điểm
+trên chuỗi rỗng. Nếu không có nó thì sẽ có 200 câu dữ liệu rác trông như hợp lệ —
+đúng lỗi mà `mignh` cũng gặp và vá bằng `split_reply()`.
+
+Chưa chạy lại vì `mignh` đã có nhánh sweep GPT-5.6 riêng; giữ lại phần này làm bằng
+chứng cho lỗi, không phải làm kết quả.
+
 
 Chi phí API đo thật trên toàn bộ: **$5.07** qua 11.334 lượt gọi.
 

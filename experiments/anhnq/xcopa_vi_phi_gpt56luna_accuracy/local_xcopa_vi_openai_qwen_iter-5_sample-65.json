@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Hai vợ chồng ký hợp đồng thuê một căn hộ.\n### Lựa chọn: [choice]Hai vợ chồng chuyển vào căn hộ.@ [choice]Thành phố lên án căn hộ.@'] || GT-A:Hai vợ chồng chuyển vào căn hộ. || LLM-A:Hai vợ chồng chuyển vào căn hộ.
+{'Score': 1.0, 'XAI prompt': '<EXP>Phương án được chọn là hệ quả hợp lý và trực tiếp của việc hai người ký hợp đồng thuê, vì hành động này thường dẫn đến quyền sử dụng và việc chuyển vào căn hộ; phương án còn lại không có quan hệ nhân quả phù hợp với tiền đề.'}

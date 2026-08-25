@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Bàn tay của cô gái trở nên phồng rộp.\n### Lựa chọn: [choice]Cô gõ một lá thư.@ [choice]Cô trèo lên một sợi dây.@'] || GT-A:Cô trèo lên một sợi dây. || LLM-A:Cô gõ một lá thư.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình có thể đã chọn phương án này do liên hệ “sử dụng bàn tay lặp đi lặp lại” với tình trạng phồng rộp, dù mối liên hệ nhân quả trong ngữ cảnh này yếu hơn phương án còn lại.'}

@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người thủy thủ đã được cách ly.\n### Lựa chọn: [choice]Anh đã tiếp xúc với dịch bệnh.@ [choice]Anh đã khỏi bệnh.@'] || GT-A:Anh đã tiếp xúc với dịch bệnh. || LLM-A:Anh đã tiếp xúc với dịch bệnh.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án thứ nhất vì việc một người được cách ly thường được liên hệ với khả năng đã tiếp xúc với nguồn bệnh, trong khi tiền đề không cung cấp dấu hiệu cho thấy người đó đã khỏi bệnh.'}

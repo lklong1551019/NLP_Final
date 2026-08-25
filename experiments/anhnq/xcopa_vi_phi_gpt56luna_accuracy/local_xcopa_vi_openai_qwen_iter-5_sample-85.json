@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Đứa trẻ tỉnh dậy la hét.\n### Lựa chọn: [choice]Nó gặp ác mộng.@ [choice]Nó làm ướt giường.@'] || GT-A:Nó gặp ác mộng. || LLM-A:Nó gặp ác mộng.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án thứ nhất vì hành vi tỉnh dậy kèm la hét có mối liên hệ ngữ nghĩa trực tiếp và phổ biến hơn với trạng thái sợ hãi khi ngủ, trong khi phương án còn lại không nhất thiết dẫn đến biểu hiện la hét.'}

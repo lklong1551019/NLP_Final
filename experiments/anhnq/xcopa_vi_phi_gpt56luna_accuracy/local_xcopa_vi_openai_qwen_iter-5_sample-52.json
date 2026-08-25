@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cây rụng lá.\n### Lựa chọn: [choice]Lá chuyển màu.@ [choice]Lá dồn trên mặt đường.@'] || GT-A:Lá dồn trên mặt đường. || LLM-A:Lá chuyển màu.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã liên hệ hiện tượng cây rụng lá với quá trình lá đổi màu theo mùa, nên chọn phương án được xem là nguyên nhân hoặc diễn biến thường đi kèm, dù mối quan hệ này không nhất thiết được suy ra trực tiếp từ tiền đề.'}

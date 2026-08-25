@@ -1,0 +1,2 @@
+============ Corrct --> Q:['###Question: What is the effect of the Premise?\n### Premise: The band played their hit song.\n### Choices: [choice]The audience clapped along to the music.@ [choice]The audience politely listened in silence.@'] || GT-A:The audience clapped along to the music. || LLM-A:The audience clapped along to the music.
+{'Score': 1.0, 'XAI prompt': '<EXP> The model likely chose the answer "The audience clapped along to the music" because it is a common reaction for an audience when a band plays a hit song.'}

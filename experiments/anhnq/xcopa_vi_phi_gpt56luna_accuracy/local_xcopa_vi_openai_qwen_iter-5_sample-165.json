@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người lái xe đi đường vòng.\n### Lựa chọn: [choice]Một vụ tai nạn xảy ra trên đường chính.@ [choice]Cô đi theo chiếc xe tải trước mặt.@'] || GT-A:Một vụ tai nạn xảy ra trên đường chính. || LLM-A:Một vụ tai nạn xảy ra trên đường chính.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án thứ nhất vì một vụ tai nạn trên tuyến đường chính có thể khiến người lái xe phải đi đường vòng, tạo ra quan hệ nguyên nhân–kết quả trực tiếp hơn so với việc đi theo chiếc xe tải phía trước.'}

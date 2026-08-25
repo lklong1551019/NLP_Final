@@ -1,0 +1,3 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Gió thổi qua cửa sổ.\n### Lựa chọn: [choice]Chuông cửa reo.@ [choice]Rèm cửa rung rinh.@'] || GT-A:Rèm cửa rung rinh. || LLM-A:Rèm cửa rung rinh.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn phương án mô tả một hệ quả trực tiếp và hợp lý của luồng không khí đi qua một vật nhẹ gần cửa sổ, trong khi phương án còn lại không có mối liên hệ nhân quả rõ ràng với tiền đề.'}
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình ưu tiên phương án thể hiện một tác động vật lý trực tiếp, dễ suy ra từ chuyển động của không khí, thay vì một sự kiện không có quan hệ nhân quả rõ ràng với hiện tượng đã nêu.'}

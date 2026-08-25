@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tôi nướng một chiếc bánh táo.\n### Lựa chọn: [choice]Một mùi thối rữa tràn ngập bếp.@ [choice]Một mùi thơm ấm áp tràn ngập nhà bếp.@'] || GT-A:Một mùi thơm ấm áp tràn ngập nhà bếp. || LLM-A:Một mùi thơm ấm áp tràn ngập nhà bếp.
+{'Score': 1.0, 'XAI prompt': '<EXP>Việc nướng bánh táo thường tạo ra hương thơm dễ chịu, ấm áp từ táo, bột và gia vị; vì vậy mô hình chọn kết quả phù hợp với mối liên hệ thông thường giữa hoạt động này và mùi hương trong không gian bếp.'}

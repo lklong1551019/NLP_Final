@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Mưa đã trút xuống.\n### Lựa chọn: [choice]Cơn bão trở nên tồi tệ hơn.@ [choice]Tôi lao vào trong.@'] || GT-A:Tôi lao vào trong. || LLM-A:Cơn bão trở nên tồi tệ hơn.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án này vì diễn biến mưa trút xuống thường được liên hệ với thời tiết xấu đi hoặc bão trở nên nghiêm trọng hơn, tạo ra mối quan hệ nguyên nhân–kết quả phù hợp về mặt ngữ nghĩa.'}

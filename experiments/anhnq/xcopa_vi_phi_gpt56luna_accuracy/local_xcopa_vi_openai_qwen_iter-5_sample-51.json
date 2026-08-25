@@ -1,0 +1,3 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Radar của phi công đã phát hiện ra một cơn bão.\n### Lựa chọn: [choice]Phi công điều hướng khỏi cơn bão.@ [choice]Phi công đã bay qua cơn bão.@'] || GT-A:Phi công điều hướng khỏi cơn bão. || LLM-A:
+### [choice]Phi công điều hướng khỏi cơn bão.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn phương án mô tả hành động né tránh một mối nguy sau khi hệ thống phát hiện mối nguy đó, vì đây là hệ quả thường được suy ra từ thông tin trong tiền đề; tuy nhiên, tiền đề không khẳng định chắc chắn phi công đã thực hiện hành động này.'}

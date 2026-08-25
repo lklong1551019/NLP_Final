@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Văn phòng đóng cửa.\n### Lựa chọn: [choice]Đang vào đợt nghỉ.@ [choice]Đang mùa hè.@'] || GT-A:Đang vào đợt nghỉ. || LLM-A:Cả mùa hè.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã liên hệ việc văn phòng đóng cửa với thời điểm nghỉ hè, vì đây là mối quan hệ thường gặp trong dữ liệu ngôn ngữ.</EXP>\n<EXP> Cách diễn đạt của lựa chọn được tạo ra có thể phản ánh sự khái quát hóa hoặc xử lý chưa chính xác giữa các phương án gần nghĩa, thay vì xác định rõ nguyên nhân trực tiếp.</EXP>'}

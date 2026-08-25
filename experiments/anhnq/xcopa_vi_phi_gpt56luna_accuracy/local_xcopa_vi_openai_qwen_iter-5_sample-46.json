@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Người phụ nữ cảm thấy ghen tị với chị gái mình.\n### Lựa chọn: [choice]Chị cô hạnh phúc.@ [choice]Chị gái cô đã ly hôn.@'] || GT-A:Chị cô hạnh phúc. || LLM-A:Chị cô hạnh phúc.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án mô tả trạng thái tích cực và đáng ghen tị của người chị, vì điều đó phù hợp trực tiếp với cảm xúc được nêu trong tiền đề; phương án còn lại thường gợi sự bất lợi hoặc khó được xem là nguyên nhân của sự ghen tị.'}

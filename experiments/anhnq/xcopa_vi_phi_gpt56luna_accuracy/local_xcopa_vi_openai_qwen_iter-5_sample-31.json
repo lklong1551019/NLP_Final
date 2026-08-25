@@ -1,0 +1,3 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Vé xem phim đã bán hết.\n### Lựa chọn: [choice]Đó là ngày khai mạc cho bộ phim.@ [choice]Bộ phim nhận được đánh giá kém.@'] || GT-A:Đó là ngày khai mạc cho bộ phim. || LLM-A:Đó là ngày khai mạc cho bộ phim.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình lựa chọn phương án mô tả một sự kiện thường làm nhu cầu tăng đột biến, vì mối liên hệ nhân quả với việc toàn bộ vé được bán hết được xem là trực tiếp và phù hợp hơn so với phương án hàm ý nhu cầu thấp.'}
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình ưu tiên lựa chọn gắn tình trạng hết vé với sự quan tâm ban đầu cao và lượng khán giả lớn, đồng thời xem lựa chọn còn lại là tín hiệu thường làm giảm nhu cầu nên kém phù hợp hơn.</EXP>'}

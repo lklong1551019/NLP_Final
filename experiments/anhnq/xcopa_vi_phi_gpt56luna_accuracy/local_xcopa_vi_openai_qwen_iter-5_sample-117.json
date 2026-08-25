@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Toàn bộ tất của tôi đã ở trong máy giặt.\n### Lựa chọn: [choice]Tôi đi dép.@ [choice]Tôi đi giày bốt.@'] || GT-A:Tôi đi dép. || LLM-A:Tôi đi dép.
+{'Score': 1.0, 'XAI prompt': '<EXP>Phản hồi được lựa chọn vì mô hình suy luận rằng khi vật dụng được nêu đang ở trong máy giặt, phương án còn lại phù hợp hơn với tình huống sử dụng đồ đi chân mà không phụ thuộc vào vật dụng đó, dựa trên liên hệ ngữ nghĩa và kiến thức đời thường chứ không phải quan hệ tất yếu về mặt logic.</EXP>'}

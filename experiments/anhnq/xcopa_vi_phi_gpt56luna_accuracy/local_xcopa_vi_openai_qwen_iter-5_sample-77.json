@@ -1,0 +1,2 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Tuyết đã chặn đường lái xe.\n### Lựa chọn: [choice]Tôi nặn thành một quả cầu tuyết.@ [choice]Tôi xúc tuyết ra khỏi đường.@'] || GT-A:Tôi xúc tuyết ra khỏi đường. || LLM-A:Tôi nặn thành một quả cầu tuyết.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình có thể đã liên tưởng trực tiếp đến hoạt động vui chơi với tuyết, thay vì ưu tiên mối quan hệ mục đích–hành động phù hợp với tình huống đường lái xe bị chắn.'}

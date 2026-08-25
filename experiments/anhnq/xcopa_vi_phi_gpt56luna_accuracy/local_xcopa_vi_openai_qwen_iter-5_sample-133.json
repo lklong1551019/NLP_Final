@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Đội thua giải đấu.\n### Lựa chọn: [choice]Họ làm người hâm mộ thất vọng.@ [choice]Họ truyền cảm hứng cho người hâm mộ của họ.@'] || GT-A:Họ làm người hâm mộ thất vọng. || LLM-A:Họ làm người hâm mộ thất vọng.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án này vì nó phù hợp trực tiếp với quan hệ nhân quả thông thường: việc thất bại trong một giải đấu dễ dẫn đến sự thất vọng của người hâm mộ, trong khi phương án còn lại không phải là hệ quả mặc định của thất bại.'}

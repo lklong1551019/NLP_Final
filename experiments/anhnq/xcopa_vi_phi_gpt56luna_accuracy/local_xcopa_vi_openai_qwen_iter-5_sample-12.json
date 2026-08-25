@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Check tôi viết bị trả lại.\n### Lựa chọn: [choice]Tài khoản ngân hàng của tôi trống rỗng.@ [choice]Tôi đã được tăng lương.@'] || GT-A:Tài khoản ngân hàng của tôi trống rỗng. || LLM-A:Tài khoản ngân hàng của tôi trống rỗng.
+{'Score': 0.0, 'XAI prompt': '<EXP>Phương án được chọn phù hợp với quan hệ nguyên nhân–kết quả trong tiền đề: một giao dịch séc bị trả lại thường xảy ra khi tài khoản không đủ tiền, còn việc tăng lương không giải thích trực tiếp sự việc này.</EXP>'}

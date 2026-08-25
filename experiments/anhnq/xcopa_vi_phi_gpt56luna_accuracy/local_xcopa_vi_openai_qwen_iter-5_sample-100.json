@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Một cái cây rơi trên đường dây điện.\n### Lựa chọn: [choice]Điện trong khu phố đã tắt.@ [choice]Dự báo có gió lớn.@'] || GT-A:Điện trong khu phố đã tắt. || LLM-A:Điện trong khu phố đã tắt.
+{'Score': 1.0, 'XAI prompt': '<EXP> Mô hình chọn phương án thứ nhất vì nhận thấy sự kiện được nêu có quan hệ nhân quả trực tiếp với việc làm gián đoạn hệ thống cung cấp điện, trong khi phương án còn lại chỉ là một dự báo không được suy ra từ tiền đề.'}

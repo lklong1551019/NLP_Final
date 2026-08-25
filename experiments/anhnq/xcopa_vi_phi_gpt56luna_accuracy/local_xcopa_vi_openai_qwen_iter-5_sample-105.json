@@ -1,0 +1,2 @@
+============ Corrct --> Q:['### Câu hỏi: Đâu là nguyên nhân của Tiền đề?\n### Tiền đề: Cửa thang máy mở ra.\n### Lựa chọn: [choice]Thang máy đã đến tầng được chỉ định.@ [choice]Thang máy bị kẹt giữa các tầng.@'] || GT-A:Thang máy đã đến tầng được chỉ định. || LLM-A:Thang máy đã đến tầng được chỉ định.
+{'Score': 0.0, 'XAI prompt': '<EXP> Mô hình chọn phương án này vì nhận thấy việc cửa mở thường là dấu hiệu phù hợp với trạng thái thang máy đã hoàn tất hành trình, trong khi kịch bản bị kẹt giữa các tầng ít tương thích hơn với việc cửa mở bình thường.'}

@@ -1,0 +1,1 @@
+============ Wrong  --> Q:['### Câu hỏi: Đâu là kết quả của Tiền đề?\n### Tiền đề: Cô gái muốn cảm ơn cô giáo dạy toán.\n### Lựa chọn: [choice]Cô gái bị giữ lại sau giờ học.@ [choice]Cô gái mang cho cô giáo một quả táo.@'] || GT-A:Cô gái mang cho cô giáo một quả táo. || LLM-A:X
