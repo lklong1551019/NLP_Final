@@ -16,7 +16,9 @@ not read line by line, with the reason given.
 | `experiments/anhnq/README.md` | 51 | Read in full | Why no `SUMMARY.md`; run inventory |
 | `experiments/minhndn/README.md` | 161 | Read in full | §6.2 sweep, §6.3 Control C, §6.4 Control D |
 | `experiments/minhndn/SUMMARY.md` | 440 | Read in full | Per-variant accuracy/unparsed for Table 4 |
-| `experiments/longlk/SUMMARY.md` | 128 | Read in full | §6.7 reasoning flow, §7 English-answer failure |
+| `experiments/longlk/SUMMARY.md` | 128 | Read in full | §6.7 self-explanation variant, §7 English-answer failure |
+| `model/predictor.py::generate_predictor_reasoning` | — | Read in full | §6.7 — the variant issues a *separate* self-explanation query, not a reuse of the discarded generation |
+| `model/explainer.py::generate_exp_prompt`, `generate_local_xai_prompt` | — | Read in full | §6.7 — the self-explanation is appended to both the explainer prompt and the optimiser trajectory |
 | `experiments/anhnh/FINDINGS.md` | 78 | Read in full | §6.1, §6.3 Table 1, §6.6 |
 | `docs/experiment_explainer_sweep.md` | 495 | Read in full | §6.2, §6.3 position bias, §6.4, §5(iii), §6.6 language spread, §8 ethics |
 | `docs/metric_experiment.md` | 104 | Read in full | §4 score modes, §6.5 Δcorrectness example |
