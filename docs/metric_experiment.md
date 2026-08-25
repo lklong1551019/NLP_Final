@@ -1,7 +1,8 @@
-# Fidelity metric experiment — `--score_mode`
+# `--score_mode` — how the fidelity readout works
 
-Does replacing the published fidelity score with a continuous one reduce the number
-of optimisation iterations, and does it beat the baseline?
+Reference for the scoring modes and how to run them. **Results live in
+[`experiments/anhnq/FINDINGS.md`](../experiments/anhnq/FINDINGS.md)** — this file
+describes the mechanism, not the numbers, so the two cannot drift apart.
 
 The new signal is opt-in. `--score_mode accuracy` is the default and runs the
 published code path unchanged, so existing results stay reproducible.
@@ -47,22 +48,6 @@ All four numbers come from the same two probability vectors, at no extra cost:
 | `flip` | did argmax change | report |
 | `accuracy` | baseline metric, from choice labels not strings | compare against the paper |
 
-## Measured on the first 6 XCOPA-vi instances
-
-Same instances, same explanations, same contrary hints — only the readout changes.
-
-| # | prob_shift | tv | flip | accuracy | P(a₀) before → after |
-|---|---|---|---|---|---|
-| 0 | +0.4647 | 0.4647 | 0 | 0 | 0.9959 → 0.5312 |
-| 1 | +0.9511 | 0.9511 | 1 | 1 | 0.9740 → 0.0230 |
-| 2 | +0.2078 | 0.2078 | 0 | 0 | 0.9627 → 0.7549 |
-| 3 | +0.0092 | 0.0092 | 0 | 0 | 0.9933 → 0.9841 |
-| 4 | +0.8572 | 0.8572 | 1 | 1 | 0.9526 → 0.0953 |
-| 5 | +0.4120 | 0.4120 | 1 | 1 | 0.8808 → 0.4688 |
-
-Non-zero signal: **accuracy 3/6, flip 3/6, logprob 5/6**, graded from 0.0092 to 0.9511.
-Instance 3 is the useful case — a near-zero shift says "this explanation barely moves
-the model", which a binary metric cannot express.
 
 ## Early stopping
 
