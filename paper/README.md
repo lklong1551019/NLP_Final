@@ -40,7 +40,7 @@ or to their written analysis. Nothing in the paper is estimated.
 | Algorithm 2: seed vs best | 0.467→0.533 / 0.467→**0.400** / 0.333→0.600 | longlk | `longlk/*/global_*.json` |
 | Algorithm 2: error string as prompt | 5/16 records, incl. final | longlk | `longlk/xcopa_vi_qwen_deepseek/global_*.json` |
 | Explainer pro vs flash (same target) | 0.905 vs 0.850 | longlk | `longlk/xcopa_vi_qwen_deepseek{,_flash}` |
-| Reasoning-flow variant | 0.905 → 0.425, iter 4.87 → 10.20 | longlk | `longlk/SUMMARY.md`, `longlk/xcopa_vi_qwen_deepseek*` |
+| Self-explanation variant | 0.905 → 0.425, iter 4.87 → 10.20 | longlk | `longlk/xcopa_vi_qwen_deepseek{,_reasoning_flow}`; mechanism in `model/predictor.py::generate_predictor_reasoning` |
 | Iterations 7.82 vs 3.11 | — | anhnh | `anhnh/*_control` |
 | 16.6% wasted iterations | — | anhnq | `anhnq/FINDINGS.md` |
 | Reasoning-token exhaustion | 179/200, 827 tokens | minhndn | `docs/experiment_explainer_sweep.md` §6.1 |

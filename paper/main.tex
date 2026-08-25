@@ -370,19 +370,30 @@ sixteen records in that run carry \texttt{"API error."} as their prompt,
 \emph{including the final returned optimum}. A failed call is not distinguishable
 from a candidate prompt anywhere in the recorded trajectory.
 
-\subsection{Grounding the explainer in the target's reasoning}
+\subsection{Conditioning the explainer on a self-explanation}
 \label{sec:reasoning}
 
 Because the explainer sees only the question and the parsed answer, its
 explanation is a hypothesis about \emph{any} plausible reason for that answer---
-two models emitting the same choice receive the same explanation. Forwarding the
-target's own generated reasoning instead drops fidelity from $0.905$ to $0.425$
-($n=200$) while iterations rise from $4.87$ to $10.20$. The direction is not
-self-interpreting: an explanation that states a strong, specific, wrong claim is
-easy to invert into a derailing hint, whereas one tracking the target's actual
-reasoning offers less leverage. Under a metric rewarding large shifts, being more
-faithful can score lower. Separating the readings needs the truthfulness metric,
-which our corpora cannot support.
+two models emitting the same choice receive the same explanation. One variant
+closes that gap by asking the target itself: a separate query
+(``\emph{Please explain why you chose this answer}'', $T=0.7$, parsed from an
+\texttt{[explain]\ldots@} span) elicits a self-explanation, which is appended to
+both the explainer's prompt and the optimiser's trajectory prompt.
+
+Fidelity drops from $0.905$ to $0.425$ ($n=200$, Qwen3.5-4B target, DeepSeek
+explainer) while iterations rise from $4.87$ to $10.20$.
+
+Two readings are available and our data cannot separate them. The variant may
+be producing explanations that track the target more closely and are therefore
+harder to negate \emph{dramatically}: under a metric rewarding large shifts,
+being more faithful can score lower. Or the self-explanation may simply be
+unfaithful in its own right---the very failure mode
+\citet{turpin2023unfaithful} document---in which case the explainer is being
+grounded in noise. Note also that this hybridises two settings the original
+deliberately separates in its \S2.2: explanation by a third-party explainer, and
+the target's own self-explanation. Deciding between the readings needs the
+truthfulness metric, which our corpora cannot support.
 
 \section{Error Analysis}
 
