@@ -1,7 +1,0 @@
-============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl ran out of energy.\n### Choices: [choice]She played checkers.@ [choice]She jumped rope.@'] || GT-A:She jumped rope. || LLM-A:She jumped rope.
-{'Score': 0.0, 'XAI prompt': '<EXP> The model likely chose "She jumped rope" because it associates jumping rope with physical activity that can lead to running out of energy.'}
-{'Score': 1.0, 'XAI prompt': '<EXP> The model may have selected "She jumped rope" as the answer because it interprets jumping rope as a physically demanding activity that can result in exhaustion, aligning with the premise of the girl running out of energy.'}
-{'Score': 0.0, 'XAI prompt': '<EXP> The model likely selected "She jumped rope" because it recognizes physical activities like jumping rope as potential causes for someone to run out of energy.'}
-{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen "She jumped rope" because it understands physical activities like jumping rope as activities that can deplete someone\'s energy levels.\nScore:\n0.0'}
-{'Score': 0.0, 'XAI prompt': '<EXP> The model likely favored "She jumped rope" due to its association with physical exertion and energy depletion, which aligns well with the premise of the girl running out of energy.'}
-{'Score': 1.0, 'XAI prompt': '<EXP> The model may have chosen "She jumped rope" as the answer because it associates physical activities like jumping rope with exhaustion, which aligns with the premise of the girl running out of energy.'}

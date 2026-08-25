@@ -1,2 +1,0 @@
-============ Corrct --> Q:['###Question: What is the cause of the Premise?\n### Premise: The girl ran out of energy.\n### Choices: [choice]She played checkers.@ [choice]She jumped rope.@'] || GT-A:She jumped rope. || LLM-A:She jumped rope.
-{'Score': 1.0, 'XAI prompt': '<EXP> The model might have chosen "She jumped rope" because it associates running out of energy with physical activity, like jumping rope, which can be a cause of exhaustion.'}

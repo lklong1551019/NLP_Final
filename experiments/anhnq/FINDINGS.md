@@ -123,10 +123,14 @@ chi phí của chúng không nằm trong bảng — usage log chỉ được th�
 | `xcopa_vi_qwen_gpt4omini_{accuracy,prob_accuracy,logprob}` | 500 câu, `xai_iter 5`, `stop_rule flip` — **kết quả chính** |
 | `xcopa_vi_phi_gpt35_{accuracy,logprob}` | 200 câu, cấu hình baseline; ngân sách lệch nhau nên chỉ dùng tham khảo |
 | `copa_en_phi_gpt35_fairbudget_*` | 10 câu × 5 chế độ, `--no_early_stop` — ngân sách bằng nhau để so số vòng |
-| `xcopa_vi_qwen_gpt4omini_pilot_*` | 20 câu, pilot |
+
+Số thư mục ở đây nhiều hơn các thành viên khác vì mỗi `--score_mode` là một thư mục
+riêng theo quy ước `<dataset>_<predictor>_<explainer>_<variant>`, và phần này chạy tới
+6 chế độ chấm trong khi các phần khác chạy một. Cùng một thí nghiệm vì thế sinh ra
+gấp 5–6 lần số thư mục. Các pilot thăm dò đã bị những lần chạy lớn thay thế đều đã bị
+xoá; mỗi thư mục còn lại đều đứng sau một con số cụ thể trong tài liệu này.
 | `random_hint_control.json` | 200 câu × 3 điều kiện (không hint / hint đúng / hint câu khác) |
 | `xcopa_vi_phi_gpt56luna_accuracy` | 179 câu, GPT-5.6 Luna — xem ghi chú bên dưới |
-| `copa_en_phi_gpt35_pilot4mode_*` | 10 câu × 4 chế độ, pilot thiết kế |
 
 ### Ghi chú về `xcopa_vi_phi_gpt56luna_accuracy`
 
