@@ -26,8 +26,8 @@ Four Controls on \textsc{FaithLM} and a Vietnamese Stress Test}
 target model's prediction shifts. We reproduce its COPA setting with the paper's
 own models, obtaining $0.872$ against the $\sim\!0.85$ reported, and then subject
 the metric to four controls it does not include. Three attack \emph{validity}: an
-off-topic hint already flips the target on $55.4\%$ of instances; a hint written
-for a different question flips it on $14.0\%$; and a target whose answers are
+off-topic hint already flips the target on $55.4\%$ of COPA instances, and on
+XCOPA-vi two independently designed null hints agree at $12.2\%$ and $14.0\%$; and a target whose answers are
 fully explained by ``pick the first-listed option''---$83/117$ correct and
 $83/117$ first-picks are the same $83$ instances---still scores $0.755$. One
 attacks \emph{reliability}: redrawing the contrary hint a single time, with the
@@ -272,8 +272,10 @@ survive correction for multiple comparisons.
 \textsc{logprob}             & \textbf{0.509} & [0.449, 0.570] \\
 \bottomrule
 \end{tabular}
-\caption{XCOPA-vi, $500$ instances. McNemar against the released mode:
-$p=0.00011$ (\textsc{logprob}), $p=0.01003$ (\textsc{prob\_accuracy}).}
+\caption{XCOPA-vi, $500$ instances scored; rates and intervals are over the
+$265$ the released parser resolves, the framing most favourable to it. McNemar
+against the released mode: $p=0.00011$ (\textsc{logprob}), $p=0.01003$
+(\textsc{prob\_accuracy}). Qwen3.5-4B target, \texttt{gpt-4o-mini} explainer.}
 \label{tab:modes}
 \end{table}
 
@@ -285,6 +287,14 @@ surviving predictions the parser disagrees with a normalised argmax on $59\%$ of
 $150$ audited instances. The metric also measures $\Delta$correctness rather than
 $\Delta$prediction: on one instance the hint flipped the answer outright and the
 released metric recorded $0.0$, because neither answer matched the gold string.
+
+Restricting to the $265$ resolvable instances does not select easy ones: the two
+probability modes score all $500$, and their flip rates on the $235$ the parser
+discards match those on the $265$ it keeps ($0.519$ vs $0.509$ for
+\textsc{logprob}, $p=0.83$; $0.489$ vs $0.460$ for \textsc{prob\_accuracy},
+$p=0.52$). Whether the target happens to emit \texttt{[choice]\ldots@} is
+unrelated to whether its prediction can be flipped, which is what a
+prompt--parser mismatch predicts and a target failure would not.
 
 Table~\ref{tab:modes} shows what changes when $f$ is read from probabilities, as
 \S3.1 of the original specifies. The gain is significant, but the informative
@@ -435,6 +445,12 @@ arms, and only on instances that already flipped; $64.7\%$ is therefore an
 \emph{upper} bound on stability. The hypothesis that a weak target escapes the
 ceiling is untested rather than refuted---our intended middle target turned out to
 be strong ($90.5\%$).
+
+\paragraph{One cell for the score-mode comparison.} The controls sweep six
+explainer\,$\times$\,target cells, but Table~\ref{tab:modes}---which carries the
+figure quoted in the abstract---is a single cell, Qwen3.5-4B with
+\texttt{gpt-4o-mini}. Whether the parser's cost and the ordering of the three
+modes hold across targets is untested.
 
 \paragraph{Granularity.} Under the released mode $S_E$ carries one bit per
 instance. A $30$-instance estimate of Vietnamese accuracy gave $33.3\%$ with an
