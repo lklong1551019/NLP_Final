@@ -26,10 +26,12 @@ Four Controls on \textsc{FaithLM} and a Vietnamese Stress Test}
 target model's prediction shifts. We reproduce its COPA setting with the paper's
 own models, obtaining $0.872$ against the $\sim\!0.85$ reported, and then subject
 the metric to four controls it does not include. Three attack \emph{validity}: an
-off-topic hint already flips the target on $55.4\%$ of COPA instances, and on
-XCOPA-vi two independently designed null hints agree at $12.2\%$ and $14.0\%$; and a target whose answers are
-fully explained by ``pick the first-listed option''---$83/117$ correct and
-$83/117$ first-picks are the same $83$ instances---still scores $0.755$. One
+off-topic hint already flips the target on $55.4\%$ of COPA instances; a hint
+written for a different question flips it on $14.0\%$ of XCOPA-vi instances,
+where the off-topic control independently gives $12.2\%$; and a target whose
+answers are fully explained by ``pick the first-listed option''---$83/117$
+correct and $83/117$ first-picks are the same $83$ instances---still scores
+$0.755$. One
 attacks \emph{reliability}: redrawing the contrary hint a single time, with the
 explanation, question and temperature unchanged, loses more than a third of all
 flips ($0.647$, $[0.596, 0.694]$). Across six explainer\,$\times$\,target cells
