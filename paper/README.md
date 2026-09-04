@@ -14,22 +14,26 @@ Or with a standard toolchain: `pdflatex main && bibtex main && pdflatex main && 
 ## Provenance
 
 Every number traces to a member's raw outputs under [`../experiments/`](../experiments/)
-or to their written analysis. Nothing in the paper is estimated.
+or to their written analysis. Nothing in the paper is estimated. PR #10 recomputed
+every figure from the per-sample JSON and corrected seven; this table reflects
+the corrected values.
 
 | Claim | Value | Owner | Source |
 |---|---|---|---|
 | Reproduction vs paper | 0.872 vs ~0.85 | anhnh | `anhnh/copa_en_phi_gpt35_paper_rep1` |
-| Ceiling: every parseable flip | 354/354, 34/35 | anhnh | `anhnh/copa_en_phi_gpt35_control` |
+| Ceiling, control run | 354/354 correct, 34/34 incorrect flip | anhnh | `anhnh/copa_en_phi_gpt35_control` |
+| Ceiling, reproduction run | 352/352 correct, 34/35 incorrect flip | anhnh | `anhnh/copa_en_phi_gpt35_paper_rep1` |
 | Control A, English | 0.860 / 0.554 / +0.306 | anhnh | `anhnh/copa_en_phi_gpt35_control` |
 | Control A, Vietnamese | 0.336 / 0.122 / +0.214 | anhnh | `anhnh/xcopa_vi_phi_gpt35_control` |
 | Control B (mismatched hint) | 0.370 vs 0.140, p<0.0001 | anhnq | `anhnq/random_hint_control.json`, `anhnq/FINDINGS.md` |
-| Control C (position bias) | 83/117 correct = 83/117 first-pick | minhndn | `docs/experiment_explainer_sweep.md` §4 |
+| Control C (position bias) | 83/117 parseable answers pick the first option (71%); 63 of those overlap the 83 correct | minhndn | raw recount in PR #10; supersedes the "same 83" wording in `docs/experiment_explainer_sweep.md` §4 |
 | Position-bias floor / fidelity | 62% / 0.755 | minhndn | same |
 | Phi-2 at chance under logprob | 0.520 vs floor 0.530, 87% option A | anhnq | `anhnq/FINDINGS.md` |
 | Control D (flip reproducibility) | 0.647 [0.596, 0.694], n=365 | minhndn | `docs/experiment_explainer_sweep.md` §5 |
 | Control D per arm | 0.607 / 0.684, p=0.12 | minhndn | same |
 | Goodhart signature | 0.715 vs 0.609, p=0.041 | minhndn | same §5.3 |
 | Explainer sweep, 4 explainers | p=0.216–0.754, none significant | minhndn | same §3 |
+| One nominal pair, disclosed | p=0.034 → fails Bonferroni, McNemar p=0.052, sign flips across targets | minhndn | same §8.4 |
 | 3×2 grid, pooled by target | 0.943 vs 0.950, z=−0.51, p=0.607 | minhndn | same §8.4 |
 | Score modes | 0.374 / 0.460 / 0.509 | anhnq | `anhnq/xcopa_vi_qwen_gpt4omini_*` |
 | McNemar | p=0.00011, p=0.01003, p=0.103 | anhnq | `anhnq/FINDINGS.md` |
@@ -40,7 +44,7 @@ or to their written analysis. Nothing in the paper is estimated.
 | Algorithm 2: seed vs best | 0.467→0.533 / 0.467→**0.400** / 0.333→0.600 | longlk | `longlk/*/global_*.json` |
 | Algorithm 2: error string as prompt | 5/16 records, incl. final | longlk | `longlk/xcopa_vi_qwen_deepseek/global_*.json` |
 | Explainer pro vs flash (same target) | 0.905 vs 0.850 | longlk | `longlk/xcopa_vi_qwen_deepseek{,_flash}` |
-| Self-explanation variant | 0.905 → 0.425, iter 4.87 → 10.20 | longlk | `longlk/xcopa_vi_qwen_deepseek{,_reasoning_flow}`; mechanism in `model/predictor.py::generate_predictor_reasoning` |
+| Self-explanation variant (flash → flash, matched) | 0.850 → 0.425, iter 6.09 → 10.20 | longlk | `longlk/xcopa_vi_qwen_deepseek{,_reasoning_flow}`; mechanism in `model/predictor.py::generate_predictor_reasoning` |
 | Iterations 7.82 vs 3.11 | — | anhnh | `anhnh/*_control` |
 | 16.6% wasted iterations | — | anhnq | `anhnq/FINDINGS.md` |
 | Reasoning-token exhaustion | 179/200, 827 tokens | minhndn | `docs/experiment_explainer_sweep.md` §6.1 |
