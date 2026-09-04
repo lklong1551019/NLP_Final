@@ -369,7 +369,7 @@ print(pd.DataFrame({
   "COPA-en (Phi-2)":  err_split("experiments/anhnh/copa_en_phi_gpt35_control"),
   "XCOPA-vi (Phi-2)": err_split("experiments/anhnh/xcopa_vi_phi_gpt35_control"),
 }).T)
-print("\n→ on English 13 of 14 errors are parse failures, not reasoning failures. 'Accuracy' here is closer to a parse-success rate.")
+print("\n→ on English 112 of 146 errors are parse failures, not wrong choices. 'Accuracy' here is closer to a parse-success rate.")
 ''')
 py(r'''
 # (2) The cascade: an unreadable answer becomes the literal string "X", and the explainer explains *that*.

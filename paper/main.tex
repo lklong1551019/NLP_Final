@@ -148,8 +148,8 @@ paper's English prompts verbatim (diffed against the released commit; only
 whitespace differs). Additional targets (Qwen3.5-4B and DeepSeek-v4-flash)
 probe the Vietnamese setting. Where a Vietnamese prompt
 scaffold is used it is a fluent rewrite rather than a literal translation of
-the original strings, so the language axis varies wording as well as language. All runs, per-instance outputs
-and code are released.
+the original strings, so the language axis varies wording as well as language. All runs, per-instance outputs, code, and a Colab notebook that rebuilds every
+table below from the released results are public.
 
 Three implementation details materially affect any reproduction.
 \textbf{(i)} \texttt{do\_sample} is never set, so \texttt{transformers} ignores
