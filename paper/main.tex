@@ -1,14 +1,14 @@
 \documentclass[11pt]{article}
 \usepackage{acl}
-\usepackage{times}
+\usepackage{fontspec}
+\setmainfont{texgyretermes}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\setsansfont{texgyreheros}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
+\setmonofont{texgyrecursor}[Extension=.otf,UprightFont=*-regular,BoldFont=*-bold,ItalicFont=*-italic,BoldItalicFont=*-bolditalic]
 \usepackage{latexsym}
 \usepackage{amsmath}
 \usepackage{booktabs}
 \usepackage{graphicx}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage{microtype}
-\usepackage{inconsolata}
 
 \title{A Flip Is Not a Faithfulness Signal:\\
 Four Controls on \textsc{FaithLM} and a Vietnamese Stress Test}
@@ -470,15 +470,13 @@ involved.
 \section{Conclusion}
 
 \textsc{FaithLM} reproduces, and its contrary-hint score is not empty: a real
-semantic effect survives every control we ran. But the score as reported conflates
-that effect with how readily the target follows any hint, rates a target
-dominated by position preference at $0.755$, and loses a third of its flips to
-a single resampling. Under language transfer the binding constraint is not the metric but
-the regular-expression reader in front of it. We recommend that
-intervention-based faithfulness measures report a null-hint baseline, sample the
-contrary hint $k>1$ times and take a majority rather than stopping at the first
-flip, and read the intervened quantity from the model's distribution rather than
-from its prose.
+semantic effect survives every control we ran. But as reported it conflates that
+effect with how readily the target follows any hint, rates a position-dominated
+target at $0.755$, and loses a third of its flips to a single resampling. Under
+language transfer the binding constraint is the regular-expression reader, not
+the metric. Intervention-based measures should report a null-hint baseline,
+sample the contrary hint $k>1$ times and take a majority rather than stopping at
+the first flip, and read the intervened quantity from the model's distribution.
 
 \bibliography{refs}
 \bibliographystyle{acl_natbib}
