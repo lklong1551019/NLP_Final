@@ -22,14 +22,20 @@ paths.
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lklong1551019/NLP_Final/blob/main/notebooks/FaithLM_XCOPA_vi.ipynb)
 
 - **Without an API key** it still runs sections 1–3, 5a and 7: full-scale
-  tables rebuilt from the 1,560+ committed results and the error analysis.
+  tables rebuilt from the 2,300 committed per-question results and the error
+  analysis.
 - **With a key** (any OpenAI-compatible endpoint, set as Colab Secret
   `LITELLM_API_KEY`) it also runs the live pipeline, the baseline comparison and
   the demo. Set `PRED_MODEL = "phi"` on a T4 runtime to use the paper's own
   target model locally.
 
+The committed copy carries the outputs of a full Colab run (T4, all cells, no
+errors), so it can be read without executing anything.
+
 The notebook is generated from `scripts/build_notebook.py`; edit that and re-run
-it rather than editing the `.ipynb` by hand.
+it rather than editing the `.ipynb` by hand. Regenerating produces a clean
+notebook with no outputs — re-run it in Colab and commit the executed copy if
+the stored outputs should be kept.
 
 ## Quick Start
 
@@ -145,7 +151,7 @@ JSON per question for the local pipeline plus one for the global pipeline.
 
 | Item | Where |
 |---|---|
-| Report (ACL format) | [`paper/main.pdf`](paper/main.pdf) — source in `paper/main.tex`, build with `tectonic -X compile paper/main.tex` |
+| Report (ACL format) | [`paper/main.pdf`](paper/main.pdf) — source in `paper/main.tex`, build with `tectonic -X compile paper/main.tex`. XeLaTeX only — the preamble uses `fontspec` so Vietnamese diacritics render; pdfLaTeX drops them |
 | Colab / Kaggle notebook | [`notebooks/FaithLM_XCOPA_vi.ipynb`](notebooks/FaithLM_XCOPA_vi.ipynb) |
 | Experiment outputs | [`experiments/`](experiments/) — one folder per member; every number in the paper traces to a run there ([`paper/README.md`](paper/README.md)) |
 | Datasets | `pkavumba/balanced-copa` and `cambridgeltl/xcopa` (`vi`) on the Hugging Face Hub; downloaded on first use |
