@@ -38,7 +38,22 @@ STATS = {"calls": 0, "empty": 0, "errors": 0, "context_overflow": 0}
 # Errors that will never succeed on retry: the request itself is invalid, so
 # sleeping and sending it again only wastes wall-clock.
 _NON_RETRYABLE = ("maximum context length", "context_length_exceeded",
-                  "string too long", "invalid_request_error")
+                  "string too long", "invalid_request_error",
+                  # The endpoint answered with a web page, not an API response:
+                  # a Cloudflare/WAF challenge or a wrong base URL. Retrying the
+                  # same request from the same IP cannot pass it.
+                  "attention required", "cloudflare", "<!doctype html", "<html")
+
+
+def _explain(exc):
+    """Short, actionable text for the final error instead of a raw HTML dump."""
+    text = str(exc)
+    low = text.lower()
+    if "attention required" in low or "cloudflare" in low or "<html" in low:
+        return ("endpoint returned an HTML page instead of JSON - a Cloudflare/WAF "
+                "block or a wrong LITELLM_BASE_URL. This host cannot reach that "
+                "endpoint; use a provider reachable from here (e.g. OpenRouter).")
+    return text if len(text) <= 300 else text[:300] + " ..."
 
 
 def _is_non_retryable(exc):
@@ -308,7 +323,7 @@ def chat(prompt, model, max_tokens=3000, temperature=0.0, system=None, retries=4
         STATS["empty"] += 1
     else:
         STATS["errors"] += 1
-    raise RuntimeError(f"LLM call failed after {retries} attempts: {last_error}")
+    raise RuntimeError(f"LLM call failed after {retries} attempts: {_explain(last_error)}")
 
 
 def chat_token_logprobs(prompt, model, top_logprobs=20, retries=3):
